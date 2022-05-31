@@ -1,10 +1,18 @@
 require('dotenv/config');
 const path = require('path');
 const express = require('express');
+const pg = require('pg');
 const errorMiddleware = require('./error-middleware');
 
 const app = express();
 const publicPath = path.join(__dirname, 'public');
+
+const db = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
 if (process.env.NODE_ENV === 'development') {
   app.use(require('./dev-middleware')(publicPath));
@@ -12,9 +20,19 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.static(publicPath));
 
-app.get('/api/hello', (req, res) => {
-  res.json({ hello: 'world' });
+app.get('/api/post', (req, res, next) => {
+  const sql = `
+  select *
+  from "post"
+  `;
+  db
+    .query(sql)
+    .then(result => {
+      return res.status(201).json(result.rows);
+    })
+    .catch(err => next(err));
 });
+app.use(express.json());
 
 app.use(errorMiddleware);
 
