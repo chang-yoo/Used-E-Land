@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express');
 const pg = require('pg');
 const errorMiddleware = require('./error-middleware');
-
+const ClientError = require('./client-error');
 const app = express();
 const publicPath = path.join(__dirname, 'public');
 
@@ -20,19 +20,37 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.static(publicPath));
 
-app.get('/api/', (req, res, next) => {
+app.get('/api/main', (req, res, next) => {
   const sql = `
   select *
   from "post"
   `;
-  db
+  return db
     .query(sql)
     .then(result => {
-      return res.status(201).json(result.rows);
+      res.status(201).json(result.rows);
     })
     .catch(err => next(err));
 });
+
 app.use(express.json());
+
+app.get('/api/post/:postId', (req, res, next) => {
+  const targetId = Number(req.params.postId);
+  if (!Number.isInteger(targetId) || targetId <= 0) {
+    throw new ClientError(400, 'postId must be a positive integer!');
+  }
+  const sql = `
+  select*
+  from "post"
+  where "postId" = ${targetId}
+  `;
+  return db
+    .query(sql)
+    .then(result =>
+      res.json(result.rows))
+    .catch(err => next(err));
+});
 
 app.use(errorMiddleware);
 
