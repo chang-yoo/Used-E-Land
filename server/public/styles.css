@@ -79,3 +79,17 @@ h1 {
   border-radius: 10px;
   margin-top: 20px;
 }
+
+.hide {
+  display: none;
+}
+
+.post {
+  transform: scale(1);
+  transition: transform 0.5s;
+}
+
+.post:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
