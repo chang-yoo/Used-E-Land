@@ -72,20 +72,3 @@ CREATE TABLE "public"."likes" (
 ) WITH (
   OIDS=FALSE
 );
-
-
-
-
-ALTER TABLE "post" ADD CONSTRAINT "post_fk0" FOREIGN KEY ("userId") REFERENCES "user"("userId");
-
-ALTER TABLE "review" ADD CONSTRAINT "review_fk0" FOREIGN KEY ("postId") REFERENCES "post"("postId");
-ALTER TABLE "review" ADD CONSTRAINT "review_fk1" FOREIGN KEY ("userId") REFERENCES "user"("userId");
-
-ALTER TABLE "messenger" ADD CONSTRAINT "messenger_fk0" FOREIGN KEY ("userId") REFERENCES "user"("userId");
-ALTER TABLE "messenger" ADD CONSTRAINT "messenger_fk1" FOREIGN KEY ("postId") REFERENCES "post"("postId");
-
-ALTER TABLE "favorite" ADD CONSTRAINT "favorite_fk0" FOREIGN KEY ("postId") REFERENCES "post"("postId");
-ALTER TABLE "favorite" ADD CONSTRAINT "favorite_fk1" FOREIGN KEY ("userId") REFERENCES "user"("userId");
-
-ALTER TABLE "likes" ADD CONSTRAINT "likes_fk0" FOREIGN KEY ("userId") REFERENCES "user"("userId");
-ALTER TABLE "likes" ADD CONSTRAINT "likes_fk1" FOREIGN KEY ("postId") REFERENCES "post"("postId");
