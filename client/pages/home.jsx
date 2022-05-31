@@ -1,10 +1,13 @@
 import React from 'react';
-import HelloWorld from '../components/hello-world';
+import List from '../components/list';
 
 export default function Home(props) {
   return (
-    <div>
-      <HelloWorld />
+    <div className="list-background">
+      <h1>Most Recent</h1>
+      <div className="row">
+        <List />
+      </div>
     </div>
   );
 }
