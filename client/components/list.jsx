@@ -19,18 +19,20 @@ export default class List extends React.Component {
     const { post } = this.state;
     return post.map(eachpost => {
       return (
-    <div key={eachpost.userId} className="container">
-      <div className="row">
+    <div key={eachpost.userId} className="one-fourth-container">
+
+      <div className="each-post">
       <div className="postlistimage-container">
         <img className='postlist-image' src = {eachpost.imageURL}></img>
       </div>
-      <div>
-        <h3 className="postlist-title"></h3>
+      <div className="postlist-text">
+        <h3 className="postlist-title">{eachpost.title}</h3>
         <p>{eachpost.condition}</p>
         <p>{eachpost.location}</p>
-        <h5>{eachpost.price}</h5>
+        <h5 className="price">{eachpost.price}</h5>
       </div>
       </div>
+
     </div>
       );
     }
