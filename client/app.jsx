@@ -9,6 +9,7 @@ export default class App extends React.Component {
     this.state = {
       route: parseRoute(window.location.hash)
     };
+    this.renderPage = this.renderPage.bind(this);
   }
 
   componentDidMount() {
@@ -19,11 +20,18 @@ export default class App extends React.Component {
     });
   }
 
+  renderPage() {
+    const { path } = this.state.route;
+    if (path === '') {
+      return <Home />;
+    }
+  }
+
   render() {
     return (
     <div>
       <Header />
-     <Home />;
+     {this.renderPage()}
     </div>
     );
   }
