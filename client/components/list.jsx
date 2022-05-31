@@ -9,7 +9,7 @@ export default class List extends React.Component {
   }
 
   componentDidMount() {
-    fetch('api/post')
+    fetch('api/')
       .then(res => res.json())
       .then(data =>
         this.setState({ post: data }));

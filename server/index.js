@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.static(publicPath));
 
-app.get('/api/post', (req, res, next) => {
+app.get('/api/', (req, res, next) => {
   const sql = `
   select *
   from "post"
