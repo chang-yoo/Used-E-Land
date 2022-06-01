@@ -54,6 +54,24 @@ app.get('/api/post/:postId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/search/:keyword', (req, res, next) => {
+  const keyword = req.params.keyword;
+  if (!keyword) {
+    throw new ClientError(400, 'searching keyword is required');
+  }
+  const sql = `
+    select*
+    from "post"
+    where "title" ilike '%' || $1 || '%'
+  `;
+  const params = [keyword];
+  db
+    .query(sql, params)
+    .then(result =>
+      res.json(result.rows))
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
