@@ -9,8 +9,7 @@ export default class Detail extends React.Component {
   }
 
   componentDidMount() {
-    const targetId = window.location.hash.split('/');
-    fetch(`/api/post/${targetId[1]}`)
+    fetch(`/api/post/${this.props.postId}`)
       .then(res => res.json())
       .then(result => {
         const [data] = result;

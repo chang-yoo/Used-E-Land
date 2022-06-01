@@ -6,7 +6,6 @@ export default class List extends React.Component {
     this.state = {
       post: []
     };
-    this.toDetail = this.toDetail.bind(this);
   }
 
   componentDidMount() {
@@ -17,19 +16,12 @@ export default class List extends React.Component {
       });
   }
 
-  toDetail(event) {
-    const targetElement = event.target.closest('a');
-    const targetId = Number(targetElement.id);
-    window.location.hash = `post/${targetId}`;
-  }
-
   render() {
     const { post } = this.state;
-    const recent = post.filter((lastfour, index) => index >= post.length - 4);
-    return recent.map(eachpost => {
+    return post.map(eachpost => {
       return (
-        <div key={eachpost.postId} onClick={this.toDetail} className="one-fourth-container post">
-          <a id={eachpost.postId} >
+        <div key={eachpost.postId} className="one-fourth-container post">
+          <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId} >
             <div className="each-post">
             <div className="postlistimage-container">
               <img className='postlist-image' src = {eachpost.imageURL}></img>

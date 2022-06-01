@@ -27,7 +27,7 @@ export default class App extends React.Component {
     if (path === '') {
       return <Home />;
     } else if (path === 'post') {
-      return <Detail />;
+      return <Detail postId={this.state.route.params.get('postId')} />;
     }
   }
 

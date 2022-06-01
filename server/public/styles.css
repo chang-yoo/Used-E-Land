@@ -165,3 +165,7 @@ h4 {
 .dot-container {
   margin-top: 0.1rem;
 }
+
+a {
+  text-decoration: none;
+}

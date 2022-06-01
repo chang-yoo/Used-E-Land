@@ -24,6 +24,7 @@ app.get('/api/main', (req, res, next) => {
   const sql = `
   select *
   from "post"
+  limit 4
   `;
   return db
     .query(sql)
@@ -43,10 +44,11 @@ app.get('/api/post/:postId', (req, res, next) => {
   const sql = `
   select*
   from "post"
-  where "postId" = ${targetId}
+  where "postId" = $1
   `;
+  const params = [targetId];
   return db
-    .query(sql)
+    .query(sql, params)
     .then(result =>
       res.json(result.rows))
     .catch(err => next(err));
