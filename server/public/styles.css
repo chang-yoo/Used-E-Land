@@ -4,8 +4,8 @@
 
 img {
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  height: 100%;
+  object-fit: fill;
 }
 
 .postlist-image {
@@ -73,9 +73,99 @@ h1 {
 }
 
 .logo {
-  width: 150px;
+  width: 130px;
   height: 40px;
   margin: auto 1rem;
   border-radius: 10px;
   margin-top: 20px;
+  object-fit: cover;
+}
+
+.hide {
+  display: none;
+}
+
+.post {
+  transform: scale(1);
+  transition: transform 0.5s;
+}
+
+.post:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.detail-container {
+  width: 77%;
+  margin: auto;
+}
+
+.detail-background {
+  background-color: #fef5f0;
+  min-height: 90vh;
+  width: 80%;
+  margin: auto;
+}
+
+.detail-image-container {
+  width: 350px;
+  height: 350px;
+  margin: 1.2rem auto;
+}
+
+.detail-description,
+.detail-text {
+  line-height: 1.5rem;
+  margin: 0 1.5rem;
+}
+
+hr {
+  width: 390px;
+  border: none;
+  background-color: white;
+  height: 5px;
+}
+
+h2,
+h4 {
+  color: #ad7d35;
+}
+
+.space-even {
+  justify-content: space-between;
+}
+
+.main-image {
+  width: 70%;
+  height: 650px;
+  position: absolute;
+  margin: 0;
+  animation-duration: 2s;
+  animation-name: slideright;
+}
+
+@keyframes slideright {
+  from { left: -150%; }
+  to { left: 15%; }
+}
+
+.home-image-container {
+  width: 70%;
+  height: 650px;
+  margin: auto;
+}
+
+.horz-margin {
+  position: relative;
+  left: 44%;
+  margin: 1rem;
+  margin-top: 0.4rem;
+}
+
+.dot-container {
+  margin-top: 0.1rem;
+}
+
+a {
+  text-decoration: none;
 }
