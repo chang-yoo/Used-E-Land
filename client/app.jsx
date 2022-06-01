@@ -3,6 +3,7 @@ import Home from './pages/home';
 import Header from './components/navbar';
 import parseRoute from './lib/parse-route.js';
 import Detail from './components/detail';
+import PageContainer from './components/page-container';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -34,7 +35,9 @@ export default class App extends React.Component {
     return (
     <div>
       <Header />
-     {this.renderPage()}
+      <PageContainer>
+        {this.renderPage()}
+      </PageContainer>
     </div>
     );
   }
