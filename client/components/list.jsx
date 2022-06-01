@@ -25,7 +25,8 @@ export default class List extends React.Component {
 
   render() {
     const { post } = this.state;
-    return post.map(eachpost => {
+    const recent = post.filter((lastfour, index) => index >= post.length - 4);
+    return recent.map(eachpost => {
       return (
         <div key={eachpost.postId} onClick={this.toDetail} className="one-fourth-container post">
           <a id={eachpost.postId} >

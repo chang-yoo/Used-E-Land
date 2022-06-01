@@ -5,7 +5,7 @@
 img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .postlist-image {
@@ -73,11 +73,12 @@ h1 {
 }
 
 .logo {
-  width: 150px;
+  width: 130px;
   height: 40px;
   margin: auto 1rem;
   border-radius: 10px;
   margin-top: 20px;
+  object-fit: cover;
 }
 
 .hide {
@@ -132,4 +133,31 @@ h4 {
 
 .space-even {
   justify-content: space-between;
+}
+
+.main-image {
+  width: 70%;
+  height: 650px;
+  position: absolute;
+  margin: 0;
+  animation-duration: 2s;
+  animation-name: slideright;
+}
+
+@keyframes slideright {
+  from { left: -150%; }
+  to { left: 15%; }
+}
+
+.home-image-container {
+  width: 70%;
+  height: 650px;
+  margin: auto;
+}
+
+.horz-margin {
+  position: relative;
+  left: 44%;
+  margin: 1rem;
+  margin-top: 0.4rem;
 }
