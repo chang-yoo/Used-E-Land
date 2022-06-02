@@ -11,8 +11,7 @@ export default class Header extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.reset = this.reset.bind(this);
     this.menubar = this.menubar.bind(this);
-    this.signin = this.signin.bind(this);
-    this.logo = this.logo.bind(this);
+    this.turnoffMenubar = this.turnoffMenubar.bind(this);
   }
 
   handleSubmit(event) {
@@ -40,12 +39,7 @@ export default class Header extends React.Component {
     return this.setState({ menu: 'off' });
   }
 
-  signin() {
-    window.location.hash = 'sign-in';
-    this.setState({ menu: 'off' });
-  }
-
-  logo() {
+  turnoffMenubar() {
     this.setState({ menu: 'off' });
   }
 
@@ -59,7 +53,7 @@ export default class Header extends React.Component {
       return (
     <div className="header">
       <div>
-        <a onClick={this.logo} href="#">
+        <a onClick={this.turnoffMenubar} href="#">
           <img className="logo" src="/images/logo.png"></img>
         </a>
       </div>
@@ -86,7 +80,7 @@ export default class Header extends React.Component {
                 <i onClick={this.menubar}className="fa-solid fa-arrow-right-long fa-2x"></i>
             </div>
               <div>
-                <a onClick={this.signin}><h4>Sign In</h4></a>
+                  <a href="#sign-in" onClick={this.turnoffMenubar}><h4>Sign In</h4></a>
               </div>
           </div>
         </div>

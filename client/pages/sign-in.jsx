@@ -63,7 +63,7 @@ export default class SignIn extends React.Component {
                   <p className="sigin-in-no-account">
                     Don&apos;t have account yet? Don&apos;t worry!
                   </p>
-                  <a className="sigin-in-no-account">
+                  <a href="#sign-up" className="sigin-in-no-account">
                     Sign Up
                   </a>
                 </div>

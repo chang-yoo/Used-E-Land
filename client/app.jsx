@@ -6,6 +6,7 @@ import Detail from './pages/detail';
 import PageContainer from './components/page-container';
 import SearchResult from './components/SearchResult';
 import SignIn from './pages/sign-in';
+import SignUp from './pages/sign-up';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -34,6 +35,8 @@ export default class App extends React.Component {
       return <SearchResult keyword={this.state.route.params.get('keyword')} />;
     } else if (path === 'sign-in') {
       return <SignIn />;
+    } else if (path === 'sign-up') {
+      return <SignUp />;
     }
   }
 

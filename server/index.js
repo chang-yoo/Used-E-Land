@@ -6,6 +6,7 @@ const errorMiddleware = require('./error-middleware');
 const ClientError = require('./client-error');
 const app = express();
 const publicPath = path.join(__dirname, 'public');
+const argon2 = require('argon2');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -33,8 +34,6 @@ app.get('/api/main', (req, res, next) => {
     })
     .catch(err => next(err));
 });
-
-app.use(express.json());
 
 app.get('/api/post/:postId', (req, res, next) => {
   const targetId = Number(req.params.postId);
@@ -69,6 +68,31 @@ app.get('/api/search/:keyword', (req, res, next) => {
     .query(sql, params)
     .then(result =>
       res.json(result.rows))
+    .catch(err => next(err));
+});
+
+app.use(express.json());
+
+app.post('/api/sign-up', (req, res, next) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    throw new ClientError(400, 'username and password are required fields');
+  }
+  argon2
+    .hash(password)
+    .then(hashedPassword => {
+      const sql = `
+        insert into "users" ("username", "hashedpassword")
+        values ($1, $2)
+        returning "userId", "username"
+      `;
+      const params = [username, hashedPassword];
+      return db.query(sql, params);
+    })
+    .then(result => {
+      const [user] = result.rows;
+      res.status(201).json(user);
+    })
     .catch(err => next(err));
 });
 

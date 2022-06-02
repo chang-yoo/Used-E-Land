@@ -243,6 +243,7 @@ a {
   text-decoration: none;
 }
 
+button,
 a,
 i:hover {
   cursor: pointer;
