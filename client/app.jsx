@@ -1,9 +1,10 @@
 import React from 'react';
 import Home from './pages/home';
-import Header from './components/navbar';
+import Header from './components/header';
 import parseRoute from './lib/parse-route.js';
 import Detail from './components/detail';
 import PageContainer from './components/page-container';
+import SearchResult from './components/SearchResult';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -28,6 +29,8 @@ export default class App extends React.Component {
       return <Home />;
     } else if (path === 'post') {
       return <Detail postId={this.state.route.params.get('postId')} />;
+    } else if (path === 'search') {
+      return <SearchResult keyword={this.state.route.params.get('keyword')} />;
     }
   }
 
