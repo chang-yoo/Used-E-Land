@@ -82,6 +82,15 @@ h1 {
   object-fit: cover;
 }
 
+.search-bar {
+  width: 500px;
+  height: 30px;
+  margin-top: 25px;
+  margin-left: 50px;
+  border: 1px solid #9f9999;
+  border-radius: 10px;
+}
+
 .hide {
   display: none;
 }
@@ -169,4 +178,15 @@ h4 {
 
 a {
   text-decoration: none;
+}
+
+.search-glass {
+  color: #9f9999;
+  position: absolute;
+  top: 4.2%;
+  left: 48%;
+}
+
+.search-glass:hover {
+  cursor: pointer;
 }

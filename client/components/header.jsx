@@ -38,9 +38,10 @@ export default class Header extends React.Component {
               type="text"
               onChange={this.handleChange}
               value={this.state.userInput}
+              className="search-bar"
               />
           </label>
-          <button type="submit"></button>
+            <i onClick={this.handleSubmit}className="fa-solid fa-magnifying-glass search-glass"></i>
         </form>
       </div>
     </div>
