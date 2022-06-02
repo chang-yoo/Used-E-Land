@@ -13,3 +13,7 @@ body {
 .column-half {
   width: 50%;
 }
+
+.column-full {
+  width: 100%;
+}

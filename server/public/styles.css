@@ -49,6 +49,8 @@ h3 {
   top: 0;
   height: 80px;
   display: flex;
+  width: 100%;
+  margin: 0;
 }
 
 .search-background,
@@ -98,6 +100,7 @@ h1 {
 }
 
 .searching-icons {
+  width: 100%;
   margin-left: -30px;
   margin-top: 30px;
   z-index: 2;
@@ -108,15 +111,16 @@ input:focus {
   outline: none;
 }
 
+.fa-arrow-right-long,
+.menu-icon,
 .fa-xmark,
 .search-glass {
   color: #9f9999;
 }
 
-.fa-xmark {
+.searching-x {
   position: absolute;
-  right: 150%;
-  top: 3%;
+  right: 102%;
 }
 
 .hide {
@@ -126,6 +130,37 @@ input:focus {
 .post {
   transform: scale(1);
   transition: transform 0.5s;
+}
+
+.menu-bar {
+  width: 100%;
+  position: relative;
+  background-color: #fee5d7;
+  min-height: 100vh;
+  z-index: 3;
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
+
+.slide-right {
+  animation: slide-right 0.5s 1;
+}
+
+@keyframes slide-right {
+  from {
+    left: 20%;
+  }
+
+  to {
+    left: 0%;
+  }
+}
+
+.menu-container {
+  position: absolute;
+  margin-top: 24px;
+  right: 5%;
+  z-index: 3;
 }
 
 .post:hover {
@@ -208,8 +243,8 @@ a {
   text-decoration: none;
 }
 
-i:hover,
-.search-glass:hover {
+a,
+i:hover {
   cursor: pointer;
 }
 
@@ -235,4 +270,21 @@ i:hover,
 
 .hidden {
   display: none;
+}
+
+.margin-0 {
+  margin: 0;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.username,
+.password {
+  border: 1px solid #9f9999;
+  border-radius: 10px;
+  height: 2.5rem;
+  width: 20rem;
 }
