@@ -8,6 +8,7 @@ export default class Header extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   handleSubmit(event) {
@@ -21,7 +22,15 @@ export default class Header extends React.Component {
     this.setState({ userInput: value });
   }
 
+  reset() {
+    this.setState({ userInput: '' });
+  }
+
   render() {
+    let classvalue = 'hidden';
+    if (this.state.userInput.length > 0) {
+      classvalue = '';
+    }
     return (
     <div className="header">
       <div>
@@ -29,7 +38,7 @@ export default class Header extends React.Component {
           <img className="logo" src="/images/logo.png"></img>
         </a>
       </div>
-      <div>
+      <div className="row">
         <form onSubmit={this.handleSubmit}>
           <label>
             <input
@@ -41,8 +50,11 @@ export default class Header extends React.Component {
               className="search-bar"
               />
           </label>
-            <i onClick={this.handleSubmit}className="fa-solid fa-magnifying-glass search-glass"></i>
         </form>
+        <div className="searching-icons">
+          <a className={classvalue}><i onClick={this.reset} className="fa-solid fa-xmark"></i></a>
+          <i onClick={this.handleSubmit} className="fa-solid fa-magnifying-glass search-glass"></i>
+        </div>
       </div>
     </div>
     );

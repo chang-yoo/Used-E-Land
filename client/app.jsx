@@ -29,7 +29,7 @@ export default class App extends React.Component {
       return <Home />;
     } else if (path === 'post') {
       return <Detail postId={this.state.route.params.get('postId')} />;
-    } else if (path === 'searching') {
+    } else if (path === 'search') {
       return <SearchResult keyword={this.state.route.params.get('keyword')} />;
     }
   }
@@ -37,8 +37,8 @@ export default class App extends React.Component {
   render() {
     return (
     <div>
-        <Header />
-        <PageContainer>
+      <Header />
+      <PageContainer>
         {this.renderPage()}
       </PageContainer>
     </div>
