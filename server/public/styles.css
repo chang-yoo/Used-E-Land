@@ -288,3 +288,21 @@ i:hover {
   height: 2.5rem;
   width: 20rem;
 }
+
+.sigin-in-no-account {
+  font-size: 12px;
+  color: #ad7d35;
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+.sign-in-button {
+  border: 1px solid #fbd3a4;
+  background-color: #fbd3a4;
+  border-radius: 30px;
+  height: 40px;
+  width: 90px;
+  color: #ad7d35;
+}

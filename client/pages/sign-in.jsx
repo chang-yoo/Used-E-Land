@@ -58,6 +58,21 @@ export default class SignIn extends React.Component {
                 className="password"
                 />
               </div>
+              <div className="row">
+                <div>
+                  <p className="sigin-in-no-account">
+                    Don&apos;t have account yet? Don&apos;t worry!
+                  </p>
+                  <a className="sigin-in-no-account">
+                    Sign Up
+                  </a>
+                </div>
+                <div className="margin-auto">
+                  <button className="sign-in-button">
+                    Sign In!
+                  </button>
+                </div>
+              </div>
             </form>
         </div>
       </div>
