@@ -311,4 +311,12 @@ span {
 .signup-box-container {
   justify-content: center;
   margin-top: -15rem;
+  position: relative;
+}
+
+.log-in-x {
+  position: absolute;
+  left: 28%;
+  top: 10%;
+  color: #9f9999;
 }

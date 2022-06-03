@@ -5,9 +5,28 @@ export default class SignIn extends React.Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      token: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.hideBox = this.hideBox.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    fetch('/api/sign-in', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(res => res.json())
+      .then(result => {
+        const { token } = result;
+        this.setState({ token });
+      });
   }
 
   handleChange(event) {
@@ -15,7 +34,16 @@ export default class SignIn extends React.Component {
     this.setState({ [name]: value });
   }
 
+  hideBox() {
+    this.setState({ token: '' });
+  }
+
   render() {
+    const { token } = this.state;
+    let classvalue = 'hide';
+    if (token === undefined) {
+      classvalue = '';
+    }
     return (
     <div className="list-background">
       <div>
@@ -64,12 +92,23 @@ export default class SignIn extends React.Component {
                   </a>
                 </div>
                 <div className="margin-top-1rem">
-                  <button className="sign-in-button create-account-text">
+                  <button type="submit" className="sign-in-button create-account-text">
                     Sign In!
                   </button>
                 </div>
               </div>
             </form>
+        </div>
+      </div>
+      <div className={classvalue}>
+        <div className="column-full">
+          <div className="row signup-box-container">
+              <i onClick={this.hideBox} className="fa-regular fa-circle-xmark log-in-x"></i>
+            <div className="sign-up-confirmbox">
+              <h2>You have entered incorret username/password</h2>
+              <p>No account? Click <a href="#sign-up"><span>HERE</span></a> to sign up!</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
