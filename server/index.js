@@ -8,6 +8,7 @@ const app = express();
 const publicPath = path.join(__dirname, 'public');
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
+const authorizationMiddleware = require('./authorization-middleware');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -131,6 +132,24 @@ app.post('/api/sign-in', (req, res, next) => {
           return res.status(200).json({ token, user: payload });
         })
         .catch(err => next(err));
+    })
+    .catch(err => next(err));
+});
+
+app.use(authorizationMiddleware);
+
+app.get('/api/myprofile/:userId', (req, res, next) => {
+  const { userId } = req.user;
+  const sql = `
+  select*
+  from "post"
+  where "userId" = $1
+  `;
+  const params = [userId];
+  db
+    .query(sql, params)
+    .then(result => {
+      res.json(result.rows);
     })
     .catch(err => next(err));
 });

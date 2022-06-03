@@ -39,7 +39,7 @@ export default class App extends React.Component {
     } else if (path === 'sign-up') {
       return <SignUp />;
     } else if (path === 'myprofile') {
-      return <MyProfile />;
+      return <MyProfile userId={this.state.route.params.get('userId')} />;
     }
   }
 
