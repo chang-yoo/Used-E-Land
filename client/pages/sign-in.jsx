@@ -7,6 +7,12 @@ export default class SignIn extends React.Component {
       username: '',
       password: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   render() {
@@ -17,7 +23,7 @@ export default class SignIn extends React.Component {
       </div>
         <div className="full-column">
           <div className="row center">
-            <form onSubmit={this.handleSumbit}>
+            <form onSubmit={this.handleSubmit}>
               <div>
                 <label>
                   <h2>
@@ -50,15 +56,15 @@ export default class SignIn extends React.Component {
               </div>
               <div className="row space-between">
                 <div>
-                  <p className="sigin-in-no-account">
+                  <p className="sign-in-no-account">
                     Don&apos;t have account yet? Don&apos;t worry!
                   </p>
-                  <a href="#sign-up" className="sigin-in-no-account">
+                  <a href="#sign-up" className="sign-in-no-account">
                     Sign Up
                   </a>
                 </div>
                 <div className="margin-top-1rem">
-                  <button className="sign-in-button">
+                  <button className="sign-in-button create-account-text">
                     Sign In!
                   </button>
                 </div>

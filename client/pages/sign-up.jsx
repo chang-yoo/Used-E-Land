@@ -99,10 +99,10 @@ export default class SignUp extends React.Component {
             </div>
             <div className="row space-between">
               <div>
-                <p className="sigin-in-no-account">
+                <p className="sign-in-no-account">
                   Already have an account?
                 </p>
-                <a href="#sign-in" className="sigin-in-no-account">
+                <a href="#sign-in" className="sign-in-no-account">
                   Sign In
                 </a>
               </div>
