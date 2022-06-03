@@ -118,7 +118,7 @@ export default class SignUp extends React.Component {
       <div className={confirm}>
       <div className="column-full">
         <div className="row signup-box-container">
-          <div className="sign-up-confirmbox">
+          <div className="sign-up-confirmbox padding-top-3rem">
             <h2>Thank you for signing up!</h2>
               <p>Click <a href="#sign-in"><span>HERE</span></a> to sign in</p>
           </div>
@@ -128,7 +128,7 @@ export default class SignUp extends React.Component {
       <div className={err}>
       <div className="column-full">
         <div className="row signup-box-container">
-          <div className="sign-up-confirmbox">
+          <div className="sign-up-error padding-top-2rem">
             <h2>Sorry! The username already exists.</h2>
             <h2>Please try different username!</h2>
               <p>Click <a href="#sign-up"><span onClick={this.closeBox}>HERE</span></a> to try again</p>

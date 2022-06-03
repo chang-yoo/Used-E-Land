@@ -295,13 +295,13 @@ i:hover {
   margin: auto;
 }
 
+.sign-up-error,
 .sign-up-confirmbox {
   width: 50%;
   background-color: #eec6b0;
   height: 200px;
   border-radius: 50px;
   text-align: center;
-  padding-top: 3rem;
 }
 
 span {
