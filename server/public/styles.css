@@ -264,11 +264,6 @@ i:hover {
   display: none;
 }
 
-.center {
-  justify-content: center;
-  align-items: center;
-}
-
 .username,
 .password {
   border: 1px solid #9f9999;
@@ -290,6 +285,7 @@ i:hover {
   width: 90px;
 }
 
+.sign-in-text,
 .create-account-text {
   color: #ad7d35;
   margin: auto;

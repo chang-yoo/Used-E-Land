@@ -7,6 +7,7 @@ import PageContainer from './components/page-container';
 import SearchResult from './components/SearchResult';
 import SignIn from './pages/sign-in';
 import SignUp from './pages/sign-up';
+import MyProfile from './pages/MyProfile';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -37,6 +38,8 @@ export default class App extends React.Component {
       return <SignIn />;
     } else if (path === 'sign-up') {
       return <SignUp />;
+    } else if (path === 'myprofile') {
+      return <MyProfile />;
     }
   }
 

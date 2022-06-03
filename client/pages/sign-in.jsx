@@ -6,7 +6,8 @@ export default class SignIn extends React.Component {
     this.state = {
       username: '',
       password: '',
-      token: ''
+      token: '',
+      classvalue: 'hide'
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,9 +25,16 @@ export default class SignIn extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        const { token } = result;
-        this.setState({ token });
+        const { token, user } = result;
+        if (user) {
+          const { userId } = user;
+          this.setState({ token, user });
+          window.location.hash = 'myprofile?userId=' + userId;
+        } else {
+          this.setState({ classvalue: '' });
+        }
       });
+
   }
 
   handleChange(event) {
@@ -35,15 +43,11 @@ export default class SignIn extends React.Component {
   }
 
   hideBox() {
-    this.setState({ token: '' });
+    this.setState({ classvalue: 'hide' });
   }
 
   render() {
-    const { token } = this.state;
-    let classvalue = 'hide';
-    if (token === undefined) {
-      classvalue = '';
-    }
+    const { classvalue } = this.state;
     return (
     <div className="list-background">
       <div>
