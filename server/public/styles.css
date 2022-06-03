@@ -249,15 +249,6 @@ i:hover {
   cursor: pointer;
 }
 
-.padding-left-1rem {
-  padding-left: 1.2rem;
-}
-
-.margin-padding-bottom-0 {
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
 .return-home {
   display: flex;
   justify-content: center;
@@ -271,10 +262,6 @@ i:hover {
 
 .hidden {
   display: none;
-}
-
-.margin-0 {
-  margin: 0;
 }
 
 .center {
@@ -295,15 +282,33 @@ i:hover {
   color: #ad7d35;
 }
 
-.margin-auto {
-  margin: auto;
-}
-
 .sign-in-button {
   border: 1px solid #fbd3a4;
   background-color: #fbd3a4;
   border-radius: 30px;
   height: 40px;
   width: 90px;
+}
+
+.create-account-text {
   color: #ad7d35;
+  margin: auto;
+}
+
+.sign-up-confirmbox {
+  width: 50%;
+  background-color: #eec6b0;
+  height: 200px;
+  border-radius: 50px;
+  text-align: center;
+  padding-top: 3rem;
+}
+
+span {
+  color: white;
+}
+
+.signup-box-container {
+  justify-content: center;
+  margin-top: -15rem;
 }

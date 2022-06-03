@@ -7,16 +7,6 @@ export default class SignIn extends React.Component {
       username: '',
       password: ''
     };
-    this.handleSumbit = this.handleSumbit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleSumbit() {
-
-  }
-
-  handleChange() {
-
   }
 
   render() {
@@ -58,7 +48,7 @@ export default class SignIn extends React.Component {
                 className="password"
                 />
               </div>
-              <div className="row">
+              <div className="row space-between">
                 <div>
                   <p className="sigin-in-no-account">
                     Don&apos;t have account yet? Don&apos;t worry!
@@ -67,7 +57,7 @@ export default class SignIn extends React.Component {
                     Sign Up
                   </a>
                 </div>
-                <div className="margin-auto">
+                <div className="margin-top-1rem">
                   <button className="sign-in-button">
                     Sign In!
                   </button>

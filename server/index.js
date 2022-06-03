@@ -25,6 +25,7 @@ app.get('/api/main', (req, res, next) => {
   const sql = `
   select *
   from "post"
+  order by "postId" desc
   limit 4
   `;
   return db
