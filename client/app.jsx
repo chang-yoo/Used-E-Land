@@ -8,12 +8,16 @@ import SearchResult from './components/SearchResult';
 import SignIn from './pages/sign-in';
 import SignUp from './pages/sign-up';
 import MyProfile from './pages/MyProfile';
+import jwtDecode from 'jwt-decode';
+import HeaderAfterSiginIn from './components/header-aftersignin';
+import AppContext from './lib/app-context';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      route: parseRoute(window.location.hash)
+      route: parseRoute(window.location.hash),
+      isAuthorize: 'no'
     };
     this.renderPage = this.renderPage.bind(this);
   }
@@ -24,6 +28,13 @@ export default class App extends React.Component {
         route: parseRoute(window.location.hash)
       });
     });
+    const token = window.localStorage.getItem('lfz-final');
+    if (token === undefined) {
+      this.setState({ isAuthorize: 'no' });
+    }
+    if (token && jwtDecode(token)) {
+      this.setState({ isAuthorize: 'yes' });
+    }
   }
 
   renderPage() {
@@ -44,13 +55,27 @@ export default class App extends React.Component {
   }
 
   render() {
-    return (
-    <div>
-      <Header />
-      <PageContainer>
-        {this.renderPage()}
-      </PageContainer>
-    </div>
-    );
+    const { isAuthorize } = this.state;
+    if (isAuthorize === 'yes') {
+      return (
+      <div>
+        <HeaderAfterSiginIn />
+        <PageContainer>
+          {this.renderPage()}
+        </PageContainer>
+      </div>
+      );
+    } else {
+      return (
+        <div>
+          <Header />
+          <PageContainer>
+            {this.renderPage()}
+          </PageContainer>
+        </div>
+      );
+    }
   }
 }
+
+App.ContextType = AppContext;

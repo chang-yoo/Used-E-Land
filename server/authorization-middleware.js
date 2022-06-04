@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const ClientError = require('./client-error');
 
 function authorizationMiddleware(req, res, next) {
-  const token = req.headers.get('x-access-token');
+  const token = req.headers['x-access-token'];
   if (!token) {
     throw new ClientError(401, 'authentication required');
   }

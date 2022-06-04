@@ -43,3 +43,15 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.top-6-rem {
+  margin-top: 6rem;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.margin-left-3rem {
+  margin-left: 3rem;
+}

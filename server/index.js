@@ -138,12 +138,14 @@ app.post('/api/sign-in', (req, res, next) => {
 
 app.use(authorizationMiddleware);
 
-app.get('/api/myprofile/:userId', (req, res, next) => {
+app.get('/api/myprofile', (req, res, next) => {
   const { userId } = req.user;
   const sql = `
   select*
   from "post"
+  join "users" using ("userId")
   where "userId" = $1
+
   `;
   const params = [userId];
   db

@@ -6,7 +6,6 @@ export default class SignIn extends React.Component {
     this.state = {
       username: '',
       password: '',
-      token: '',
       classvalue: 'hide'
     };
     this.handleChange = this.handleChange.bind(this);
@@ -25,10 +24,11 @@ export default class SignIn extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        const { token, user } = result;
-        if (user) {
+        const { error } = result;
+        if (!error) {
+          const { token, user } = result;
+          window.localStorage.setItem('lfz-final', token);
           const { userId } = user;
-          this.setState({ token, user });
           window.location.hash = 'myprofile?userId=' + userId;
         } else {
           this.setState({ classvalue: '' });
