@@ -29,17 +29,25 @@ export default class MyProfile extends React.Component {
 
   render() {
     const { post } = this.state;
+    const username = {
+      find: function () {
+        if (post[0] !== undefined) {
+          const username = (post[0].username);
+          return username;
+        }
+      }
+    };
     const { created } = this.state;
     if (created === '') {
       return (
       <div className="list-background top-6-rem">
         <div className="row space-between">
           <div className="column-half">
-            <h2 className="profile">Welcome</h2>
+            <h1 className="welcome-profile">Welcome {username.find()}!</h1>
           </div>
           <div className="column-half row">
-            <a><h2 className="profile">Shop</h2></a>
-            <a><h2 className="profile">Post your item today</h2></a>
+            <a><h2 className="margin-2rem">Shop</h2></a>
+            <a><h2 className="margin-2rem">Post your item today</h2></a>
           </div>
         </div>
         <div className="row">

@@ -319,10 +319,6 @@ span {
   color: #9f9999;
 }
 
-.profile {
-  margin: 2rem;
-}
-
 .menubar-container {
   line-height: 2rem;
   margin-left: -1rem;
@@ -331,4 +327,8 @@ span {
 
 .font-color {
   color: #ad7d35;
+}
+
+.welcome-profile {
+  margin-top: 0.5rem;
 }

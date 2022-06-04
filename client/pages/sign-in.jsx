@@ -34,7 +34,6 @@ export default class SignIn extends React.Component {
           this.setState({ classvalue: '' });
         }
       });
-
   }
 
   handleChange(event) {
