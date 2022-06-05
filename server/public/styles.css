@@ -239,8 +239,10 @@ h4 {
   margin-top: 0.1rem;
 }
 
+li,
 a {
   text-decoration: none;
+  list-style-type: none;
 }
 
 button,
@@ -264,11 +266,6 @@ i:hover {
   display: none;
 }
 
-.center {
-  justify-content: center;
-  align-items: center;
-}
-
 .username,
 .password {
   border: 1px solid #9f9999;
@@ -290,6 +287,7 @@ i:hover {
   width: 90px;
 }
 
+.sign-in-text,
 .create-account-text {
   color: #ad7d35;
   margin: auto;
@@ -311,4 +309,34 @@ span {
 .signup-box-container {
   justify-content: center;
   margin-top: -15rem;
+  position: relative;
+}
+
+.log-in-x {
+  position: absolute;
+  left: 28%;
+  top: 10%;
+  color: #9f9999;
+}
+
+.menubar-container {
+  line-height: 2rem;
+  margin-left: -1rem;
+  color: #ad7d35;
+}
+
+.font-color {
+  color: #ad7d35;
+}
+
+.welcome-profile {
+  margin-top: 0.5rem;
+}
+
+.menu-myaccount-container {
+  margin-top: -10rem;
+}
+
+ul {
+  margin-left: -4rem;
 }

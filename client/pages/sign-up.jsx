@@ -31,7 +31,8 @@ export default class SignUp extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        if (result.error) {
+        const { error } = result;
+        if (error) {
           this.setState({ error: 'on' });
         } else {
           this.setState({ box: 'on' });

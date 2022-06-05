@@ -7,6 +7,8 @@ const ClientError = require('./client-error');
 const app = express();
 const publicPath = path.join(__dirname, 'public');
 const argon2 = require('argon2');
+const jwt = require('jsonwebtoken');
+const authorizationMiddleware = require('./authorization-middleware');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -93,6 +95,63 @@ app.post('/api/sign-up', (req, res, next) => {
     .then(result => {
       const [newUser] = result.rows;
       res.status(201).json(newUser);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/sign-in', (req, res, next) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    throw new ClientError(400, 'username and password are required in this field');
+  }
+  const sql = `
+  select "userId", "hashedpassword"
+  from "users"
+  where "username" = $1
+  `;
+  const params = [username];
+  db
+    .query(sql, params)
+    .then(result => {
+      const [data] = result.rows;
+      if (!data) {
+        throw new ClientError(401, 'Database cannot find any matched data');
+      }
+      const { userId, hashedpassword } = data;
+      argon2
+        .verify(hashedpassword, password)
+        .then(isMatching => {
+          if (!isMatching) {
+            throw new ClientError(401, 'password is invalid');
+          }
+          const payload = {
+            userId,
+            username
+          };
+          const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+          return res.status(200).json({ token, user: payload });
+        })
+        .catch(err => next(err));
+    })
+    .catch(err => next(err));
+});
+
+app.use(authorizationMiddleware);
+
+app.get('/api/myprofile', (req, res, next) => {
+  const { userId } = req.user;
+  const sql = `
+  select*
+  from "post"
+  join "users" using ("userId")
+  where "userId" = $1
+
+  `;
+  const params = [userId];
+  db
+    .query(sql, params)
+    .then(result => {
+      res.json(result.rows);
     })
     .catch(err => next(err));
 });
