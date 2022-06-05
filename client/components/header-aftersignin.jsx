@@ -85,15 +85,15 @@ export default class Header extends React.Component {
                 <div>
                   <i onClick={this.menubar} className="fa-solid fa-arrow-right-long fa-2x"></i>
                 </div>
-                <div className="menubar-container">
-                  <ul><h3>My Account</h3></ul>
-                  <div className="margin-left-3rem">
-                    <a href="#" onClick={this.turnoffMenubar}><li className="font-color">My Profile</li></a>
-                    <a href="#sign-in" onClick={this.turnoffMenubar}><li className="font-color">My Favorite</li></a>
-                    <a href="#sign-in" onClick={this.turnoffMenubar}><li className="font-color">My History</li></a>
+                <div className="menubar-container col-row space-around">
+                  <div className="margin-left-3rem menu-myaccount-container">
+                    <ul><h3>My Account</h3></ul>
+                      <a href="#" onClick={this.turnoffMenubar}><li className="font-color">My Profile</li></a>
+                      <a href="#sign-in" onClick={this.turnoffMenubar}><li className="font-color">My Favorite</li></a>
+                      <a href="#sign-in" onClick={this.turnoffMenubar}><li className="font-color">My History</li></a>
                   </div>
-                  <div>
-                    <a href="#" onClick={this.handleSignOut}>Sign Out</a>
+                  <div className="margin-left-3rem sign-out">
+                    <a href="#sign-in" className="font-color" onClick={this.handleSignOut}>Sign Out</a>
                   </div>
                 </div>
               </div>

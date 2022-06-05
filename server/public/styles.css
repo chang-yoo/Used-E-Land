@@ -332,3 +332,11 @@ span {
 .welcome-profile {
   margin-top: 0.5rem;
 }
+
+.menu-myaccount-container {
+  margin-top: -10rem;
+}
+
+ul {
+  margin-left: -4rem;
+}

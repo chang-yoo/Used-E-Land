@@ -29,11 +29,23 @@ export default class App extends React.Component {
       });
     });
     const token = window.localStorage.getItem('lfz-final');
-    if (token === undefined) {
+    if (!token) {
       this.setState({ isAuthorize: 'no' });
     }
     if (token && jwtDecode(token)) {
       this.setState({ isAuthorize: 'yes' });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.route !== this.state.route) {
+      const token = window.localStorage.getItem('lfz-final');
+      if (!token) {
+        this.setState({ isAuthorize: 'no' });
+      }
+      if (token && jwtDecode(token)) {
+        this.setState({ isAuthorize: 'yes' });
+      }
     }
   }
 
