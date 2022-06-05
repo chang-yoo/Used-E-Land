@@ -79,7 +79,7 @@ export default class MyProfile extends React.Component {
       <div className="list-background top-6-rem">
         <div className="row space-between">
           <div className="column-half">
-              <h2 className="welcome-profile">Welcome {username.find()}!</h2>
+            <h1 className="welcome-profile">Welcome {username.find()}!</h1>
           </div>
           <div className="column-half row">
             <a><h2 className="margin-2rem">Shop</h2></a>
