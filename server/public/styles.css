@@ -354,11 +354,18 @@ ul {
   background-color: #fef5f0;
   margin: auto;
   min-height: 100vh;
+  position: relative;
+}
+
+.image-submit {
+  position: absolute;
+  bottom: 49%;
+  left: 9.5%;
 }
 
 #location,
 #price {
-  width: 250px;
+  width: 400px;
   height: 50px;
   border-radius: 10px;
   border: 1px solid #9f9999;
@@ -395,6 +402,10 @@ ul {
   color: #ad7d35;
 }
 
+.search-button {
+  padding: 0.5rem;
+}
+
 .condition {
   border-radius: 5px;
   width: 120px;
@@ -416,4 +427,16 @@ ul {
 .description {
   width: 400px;
   height: 490px;
+}
+
+#uploading {
+  width: 100px;
+  background-color: #fbd3a4;
+  color: #ad7d35;
+  padding: 0.4rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  position: relative;
+  bottom: -1rem;
 }

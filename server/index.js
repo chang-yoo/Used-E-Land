@@ -9,6 +9,7 @@ const publicPath = path.join(__dirname, 'public');
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 const authorizationMiddleware = require('./authorization-middleware');
+const uploadsMiddleware = require('./uploads-middleware');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -156,22 +157,35 @@ app.get('/api/myprofile', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/image', uploadsMiddleware, (req, res, next) => {
+  // const { userId } = req.user;
+  const imageURL = `/images/${req.file.filename}`;
+  const { location, condition, price, description, title } = req.body;
+  if (!imageURL || !location || !condition || !price || !description || !title) {
+    throw new ClientError(400, 'imageURL, location, condition, price, description, and title are required fields');
+  }
+});
+
 app.post('/api/upload', (req, res, next) => {
   const { userId } = req.user;
-  const { imageURL, location, condition, price, description, title } = req.body;
+  const imageURL = `/images/${req.file.filename}`;
+  const { location, condition, price, description, title } = req.body;
   if (!imageURL || !location || !condition || !price || !description || !title) {
     throw new ClientError(400, 'imageURL, location, condition, price, description, and title are required fields');
   }
   const sql = `
-  insert into "post" ("userId", "imageURL", "location", "condition", "price", "description", "title")
-  values ($1, $2, $3, $4, $5, $6, $7)
+  insert into "post" ("imageURL", "location", "condition", "price", "description", "title")
+  values ($2, $3, $4, $5, $6, $7)
+  join "users" using ("userId")
+  where "userId" = $1
   returning*
   `;
   const params = [userId, imageURL, location, condition, price, description, title];
   db
     .query(sql, params)
     .then(result => {
-      res.json(result.rows);
+      const [data] = result.rows;
+      res.json(data);
     })
     .catch(err => next(err));
 });

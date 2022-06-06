@@ -4,13 +4,19 @@ export default class Upload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      condition: '',
-      location: '',
-      price: '',
-      title: '',
-      description: ''
+      imageURL: 'images/image-placeholder.png'
+      // condition: '',
+      // location: '',
+      // price: '',
+      // title: '',
+      // description: '',
+      // token: '',
+      // image: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.fileInputRef = React.createRef();
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleImageSubmit = this.handleImageSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -18,16 +24,77 @@ export default class Upload extends React.Component {
     this.setState({ [name]: value });
   }
 
+  handleImageSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData();
+    const image = this.fileInputRef.current.files[0];
+    formData.append('image', image);
+
+    fetch('/api/image', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': this.state.token
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ imageURL: image, image });
+        this.fileInputRef.current.value = null;
+      });
+  }
+
+  componentDidMount() {
+    const token = window.localStorage.getItem('lfz-final');
+    this.setState({ token });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.imageURL !== this.state.imageURL) {
+      this.setState({ imageURL: this.state.image });
+    }
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    fetch('/api/upload', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': this.state.token
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(res => res.json())
+      .then(data => {
+      });
+  }
+
   render() {
+    // const {imageURL, condition, location, price, title, description} = this.state
     return <div className="column-full">
       <div className="upload-container">
-      <form>
-        <label></label>
+        <div className="image-submit">
+        <form onSubmit={this.handleImageSubmit}>
+          <label id="uploading" htmlFor="upload">Choose File</label>
+          <input
+            required
+            id="upload"
+            type="file"
+            name="imageURL"
+            ref={this.fileInputRef}
+            accept=".png, .jpg, .jpeg, .gif"
+            className="search-button margin-top-1rem"
+            hidden
+          />
+        </form>
+        </div>
+      <form onSubmit={this.handleSubmit}>
         <div className="row">
           <div className="column-half">
             <div className="image-container">
-              <img src="images/image-placeholder.png"></img>
-              <button className="search-button margin-top-1rem">Search</button>
+              <img src={this.state.imageURL}></img>
             </div>
             <div className="test">
               <div className="condition-container">
@@ -55,7 +122,7 @@ export default class Upload extends React.Component {
                 id="price"
                 type="text"
                 name="price"
-                onChagne={this.handleChange}
+                onChange={this.handleChange}
                 placeholder="$price"
                 />
               </div>
