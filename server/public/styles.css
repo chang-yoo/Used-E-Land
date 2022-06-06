@@ -107,6 +107,7 @@ h1 {
   position: relative;
 }
 
+textarea,
 input:focus {
   outline: none;
 }
@@ -339,4 +340,80 @@ span {
 
 ul {
   margin-left: -4rem;
+}
+
+.image-container {
+  width: 350px;
+  height: 350px;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.upload-container {
+  width: 80%;
+  background-color: #fef5f0;
+  margin: auto;
+  min-height: 100vh;
+}
+
+#location,
+#price {
+  width: 250px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #9f9999;
+}
+
+.condition-container,
+.location-container,
+.price-container {
+  padding: 0.5rem;
+}
+
+.test {
+  margin: 6.5rem;
+}
+
+#font-color,
+::placeholder,
+.condition {
+  color: #ad7d35;
+}
+
+::placeholder {
+  font-size: 15px;
+}
+
+.upload-button,
+.cancel-button,
+.search-button {
+  border: 1px solid #fbd3a4;
+  background-color: #fbd3a4;
+  border-radius: 30px;
+  height: 40px;
+  width: 90px;
+  color: #ad7d35;
+}
+
+.condition {
+  border-radius: 5px;
+  width: 120px;
+  border: 1px solid #9f9999;
+}
+
+.title,
+.description {
+  border-radius: 10px;
+  border: 1px solid #9f9999;
+}
+
+.title {
+  width: 400px;
+  height: 50px;
+  font-size: 1rem;
+}
+
+.description {
+  width: 400px;
+  height: 490px;
 }
