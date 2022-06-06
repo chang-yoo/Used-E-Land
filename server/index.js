@@ -156,6 +156,26 @@ app.get('/api/myprofile', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/upload', (req, res, next) => {
+  const { userId } = req.user;
+  const { imageURL, location, condition, price, description, title } = req.body;
+  if (!imageURL || !location || !condition || !price || !description || !title) {
+    throw new ClientError(400, 'imageURL, location, condition, price, description, and title are required fields');
+  }
+  const sql = `
+  insert into "post" ("userId", "imageURL", "location", "condition", "price", "description", "title")
+  values ($1, $2, $3, $4, $5, $6, $7)
+  returning*
+  `;
+  const params = [userId, imageURL, location, condition, price, description, title];
+  db
+    .query(sql, params)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
