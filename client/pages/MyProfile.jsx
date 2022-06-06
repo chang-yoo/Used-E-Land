@@ -46,7 +46,7 @@ export default class MyProfile extends React.Component {
             <h1 className="welcome-profile">Welcome {username.find()}!</h1>
           </div>
           <div className="column-half">
-            <a><h2 className="margin-2rem">Upload</h2></a>
+            <a href="#upload"><h2 className="margin-2rem">Upload</h2></a>
           </div>
         </div>
         <div className="row">

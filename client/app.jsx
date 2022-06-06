@@ -11,6 +11,7 @@ import MyProfile from './pages/MyProfile';
 import jwtDecode from 'jwt-decode';
 import HeaderAfterSiginIn from './components/header-aftersignin';
 import AppContext from './lib/app-context';
+import Upload from './pages/upload';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -63,6 +64,8 @@ export default class App extends React.Component {
       return <SignUp />;
     } else if (path === 'myprofile') {
       return <MyProfile userId={this.state.route.params.get('userId')} />;
+    } else if (path === 'upload') {
+      return <Upload />;
     }
   }
 

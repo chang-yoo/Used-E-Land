@@ -91,6 +91,7 @@ export default class Header extends React.Component {
                       <a href="#myprofile" onClick={this.turnoffMenubar}><li className="font-color">My Profile</li></a>
                       <a href="#sign-in" onClick={this.turnoffMenubar}><li className="font-color">My Favorite</li></a>
                       <a href="#sign-in" onClick={this.turnoffMenubar}><li className="font-color">My History</li></a>
+                      <a href="#upload" onClick={this.turnoffMenubar}><li className="font-color">Upload Today</li></a>
                   </div>
                   <div className="margin-left-3rem sign-out">
                     <a href="#sign-in" className="font-color" onClick={this.handleSignOut}>Sign Out</a>
