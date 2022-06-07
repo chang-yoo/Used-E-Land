@@ -245,6 +245,29 @@ app.patch('/api/edit/:postId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.delete('/api/edit/:postId', (req, res, next) => {
+  const postId = Number(req.params.postId);
+  if (!Number.isInteger(postId) || postId < 1) {
+    throw new ClientError(400, 'postId must be a positive integer');
+  }
+  const sql = `
+  delete from "post"
+  where "postId" = $1
+  returning*
+  `;
+  const params = [postId];
+  db
+    .query(sql, params)
+    .then(result => {
+      const data = result.rows;
+      if (data) {
+        res.status(200).json(data);
+      }
+      throw new ClientError(404, `Cannot find post with postId of ${postId}`);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
