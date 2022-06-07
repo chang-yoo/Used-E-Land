@@ -177,6 +177,20 @@ app.get('/api/myprofile', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/username', (req, res, next) => {
+  const { userId } = req.user;
+  const sql = `
+  select*
+  from "users"
+  where "userId" = $1
+  `;
+  const params = [userId];
+  db
+    .query(sql, params)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
 app.post('/api/upload', (req, res, next) => {
   const { userId } = req.user;
   const { imageURL, location, condition, price, description, title } = req.body;

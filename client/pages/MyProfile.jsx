@@ -5,7 +5,8 @@ export default class MyProfile extends React.Component {
     super(props);
     this.state = {
       post: [],
-      created: ''
+      created: '',
+      username: ''
     };
   }
 
@@ -22,31 +23,34 @@ export default class MyProfile extends React.Component {
         const { error } = result;
         if (!error) {
           this.setState({ post: result });
+          fetch('/api/username', {
+            headers: {
+              'Content-Type': 'application/json',
+              'x-access-token': token
+            }
+          })
+            .then(res => res.json())
+            .then(result => {
+              const [data] = result;
+              const { username } = data;
+              this.setState({ username });
+            });
         }
         if (!error && result.length === 0) { this.setState({ created: 'no' }); }
       });
   }
 
   render() {
-    const { post } = this.state;
-    const username = {
-      find: function () {
-        if (post[0] !== undefined) {
-          const username = (post[0].username);
-          return username;
-        }
-      }
-    };
-    const { created } = this.state;
+    const { post, created, username } = this.state;
     if (created === '') {
       return (
       <div className="list-background top-6-rem">
         <div className="row space-between">
           <div className="column-half">
-            <h1 className="welcome-profile">Welcome {username.find()}!</h1>
+            <h1 className="welcome-profile">Welcome {username}!</h1>
           </div>
           <div className="column-half">
-            <a href="#upload"><h2 className="margin-2rem">Upload</h2></a>
+              <a href="#upload"><h2 className="margin-2rem">Upload your item today</h2></a>
           </div>
         </div>
         <div className="row">
@@ -78,11 +82,10 @@ export default class MyProfile extends React.Component {
       <div className="list-background top-6-rem">
         <div className="row space-between">
           <div className="column-half">
-            <h1 className="welcome-profile">Welcome {username.find()}!</h1>
+            <h1 className="welcome-profile">Welcome {username}!</h1>
           </div>
           <div className="column-half row">
-            <a><h2 className="margin-2rem">Shop</h2></a>
-            <a><h2 className="margin-2rem">Post your item today</h2></a>
+            <a href="#upload"><h2 className="margin-2rem">Upload your item today</h2></a>
           </div>
         </div>
         <div className="row center">
