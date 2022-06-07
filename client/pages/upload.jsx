@@ -153,7 +153,7 @@ export default class Upload extends React.Component {
                   name="title"
                   onChange={this.handleChange}
                   className="title"
-                  placeholder='title'
+                  placeholder='Name your item!'
                   />
                 </div>
                 <hr></hr>
@@ -166,7 +166,7 @@ export default class Upload extends React.Component {
                   name="description"
                   onChange={this.handleChange}
                   className="description"
-                  placeholder='description'
+                  placeholder="Tell us about your item!"
                   />
                 </div>
                 <div className="row space-between margin-top-1rem">

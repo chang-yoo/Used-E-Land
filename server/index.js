@@ -211,6 +211,28 @@ app.post('/api/upload', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.patch('/api/edit/:postId', (req, res, next) => {
+  const postId = Number(req.params.postId);
+  const { imageURL, location, condition, price, description, title } = req.body;
+  if (!Number.isInteger(postId) || postId <= 0) {
+    throw new ClientError(400, 'postId must be a positive integer');
+  }
+  const sql = `
+  update "post"
+    set "imageURL"=$2, "location"=$3, "condition"=$4, "price"=$5, "description"=$6, "title"=$7
+    where "postId" = $1
+    returning*
+  `;
+  const params = [postId, imageURL, location, condition, price, description, title];
+  db
+    .query(sql, params)
+    .then(result => {
+      const [data] = result.rows;
+      res.json(data);
+    })
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

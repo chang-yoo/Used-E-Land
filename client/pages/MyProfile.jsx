@@ -60,7 +60,7 @@ export default class MyProfile extends React.Component {
                     <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId} >
                       <div className="each-post">
                         <div className="postlistimage-container">
-                          <a href="#edit"><i className="fa-solid fa-pen-to-square"></i></a>
+                          <a href={`#edit?postId=${eachpost.postId}`}><i className="fa-solid fa-pen-to-square"></i></a>
                           <img className='postlist-image' src={eachpost.imageURL}></img>
                         </div>
                         <div className="postlist-text">
