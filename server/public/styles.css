@@ -480,6 +480,7 @@ ul {
   z-index: 3;
   position: absolute;
   left: 5%;
+  color: orange;
 }
 
 .confirm-delete-box {
