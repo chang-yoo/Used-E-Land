@@ -47,13 +47,16 @@ app.get('/api/post/:postId', (req, res, next) => {
   const sql = `
   select*
   from "post"
+  join "users" using ("userId")
   where "postId" = $1
   `;
   const params = [targetId];
   return db
     .query(sql, params)
-    .then(result =>
-      res.json(result.rows))
+    .then(result => {
+      const data = result.rows;
+      res.status(201).json(data);
+    })
     .catch(err => next(err));
 });
 

@@ -4,7 +4,8 @@ export default class Detail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      post: []
+      post: [],
+      username: ''
     };
   }
 
@@ -13,12 +14,16 @@ export default class Detail extends React.Component {
       .then(res => res.json())
       .then(result => {
         const [data] = result;
-        this.setState({ post: data });
+        const { username } = data;
+        this.setState({
+          post: data,
+          username
+        });
       });
   }
 
   render() {
-    const { post } = this.state;
+    const { post, username } = this.state;
     return (
       <div className="detail-container">
         <div className="row detail-background">
@@ -28,7 +33,7 @@ export default class Detail extends React.Component {
             </div>
             <div className="detail-text">
               <div className="row space-even">
-                <h4>username: dummyowner </h4>
+                <h4>username: {username} </h4>
                 <h4>star: 5 /5</h4>
               </div>
               <h4>condition: {post.condition}</h4>
