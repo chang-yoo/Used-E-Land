@@ -201,10 +201,11 @@ textarea {
 .detail-text {
   line-height: 1.8rem;
   margin: 0 1.5rem;
+  word-wrap: break-word;
 }
 
 hr {
-  width: 390px;
+  width: 450px;
   border: none;
   background-color: white;
   height: 5px;
