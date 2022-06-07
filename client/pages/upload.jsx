@@ -4,19 +4,19 @@ export default class Upload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageURL: 'images/image-placeholder.png'
-      // condition: '',
-      // location: '',
-      // price: '',
-      // title: '',
-      // description: '',
-      // token: '',
-      // image: ''
+      imageURL: 'images/image-placeholder.png',
+      condition: '',
+      location: '',
+      price: '',
+      title: '',
+      description: '',
+      token: '',
+      image: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.fileInputRef = React.createRef();
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleImageSubmit = this.handleImageSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -25,24 +25,31 @@ export default class Upload extends React.Component {
   }
 
   handleImageSubmit(event) {
+    const { token } = this.state;
     event.preventDefault();
+
     const formData = new FormData();
     const image = this.fileInputRef.current.files[0];
+    this.setState({ imageURL: image.name });
     formData.append('image', image);
 
-    fetch('/api/image', {
+    fetch('/api/images', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'x-access-token': this.state.token
+        'x-access-token': token
       },
-      body: JSON.stringify(this.state)
+      body: formData
     })
       .then(res => res.json())
       .then(data => {
-        this.setState({ imageURL: image, image });
+        const { url } = data;
+        this.setState({
+          imageURL: url,
+          image: url
+        });
         this.fileInputRef.current.value = null;
-      });
+      })
+      .catch(err => console.error(err));
   }
 
   componentDidMount() {
@@ -57,49 +64,56 @@ export default class Upload extends React.Component {
   }
 
   handleSubmit(event) {
+    const { token } = this.state;
     event.preventDefault();
     fetch('/api/upload', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-access-token': this.state.token
+        'x-access-token': token
       },
       body: JSON.stringify(this.state)
     })
       .then(res => res.json())
       .then(data => {
-      });
+      })
+      .catch(err => console.error(err));
+    window.location.hash = '#myprofile';
   }
 
   render() {
-    // const {imageURL, condition, location, price, title, description} = this.state
+    const { imageURL } = this.state;
     return <div className="column-full">
       <div className="upload-container">
         <div className="image-submit">
-        <form onSubmit={this.handleImageSubmit}>
-          <label id="uploading" htmlFor="upload">Choose File</label>
-          <input
-            required
-            id="upload"
-            type="file"
-            name="imageURL"
-            ref={this.fileInputRef}
-            accept=".png, .jpg, .jpeg, .gif"
-            className="search-button margin-top-1rem"
-            hidden
-          />
-        </form>
+          <form onSubmit={this.handleImageSubmit}>
+              <div className="row space-between">
+            <label id="uploading" htmlFor="upload">Choose File</label>
+            <input
+              required
+              id="upload"
+              type="file"
+              name="imageURL"
+              ref={this.fileInputRef}
+              accept=".png, .jpg, .jpeg, .gif"
+              className="search-button margin-top-1rem"
+              hidden
+            />
+              <button type="submit" className="image-upload">Upload</button>
+              </div>
+          </form>
         </div>
       <form onSubmit={this.handleSubmit}>
         <div className="row">
           <div className="column-half">
             <div className="image-container">
-              <img src={this.state.imageURL}></img>
+              <img src={imageURL}></img>
             </div>
             <div className="test">
               <div className="condition-container">
                 <label id="font-color" htmlFor="condition">Condition: </label>
-                <select className="condition" name="condition" required>
+                <select className="condition" onChange={this.handleChange} name="condition" required>
+                  <option className="select">Please select</option>
                   <option className="select" value="very used">very used</option>
                   <option className="select" value="used">used</option>
                   <option className="select" value="like new">like new</option>
@@ -156,8 +170,8 @@ export default class Upload extends React.Component {
                   />
                 </div>
                 <div className="row space-between margin-top-1rem">
-                  <a href="myprofile" ><button type="submit" className="upload-button">Upload</button></a>
-                  <a href="#myprofile"><button className="cancel-button">Cancel</button></a>
+                    <button type="submit" className="upload-button">Upload</button>
+                    <a href="#myprofile" className="cancel-button"><p className="cancel-button-text">Cancel</p></a>
                 </div>
               </div>
             </div>

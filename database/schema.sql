@@ -2,6 +2,7 @@ set client_min_messages to warning;
 
 -- DANGER: this is NOT how to do it in the real world.
 -- `drop schema` INSTANTLY ERASES EVERYTHING.
+
 drop schema "public" cascade;
 
 create schema "public";
@@ -10,13 +11,10 @@ CREATE TABLE "public"."users" (
 	"userId" serial NOT NULL,
 	"username" TEXT NOT NULL,
 	"hashedpassword" TEXT NOT NULL,
-	"createdAt" timestamp with time zone NOT NULL default now(),
-	CONSTRAINT "user_pk" PRIMARY KEY ("userId"),
-	unique("username")
+	"createdAt" timestamptz(6) not null default now()
 ) WITH (
   OIDS=FALSE
 );
-
 
 
 CREATE TABLE "public"."post" (
@@ -24,7 +22,7 @@ CREATE TABLE "public"."post" (
 	"userId" int NOT NULL,
 	"imageURL" TEXT NOT NULL,
 	"location" TEXT,
-	"createdAt" timestamp with time zone NOT NULL,
+	"createdAt" timestamptz(6) not null default now(),
 	"condition" TEXT NOT NULL,
 	"price" int NOT NULL,
 	"description" TEXT NOT NULL,
@@ -50,8 +48,7 @@ CREATE TABLE "public"."messenger" (
 	"userId" int NOT NULL,
 	"content" TEXT NOT NULL,
 	"postId" int NOT NULL,
-	"createdAt" timestamp with time zone NOT NULL,
-	CONSTRAINT "messenger_pk" PRIMARY KEY ("messengerId")
+	"createdAt" timestamptz(6) not null default now()
 ) WITH (
   OIDS=FALSE
 );
@@ -70,6 +67,15 @@ CREATE TABLE "public"."favorite" (
 CREATE TABLE "public"."likes" (
 	"userId" int NOT NULL,
 	"postId" int NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
+
+
+CREATE TABLE "public"."images" (
+	"imageId" serial NOT NULL,
+	"url" TEXT NOT NULL
 ) WITH (
   OIDS=FALSE
 );

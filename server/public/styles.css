@@ -112,6 +112,10 @@ input:focus {
   outline: none;
 }
 
+textarea {
+  resize: none;
+}
+
 .fa-arrow-right-long,
 .menu-icon,
 .fa-xmark,
@@ -402,6 +406,13 @@ ul {
   color: #ad7d35;
 }
 
+.cancel-button-text {
+  color: #ad7d35;
+  margin-left: 1.3rem;
+  font-size: 15px;
+  margin-top: 0.7rem;
+}
+
 .search-button {
   padding: 0.5rem;
 }
@@ -429,6 +440,7 @@ ul {
   height: 490px;
 }
 
+.image-upload,
 #uploading {
   width: 100px;
   background-color: #fbd3a4;
@@ -439,4 +451,10 @@ ul {
   cursor: pointer;
   position: relative;
   bottom: -1rem;
+  border: 1px solid #fbd3a4;
+}
+
+.image-upload {
+  margin-left: 9.5rem;
+  font-size: 15px;
 }
