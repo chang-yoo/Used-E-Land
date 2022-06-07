@@ -70,7 +70,7 @@ export default class Edit extends React.Component {
     event.preventDefault();
     const token = window.localStorage.getItem('lfz-final');
     fetch(`/api/edit/${this.props.postId}`, {
-      method: 'patch',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': token
@@ -79,8 +79,9 @@ export default class Edit extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-      // console.log(result)
+        this.setState(result);
       });
+    window.location.hash = '#myprofile';
   }
 
   render() {
