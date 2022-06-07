@@ -116,11 +116,16 @@ textarea {
   resize: none;
 }
 
+.fa-trash-can,
 .fa-arrow-right-long,
 .menu-icon,
 .fa-xmark,
 .search-glass {
   color: #9f9999;
+}
+
+.fa-trash-can {
+  margin-top: 0.5rem;
 }
 
 .searching-x {
@@ -348,10 +353,11 @@ ul {
 }
 
 .image-container {
-  width: 350px;
+  width: 400px;
   height: 350px;
   margin: auto;
   margin-top: 1rem;
+  margin-right: 3.8rem;
 }
 
 .upload-container {
@@ -453,6 +459,7 @@ ul {
   position: relative;
   bottom: -1rem;
   border: 1px solid #fbd3a4;
+  margin-right: 3.1rem;
 }
 
 .image-upload {

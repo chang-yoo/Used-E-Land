@@ -1,4 +1,5 @@
 import React from 'react';
+import jwtDecode from 'jwt-decode';
 
 export default class MyProfile extends React.Component {
   constructor(props) {
@@ -12,6 +13,8 @@ export default class MyProfile extends React.Component {
 
   componentDidMount() {
     const token = window.localStorage.getItem('lfz-final');
+    const decode = jwtDecode(token);
+    const getUsername = decode.username;
     fetch('/api/myprofile', {
       headers: {
         'Content-Type': 'application/json',
@@ -22,19 +25,10 @@ export default class MyProfile extends React.Component {
       .then(result => {
         const { error } = result;
         if (!error) {
-          this.setState({ post: result });
-          fetch('/api/username', {
-            headers: {
-              'Content-Type': 'application/json',
-              'x-access-token': token
-            }
-          })
-            .then(res => res.json())
-            .then(result => {
-              const [data] = result;
-              const { username } = data;
-              this.setState({ username });
-            });
+          this.setState({
+            post: result,
+            username: getUsername
+          });
         }
         if (!error && result.length === 0) { this.setState({ created: 'no' }); }
       });

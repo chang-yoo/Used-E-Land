@@ -10,7 +10,6 @@ export default class Upload extends React.Component {
       price: '',
       title: '',
       description: '',
-      token: '',
       image: ''
     };
     this.handleChange = this.handleChange.bind(this);
@@ -25,7 +24,7 @@ export default class Upload extends React.Component {
   }
 
   handleImageSubmit(event) {
-    const { token } = this.state;
+    const token = window.localStorage.getItem('lfz-final');
     event.preventDefault();
 
     const formData = new FormData();
@@ -52,11 +51,6 @@ export default class Upload extends React.Component {
       .catch(err => console.error(err));
   }
 
-  componentDidMount() {
-    const token = window.localStorage.getItem('lfz-final');
-    this.setState({ token });
-  }
-
   componentDidUpdate(prevProps, prevState) {
     if (prevState.imageURL !== this.state.imageURL) {
       this.setState({ imageURL: this.state.image });
@@ -64,7 +58,7 @@ export default class Upload extends React.Component {
   }
 
   handleSubmit(event) {
-    const { token } = this.state;
+    const token = window.localStorage.getItem('lfz-final');
     event.preventDefault();
     fetch('/api/upload', {
       method: 'POST',
@@ -76,9 +70,9 @@ export default class Upload extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
+        window.location.hash = '#myprofile';
       })
       .catch(err => console.error(err));
-    window.location.hash = '#myprofile';
   }
 
   render() {
