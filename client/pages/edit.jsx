@@ -48,7 +48,7 @@ export default class Edit extends React.Component {
     formData.append('image', image);
 
     fetch('/api/images', {
-      method: 'POST',
+      method: 'post',
       headers: {
         'x-access-token': token
       },
@@ -66,17 +66,21 @@ export default class Edit extends React.Component {
       .catch(err => console.error(err));
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
+    event.preventDefault();
     const token = window.localStorage.getItem('lfz-final');
     fetch(`/api/edit/${this.props.postId}`, {
       method: 'patch',
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': token
-      }
+      },
+      body: JSON.stringify(this.state)
     })
-      .then(res => res.json());
-
+      .then(res => res.json())
+      .then(result => {
+      // console.log(result)
+      });
   }
 
   render() {
@@ -88,7 +92,6 @@ export default class Edit extends React.Component {
             <div className="row space-between">
               <label id="uploading" htmlFor="upload">Choose File</label>
               <input
-                required
                 id="upload"
                 type="file"
                 name="imageURL"
@@ -110,7 +113,7 @@ export default class Edit extends React.Component {
               <div className="test">
                 <div className="condition-container">
                   <label id="font-color" htmlFor="condition">Condition: </label>
-                  <select className="condition" onChange={this.handleChange} name="condition" required>
+                  <select className="condition" onChange={this.handleChange} name="condition">
                     <option className="select">{condition}</option>
                     <option className="select" value="very used">very used</option>
                     <option className="select" value="used">used</option>
@@ -120,7 +123,6 @@ export default class Edit extends React.Component {
                 </div>
                 <div className="location-container">
                   <input
-                    required
                     id="location"
                     type="text"
                     name="location"
@@ -130,7 +132,6 @@ export default class Edit extends React.Component {
                 </div>
                 <div className="price-container">
                   <input
-                    required
                     id="price"
                     type="text"
                     name="price"
@@ -145,7 +146,6 @@ export default class Edit extends React.Component {
                 <div>
                   <div className="title-container">
                     <input
-                      required
                       id="title"
                       type="text"
                       name="title"
@@ -157,7 +157,6 @@ export default class Edit extends React.Component {
                   <hr></hr>
                   <div className="description-container">
                     <textarea
-                      required
                       autoFocus
                       id="description"
                       type="text"

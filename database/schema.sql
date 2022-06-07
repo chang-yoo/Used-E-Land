@@ -2,7 +2,6 @@ set client_min_messages to warning;
 
 -- DANGER: this is NOT how to do it in the real world.
 -- `drop schema` INSTANTLY ERASES EVERYTHING.
-
 drop schema "public" cascade;
 
 create schema "public";
@@ -17,6 +16,7 @@ CREATE TABLE "public"."users" (
 );
 
 
+
 CREATE TABLE "public"."post" (
 	"postId" serial NOT NULL,
 	"userId" int NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE "public"."post" (
 	"price" int NOT NULL,
 	"description" TEXT NOT NULL,
 	"title" TEXT NOT NULL,
-	CONSTRAINT "post_pk" PRIMARY KEY ("postId")
+	"updatedAt" timestamptz(6) not null default now()
 ) WITH (
   OIDS=FALSE
 );
@@ -48,7 +48,8 @@ CREATE TABLE "public"."messenger" (
 	"userId" int NOT NULL,
 	"content" TEXT NOT NULL,
 	"postId" int NOT NULL,
-	"createdAt" timestamptz(6) not null default now()
+	"createdAt" timestamptz(6) not null default now(),
+	CONSTRAINT "messenger_pk" PRIMARY KEY ("messengerId")
 ) WITH (
   OIDS=FALSE
 );
@@ -79,3 +80,22 @@ CREATE TABLE "public"."images" (
 ) WITH (
   OIDS=FALSE
 );
+
+
+
+
+ALTER TABLE "post" ADD CONSTRAINT "post_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
+
+ALTER TABLE "review" ADD CONSTRAINT "review_fk0" FOREIGN KEY ("postId") REFERENCES "post"("postId");
+ALTER TABLE "review" ADD CONSTRAINT "review_fk1" FOREIGN KEY ("userId") REFERENCES "users"("userId");
+
+ALTER TABLE "messenger" ADD CONSTRAINT "messenger_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
+ALTER TABLE "messenger" ADD CONSTRAINT "messenger_fk1" FOREIGN KEY ("postId") REFERENCES "post"("postId");
+
+ALTER TABLE "favorite" ADD CONSTRAINT "favorite_fk0" FOREIGN KEY ("postId") REFERENCES "post"("postId");
+ALTER TABLE "favorite" ADD CONSTRAINT "favorite_fk1" FOREIGN KEY ("userId") REFERENCES "users"("userId");
+
+ALTER TABLE "likes" ADD CONSTRAINT "likes_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
+ALTER TABLE "likes" ADD CONSTRAINT "likes_fk1" FOREIGN KEY ("postId") REFERENCES "post"("postId");
+
+ALTER TABLE "images" ADD CONSTRAINT "images_fk0" FOREIGN KEY ("imageId") REFERENCES "post"("postId");

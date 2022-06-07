@@ -135,6 +135,7 @@ textarea {
 .post {
   transform: scale(1);
   transition: transform 0.5s;
+  position: relative;
 }
 
 .menu-bar {
@@ -461,4 +462,6 @@ ul {
 
 .fa-pen-to-square {
   z-index: 3;
+  position: absolute;
+  left: 5%;
 }

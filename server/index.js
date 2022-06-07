@@ -214,20 +214,32 @@ app.post('/api/upload', (req, res, next) => {
 app.patch('/api/edit/:postId', (req, res, next) => {
   const postId = Number(req.params.postId);
   const { imageURL, location, condition, price, description, title } = req.body;
-  if (!Number.isInteger(postId) || postId <= 0) {
+  if (!Number.isInteger(postId) || postId < 1) {
     throw new ClientError(400, 'postId must be a positive integer');
+  }
+  if (!imageURL || !location || !condition || !price || !description || !title) {
+    throw new ClientError(400, 'imageURL, location, condition, price, description, title are required field');
   }
   const sql = `
   update "post"
-    set "imageURL"=$2, "location"=$3, "condition"=$4, "price"=$5, "description"=$6, "title"=$7
-    where "postId" = $1
+    set "imageURL" = $1,
+        "location" = $2,
+        "condition" = $3,
+        "price" = $4,
+        "description" = $5,
+        "title" = $6,
+        "updatedAt" = now()
+    where "postId" = $7
     returning*
   `;
-  const params = [postId, imageURL, location, condition, price, description, title];
+  const params = [imageURL, location, condition, price, description, title, postId];
   db
     .query(sql, params)
     .then(result => {
-      const [data] = result.rows;
+      const data = result.rows;
+      if (!data) {
+        res.status(400).json({ error: `cannot find postId with ${postId}` });
+      }
       res.json(data);
     })
     .catch(err => next(err));

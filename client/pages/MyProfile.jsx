@@ -57,10 +57,10 @@ export default class MyProfile extends React.Component {
               {post.map(eachpost => {
                 return (
                   <div key={eachpost.postId} className="one-fourth-container post">
-                    <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId} >
+                    <a href={`#edit?postId=${eachpost.postId}`}><i className="fa-solid fa-pen-to-square"></i></a>
+                    <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId}>
                       <div className="each-post">
                         <div className="postlistimage-container">
-                          <a href={`#edit?postId=${eachpost.postId}`}><i className="fa-solid fa-pen-to-square"></i></a>
                           <img className='postlist-image' src={eachpost.imageURL}></img>
                         </div>
                         <div className="postlist-text">
