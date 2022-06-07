@@ -109,7 +109,7 @@ h1 {
 
 textarea,
 input:focus {
-  outline: none;
+  outline-color: orange;
 }
 
 textarea {

@@ -17,6 +17,7 @@ export default class Edit extends React.Component {
     this.fileInputRef = React.createRef();
     this.handleImageSubmit = this.handleImageSubmit.bind(this);
     this.handleDeleteBox = this.handleDeleteBox.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -50,7 +51,7 @@ export default class Edit extends React.Component {
     formData.append('image', image);
 
     fetch('/api/images', {
-      method: 'post',
+      method: 'POST',
       headers: {
         'x-access-token': token
       },
@@ -66,6 +67,22 @@ export default class Edit extends React.Component {
         this.fileInputRef.current.value = null;
       })
       .catch(err => console.error(err));
+  }
+
+  handleDelete() {
+    const token = window.localStorage.getItem('lfz-final');
+    fetch(`/api/edit/${this.props.postId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token
+      }
+    })
+      .then(res => res.json())
+      .then(result => {
+        this.handleDeleteBox();
+        window.location.hash = '#myprofile';
+      });
   }
 
   handleDeleteBox() {
@@ -90,8 +107,8 @@ export default class Edit extends React.Component {
       .then(res => res.json())
       .then(result => {
         this.setState(result);
+        window.location.hash = '#myprofile';
       });
-    window.location.hash = '#myprofile';
   }
 
   render() {
@@ -197,7 +214,7 @@ export default class Edit extends React.Component {
                   <h3>Are you sure want to delete this item?</h3>
                 </div>
                 <div className="row space-around margin-top-5rem">
-                <button className="delete-confirm-button">Confirm</button>
+                <button onClick={this.handleDelete}className="delete-confirm-button">Confirm</button>
                 <button onClick={this.handleDeleteBox} className="delete-cancel-button">Cancel</button>
               </div>
             </div>
