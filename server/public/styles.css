@@ -109,14 +109,14 @@ h1 {
 
 textarea,
 input:focus {
-  outline: none;
+  outline-color: orange;
 }
 
 textarea {
   resize: none;
 }
 
-.fa-trash-can,
+.fa-delete-left,
 .fa-arrow-right-long,
 .menu-icon,
 .fa-xmark,
@@ -124,8 +124,10 @@ textarea {
   color: #9f9999;
 }
 
-.fa-trash-can {
-  margin-top: 0.5rem;
+.fa-delete-left {
+  position: absolute;
+  right: -15%;
+  top: 10%;
 }
 
 .searching-x {
@@ -201,10 +203,11 @@ textarea {
 .detail-text {
   line-height: 1.8rem;
   margin: 0 1.5rem;
+  word-wrap: break-word;
 }
 
 hr {
-  width: 390px;
+  width: 400px;
   border: none;
   background-color: white;
   height: 5px;
@@ -402,6 +405,8 @@ ul {
   font-size: 15px;
 }
 
+.delete-confirm-button,
+.delete-cancel-button,
 .upload-button,
 .cancel-button,
 .search-button {
@@ -434,6 +439,10 @@ ul {
 .description {
   border-radius: 10px;
   border: 1px solid #9f9999;
+}
+
+.title-container {
+  position: relative;
 }
 
 .title {
@@ -471,4 +480,33 @@ ul {
   z-index: 3;
   position: absolute;
   left: 5%;
+  color: orange;
+}
+
+.confirm-delete-box {
+  position: fixed;
+  top: 30%;
+  left: 30%;
+  background-color: #eec6b0;
+  width: 500px;
+  height: 300px;
+  color: white;
+  border-radius: 10px;
+}
+
+.delete-text {
+  width: 100px;
+  border: 2px solid white;
+  margin: 1rem;
+  padding-left: 0.5rem;
+}
+
+.delete-confirm-button,
+.delete-cancel-button {
+  background-color: white;
+}
+
+.delete,
+.delete-confirm-button {
+  color: red;
 }

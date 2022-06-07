@@ -160,6 +160,7 @@ export default class Upload extends React.Component {
                   name="description"
                   onChange={this.handleChange}
                   className="description"
+                  wrap="hard"
                   placeholder="Tell us about your item!"
                   />
                 </div>
