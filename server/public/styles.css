@@ -107,15 +107,25 @@ h1 {
   position: relative;
 }
 
+textarea,
 input:focus {
   outline: none;
 }
 
+textarea {
+  resize: none;
+}
+
+.fa-trash-can,
 .fa-arrow-right-long,
 .menu-icon,
 .fa-xmark,
 .search-glass {
   color: #9f9999;
+}
+
+.fa-trash-can {
+  margin-top: 0.5rem;
 }
 
 .searching-x {
@@ -130,6 +140,7 @@ input:focus {
 .post {
   transform: scale(1);
   transition: transform 0.5s;
+  position: relative;
 }
 
 .menu-bar {
@@ -188,7 +199,7 @@ input:focus {
 
 .detail-description,
 .detail-text {
-  line-height: 1.5rem;
+  line-height: 1.8rem;
   margin: 0 1.5rem;
 }
 
@@ -339,4 +350,125 @@ span {
 
 ul {
   margin-left: -4rem;
+}
+
+.image-container {
+  width: 400px;
+  height: 350px;
+  margin: auto;
+  margin-top: 1rem;
+  margin-right: 3.8rem;
+}
+
+.upload-container {
+  width: 80%;
+  background-color: #fef5f0;
+  margin: auto;
+  min-height: 100vh;
+  position: relative;
+}
+
+.image-submit {
+  position: absolute;
+  bottom: 49%;
+  left: 9.5%;
+}
+
+#location,
+#price {
+  width: 400px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #9f9999;
+}
+
+.condition-container,
+.location-container,
+.price-container {
+  padding: 0.5rem;
+}
+
+.test {
+  margin: 6.5rem;
+}
+
+#font-color,
+::placeholder,
+.condition {
+  color: #ad7d35;
+}
+
+::placeholder {
+  font-size: 15px;
+}
+
+.upload-button,
+.cancel-button,
+.search-button {
+  border: 1px solid #fbd3a4;
+  background-color: #fbd3a4;
+  border-radius: 30px;
+  height: 40px;
+  width: 90px;
+  color: #ad7d35;
+}
+
+.cancel-button-text {
+  color: #ad7d35;
+  margin-left: 1.3rem;
+  font-size: 15px;
+  margin-top: 0.7rem;
+}
+
+.search-button {
+  padding: 0.5rem;
+}
+
+.condition {
+  border-radius: 5px;
+  width: 120px;
+  border: 1px solid #9f9999;
+}
+
+.title,
+.description {
+  border-radius: 10px;
+  border: 1px solid #9f9999;
+}
+
+.title {
+  width: 400px;
+  height: 50px;
+  font-size: 1rem;
+}
+
+.description {
+  width: 400px;
+  height: 490px;
+}
+
+.image-upload,
+#uploading {
+  width: 100px;
+  background-color: #fbd3a4;
+  color: #ad7d35;
+  padding: 0.4rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  position: relative;
+  bottom: -1rem;
+  border: 1px solid #fbd3a4;
+  margin-right: 3.1rem;
+}
+
+.image-upload {
+  margin-left: 9.5rem;
+  font-size: 15px;
+}
+
+.fa-pen-to-square {
+  z-index: 3;
+  position: absolute;
+  left: 5%;
 }

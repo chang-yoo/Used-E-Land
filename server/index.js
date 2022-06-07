@@ -9,6 +9,7 @@ const publicPath = path.join(__dirname, 'public');
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
 const authorizationMiddleware = require('./authorization-middleware');
+const uploadsMiddleware = require('./uploads-middleware');
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -46,13 +47,16 @@ app.get('/api/post/:postId', (req, res, next) => {
   const sql = `
   select*
   from "post"
+  join "users" using ("userId")
   where "postId" = $1
   `;
   const params = [targetId];
   return db
     .query(sql, params)
-    .then(result =>
-      res.json(result.rows))
+    .then(result => {
+      const data = result.rows;
+      res.status(201).json(data);
+    })
     .catch(err => next(err));
 });
 
@@ -136,6 +140,23 @@ app.post('/api/sign-in', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/images', uploadsMiddleware, (req, res, next) => {
+  const url = `/images/${req.file.filename}`;
+  const sql = `
+  insert into "images" ("url")
+  values ($1)
+  returning*
+  `;
+  const params = [url];
+  db
+    .query(sql, params)
+    .then(result => {
+      const [data] = result.rows;
+      res.status(201).json(data);
+    })
+    .catch(err => next(err));
+});
+
 app.use(authorizationMiddleware);
 
 app.get('/api/myprofile', (req, res, next) => {
@@ -152,6 +173,74 @@ app.get('/api/myprofile', (req, res, next) => {
     .query(sql, params)
     .then(result => {
       res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/username', (req, res, next) => {
+  const { userId } = req.user;
+  const sql = `
+  select*
+  from "users"
+  where "userId" = $1
+  `;
+  const params = [userId];
+  db
+    .query(sql, params)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
+app.post('/api/upload', (req, res, next) => {
+  const { userId } = req.user;
+  const { imageURL, location, condition, price, description, title } = req.body;
+  if (!imageURL || !location || !condition || !price || !description || !title) {
+    throw new ClientError(400, 'imageURL, location, condition, price, description, and title are required fields');
+  }
+  const sql = `
+  insert into "post" ("userId", "imageURL", "location", "condition", "price", "description", "title")
+  values ($1, $2, $3, $4, $5, $6, $7)
+  returning*
+  `;
+  const params = [userId, imageURL, location, condition, price, description, title];
+  db
+    .query(sql, params)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
+app.patch('/api/edit/:postId', (req, res, next) => {
+  const postId = Number(req.params.postId);
+  const { imageURL, location, condition, price, description, title } = req.body;
+  if (!Number.isInteger(postId) || postId < 1) {
+    throw new ClientError(400, 'postId must be a positive integer');
+  }
+  if (!imageURL || !location || !condition || !price || !description || !title) {
+    throw new ClientError(400, 'imageURL, location, condition, price, description, title are required field');
+  }
+  const sql = `
+  update "post"
+    set "imageURL" = $1,
+        "location" = $2,
+        "condition" = $3,
+        "price" = $4,
+        "description" = $5,
+        "title" = $6,
+        "updatedAt" = now()
+    where "postId" = $7
+    returning*
+  `;
+  const params = [imageURL, location, condition, price, description, title, postId];
+  db
+    .query(sql, params)
+    .then(result => {
+      const data = result.rows;
+      if (!data) {
+        res.status(400).json({ error: `cannot find postId with ${postId}` });
+      }
+      res.json(data);
     })
     .catch(err => next(err));
 });

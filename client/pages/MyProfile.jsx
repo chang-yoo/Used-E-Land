@@ -1,16 +1,20 @@
 import React from 'react';
+import jwtDecode from 'jwt-decode';
 
 export default class MyProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       post: [],
-      created: ''
+      created: '',
+      username: ''
     };
   }
 
   componentDidMount() {
     const token = window.localStorage.getItem('lfz-final');
+    const decode = jwtDecode(token);
+    const getUsername = decode.username;
     fetch('/api/myprofile', {
       headers: {
         'Content-Type': 'application/json',
@@ -21,40 +25,34 @@ export default class MyProfile extends React.Component {
       .then(result => {
         const { error } = result;
         if (!error) {
-          this.setState({ post: result });
+          this.setState({
+            post: result,
+            username: getUsername
+          });
         }
         if (!error && result.length === 0) { this.setState({ created: 'no' }); }
       });
   }
 
   render() {
-    const { post } = this.state;
-    const username = {
-      find: function () {
-        if (post[0] !== undefined) {
-          const username = (post[0].username);
-          return username;
-        }
-      }
-    };
-    const { created } = this.state;
+    const { post, created, username } = this.state;
     if (created === '') {
       return (
       <div className="list-background top-6-rem">
         <div className="row space-between">
           <div className="column-half">
-            <h1 className="welcome-profile">Welcome {username.find()}!</h1>
+            <h1 className="welcome-profile">Welcome {username}!</h1>
           </div>
-          <div className="column-half row">
-            <a><h2 className="margin-2rem">Shop</h2></a>
-            <a><h2 className="margin-2rem">Post your item today</h2></a>
+          <div className="column-half">
+              <a href="#upload"><h2 className="margin-2rem">Upload your item today</h2></a>
           </div>
         </div>
         <div className="row">
               {post.map(eachpost => {
                 return (
                   <div key={eachpost.postId} className="one-fourth-container post">
-                    <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId} >
+                    <a href={`#edit?postId=${eachpost.postId}`}><i className="fa-solid fa-pen-to-square"></i></a>
+                    <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId}>
                       <div className="each-post">
                         <div className="postlistimage-container">
                           <img className='postlist-image' src={eachpost.imageURL}></img>
@@ -79,11 +77,10 @@ export default class MyProfile extends React.Component {
       <div className="list-background top-6-rem">
         <div className="row space-between">
           <div className="column-half">
-            <h1 className="welcome-profile">Welcome {username.find()}!</h1>
+            <h1 className="welcome-profile">Welcome {username}!</h1>
           </div>
           <div className="column-half row">
-            <a><h2 className="margin-2rem">Shop</h2></a>
-            <a><h2 className="margin-2rem">Post your item today</h2></a>
+            <a href="#upload"><h2 className="margin-2rem">Upload your item today</h2></a>
           </div>
         </div>
         <div className="row center">

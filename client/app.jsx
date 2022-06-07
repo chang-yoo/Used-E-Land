@@ -10,7 +10,8 @@ import SignUp from './pages/sign-up';
 import MyProfile from './pages/MyProfile';
 import jwtDecode from 'jwt-decode';
 import HeaderAfterSiginIn from './components/header-aftersignin';
-import AppContext from './lib/app-context';
+import Upload from './pages/upload';
+import Edit from './pages/edit';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -63,6 +64,10 @@ export default class App extends React.Component {
       return <SignUp />;
     } else if (path === 'myprofile') {
       return <MyProfile userId={this.state.route.params.get('userId')} />;
+    } else if (path === 'upload') {
+      return <Upload />;
+    } else if (path === 'edit') {
+      return <Edit postId={this.state.route.params.get('postId')} />;
     }
   }
 
@@ -89,5 +94,3 @@ export default class App extends React.Component {
     }
   }
 }
-
-App.ContextType = AppContext;
