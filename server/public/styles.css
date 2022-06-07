@@ -458,3 +458,7 @@ ul {
   margin-left: 9.5rem;
   font-size: 15px;
 }
+
+.fa-pen-to-square {
+  z-index: 3;
+}
