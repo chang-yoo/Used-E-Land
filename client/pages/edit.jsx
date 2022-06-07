@@ -9,12 +9,14 @@ export default class Edit extends React.Component {
       location: '',
       price: '',
       title: '',
-      description: ''
+      description: '',
+      classvalue: 'hidden'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.fileInputRef = React.createRef();
     this.handleImageSubmit = this.handleImageSubmit.bind(this);
+    this.handleDeleteBox = this.handleDeleteBox.bind(this);
   }
 
   componentDidMount() {
@@ -66,8 +68,12 @@ export default class Edit extends React.Component {
       .catch(err => console.error(err));
   }
 
-  handleDelete() {
-
+  handleDeleteBox() {
+    const { classvalue } = this.state;
+    if (classvalue === 'hidden') {
+      return this.setState({ classvalue: '' });
+    }
+    return this.setState({ classvalue: 'hidden' });
   }
 
   handleSubmit(event) {
@@ -89,7 +95,6 @@ export default class Edit extends React.Component {
   }
 
   render() {
-    const classvalue = 'hidden';
     const { imageURL, condition, location, price, title, description } = this.state;
     return (
       <div className="column-full">
@@ -160,7 +165,7 @@ export default class Edit extends React.Component {
                         className="title"
                         placeholder={title}
                       />
-                      <i onClick={this.handleDelete} className="fa-solid fa-delete-left fa-2x"></i>
+                      <i onClick={this.handleDeleteBox} className="fa-solid fa-delete-left fa-2x"></i>
                     </div>
                     <hr></hr>
                     <div className="description-container">
@@ -184,16 +189,16 @@ export default class Edit extends React.Component {
             </div>
           </form>
         </div>
-        <div className={classvalue}>
+        <div className={this.state.classvalue}>
           <div className="confirm-delete-box">
             <div className="delete-text"><h2 className="auto delete">Delete</h2></div>
               <div className="margin-top-3rem">
                 <div className="text-center">
-                  <h3>Are you sure you wnat to delete this item?</h3>
+                  <h3>Are you sure want to delete this item?</h3>
                 </div>
                 <div className="row space-around margin-top-5rem">
                 <button className="delete-confirm-button">Confirm</button>
-                <button className="delete-cancel-button">Cancel</button>
+                <button onClick={this.handleDeleteBox} className="delete-cancel-button">Cancel</button>
               </div>
             </div>
           </div>
