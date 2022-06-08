@@ -31,14 +31,28 @@ export default class List extends React.Component {
       })
         .then(res => res.json())
         .then(result => {
-          this.setState({ favorite: event.target.id });
           const { error } = result;
+          if (!error) {
+            this.setState({ favorite: event.target.id });
+          }
           if (error) {
             window.location.hash = '#sign-in';
           }
         });
     }
-    this.setState({ favorite: null });
+    if (favorite !== null) {
+      fetch(`/api/favorite/${event.target.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': token
+        }
+      })
+        .then(res => res.json())
+        .then(result => {
+          this.setState({ favorite: null });
+        });
+    }
   }
 
   render() {

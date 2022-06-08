@@ -161,6 +161,9 @@ app.use(authorizationMiddleware);
 
 app.get('/api/myprofile', (req, res, next) => {
   const { userId } = req.user;
+  if (!userId) {
+    throw new ClientError(400, 'userId is a required filed');
+  }
   const sql = `
   select*
   from "post"
@@ -179,6 +182,9 @@ app.get('/api/myprofile', (req, res, next) => {
 
 app.get('/api/username', (req, res, next) => {
   const { userId } = req.user;
+  if (!userId) {
+    throw new ClientError(400, 'userId is a required filed');
+  }
   const sql = `
   select*
   from "users"
@@ -194,6 +200,9 @@ app.get('/api/username', (req, res, next) => {
 app.post('/api/upload', (req, res, next) => {
   const { userId } = req.user;
   const { imageURL, location, condition, price, description, title } = req.body;
+  if (!userId) {
+    throw new ClientError(400, 'userId is a required filed');
+  }
   if (!imageURL || !location || !condition || !price || !description || !title) {
     throw new ClientError(400, 'imageURL, location, condition, price, description, and title are required fields');
   }
@@ -290,6 +299,9 @@ app.post('/api/favorite/:postId', (req, res, next) => {
 
 app.get('/api/favorite', (req, res, next) => {
   const { userId } = req.user;
+  if (!userId) {
+    throw new ClientError(400, 'userId is a required filed');
+  }
   const sql = `
   select*
   from "favorite" as "f"
@@ -301,6 +313,34 @@ app.get('/api/favorite', (req, res, next) => {
     .query(sql, params)
     .then(result =>
       res.json(result.rows))
+    .catch(err => next(err));
+});
+
+app.delete('/api/favorite/:postId', (req, res, next) => {
+  const { userId } = req.user;
+  const postId = Number(req.params.postId);
+  if (!userId) {
+    throw new ClientError(400, 'userId is a required filed');
+  }
+  if (!Number.isInteger(postId) || postId < 1) {
+    throw new ClientError(400, 'postId must be a positive integer');
+  }
+  const sql = `
+  delete from "favorite"
+  where "userId" = $1
+  and "postId" = $2
+  returning*
+  `;
+  const params = [userId, postId];
+  db
+    .query(sql, params)
+    .then(result => {
+      const data = result.rows;
+      if (data) {
+        res.status(200).json(data);
+      }
+      throw new ClientError(404, `Cannot find post with postId of ${postId}`);
+    })
     .catch(err => next(err));
 });
 

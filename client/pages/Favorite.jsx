@@ -6,7 +6,7 @@ export default class Favorite extends React.Component {
     this.state = {
       post: [],
       created: '',
-      favorite: null
+      status: ''
     };
     this.handleHeart = this.handleHeart.bind(this);
   }
@@ -30,12 +30,25 @@ export default class Favorite extends React.Component {
       });
   }
 
-  handleHeart(event) {
-    const { favorite } = this.state;
-    if (favorite === null) {
-      this.setState({ favorite: event.target.id });
+  componentDidUpdate(prevState, prevProps) {
+    if (prevState.post === this.state.post) {
+      this.setState({ status: null });
     }
-    this.setState({ favorite: null });
+  }
+
+  handleHeart(event) {
+    const token = window.localStorage.getItem('lfz-final');
+    fetch(`/api/favorite/${event.target.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token
+      }
+    })
+      .then(res => res.json())
+      .then(result => {
+        window.location.hash = '#favorite';
+      });
   }
 
   render() {
@@ -79,7 +92,7 @@ export default class Favorite extends React.Component {
             <h1 className="welcome-profile">Your Favorite Page!</h1>
           </div>
           <div className="row center">
-            <h1>You currently don&apos;t have any favorite post!</h1>
+            <h1>No favorite post added to your page!</h1>
           </div>
         </div>
       );
