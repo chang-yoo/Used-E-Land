@@ -5,8 +5,7 @@ export default class Favorite extends React.Component {
     super(props);
     this.state = {
       post: [],
-      created: '',
-      status: ''
+      created: ''
     };
     this.handleHeart = this.handleHeart.bind(this);
   }
@@ -30,12 +29,6 @@ export default class Favorite extends React.Component {
       });
   }
 
-  componentDidUpdate(prevState, prevProps) {
-    if (prevState.post === this.state.post) {
-      this.setState({ status: null });
-    }
-  }
-
   handleHeart(event) {
     const token = window.localStorage.getItem('lfz-final');
     fetch(`/api/favorite/${event.target.id}`, {
@@ -47,13 +40,12 @@ export default class Favorite extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        window.location.hash = '#favorite';
+        this.componentDidMount();
       });
   }
 
   render() {
     const { post, created } = this.state;
-    const heart = 'fa-solid fa-heart fa-2x';
     if (created === '') {
       return (
         <div className="list-background top-6-rem">
@@ -64,7 +56,7 @@ export default class Favorite extends React.Component {
             {post.map(eachpost => {
               return (
                 <div key={eachpost.postId} className="one-fourth-container post">
-                  <i onClick={this.handleHeart} id={eachpost.postId} className={heart}></i>
+                  <i onClick={this.handleHeart} id={eachpost.postId} className='fa-solid fa-heart fa-2x'></i>
                   <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId}>
                     <div className="each-post">
                       <div className="postlistimage-container">

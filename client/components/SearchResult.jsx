@@ -58,7 +58,7 @@ export default class SearchResult extends React.Component {
       })
         .then(res => res.json())
         .then(result => {
-          return this.setState({ favorite: null });
+          this.setState({ favorite: null });
         });
     }
   }

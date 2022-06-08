@@ -31,7 +31,7 @@ app.get('/api/main', (req, res, next) => {
   order by "postId" desc
   limit 4
   `;
-  return db
+  db
     .query(sql)
     .then(result => {
       res.status(201).json(result.rows);
@@ -51,7 +51,7 @@ app.get('/api/post/:postId', (req, res, next) => {
   where "postId" = $1
   `;
   const params = [targetId];
-  return db
+  db
     .query(sql, params)
     .then(result => {
       const data = result.rows;
@@ -94,7 +94,7 @@ app.post('/api/sign-up', (req, res, next) => {
         returning "userId", "username"
       `;
       const params = [username, hashedPassword];
-      return db.query(sql, params);
+      db.query(sql, params);
     })
     .then(result => {
       const [newUser] = result.rows;
@@ -152,7 +152,7 @@ app.post('/api/images', uploadsMiddleware, (req, res, next) => {
     .query(sql, params)
     .then(result => {
       const [data] = result.rows;
-      res.status(201).json(data);
+      return res.status(201).json(data);
     })
     .catch(err => next(err));
 });
@@ -215,7 +215,7 @@ app.post('/api/upload', (req, res, next) => {
   db
     .query(sql, params)
     .then(result => {
-      res.json(result.rows);
+      return res.json(result.rows);
     })
     .catch(err => next(err));
 });
@@ -246,10 +246,7 @@ app.patch('/api/edit/:postId', (req, res, next) => {
     .query(sql, params)
     .then(result => {
       const data = result.rows;
-      if (!data) {
-        res.status(400).json({ error: `cannot find postId with ${postId}` });
-      }
-      res.json(data);
+      return res.json(data);
     })
     .catch(err => next(err));
 });
@@ -270,7 +267,7 @@ app.delete('/api/edit/:postId', (req, res, next) => {
     .then(result => {
       const data = result.rows;
       if (data) {
-        res.status(200).json(data);
+        return res.status(200).json(data);
       }
       throw new ClientError(404, `Cannot find post with postId of ${postId}`);
     })
@@ -292,7 +289,7 @@ app.post('/api/favorite/:postId', (req, res, next) => {
   db
     .query(sql, params)
     .then(result => {
-      res.json(result.rows);
+      return res.json(result.rows);
     })
     .catch(err => next(err));
 });
@@ -337,7 +334,7 @@ app.delete('/api/favorite/:postId', (req, res, next) => {
     .then(result => {
       const data = result.rows;
       if (data) {
-        res.status(200).json(data);
+        return res.status(200).json(data);
       }
       throw new ClientError(404, `Cannot find post with postId of ${postId}`);
     })
