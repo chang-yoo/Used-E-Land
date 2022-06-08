@@ -6,28 +6,60 @@ export default class Favorite extends React.Component {
     this.state = {
       post: [],
       created: '',
-      username: ''
+      favorite: null
     };
+    this.handleHeart = this.handleHeart.bind(this);
+  }
+
+  componentDidMount() {
+    const token = window.localStorage.getItem('lfz-final');
+    fetch('/api/favorite', {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token
+      }
+    })
+      .then(res => res.json())
+      .then(result => {
+        const { error } = result;
+        if (!error) {
+          this.setState({
+            post: result
+          });
+        }
+        if (!error && result.length === 0) {
+          this.setState({ created: 'no' });
+        }
+      });
+  }
+
+  handleHeart(event) {
+    const { favorite } = this.state;
+    if (favorite === null) {
+      return this.setState({ favorite: event.target.id });
+    }
+    return this.setState({ favorite: null });
   }
 
   render() {
-    const { post, created, username } = this.state;
+    const { post, created, favorite } = this.state;
+    let heart = 'fa-solid fa-heart fa-2x';
     if (created === '') {
       return (
         <div className="list-background top-6-rem">
           <div className="row space-between">
-            <div className="column-half">
-              <h1 className="welcome-profile">Welcome {username}!</h1>
-            </div>
-            <div className="column-half">
-              <a href="#upload"><h2 className="margin-2rem">Upload your item today</h2></a>
-            </div>
+              <h1 className="welcome-profile">Your Favorite Page!</h1>
           </div>
           <div className="row">
             {post.map(eachpost => {
+              if (Number(eachpost.postId) === Number(favorite)) {
+                heart = 'fa-solid fa-heart fa-2x';
+              } else {
+                heart = 'fa-solid fa-heart-circle-plus fa-2x';
+              }
               return (
                 <div key={eachpost.postId} className="one-fourth-container post">
-                  <a href={`#edit?postId=${eachpost.postId}`}><i className="fa-solid fa-pen-to-square"></i></a>
+                  <i onClick={this.handleHeart} id={eachpost.postId} className={heart}></i>
                   <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId}>
                     <div className="each-post">
                       <div className="postlistimage-container">
@@ -52,15 +84,10 @@ export default class Favorite extends React.Component {
       return (
         <div className="list-background top-6-rem">
           <div className="row space-between">
-            <div className="column-half">
-              <h1 className="welcome-profile">Welcome {username}!</h1>
-            </div>
-            <div className="column-half row">
-              <a href="#upload"><h2 className="margin-2rem">Upload your item today</h2></a>
-            </div>
+            <h1 className="welcome-profile">Your Favorite Page!</h1>
           </div>
           <div className="row center">
-            <h1>You currently don&apos;t have any post uploaded!</h1>
+            <h1>You currently don&apos;t have any favorite post!</h1>
           </div>
         </div>
       );

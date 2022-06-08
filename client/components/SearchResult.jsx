@@ -4,8 +4,10 @@ export default class SearchResult extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      match: []
+      match: [],
+      favorite: null
     };
+    this.handleHeart = this.handleHeart.bind(this);
   }
 
   componentDidMount() {
@@ -26,9 +28,17 @@ export default class SearchResult extends React.Component {
     }
   }
 
+  handleHeart(event) {
+    const { favorite } = this.state;
+    if (favorite === null) {
+      return this.setState({ favorite: event.target.id });
+    }
+    return this.setState({ favorite: null });
+  }
+
   render() {
-    const { match } = this.state;
-    const heart = 'fa-solid fa-heart-circle-plus fa-2x';
+    const { match, favorite } = this.state;
+    let heart = 'fa-solid fa-heart-circle-plus fa-2x';
     if (match.length === 0) {
       return <div className="list-background">
         <h1 className="margin-padding-bottom-0">Based on your search: {this.props.keyword}</h1>
@@ -40,10 +50,15 @@ export default class SearchResult extends React.Component {
       <h1 className="margin-padding-bottom-0">Based on your search: {this.props.keyword}</h1>
       <h2 className="padding-left-1rem">Look at what we have found!</h2>
         <div className="row">
-     {match.map(eachpost => {
-       return (
+        {match.map(eachpost => {
+          if (Number(eachpost.postId) === Number(favorite)) {
+            heart = 'fa-solid fa-heart fa-2x';
+          } else {
+            heart = 'fa-solid fa-heart-circle-plus fa-2x';
+          }
+          return (
         <div key={eachpost.postId} className="one-fourth-container post">
-           <i id={eachpost.postId} className={heart}></i>
+          <i onClick={this.handleHeart} id={eachpost.postId} className={heart}></i>
           <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId} >
             <div className="each-post">
               <div className="postlistimage-container">
@@ -58,8 +73,8 @@ export default class SearchResult extends React.Component {
             </div>
           </a>
         </div>
-       );
-     })}
+          );
+        })}
       </div>
       </div>;
   }
