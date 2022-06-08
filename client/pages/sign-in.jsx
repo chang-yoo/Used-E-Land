@@ -109,7 +109,7 @@ export default class SignIn extends React.Component {
               <i onClick={this.hideBox} className="fa-regular fa-circle-xmark log-in-x"></i>
             <div className="sign-up-confirmbox">
               <h2>You have entered incorret username/password</h2>
-              <p>No account? Click <a href="#sign-up"><span>HERE</span></a> to sign up!</p>
+              <p className="font-size-20">No account? Click <a href="#sign-up"><span>HERE</span></a> to sign up!</p>
             </div>
           </div>
         </div>

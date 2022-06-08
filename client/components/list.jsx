@@ -36,7 +36,6 @@ export default class List extends React.Component {
         .then(result => {
           const { error } = result;
           if (!error) {
-            this.setState({ favorite: 'on' });
             event.target.setAttribute('class', 'fa-solid fa-heart fa-2x');
           }
           if (error) {
@@ -54,7 +53,6 @@ export default class List extends React.Component {
       })
         .then(res => res.json())
         .then(result => {
-          this.setState({ favorite: 'off' });
           const icon = event.target.closest('i');
           icon.setAttribute('class', 'fa-solid fa-heart-circle-plus fa-2x');
         });
