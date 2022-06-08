@@ -268,6 +268,24 @@ app.delete('/api/edit/:postId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/');
+
+app.get('/api/favorite', (req, res, next) => {
+  const { userId } = req.user;
+  const sql = `
+  select*
+  from "favorite"
+  join "post"
+  where "userId" = $1
+  `;
+  const params = [userId];
+  db
+    .query(sql, params)
+    .then(result =>
+      res.json(result.rows))
+    .catch(err => next(err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

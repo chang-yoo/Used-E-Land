@@ -35,8 +35,8 @@ export default class Detail extends React.Component {
               </div>
               <h4>condition: {post.condition}</h4>
 
-              <p>{post.location}</p>
-              <h3 className="price">${post.price}</h3>
+              <p className="font-size-20">{post.location}</p>
+              <h3 className="price font-size">${post.price}</h3>
             </div>
           </div>
           <div className="detail-description column-half">

@@ -61,7 +61,7 @@ export default class MyProfile extends React.Component {
                           <h3 className="postlist-title">{eachpost.title}</h3>
                           <p>{eachpost.condition}</p>
                           <p>{eachpost.location}</p>
-                          <h5 className="price">{eachpost.price}</h5>
+                          <h5 className="price">${eachpost.price}</h5>
                         </div>
                       </div>
                     </a>

@@ -28,6 +28,7 @@ export default class SearchResult extends React.Component {
 
   render() {
     const { match } = this.state;
+    const heart = 'fa-solid fa-heart-circle-plus fa-2x';
     if (match.length === 0) {
       return <div className="list-background">
         <h1 className="margin-padding-bottom-0">Based on your search: {this.props.keyword}</h1>
@@ -42,6 +43,7 @@ export default class SearchResult extends React.Component {
      {match.map(eachpost => {
        return (
         <div key={eachpost.postId} className="one-fourth-container post">
+           <i id={eachpost.postId} className={heart}></i>
           <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId} >
             <div className="each-post">
               <div className="postlistimage-container">
@@ -51,7 +53,7 @@ export default class SearchResult extends React.Component {
                 <h3 className="postlist-title">{eachpost.title}</h3>
                 <p>{eachpost.condition}</p>
                 <p>{eachpost.location}</p>
-                <h5 className="price">{eachpost.price}</h5>
+                <h5 className="price">${eachpost.price}</h5>
               </div>
             </div>
           </a>
