@@ -4,8 +4,7 @@ export default class SearchResult extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      match: [],
-      favorite: null
+      match: []
     };
     this.handleHeart = this.handleHeart.bind(this);
   }
@@ -30,8 +29,10 @@ export default class SearchResult extends React.Component {
 
   handleHeart(event) {
     const token = window.localStorage.getItem('lfz-final');
-    const { favorite } = this.state;
-    if (favorite === null) {
+    const icon = event.target.closest('i');
+    const classvalue = icon.getAttribute('class');
+
+    if (classvalue === 'fa-solid fa-heart-circle-plus fa-2x') {
       fetch(`/api/favorite/${event.target.id}`, {
         method: 'POST',
         headers: {
@@ -41,14 +42,17 @@ export default class SearchResult extends React.Component {
       })
         .then(res => res.json())
         .then(result => {
-          this.setState({ favorite: event.target.id });
           const { error } = result;
+          if (!error) {
+            this.setState({ favorite: 'on' });
+            event.target.setAttribute('class', 'fa-solid fa-heart fa-2x');
+          }
           if (error) {
             window.location.hash = '#sign-in';
           }
         });
     }
-    if (favorite !== null) {
+    if (classvalue === 'fa-solid fa-heart fa-2x') {
       fetch(`/api/favorite/${event.target.id}`, {
         method: 'DELETE',
         headers: {
@@ -58,14 +62,15 @@ export default class SearchResult extends React.Component {
       })
         .then(res => res.json())
         .then(result => {
-          this.setState({ favorite: null });
+          this.setState({ favorite: 'off' });
+          const icon = event.target.closest('i');
+          icon.setAttribute('class', 'fa-solid fa-heart-circle-plus fa-2x');
         });
     }
   }
 
   render() {
-    const { match, favorite } = this.state;
-    let heart = 'fa-solid fa-heart-circle-plus fa-2x';
+    const { match } = this.state;
     if (match.length === 0) {
       return <div className="list-background">
         <h1 className="margin-padding-bottom-0">Based on your search: {this.props.keyword}</h1>
@@ -76,16 +81,11 @@ export default class SearchResult extends React.Component {
     return <div className="search-background">
       <h1 className="margin-padding-bottom-0">Based on your search: {this.props.keyword}</h1>
       <h2 className="padding-left-1rem">Look at what we have found!</h2>
-        <div className="row">
+        <div className="row wrap">
         {match.map(eachpost => {
-          if (Number(eachpost.postId) === Number(favorite)) {
-            heart = 'fa-solid fa-heart fa-2x';
-          } else {
-            heart = 'fa-solid fa-heart-circle-plus fa-2x';
-          }
           return (
         <div key={eachpost.postId} className="one-fourth-container post">
-          <i onClick={this.handleHeart} id={eachpost.postId} className={heart}></i>
+              <i onClick={this.handleHeart} id={eachpost.postId} className='fa-solid fa-heart-circle-plus fa-2x'></i>
           <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId} >
             <div className="each-post">
               <div className="postlistimage-container">

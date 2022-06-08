@@ -4,8 +4,7 @@ export default class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      post: [],
-      favorite: null
+      post: []
     };
     this.handleHeart = this.handleHeart.bind(this);
   }
@@ -14,14 +13,18 @@ export default class List extends React.Component {
     fetch('api/main')
       .then(res => res.json())
       .then(data => {
-        this.setState({ post: data });
+        this.setState({
+          post: data
+        });
       });
   }
 
   handleHeart(event) {
     const token = window.localStorage.getItem('lfz-final');
-    const { favorite } = this.state;
-    if (favorite === null) {
+    const icon = event.target.closest('i');
+    const classvalue = icon.getAttribute('class');
+
+    if (classvalue === 'fa-solid fa-heart-circle-plus fa-2x') {
       fetch(`/api/favorite/${event.target.id}`, {
         method: 'POST',
         headers: {
@@ -33,14 +36,15 @@ export default class List extends React.Component {
         .then(result => {
           const { error } = result;
           if (!error) {
-            this.setState({ favorite: event.target.id });
+            this.setState({ favorite: 'on' });
+            event.target.setAttribute('class', 'fa-solid fa-heart fa-2x');
           }
           if (error) {
             window.location.hash = '#sign-in';
           }
         });
     }
-    if (favorite !== null) {
+    if (classvalue === 'fa-solid fa-heart fa-2x') {
       fetch(`/api/favorite/${event.target.id}`, {
         method: 'DELETE',
         headers: {
@@ -50,38 +54,32 @@ export default class List extends React.Component {
       })
         .then(res => res.json())
         .then(result => {
-          this.setState({ favorite: null });
+          this.setState({ favorite: 'off' });
+          const icon = event.target.closest('i');
+          icon.setAttribute('class', 'fa-solid fa-heart-circle-plus fa-2x');
         });
     }
   }
 
   render() {
-    const { post, favorite } = this.state;
-    let heart = 'fa-solid fa-heart-circle-plus fa-2x';
+    const { post } = this.state;
     return post.map(eachpost => {
-      if (Number(eachpost.postId) === Number(favorite)) {
-        heart = 'fa-solid fa-heart fa-2x';
-      } else {
-        heart = 'fa-solid fa-heart-circle-plus fa-2x';
-      }
       return (
         <div key={eachpost.postId} className="one-fourth-container post">
-          <i onClick={this.handleHeart} id={eachpost.postId} className={heart}></i>
+          <i onClick={this.handleHeart} id={eachpost.postId} className='fa-solid fa-heart-circle-plus fa-2x'></i>
           <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId} >
             <div className="each-post">
-            <div className="postlistimage-container">
-              <img className='postlist-image' src = {eachpost.imageURL}></img>
-            </div>
-            <div>
-              <div className="postlist-text">
-                <h3 className="postlist-title">{eachpost.title}</h3>
-                <p>{eachpost.condition}</p>
-                <p>{eachpost.location}</p>
-                <h5 className="price">${eachpost.price}</h5>
+              <div className="postlistimage-container">
+                <img className='postlist-image' src = {eachpost.imageURL}></img>
               </div>
               <div>
+                <div className="postlist-text">
+                  <h3 className="postlist-title">{eachpost.title}</h3>
+                  <p>{eachpost.condition}</p>
+                  <p>{eachpost.location}</p>
+                  <h5 className="price">${eachpost.price}</h5>
+                </div>
               </div>
-            </div>
             </div>
           </a>
         </div>

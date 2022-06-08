@@ -52,7 +52,7 @@ export default class Favorite extends React.Component {
           <div className="row space-between">
               <h1 className="welcome-profile">Your Favorite Page!</h1>
           </div>
-          <div className="row">
+          <div className="row wrap">
             {post.map(eachpost => {
               return (
                 <div key={eachpost.postId} className="one-fourth-container post">

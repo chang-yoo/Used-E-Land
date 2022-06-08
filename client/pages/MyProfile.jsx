@@ -49,7 +49,7 @@ export default class MyProfile extends React.Component {
               <a href="#upload"><h2 className="margin-2rem">Upload your item today</h2></a>
           </div>
         </div>
-        <div className="row">
+        <div className="row wrap">
               {post.map(eachpost => {
                 return (
                   <div key={eachpost.postId} className="one-fourth-container post">

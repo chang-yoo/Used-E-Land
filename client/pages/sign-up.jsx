@@ -23,7 +23,7 @@ export default class SignUp extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     fetch('/api/sign-up', {
-      method: 'post',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -120,8 +120,8 @@ export default class SignUp extends React.Component {
       <div className="column-full">
         <div className="row signup-box-container">
           <div className="sign-up-confirmbox">
-            <h2>Thank you for signing up!</h2>
-              <p>Click <a href="#sign-in"><span>HERE</span></a> to sign in</p>
+            <h2>Thank you for being a valuable UsedElander!</h2>
+              <p className="font-size-20">Click <a href="#sign-in"><span>HERE</span></a> to sign in</p>
           </div>
         </div>
       </div>
