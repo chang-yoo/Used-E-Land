@@ -10,7 +10,9 @@ CREATE TABLE "public"."users" (
 	"userId" serial NOT NULL,
 	"username" TEXT NOT NULL,
 	"hashedpassword" TEXT NOT NULL,
-	"createdAt" timestamptz(6) not null default now()
+	"createdAt" timestamptz(6) not null default now(),
+	primary key ("userId"),
+	unique ("username")
 ) WITH (
   OIDS=FALSE
 );
@@ -27,7 +29,8 @@ CREATE TABLE "public"."post" (
 	"price" int NOT NULL,
 	"description" TEXT NOT NULL,
 	"title" TEXT NOT NULL,
-	"updatedAt" timestamptz(6) not null default now()
+	"updatedAt" timestamptz(6) not null default now(),
+	primary key ("postId")
 ) WITH (
   OIDS=FALSE
 );
@@ -58,7 +61,8 @@ CREATE TABLE "public"."messenger" (
 
 CREATE TABLE "public"."favorite" (
 	"postId" int NOT NULL,
-	"userId" int NOT NULL
+	"userId" int NOT NULL,
+	unique ("postId")
 ) WITH (
   OIDS=FALSE
 );

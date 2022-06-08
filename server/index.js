@@ -292,9 +292,9 @@ app.get('/api/favorite', (req, res, next) => {
   const { userId } = req.user;
   const sql = `
   select*
-  from "favorite"
-  join "post" using ("postId")
-  where "userId" = $1
+  from "favorite" as "f"
+  join "post" as "p" using ("postId")
+  where "f"."userId" = $1
   `;
   const params = [userId];
   db

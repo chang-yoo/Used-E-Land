@@ -30,7 +30,9 @@ export default class MyProfile extends React.Component {
             username: getUsername
           });
         }
-        if (!error && result.length === 0) { this.setState({ created: 'no' }); }
+        if (!error && result.length === 0) {
+          this.setState({ created: 'no' });
+        }
       });
   }
 

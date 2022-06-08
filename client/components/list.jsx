@@ -19,11 +19,26 @@ export default class List extends React.Component {
   }
 
   handleHeart(event) {
+    const token = window.localStorage.getItem('lfz-final');
     const { favorite } = this.state;
     if (favorite === null) {
-      return this.setState({ favorite: event.target.id });
+      fetch(`/api/favorite/${event.target.id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': token
+        }
+      })
+        .then(res => res.json())
+        .then(result => {
+          this.setState({ favorite: event.target.id });
+          const { error } = result;
+          if (error) {
+            window.location.hash = '#sign-in';
+          }
+        });
     }
-    return this.setState({ favorite: null });
+    this.setState({ favorite: null });
   }
 
   render() {

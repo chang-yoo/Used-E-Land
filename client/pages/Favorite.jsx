@@ -21,13 +21,10 @@ export default class Favorite extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        const { error } = result;
-        if (!error) {
-          this.setState({
-            post: result
-          });
-        }
-        if (!error && result.length === 0) {
+        this.setState({
+          post: result
+        });
+        if (result.length === 0) {
           this.setState({ created: 'no' });
         }
       });
@@ -36,14 +33,14 @@ export default class Favorite extends React.Component {
   handleHeart(event) {
     const { favorite } = this.state;
     if (favorite === null) {
-      return this.setState({ favorite: event.target.id });
+      this.setState({ favorite: event.target.id });
     }
-    return this.setState({ favorite: null });
+    this.setState({ favorite: null });
   }
 
   render() {
-    const { post, created, favorite } = this.state;
-    let heart = 'fa-solid fa-heart fa-2x';
+    const { post, created } = this.state;
+    const heart = 'fa-solid fa-heart fa-2x';
     if (created === '') {
       return (
         <div className="list-background top-6-rem">
@@ -52,11 +49,6 @@ export default class Favorite extends React.Component {
           </div>
           <div className="row">
             {post.map(eachpost => {
-              if (Number(eachpost.postId) === Number(favorite)) {
-                heart = 'fa-solid fa-heart fa-2x';
-              } else {
-                heart = 'fa-solid fa-heart-circle-plus fa-2x';
-              }
               return (
                 <div key={eachpost.postId} className="one-fourth-container post">
                   <i onClick={this.handleHeart} id={eachpost.postId} className={heart}></i>
@@ -69,7 +61,7 @@ export default class Favorite extends React.Component {
                         <h3 className="postlist-title">{eachpost.title}</h3>
                         <p>{eachpost.condition}</p>
                         <p>{eachpost.location}</p>
-                        <h5 className="price">{eachpost.price}</h5>
+                        <h5 className="price">${eachpost.price}</h5>
                       </div>
                     </div>
                   </a>
