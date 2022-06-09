@@ -72,7 +72,7 @@ export default class MyProfile extends React.Component {
               }
               )}
         </div>
-            </div>
+      </div>
       );
     } else if (created === 'no') {
       return (
