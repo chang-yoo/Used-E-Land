@@ -128,12 +128,22 @@ textarea {
   resize: none;
 }
 
+.fa-user,
+.fa-mobile-screen,
+.fa-envelope,
+.fa-address-book,
 .fa-delete-left,
 .fa-arrow-right-long,
 .menu-icon,
 .fa-xmark,
 .search-glass {
   color: #9f9999;
+}
+
+.fa-address-book {
+  position: absolute;
+  left: -5%;
+  top: 5%;
 }
 
 .fa-delete-left {
@@ -204,6 +214,7 @@ textarea {
   min-height: 90vh;
   width: 80%;
   margin: auto;
+  position: relative;
 }
 
 .detail-image-container {
@@ -217,6 +228,7 @@ textarea {
   line-height: 1.8rem;
   margin: 0 1.5rem;
   word-wrap: break-word;
+  text-align: left;
 }
 
 hr {
@@ -293,6 +305,8 @@ i:hover {
   display: none;
 }
 
+.phone,
+.email,
 .username,
 .password {
   border: 1px solid #9f9999;
@@ -529,4 +543,37 @@ ul {
   color: orange;
   position: absolute;
   right: 5%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.contact-background {
+  position: absolute;
+  width: 300px;
+  background-color: #fee5d7;
+  height: 150px;
+  border-radius: 10px;
+  top: 5%;
+}
+
+.contact-info {
+  line-height: 30px;
+}
+
+.contact-button {
+  border: 1px solid #fbd3a4;
+  background-color: #fbd3a4;
+  border-radius: 30px;
+  height: 20px;
+  width: 50px;
+  color: #ad7d35;
+}
+
+.contact-text {
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
 }

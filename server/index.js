@@ -53,6 +53,8 @@ app.get('/api/post/:postId', (req, res, next) => {
  select "post".*,
          "seller"."userId",
          "seller"."username",
+         "seller"."phone",
+         "seller"."email",
 ("favorite"."postId" is not null) as "isFavorite"
   from "post"
   join "users" as "seller" using ("userId")
@@ -93,19 +95,19 @@ app.get('/api/search/:keyword', (req, res, next) => {
 app.use(express.json());
 
 app.post('/api/sign-up', (req, res, next) => {
-  const { username, password } = req.body;
-  if (!username || !password) {
-    throw new ClientError(400, 'username and password are required fields');
+  const { username, password, phone, email } = req.body;
+  if (!username || !password || !phone || !email) {
+    throw new ClientError(400, 'username, password, phone, email are required fields');
   }
   argon2
     .hash(password)
     .then(hashedPassword => {
       const sql = `
-        insert into "users" ("username", "hashedpassword")
-        values ($1, $2)
-        returning "userId", "username"
+        insert into "users" ("username", "hashedpassword", "phone", "email")
+        values ($1, $2, $3, $4)
+        returning "userId", "username", "phone", "email"
       `;
-      const params = [username, hashedPassword];
+      const params = [username, hashedPassword, phone, email];
       return db
         .query(sql, params);
     })
