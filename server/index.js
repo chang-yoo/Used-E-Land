@@ -272,11 +272,11 @@ app.post('/api/favorite/:postId', (req, res, next) => {
     throw new ClientError(400, 'postId must be a positive integer');
   }
   const sql = `
-  insert into "favorite" ("userId", "postId", "isFavorite")
-  values ($1, $2, $3)
+  insert into "favorite" ("userId", "postId")
+  values ($1, $2)
   returning*
   `;
-  const params = [userId, postId, true];
+  const params = [userId, postId];
   db
     .query(sql, params)
     .then(result => {
@@ -293,9 +293,8 @@ app.get('/api/favorite', (req, res, next) => {
   from "post"
   join "favorite" using ("postId")
   where "favorite"."userId" = $1
-  and "isFavorite" = $2
   `;
-  const params = [userId, true];
+  const params = [userId];
   db
     .query(sql, params)
     .then(result =>

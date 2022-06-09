@@ -4,7 +4,7 @@ export default class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFavorite: null
+      isFavorite: this.props.postData.isFavorite
     };
     this.handleFavoriteClick = this.handleFavoriteClick.bind(this);
   }
@@ -29,6 +29,7 @@ export default class Post extends React.Component {
     const token = window.localStorage.getItem('lfz-final');
     if (!token) {
       window.location.hash = '#sign-in';
+      return;
     }
     const { isFavorite } = this.state;
     if (isFavorite === false) {

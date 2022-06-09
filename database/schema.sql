@@ -62,8 +62,7 @@ CREATE TABLE "public"."messenger" (
 
 CREATE TABLE "public"."favorite" (
 	"postId" int NOT NULL,
-	"userId" int NOT NULL,
-	"isFavorite" BOOLEAN NOT NULL
+	"userId" int NOT NULL
 ) WITH (
   OIDS=FALSE
 );
