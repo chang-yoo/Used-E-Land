@@ -4,13 +4,32 @@ export default class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFavorite: this.props.postData.isFavorite
+      isFavorite: null
     };
     this.handleFavoriteClick = this.handleFavoriteClick.bind(this);
   }
 
+  componentDidMount() {
+    const token = window.localStorage.getItem('lfz-final');
+    if (token) {
+      fetch(`/api/post/${this.props.postData.postId}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': token
+        }
+      })
+        .then(res => res.json())
+        .then(result => {
+          this.setState({ isFavorite: result[0].isFavorite });
+        });
+    }
+  }
+
   handleFavoriteClick(event) {
     const token = window.localStorage.getItem('lfz-final');
+    if (!token) {
+      window.location.hash = '#sign-in';
+    }
     const { isFavorite } = this.state;
     if (isFavorite === false) {
       fetch(`/api/favorite/${this.props.postData.postId}`, {
@@ -33,7 +52,7 @@ export default class Post extends React.Component {
     }
     if (isFavorite) {
       fetch(`/api/favorite/${this.props.postData.postId}`, {
-        method: 'PATCH',
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
           'x-access-token': token

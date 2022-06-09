@@ -7,7 +7,7 @@ export default class Favorite extends React.Component {
       post: [],
       created: ''
     };
-    this.handleHeart = this.handleHeart.bind(this);
+    this.handleFavorite = this.handleFavorite.bind(this);
   }
 
   componentDidMount() {
@@ -29,11 +29,11 @@ export default class Favorite extends React.Component {
       });
   }
 
-  handleHeart(event) {
+  handleFavorite(event) {
     const { post } = this.state;
     const token = window.localStorage.getItem('lfz-final');
     fetch(`/api/favorite/${event.target.id}`, {
-      method: 'PATCH',
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': token
@@ -70,7 +70,7 @@ export default class Favorite extends React.Component {
             {post.map(eachpost => {
               return (
                 <div key={eachpost.postId} className="one-fourth-container post">
-                  <i onClick={this.handleHeart} id={eachpost.postId} className='fa-solid fa-heart fa-2x'></i>
+                  <i onClick={this.handleFavorite} id={eachpost.postId} className='fa-solid fa-heart fa-2x'></i>
                   <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId}>
                     <div className="each-post">
                       <div className="postlistimage-container">

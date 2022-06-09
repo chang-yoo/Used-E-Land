@@ -45,14 +45,23 @@ app.get('/api/post/:postId', (req, res, next) => {
   if (!Number.isInteger(targetId) || targetId <= 0) {
     throw new ClientError(400, 'postId must be a positive integer!');
   }
+  let userId = null;
+  if (req.headers['x-access-token']) {
+    userId = jwt.verify(req.headers['x-access-token'], process.env.TOKEN_SECRET).userId;
+  }
   const sql = `
-  select*
-  from "post" as "p"
-  join "users" using ("userId")
-  where "p"."postId" = $1
-  and "status" = 'open'
+ select "post".*,
+         "seller"."userId",
+         "seller"."username",
+("favorite"."postId" is not null) as "isFavorite"
+  from "post"
+  join "users" as "seller" using ("userId")
+  left join "favorite"
+    on "favorite"."postId" = $1
+   and "favorite"."userId" = $2
+  where "post"."postId" = $1
   `;
-  const params = [targetId];
+  const params = [targetId, userId];
   db
     .query(sql, params)
     .then(result => {
@@ -172,7 +181,6 @@ app.get('/api/myprofile', (req, res, next) => {
   from "post"
   join "users" using ("userId")
   where "userId" = $1
-
   `;
   const params = [userId];
   db
@@ -264,13 +272,11 @@ app.post('/api/favorite/:postId', (req, res, next) => {
     throw new ClientError(400, 'postId must be a positive integer');
   }
   const sql = `
-  update "post"
-  set "isFavorite" = $1
-  where "postId" = $2
-  and "userId" = $3
+  insert into "favorite" ("userId", "postId", "isFavorite")
+  values ($1, $2, $3)
   returning*
   `;
-  const params = [true, postId, userId];
+  const params = [userId, postId, true];
   db
     .query(sql, params)
     .then(result => {
@@ -283,9 +289,10 @@ app.get('/api/favorite', (req, res, next) => {
   const { userId } = req.user;
 
   const sql = `
-  select*
+  select "post".*
   from "post"
-  where "userId" = $1
+  join "favorite" using ("postId")
+  where "favorite"."userId" = $1
   and "isFavorite" = $2
   `;
   const params = [userId, true];
@@ -296,26 +303,28 @@ app.get('/api/favorite', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.patch('/api/favorite/:postId', (req, res, next) => {
+app.delete('/api/favorite/:postId', (req, res, next) => {
   const { userId } = req.user;
   const postId = Number(req.params.postId);
-
   if (!Number.isInteger(postId) || postId < 1) {
     throw new ClientError(400, 'postId must be a positive integer');
   }
   const sql = `
-  update "post"
-  set "isFavorite" = $1
-  where "postId" = $2
-  and "userId" = $3
+  delete
+  from "favorite"
+  where "userId" = $1
+  and "postId" = $2
   returning*
   `;
-  const params = [false, postId, userId];
+  const params = [userId, postId];
   db
     .query(sql, params)
     .then(result => {
       const data = result.rows;
-      return res.json(data);
+      if (data) {
+        return res.status(200).json(data);
+      }
+      throw new ClientError(404, `Cannot find post with postId of ${postId}`);
     })
     .catch(err => next(err));
 });

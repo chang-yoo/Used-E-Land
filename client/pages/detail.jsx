@@ -31,7 +31,6 @@ export default class Detail extends React.Component {
             <div className="detail-text">
               <div className="row space-even">
                 <h4>username: {post.username} </h4>
-                <h4>star: 5 /5</h4>
               </div>
               <h4>condition: {post.condition}</h4>
 
