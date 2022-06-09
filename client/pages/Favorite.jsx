@@ -30,9 +30,10 @@ export default class Favorite extends React.Component {
   }
 
   handleHeart(event) {
+    const { post } = this.state;
     const token = window.localStorage.getItem('lfz-final');
     fetch(`/api/favorite/${event.target.id}`, {
-      method: 'DELETE',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': token
@@ -40,12 +41,25 @@ export default class Favorite extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        this.componentDidMount();
+        const favorited = post.filter(eachpost => Number(eachpost.postId) !== Number(result[0].postId));
+        this.setState({ post: favorited });
       });
   }
 
   render() {
     const { post, created } = this.state;
+    if (created === 'no' || post.length === 0) {
+      return (
+        <div className="list-background top-6-rem">
+          <div className="row space-between">
+            <h1 className="welcome-profile">Your Favorite Page!</h1>
+          </div>
+          <div className="row center">
+            <h1>No favorite post added to your page!</h1>
+          </div>
+        </div>
+      );
+    }
     if (created === '') {
       return (
         <div className="list-background top-6-rem">
@@ -74,17 +88,6 @@ export default class Favorite extends React.Component {
               );
             }
             )}
-          </div>
-        </div>
-      );
-    } else if (created === 'no') {
-      return (
-        <div className="list-background top-6-rem">
-          <div className="row space-between">
-            <h1 className="welcome-profile">Your Favorite Page!</h1>
-          </div>
-          <div className="row center">
-            <h1>No favorite post added to your page!</h1>
           </div>
         </div>
       );

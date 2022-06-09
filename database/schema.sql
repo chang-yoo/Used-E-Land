@@ -30,6 +30,8 @@ CREATE TABLE "public"."post" (
 	"description" TEXT NOT NULL,
 	"title" TEXT NOT NULL,
 	"updatedAt" timestamptz(6) not null default now(),
+	"status" TEXT not null default 'open',
+	"isFavorite" boolean not null default False,
 	primary key ("postId")
 ) WITH (
   OIDS=FALSE
