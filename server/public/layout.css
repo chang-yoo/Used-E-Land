@@ -6,6 +6,10 @@ body {
   display: flex;
 }
 
+.wrap {
+  flex-wrap: wrap;
+}
+
 .one-fourth-container {
   width: 25%;
 }

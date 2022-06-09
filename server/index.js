@@ -28,10 +28,11 @@ app.get('/api/main', (req, res, next) => {
   const sql = `
   select *
   from "post"
+  where "status" = 'open'
   order by "postId" desc
   limit 4
   `;
-  return db
+  db
     .query(sql)
     .then(result => {
       res.status(201).json(result.rows);
@@ -44,14 +45,24 @@ app.get('/api/post/:postId', (req, res, next) => {
   if (!Number.isInteger(targetId) || targetId <= 0) {
     throw new ClientError(400, 'postId must be a positive integer!');
   }
+  let userId = null;
+  if (req.headers['x-access-token']) {
+    userId = jwt.verify(req.headers['x-access-token'], process.env.TOKEN_SECRET).userId;
+  }
   const sql = `
-  select*
+ select "post".*,
+         "seller"."userId",
+         "seller"."username",
+("favorite"."postId" is not null) as "isFavorite"
   from "post"
-  join "users" using ("userId")
-  where "postId" = $1
+  join "users" as "seller" using ("userId")
+  left join "favorite"
+    on "favorite"."postId" = $1
+   and "favorite"."userId" = $2
+  where "post"."postId" = $1
   `;
-  const params = [targetId];
-  return db
+  const params = [targetId, userId];
+  db
     .query(sql, params)
     .then(result => {
       const data = result.rows;
@@ -69,6 +80,7 @@ app.get('/api/search/:keyword', (req, res, next) => {
     select*
     from "post"
     where "title" ilike '%' || $1 || '%'
+    and "status" = 'open'
   `;
   const params = [keyword];
   db
@@ -94,10 +106,11 @@ app.post('/api/sign-up', (req, res, next) => {
         returning "userId", "username"
       `;
       const params = [username, hashedPassword];
-      return db.query(sql, params);
+      return db
+        .query(sql, params);
     })
     .then(result => {
-      const [newUser] = result.rows;
+      const newUser = result.rows;
       res.status(201).json(newUser);
     })
     .catch(err => next(err));
@@ -142,6 +155,7 @@ app.post('/api/sign-in', (req, res, next) => {
 
 app.post('/api/images', uploadsMiddleware, (req, res, next) => {
   const url = `/images/${req.file.filename}`;
+
   const sql = `
   insert into "images" ("url")
   values ($1)
@@ -152,7 +166,7 @@ app.post('/api/images', uploadsMiddleware, (req, res, next) => {
     .query(sql, params)
     .then(result => {
       const [data] = result.rows;
-      res.status(201).json(data);
+      return res.status(201).json(data);
     })
     .catch(err => next(err));
 });
@@ -161,12 +175,12 @@ app.use(authorizationMiddleware);
 
 app.get('/api/myprofile', (req, res, next) => {
   const { userId } = req.user;
+
   const sql = `
   select*
   from "post"
   join "users" using ("userId")
   where "userId" = $1
-
   `;
   const params = [userId];
   db
@@ -174,20 +188,6 @@ app.get('/api/myprofile', (req, res, next) => {
     .then(result => {
       res.json(result.rows);
     })
-    .catch(err => next(err));
-});
-
-app.get('/api/username', (req, res, next) => {
-  const { userId } = req.user;
-  const sql = `
-  select*
-  from "users"
-  where "userId" = $1
-  `;
-  const params = [userId];
-  db
-    .query(sql, params)
-    .then(result => res.json(result.rows))
     .catch(err => next(err));
 });
 
@@ -206,7 +206,7 @@ app.post('/api/upload', (req, res, next) => {
   db
     .query(sql, params)
     .then(result => {
-      res.json(result.rows);
+      return res.json(result.rows);
     })
     .catch(err => next(err));
 });
@@ -237,10 +237,7 @@ app.patch('/api/edit/:postId', (req, res, next) => {
     .query(sql, params)
     .then(result => {
       const data = result.rows;
-      if (!data) {
-        res.status(400).json({ error: `cannot find postId with ${postId}` });
-      }
-      res.json(data);
+      return res.json(data);
     })
     .catch(err => next(err));
 });
@@ -261,7 +258,70 @@ app.delete('/api/edit/:postId', (req, res, next) => {
     .then(result => {
       const data = result.rows;
       if (data) {
-        res.status(200).json(data);
+        return res.status(200).json(data);
+      }
+      throw new ClientError(404, `Cannot find post with postId of ${postId}`);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/favorite/:postId', (req, res, next) => {
+  const { userId } = req.user;
+  const postId = Number(req.params.postId);
+  if (!Number.isInteger(postId) || postId < 1) {
+    throw new ClientError(400, 'postId must be a positive integer');
+  }
+  const sql = `
+  insert into "favorite" ("userId", "postId")
+  values ($1, $2)
+  returning*
+  `;
+  const params = [userId, postId];
+  db
+    .query(sql, params)
+    .then(result => {
+      return res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/favorite', (req, res, next) => {
+  const { userId } = req.user;
+
+  const sql = `
+  select "post".*
+  from "post"
+  join "favorite" using ("postId")
+  where "favorite"."userId" = $1
+  `;
+  const params = [userId];
+  db
+    .query(sql, params)
+    .then(result =>
+      res.json(result.rows))
+    .catch(err => next(err));
+});
+
+app.delete('/api/favorite/:postId', (req, res, next) => {
+  const { userId } = req.user;
+  const postId = Number(req.params.postId);
+  if (!Number.isInteger(postId) || postId < 1) {
+    throw new ClientError(400, 'postId must be a positive integer');
+  }
+  const sql = `
+  delete
+  from "favorite"
+  where "userId" = $1
+  and "postId" = $2
+  returning*
+  `;
+  const params = [userId, postId];
+  db
+    .query(sql, params)
+    .then(result => {
+      const data = result.rows;
+      if (data) {
+        return res.status(200).json(data);
       }
       throw new ClientError(404, `Cannot find post with postId of ${postId}`);
     })

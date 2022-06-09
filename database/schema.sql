@@ -10,7 +10,9 @@ CREATE TABLE "public"."users" (
 	"userId" serial NOT NULL,
 	"username" TEXT NOT NULL,
 	"hashedpassword" TEXT NOT NULL,
-	"createdAt" timestamptz(6) not null default now()
+	"createdAt" timestamptz(6) not null default now(),
+	primary key ("userId"),
+	unique ("username")
 ) WITH (
   OIDS=FALSE
 );
@@ -27,7 +29,9 @@ CREATE TABLE "public"."post" (
 	"price" int NOT NULL,
 	"description" TEXT NOT NULL,
 	"title" TEXT NOT NULL,
-	"updatedAt" timestamptz(6) not null default now()
+	"updatedAt" timestamptz(6) not null default now(),
+	"status" TEXT not null default 'open',
+	primary key ("postId")
 ) WITH (
   OIDS=FALSE
 );
@@ -82,8 +86,6 @@ CREATE TABLE "public"."images" (
 );
 
 
-
-
 ALTER TABLE "post" ADD CONSTRAINT "post_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 
 ALTER TABLE "review" ADD CONSTRAINT "review_fk0" FOREIGN KEY ("postId") REFERENCES "post"("postId");
@@ -97,5 +99,3 @@ ALTER TABLE "favorite" ADD CONSTRAINT "favorite_fk1" FOREIGN KEY ("userId") REFE
 
 ALTER TABLE "likes" ADD CONSTRAINT "likes_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 ALTER TABLE "likes" ADD CONSTRAINT "likes_fk1" FOREIGN KEY ("postId") REFERENCES "post"("postId");
-
-ALTER TABLE "images" ADD CONSTRAINT "images_fk0" FOREIGN KEY ("imageId") REFERENCES "post"("postId");

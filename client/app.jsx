@@ -12,6 +12,7 @@ import jwtDecode from 'jwt-decode';
 import HeaderAfterSiginIn from './components/header-aftersignin';
 import Upload from './pages/upload';
 import Edit from './pages/edit';
+import Favorite from './pages/Favorite';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -68,6 +69,8 @@ export default class App extends React.Component {
       return <Upload />;
     } else if (path === 'edit') {
       return <Edit postId={this.state.route.params.get('postId')} />;
+    } else if (path === 'favorite') {
+      return <Favorite />;
     }
   }
 

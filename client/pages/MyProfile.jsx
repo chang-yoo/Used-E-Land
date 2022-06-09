@@ -30,7 +30,9 @@ export default class MyProfile extends React.Component {
             username: getUsername
           });
         }
-        if (!error && result.length === 0) { this.setState({ created: 'no' }); }
+        if (!error && result.length === 0) {
+          this.setState({ created: 'no' });
+        }
       });
   }
 
@@ -47,7 +49,7 @@ export default class MyProfile extends React.Component {
               <a href="#upload"><h2 className="margin-2rem">Upload your item today</h2></a>
           </div>
         </div>
-        <div className="row">
+        <div className="row wrap">
               {post.map(eachpost => {
                 return (
                   <div key={eachpost.postId} className="one-fourth-container post">
@@ -61,7 +63,7 @@ export default class MyProfile extends React.Component {
                           <h3 className="postlist-title">{eachpost.title}</h3>
                           <p>{eachpost.condition}</p>
                           <p>{eachpost.location}</p>
-                          <h5 className="price">{eachpost.price}</h5>
+                          <h5 className="price">${eachpost.price}</h5>
                         </div>
                       </div>
                     </a>

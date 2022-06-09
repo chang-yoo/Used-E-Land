@@ -31,12 +31,11 @@ export default class Detail extends React.Component {
             <div className="detail-text">
               <div className="row space-even">
                 <h4>username: {post.username} </h4>
-                <h4>star: 5 /5</h4>
               </div>
               <h4>condition: {post.condition}</h4>
 
-              <p>{post.location}</p>
-              <h3 className="price">${post.price}</h3>
+              <p className="font-size-20">{post.location}</p>
+              <h3 className="price font-size">${post.price}</h3>
             </div>
           </div>
           <div className="detail-description column-half">

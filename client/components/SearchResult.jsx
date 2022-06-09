@@ -1,4 +1,5 @@
 import React from 'react';
+import Post from '../components/post';
 
 export default class SearchResult extends React.Component {
   constructor(props) {
@@ -38,10 +39,11 @@ export default class SearchResult extends React.Component {
     return <div className="search-background">
       <h1 className="margin-padding-bottom-0">Based on your search: {this.props.keyword}</h1>
       <h2 className="padding-left-1rem">Look at what we have found!</h2>
-        <div className="row">
-     {match.map(eachpost => {
-       return (
+        <div className="row wrap">
+        {match.map(eachpost => {
+          return (
         <div key={eachpost.postId} className="one-fourth-container post">
+          <Post key={eachpost.postId} postData={eachpost} />
           <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId} >
             <div className="each-post">
               <div className="postlistimage-container">
@@ -51,13 +53,13 @@ export default class SearchResult extends React.Component {
                 <h3 className="postlist-title">{eachpost.title}</h3>
                 <p>{eachpost.condition}</p>
                 <p>{eachpost.location}</p>
-                <h5 className="price">{eachpost.price}</h5>
+                <h5 className="price">${eachpost.price}</h5>
               </div>
             </div>
           </a>
         </div>
-       );
-     })}
+          );
+        })}
       </div>
       </div>;
   }
