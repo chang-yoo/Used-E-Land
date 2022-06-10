@@ -32,7 +32,7 @@ export default class Detail extends React.Component {
             </div>
             <div className="detail-text">
               <div className="row space-even">
-                <h4>username: {post.username} </h4>
+                <a href={`#history?userId=${post.userId}`}><h4>username: {post.username} </h4></a>
                 <h4>rating</h4>
               </div>
               <h4>condition: {post.condition}</h4>

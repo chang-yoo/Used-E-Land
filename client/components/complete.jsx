@@ -54,14 +54,14 @@ export default class Complete extends React.Component {
       return (
         <div className={classvalue}>
           <div className="move-text">
-            <h2 className="auto move-warning">Once moved, <span className="font-red">CANNOT</span> undo</h2>
+            <h4 className="auto move-warning">Once moved, <span className="font-red">CANNOT</span> undo</h4>
           </div>
-          <div className="margin-top-3rem">
+          <div className="margin-top-2rem">
             <div className="text-center">
-              <h3>Are you sure want to move this item?</h3>
+              <p className="move-parap">Are you sure want to move this item?</p>
             </div>
             <div className="row space-around margin-top-5rem">
-              <button onClick={this.handleMoving} className="delete-confirm-button">Confirm</button>
+              <a href={`#history?userId=${this.props.postData.userId}`} className="delete-confirm-button text-align-center" onClick={this.handleMoving}>Confirm</a>
               <button onClick={this.handleClick} className="delete-cancel-button">Cancel</button>
             </div>
           </div>

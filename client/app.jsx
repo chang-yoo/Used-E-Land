@@ -73,7 +73,7 @@ export default class App extends React.Component {
     } else if (path === 'favorite') {
       return <Favorite />;
     } else if (path === 'history') {
-      return <History />;
+      return <History userId={this.state.route.params.get('userId')}/>;
     }
   }
 

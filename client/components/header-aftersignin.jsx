@@ -1,11 +1,13 @@
 import React from 'react';
+import jwtDecode from 'jwt-decode';
 
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       userInput: '',
-      menu: 'off'
+      menu: 'off',
+      userId: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -13,6 +15,13 @@ export default class Header extends React.Component {
     this.menubar = this.menubar.bind(this);
     this.turnoffMenubar = this.turnoffMenubar.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
+  }
+
+  componentDidMount() {
+    const token = window.localStorage.getItem('lfz-final');
+    const decode = jwtDecode(token);
+    const getUserId = decode.userId;
+    this.setState({ userId: getUserId });
   }
 
   handleSubmit(event) {
@@ -50,7 +59,7 @@ export default class Header extends React.Component {
   }
 
   render() {
-    const { menu } = this.state;
+    const { menu, userId } = this.state;
     let classvalue = 'hidden';
     if (this.state.userInput.length > 0) {
       classvalue = '';
@@ -90,7 +99,7 @@ export default class Header extends React.Component {
                     <ul><h3>My Account</h3></ul>
                       <a href="#myprofile" onClick={this.turnoffMenubar}><li className="font-color">My Profile</li></a>
                       <a href="#favorite" onClick={this.turnoffMenubar}><li className="font-color">My Favorite</li></a>
-                      <a href="#history" onClick={this.turnoffMenubar}><li className="font-color">My History</li></a>
+                      <a href={`#history?userId=${userId}`} onClick={this.turnoffMenubar}><li className="font-color">My History</li></a>
                       <a href="#upload" onClick={this.turnoffMenubar}><li className="font-color">Upload Today</li></a>
                   </div>
                   <div className="margin-left-3rem sign-out">

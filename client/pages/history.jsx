@@ -8,6 +8,14 @@ export default class History extends React.Component {
     };
   }
 
+  componentDidMount() {
+    fetch(`/api/complete/${this.props.userId}`)
+      .then(res => res.json())
+      .then(result => {
+        this.setState({ completed: result });
+      });
+  }
+
   render() {
     const { completed } = this.state;
     if (completed.length === 0) {
@@ -17,28 +25,30 @@ export default class History extends React.Component {
             </div>;
     }
     return (
-      <div className="row wrap">
-        {completed.map(eachpost => {
-          return (
-            <div key={eachpost.postId} className="one-fourth-container post">
-              <a href={`#edit?postId=${eachpost.postId}`}><i className="fa-solid fa-pen-to-square"></i></a>
-              <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId}>
-                <div className="each-post">
-                  <div className="postlistimage-container">
-                    <img className='postlist-image' src={eachpost.imageURL}></img>
+      <div className="list-background top-6-rem">
+        <h1 >History Page</h1>
+        <div className="row wrap">
+          {completed.map(eachpost => {
+            return (
+              <div key={eachpost.postId} className="one-fourth-container post">
+                <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId}>
+                  <div className="each-post">
+                    <div className="postlistimage-container">
+                      <img className='postlist-image' src={eachpost.imageURL}></img>
+                    </div>
+                    <div className="postlist-text">
+                      <h3 className="postlist-title">{eachpost.title}</h3>
+                      <p>{eachpost.condition}</p>
+                      <p>{eachpost.location}</p>
+                      <h5 className="price">${eachpost.price}</h5>
+                    </div>
                   </div>
-                  <div className="postlist-text">
-                    <h3 className="postlist-title">{eachpost.title}</h3>
-                    <p>{eachpost.condition}</p>
-                    <p>{eachpost.location}</p>
-                    <h5 className="price">${eachpost.price}</h5>
-                  </div>
-                </div>
-              </a>
-            </div>
-          );
-        }
-        )}
+                </a>
+              </div>
+            );
+          }
+          )}
+        </div>
       </div>
     );
   }

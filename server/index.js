@@ -73,6 +73,25 @@ app.get('/api/post/:postId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/complete/:userId', (req, res, next) => {
+  const userId = Number(req.params.userId);
+  if (!Number.isInteger(userId) || userId < 1) {
+    throw new ClientError(400, 'userId must be a positive integer');
+  }
+  const sql = `
+  select*
+  from "post"
+  where "userId" = $1
+  and "status" = 'closed'
+  `;
+  const params = [userId];
+  db
+    .query(sql, params)
+    .then(result =>
+      res.json(result.rows))
+    .catch(err => next(err));
+});
+
 app.get('/api/search/:keyword', (req, res, next) => {
   const keyword = req.params.keyword;
   if (!keyword) {

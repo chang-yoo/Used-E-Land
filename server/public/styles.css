@@ -168,7 +168,7 @@ textarea {
 }
 
 .menu-bar {
-  width: 100%;
+  width: 50%;
   position: relative;
   background-color: #fee5d7;
   min-height: 100vh;
@@ -536,12 +536,16 @@ ul {
 
 .confirm-move-box {
   position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   background-color: #eec6b0;
-  width: 500px;
-  height: 300px;
+  width: 300px;
+  height: 200px;
   color: white;
   border-radius: 10px;
   z-index: 5;
+  vertical-align: center;
 }
 
 .delete-text {
@@ -560,6 +564,7 @@ ul {
 .delete-confirm-button,
 .delete-cancel-button {
   background-color: white;
+  margin-top: -3.5rem;
 }
 
 .delete,
@@ -610,4 +615,13 @@ input::-webkit-inner-spin-button {
 .contact-text {
   margin-left: 0.5rem;
   margin-top: 0.5rem;
+}
+
+.move-parap {
+  color: white;
+  font-size: 15px;
+}
+
+.delete-confirm-button {
+  padding-top: 0.6rem;
 }
