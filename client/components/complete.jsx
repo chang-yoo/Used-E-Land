@@ -7,11 +7,11 @@ export default class Complete extends React.Component {
       status: this.props.postData.status,
       clicked: 'no'
     };
+    this.handleMoving = this.handleMoving.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
   }
 
-  handleClick(event) {
+  handleMoving(event) {
     const token = window.localStorage.getItem('lfz-final');
     const { status } = this.state;
     if (status === 'open') {
@@ -30,49 +30,39 @@ export default class Complete extends React.Component {
     }
   }
 
-  handleCancel(event) {
-    const token = window.localStorage.getItem('lfz-final');
-    const { status } = this.state;
-    if (status === 'closed') {
-      fetch(`api/complete/${this.props.postData.postId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-access-token': token
-        }
-      })
-        .then(res => res.json())
-        .then(result => {
-          const data = result[0].status;
-          this.setState({ status: data });
-        });
+  handleClick(event) {
+    const { clicked } = this.state;
+    if (clicked === 'yes') {
+      this.setState({ clicked: 'no' });
+    } else {
+      this.setState({ clicked: 'yes' });
     }
   }
 
   render() {
-    const { status, clicked } = this.state;
-    let classvalue = '';
-    if (clicked === 'no') {
-      classvalue = '';
+    const { clicked } = this.state;
+    let classvalue = 'hidden';
+    if (clicked === 'yes') {
+      classvalue = 'confirm-move-box';
     }
-    if (status === 'open') {
+    if (clicked === 'no') {
       return (
         <i onClick={this.handleClick} className="fa-solid fa-sack-dollar fa-xl"></i>
       );
     }
-    if (status === 'closed') {
+    if (clicked === 'yes') {
       return (
         <div className={classvalue}>
-          <div className="confirm-move-box">
-            <div className="move-text"><h2 className="auto move-warning">Once moved, <span className="font-red">CANNOT</span> undo</h2></div>
-            <div className="margin-top-3rem">
-              <div className="text-center">
-                <h3>Are you sure want to move this item?</h3>
-              </div>
-              <div className="row space-around margin-top-5rem">
-                <button onClick={this.handleMove} className="delete-confirm-button">Confirm</button>
-                <button onClick={this.handleCancel} className="delete-cancel-button">Cancel</button>
-              </div>
+          <div className="move-text">
+            <h2 className="auto move-warning">Once moved, <span className="font-red">CANNOT</span> undo</h2>
+          </div>
+          <div className="margin-top-3rem">
+            <div className="text-center">
+              <h3>Are you sure want to move this item?</h3>
+            </div>
+            <div className="row space-around margin-top-5rem">
+              <button onClick={this.handleMoving} className="delete-confirm-button">Confirm</button>
+              <button onClick={this.handleClick} className="delete-cancel-button">Cancel</button>
             </div>
           </div>
         </div>

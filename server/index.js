@@ -183,6 +183,7 @@ app.get('/api/myprofile', (req, res, next) => {
   from "post"
   join "users" using ("userId")
   where "userId" = $1
+  and "post"."status" = 'open'
   `;
   const params = [userId];
   db
@@ -295,6 +296,7 @@ app.get('/api/favorite', (req, res, next) => {
   from "post"
   join "favorite" using ("postId")
   where "favorite"."userId" = $1
+  and "post"."status" = 'open'
   `;
   const params = [userId];
   db
