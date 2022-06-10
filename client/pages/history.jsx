@@ -26,7 +26,7 @@ export default class History extends React.Component {
     }
     return (
       <div className="list-background top-6-rem">
-        <h1 >History Page</h1>
+        <h1>History Page</h1>
         <div className="row wrap">
           {completed.map(eachpost => {
             return (
