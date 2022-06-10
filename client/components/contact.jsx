@@ -4,7 +4,6 @@ export default class Contact extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: this.props.postData,
       status: 'off'
     };
     this.handleClick = this.handleClick.bind(this);
@@ -25,7 +24,7 @@ export default class Contact extends React.Component {
   }
 
   render() {
-    const { data, status } = this.state;
+    const { status } = this.state;
     let classvalue = 'hidden';
     if (status === 'off') {
       classvalue = 'hidden';
@@ -40,11 +39,11 @@ export default class Contact extends React.Component {
         <div className={classvalue}>
           <div className="contact-text">
             <div className="margin-bottom-1rem">
-              <i className="fa-solid fa-user"></i>{data.username}
+              <i className="fa-solid fa-user"></i>{this.props.postData.username}
             </div>
             <div className="contact-info margin-bottom-1rem">
-              <i className="fa-solid fa-mobile-screen"></i>: {data.phone} <br />
-              <i className="fa-solid fa-envelope"></i>: {data.email}
+              <i className="fa-solid fa-mobile-screen"></i>: {this.props.postData.phone} <br />
+              <i className="fa-solid fa-envelope"></i>: {this.props.postData.email}
             </div>
             <button className="contact-button" onClick={this.handleClick}>Close</button>
           </div>

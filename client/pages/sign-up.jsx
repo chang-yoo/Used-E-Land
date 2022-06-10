@@ -116,7 +116,7 @@ export default class SignUp extends React.Component {
                       <input
                         required
                         id="phone"
-                        type="number"
+                        type="tel"
                         name="phone"
                         onChange={this.handleChange}
                         className="phone"
