@@ -43,7 +43,6 @@ p {
 
 h3 {
   margin-top: 0;
-  font-size: 12px;
   line-height: 12px;
 }
 
@@ -347,6 +346,10 @@ span {
   color: white;
 }
 
+.font-red {
+  color: red;
+}
+
 .signup-box-container {
   justify-content: center;
   margin-top: -15rem;
@@ -528,11 +531,28 @@ ul {
   height: 300px;
   color: white;
   border-radius: 10px;
+  z-index: 4;
+}
+
+.confirm-move-box {
+  position: fixed;
+  background-color: #eec6b0;
+  width: 500px;
+  height: 300px;
+  color: white;
+  border-radius: 10px;
+  z-index: 5;
 }
 
 .delete-text {
-  width: 100px;
   border: 2px solid white;
+  margin: 1rem;
+  padding-left: 0.5rem;
+  width: 100px;
+}
+
+.move-text {
+  border: 2px solid red;
   margin: 1rem;
   padding-left: 0.5rem;
 }
@@ -545,6 +565,11 @@ ul {
 .delete,
 .delete-confirm-button {
   color: red;
+}
+
+.move-warning {
+  color: white;
+  text-align: center;
 }
 
 .fa-heart,
