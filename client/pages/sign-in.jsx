@@ -16,7 +16,7 @@ export default class SignIn extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     fetch('/api/sign-in', {
-      method: 'post',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },

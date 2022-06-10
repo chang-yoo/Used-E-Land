@@ -30,6 +30,10 @@ body {
   padding-left: 1.2rem;
 }
 
+.margin-top {
+  margin-top: -0.5rem;
+}
+
 .margin-padding-bottom-0 {
   margin-bottom: 0;
   padding-bottom: 0;

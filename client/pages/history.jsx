@@ -20,13 +20,15 @@ export default class History extends React.Component {
     const { completed } = this.state;
     if (completed.length === 0) {
       return <div className="list-background">
-              <h1 className="margin-padding-bottom-0">Currently Empty!</h1>
+        <div>
+          <h1 className="margin-padding-bottom-0">Currently Empty!</h1>
+        </div>
               <a className="return-home" href="#">Return Home</a>
             </div>;
     }
     return (
       <div className="list-background top-6-rem">
-        <h1>History Page</h1>
+        <h1>{completed[0].username}&apos;s History</h1>
         <div className="row wrap">
           {completed.map(eachpost => {
             return (
