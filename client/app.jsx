@@ -13,6 +13,7 @@ import HeaderAfterSiginIn from './components/header-aftersignin';
 import Upload from './pages/upload';
 import Edit from './pages/edit';
 import Favorite from './pages/Favorite';
+import History from './pages/history';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -71,6 +72,8 @@ export default class App extends React.Component {
       return <Edit postId={this.state.route.params.get('postId')} />;
     } else if (path === 'favorite') {
       return <Favorite />;
+    } else if (path === 'history') {
+      return <History userId={this.state.route.params.get('userId')}/>;
     }
   }
 

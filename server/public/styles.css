@@ -43,7 +43,6 @@ p {
 
 h3 {
   margin-top: 0;
-  font-size: 12px;
   line-height: 12px;
 }
 
@@ -128,12 +127,22 @@ textarea {
   resize: none;
 }
 
+.fa-user,
+.fa-mobile-screen,
+.fa-envelope,
+.fa-address-book,
 .fa-delete-left,
 .fa-arrow-right-long,
 .menu-icon,
 .fa-xmark,
 .search-glass {
   color: #9f9999;
+}
+
+.fa-address-book {
+  position: absolute;
+  left: -5%;
+  top: 5%;
 }
 
 .fa-delete-left {
@@ -159,7 +168,7 @@ textarea {
 }
 
 .menu-bar {
-  width: 100%;
+  width: 50%;
   position: relative;
   background-color: #fee5d7;
   min-height: 100vh;
@@ -204,6 +213,7 @@ textarea {
   min-height: 90vh;
   width: 80%;
   margin: auto;
+  position: relative;
 }
 
 .detail-image-container {
@@ -217,6 +227,7 @@ textarea {
   line-height: 1.8rem;
   margin: 0 1.5rem;
   word-wrap: break-word;
+  text-align: left;
 }
 
 hr {
@@ -293,6 +304,8 @@ i:hover {
   display: none;
 }
 
+.phone,
+.email,
 .username,
 .password {
   border: 1px solid #9f9999;
@@ -331,6 +344,10 @@ i:hover {
 
 span {
   color: white;
+}
+
+.font-red {
+  color: red;
 }
 
 .signup-box-container {
@@ -492,7 +509,16 @@ ul {
 .fa-pen-to-square {
   z-index: 3;
   position: absolute;
-  left: 5%;
+  left: 10%;
+  top: 3%;
+  color: orange;
+}
+
+.fa-sack-dollar {
+  z-index: 3;
+  position: absolute;
+  left: 10%;
+  top: 20%;
   color: orange;
 }
 
@@ -505,11 +531,32 @@ ul {
   height: 300px;
   color: white;
   border-radius: 10px;
+  z-index: 4;
+}
+
+.confirm-move-box {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #eec6b0;
+  width: 300px;
+  height: 200px;
+  color: white;
+  border-radius: 10px;
+  z-index: 5;
+  vertical-align: center;
 }
 
 .delete-text {
-  width: 100px;
   border: 2px solid white;
+  margin: 1rem;
+  padding-left: 0.5rem;
+  width: 100px;
+}
+
+.move-text {
+  border: 2px solid red;
   margin: 1rem;
   padding-left: 0.5rem;
 }
@@ -517,6 +564,7 @@ ul {
 .delete-confirm-button,
 .delete-cancel-button {
   background-color: white;
+  margin-top: -3.5rem;
 }
 
 .delete,
@@ -524,9 +572,56 @@ ul {
   color: red;
 }
 
+.move-warning {
+  color: white;
+  text-align: center;
+}
+
 .fa-heart,
 .fa-heart-circle-plus {
   color: orange;
   position: absolute;
   right: 5%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.contact-background {
+  position: absolute;
+  width: 300px;
+  background-color: #fee5d7;
+  height: 150px;
+  border-radius: 10px;
+  top: 5%;
+}
+
+.contact-info {
+  line-height: 30px;
+}
+
+.contact-button {
+  border: 1px solid #fbd3a4;
+  background-color: #fbd3a4;
+  border-radius: 30px;
+  height: 20px;
+  width: 50px;
+  color: #ad7d35;
+}
+
+.contact-text {
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.move-parap {
+  color: white;
+  font-size: 15px;
+}
+
+.delete-confirm-button {
+  padding-top: 0.6rem;
 }

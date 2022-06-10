@@ -78,10 +78,30 @@ body {
   text-align: center;
 }
 
-.margin-top-3rem {
-  margin-top: 3rem;
+.margin-top-2rem {
+  margin-top: 2rem;
 }
 
 .margin-top-5rem {
   margin-top: 5rem;
+}
+
+.width-60 {
+  width: 60%;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.margin-vert-2rem {
+  margin: 0 2rem;
+}
+
+.margin-bottom-1rem {
+  margin-bottom: 1rem;
+}
+
+.text-align-center {
+  text-align: center;
 }

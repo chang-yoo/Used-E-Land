@@ -53,6 +53,8 @@ app.get('/api/post/:postId', (req, res, next) => {
  select "post".*,
          "seller"."userId",
          "seller"."username",
+         "seller"."phone",
+         "seller"."email",
 ("favorite"."postId" is not null) as "isFavorite"
   from "post"
   join "users" as "seller" using ("userId")
@@ -68,6 +70,25 @@ app.get('/api/post/:postId', (req, res, next) => {
       const data = result.rows;
       res.status(201).json(data);
     })
+    .catch(err => next(err));
+});
+
+app.get('/api/complete/:userId', (req, res, next) => {
+  const userId = Number(req.params.userId);
+  if (!Number.isInteger(userId) || userId < 1) {
+    throw new ClientError(400, 'userId must be a positive integer');
+  }
+  const sql = `
+  select*
+  from "post"
+  where "userId" = $1
+  and "status" = 'closed'
+  `;
+  const params = [userId];
+  db
+    .query(sql, params)
+    .then(result =>
+      res.json(result.rows))
     .catch(err => next(err));
 });
 
@@ -93,19 +114,19 @@ app.get('/api/search/:keyword', (req, res, next) => {
 app.use(express.json());
 
 app.post('/api/sign-up', (req, res, next) => {
-  const { username, password } = req.body;
-  if (!username || !password) {
-    throw new ClientError(400, 'username and password are required fields');
+  const { username, password, phone, email } = req.body;
+  if (!username || !password || !phone || !email) {
+    throw new ClientError(400, 'username, password, phone, email are required fields');
   }
   argon2
     .hash(password)
     .then(hashedPassword => {
       const sql = `
-        insert into "users" ("username", "hashedpassword")
-        values ($1, $2)
-        returning "userId", "username"
+        insert into "users" ("username", "hashedpassword", "phone", "email")
+        values ($1, $2, $3, $4)
+        returning "userId", "username", "phone", "email"
       `;
-      const params = [username, hashedPassword];
+      const params = [username, hashedPassword, phone, email];
       return db
         .query(sql, params);
     })
@@ -181,6 +202,7 @@ app.get('/api/myprofile', (req, res, next) => {
   from "post"
   join "users" using ("userId")
   where "userId" = $1
+  and "post"."status" = 'open'
   `;
   const params = [userId];
   db
@@ -293,6 +315,7 @@ app.get('/api/favorite', (req, res, next) => {
   from "post"
   join "favorite" using ("postId")
   where "favorite"."userId" = $1
+  and "post"."status" = 'open'
   `;
   const params = [userId];
   db
@@ -324,6 +347,52 @@ app.delete('/api/favorite/:postId', (req, res, next) => {
         return res.status(200).json(data);
       }
       throw new ClientError(404, `Cannot find post with postId of ${postId}`);
+    })
+    .catch(err => next(err));
+});
+
+app.patch('/api/complete/:postId', (req, res, next) => {
+  const { userId } = req.user;
+  const postId = Number(req.params.postId);
+  if (!Number.isInteger(postId) || postId < 1) {
+    throw new ClientError(400, 'postId must be a positive integer');
+  }
+  const sql = `
+  update "post"
+  set "status" = 'closed'
+  where "postId" = $1
+  and "userId" = $2
+  returning "status"
+  `;
+  const params = [postId, userId];
+  db
+    .query(sql, params)
+    .then(result => {
+      const data = result.rows;
+      return res.json(data);
+    })
+    .catch(err => next(err));
+});
+
+app.put('/api/complete/:postId', (req, res, next) => {
+  const { userId } = req.user;
+  const postId = Number(req.params.postId);
+  if (!Number.isInteger(postId) || postId < 1) {
+    throw new ClientError(400, 'postId must be a positive integer');
+  }
+  const sql = `
+  update "post"
+  set "status" = 'open'
+  where "postId" = $1
+  and "userId" = $2
+  returning "status"
+  `;
+  const params = [postId, userId];
+  db
+    .query(sql, params)
+    .then(result => {
+      const data = result.rows;
+      return res.json(data);
     })
     .catch(err => next(err));
 });
