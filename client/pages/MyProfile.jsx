@@ -1,5 +1,6 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
+import Complete from '../components/complete';
 
 export default class MyProfile extends React.Component {
   constructor(props) {
@@ -53,7 +54,8 @@ export default class MyProfile extends React.Component {
               {post.map(eachpost => {
                 return (
                   <div key={eachpost.postId} className="one-fourth-container post">
-                    <a href={`#edit?postId=${eachpost.postId}`}><i className="fa-solid fa-pen-to-square"></i></a>
+                    <a href={`#edit?postId=${eachpost.postId}`}><i className="fa-solid fa-pen-to-square fa-xl"></i></a>
+                    <Complete key={eachpost.postId} postData={eachpost}/>
                     <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId}>
                       <div className="each-post">
                         <div className="postlistimage-container">

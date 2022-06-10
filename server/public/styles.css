@@ -506,7 +506,16 @@ ul {
 .fa-pen-to-square {
   z-index: 3;
   position: absolute;
-  left: 5%;
+  left: 10%;
+  top: 3%;
+  color: orange;
+}
+
+.fa-sack-dollar {
+  z-index: 3;
+  position: absolute;
+  left: 10%;
+  top: 20%;
   color: orange;
 }
 
