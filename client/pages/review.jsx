@@ -17,10 +17,6 @@ export default class Review extends React.Component {
   }
 
   componentDidMount() {
-    const token = window.localStorage.getItem('lfz-final');
-    if (!token) {
-      window.location.hash = '#sign-in';
-    }
     fetch(`/api/review/${this.props.userId}`)
       .then(res => res.json())
       .then(result => {
@@ -42,6 +38,9 @@ export default class Review extends React.Component {
     event.preventDefault();
 
     const token = window.localStorage.getItem('lfz-final');
+    if (!token) {
+      window.location.hash = '#sign-in';
+    }
     fetch(`/api/review/${this.props.userId}`, {
       method: 'POST',
       headers: {

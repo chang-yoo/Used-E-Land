@@ -15,6 +15,7 @@ import Edit from './pages/edit';
 import Favorite from './pages/Favorite';
 import History from './pages/history';
 import Review from './pages/review';
+import NotFound from './components/not-found';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -77,6 +78,8 @@ export default class App extends React.Component {
       return <History userId={this.state.route.params.get('userId')}/>;
     } else if (path === 'review') {
       return <Review userId={this.state.route.params.get('userId')} />;
+    } else {
+      return <NotFound />;
     }
   }
 

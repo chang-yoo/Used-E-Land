@@ -35,12 +35,9 @@ export default class Detail extends React.Component {
               <div className="row space-between">
                 <div>
                   <a href={`#history?userId=${post.userId}`}><h4>Seller: {post.username} </h4></a>
-                  <div>
-                    <a href={`#review?userId=${post.userId}`}><h5 className="margin-top font-color">Write a Review</h5></a>
-                  </div>
                 </div>
                 <div>
-                  <h4>rating</h4>
+                  <a href={`#review?userId=${post.userId}`}><h5 className="font-color">How am I?</h5></a>
                 </div>
               </div>
               <h4>condition: {post.condition}</h4>

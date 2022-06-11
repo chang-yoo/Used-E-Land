@@ -209,6 +209,14 @@ textarea {
   margin: auto;
 }
 
+.not-found-background {
+  background-color: #fef5f0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .detail-background {
   background-color: #fef5f0;
   min-height: 90vh;
@@ -566,7 +574,7 @@ ul {
 .delete-confirm-button,
 .delete-cancel-button {
   background-color: white;
-  margin-top: -3.5rem;
+  margin-top: -1rem;
 }
 
 .delete,
@@ -624,10 +632,6 @@ input::-webkit-inner-spin-button {
   font-size: 15px;
 }
 
-.delete-confirm-button {
-  padding-top: 0.6rem;
-}
-
 .review-container {
   width: 50%;
   background-color: white;
@@ -660,4 +664,18 @@ input::-webkit-inner-spin-button {
   margin: 0 1rem;
   width: 320px;
   height: 40px;
+}
+
+.move-top {
+  margin-top: -10rem;
+}
+
+.not-found-sorry {
+  color: black;
+  margin: 0;
+}
+
+.delete-top-margin {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
 }
