@@ -22,6 +22,7 @@ export default class Detail extends React.Component {
 
   render() {
     const { post } = this.state;
+
     return (
       <div className="detail-container">
         <div className="row detail-background">
@@ -35,7 +36,7 @@ export default class Detail extends React.Component {
                 <div>
                   <a href={`#history?userId=${post.userId}`}><h4>Seller: {post.username} </h4></a>
                   <div>
-                    <a href={`#review?userId=${post.userId}`}><h5 className="margin-top font-color">Make a review</h5></a>
+                    <a href={`#review?userId=${post.userId}`}><h5 className="margin-top font-color">Write a Review</h5></a>
                   </div>
                 </div>
                 <div>

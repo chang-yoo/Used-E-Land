@@ -61,8 +61,8 @@ export default class Review extends React.Component {
     if (reviews.length === 0) {
       return (
       <div className="detail-background">
-        <div className="text-align-center">
-          <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
+          <div className="row center top-padding-1rem">
             <label>Write a review!</label>
             <input
               required
@@ -72,16 +72,16 @@ export default class Review extends React.Component {
               onChange={this.handleChange}
               className="text"
             />
-            <button type="submit">Enter</button>
-          </form>
-        </div>
+            <button className="review-button" type="submit">Enter</button>
+          </div>
+        </form>
       </div>
       );
     }
     return (
       <div className="detail-background">
-        <div className="text-align-center">
-          <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
+          <div className="row center top-padding-1rem">
             <label>Write a review!</label>
             <input
               required
@@ -91,18 +91,18 @@ export default class Review extends React.Component {
               onChange={this.handleChange}
               className="text"
             />
-            <button type="submit">Enter</button>
-          </form>
-        </div>
+            <button className="review-button" type="submit">Enter</button>
+          </div>
+        </form>
         <div>
           {reviews.map(eachReview => {
             return (
               <div key={eachReview.reviewId} className="review-background">
-                <div className="review-container auto">
-                  <div className="row">
-                    <i className="fa-solid fa-user"></i><p>{eachReview.username}</p>
+                <div className="review-container">
+                  <div className="row review-user-container">
+                    <i className="fa-solid fa-user review-user"></i><p>{eachReview.username}</p>
                   </div>
-                  <div>
+                  <div className="review-text-container">
                     <p>{eachReview.text}</p>
                   </div>
                 </div>

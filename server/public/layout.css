@@ -109,3 +109,7 @@ body {
 .text-align-center {
   text-align: center;
 }
+
+.top-padding-1rem {
+  padding-top: 1rem;
+}

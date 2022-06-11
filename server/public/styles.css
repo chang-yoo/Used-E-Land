@@ -137,7 +137,7 @@ textarea {
 .menu-icon,
 .fa-xmark,
 .search-glass {
-  color: #9f9999;
+  color: orange;
 }
 
 .fa-address-book {
@@ -436,6 +436,7 @@ ul {
   font-size: 15px;
 }
 
+.review-button,
 .delete-confirm-button,
 .delete-cancel-button,
 .upload-button,
@@ -628,8 +629,35 @@ input::-webkit-inner-spin-button {
 }
 
 .review-container {
-  width: 60%;
+  width: 50%;
   background-color: white;
-  border: 1px solid #9f9999;
+  border: 1px solid orange;
   border-radius: 10px;
+  margin: 1rem auto;
+  height: auto;
+  word-wrap: break-word;
+}
+
+.font-color-orange {
+  color: orange;
+}
+
+.review-user {
+  margin: 0.5rem;
+}
+
+.review-text-container {
+  margin: auto 1rem;
+}
+
+.review-user-container {
+  border-bottom: 1px solid orange;
+}
+
+.text {
+  border-radius: 10px;
+  border: 1px solid #9f9999;
+  margin: 0 1rem;
+  width: 320px;
+  height: 40px;
 }
