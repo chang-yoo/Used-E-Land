@@ -41,6 +41,7 @@ CREATE TABLE "public"."post" (
 
 
 CREATE TABLE "public"."review" (
+  "reviewId" serial NOT NULL,
   "reviewerId" int NOT NULL,
   "userId" int NOT NULL,
   "text" text NOT NULL

@@ -626,3 +626,10 @@ input::-webkit-inner-spin-button {
 .delete-confirm-button {
   padding-top: 0.6rem;
 }
+
+.review-container {
+  width: 60%;
+  background-color: white;
+  border: 1px solid #9f9999;
+  border-radius: 10px;
+}

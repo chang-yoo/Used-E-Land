@@ -100,11 +100,13 @@ app.get('/api/review/:userId', (req, res, next) => {
   }
   const sql = `
   select "review"."text",
+    "review"."reviewId",
     "users"."username"
   from "review"
   inner join "users"
   on "review"."reviewerId" = "users"."userId"
   where "review"."userId" = $1
+  order by "reviewId" desc
   `;
   const params = [targetUserId];
   db
