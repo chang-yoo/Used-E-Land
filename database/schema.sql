@@ -41,8 +41,10 @@ CREATE TABLE "public"."post" (
 
 
 CREATE TABLE "public"."review" (
-  "postId" int NOT NULL,
-  "userId" int NOT NULL
+  "reviewId" serial NOT NULL,
+  "reviewerId" int NOT NULL,
+  "userId" int NOT NULL,
+  "text" text NOT NULL
 ) WITH (
   OIDS=FALSE
 );
@@ -81,7 +83,6 @@ CREATE TABLE "public"."images" (
 
 ALTER TABLE "post" ADD CONSTRAINT "post_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 
-ALTER TABLE "review" ADD CONSTRAINT "review_fk0" FOREIGN KEY ("postId") REFERENCES "post"("postId");
 ALTER TABLE "review" ADD CONSTRAINT "review_fk1" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 
 ALTER TABLE "messenger" ADD CONSTRAINT "messenger_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");

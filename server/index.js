@@ -81,10 +81,34 @@ app.get('/api/complete/:userId', (req, res, next) => {
   const sql = `
   select*
   from "post"
+  join "users" using ("userId")
   where "userId" = $1
   and "status" = 'closed'
   `;
   const params = [userId];
+  db
+    .query(sql, params)
+    .then(result =>
+      res.json(result.rows))
+    .catch(err => next(err));
+});
+
+app.get('/api/review/:userId', (req, res, next) => {
+  const targetUserId = Number(req.params.userId);
+  if (!targetUserId) {
+    throw new ClientError(400, 'UserId is missing');
+  }
+  const sql = `
+  select "review"."text",
+    "review"."reviewId",
+    "users"."username"
+  from "review"
+  inner join "users"
+  on "review"."reviewerId" = "users"."userId"
+  where "review"."userId" = $1
+  order by "reviewId" desc
+  `;
+  const params = [targetUserId];
   db
     .query(sql, params)
     .then(result =>
@@ -393,6 +417,32 @@ app.put('/api/complete/:postId', (req, res, next) => {
     .then(result => {
       const data = result.rows;
       return res.json(data);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/review/:userId', (req, res, next) => {
+  const { userId } = req.user;
+  const sellerId = Number(req.params.userId);
+  if (!Number.isInteger(sellerId) || sellerId < 1) {
+    throw new ClientError(400, 'sellerId must be a positive Integer');
+  }
+  const { text } = req.body;
+  if (!text) {
+    throw new ClientError(400, 'Missing a review');
+  }
+
+  const sql = `
+  insert into "review" ("userId", "reviewerId", "text")
+  values ($1, $2, $3)
+  returning*
+  `;
+  const params = [sellerId, userId, text];
+  db
+    .query(sql, params)
+    .then(result => {
+      const newReview = result.rows;
+      return res.status(201).json(newReview);
     })
     .catch(err => next(err));
 });

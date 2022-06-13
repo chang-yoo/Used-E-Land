@@ -211,16 +211,16 @@ export default class Edit extends React.Component {
             <div className="delete-text"><h2 className="auto delete">Delete</h2></div>
               <div className="margin-top-3rem">
                 <div className="text-center">
-                  <h3>Are you sure want to delete this item?</h3>
+                  <h3 className="delete-top-margin">Are you sure want to delete this item?</h3>
                 </div>
                 <div className="row space-around margin-top-5rem">
-                <button onClick={this.handleDelete}className="delete-confirm-button">Confirm</button>
-                <button onClick={this.handleDeleteBox} className="delete-cancel-button">Cancel</button>
+                  <button onClick={this.handleDelete}className="delete-confirm-button">Confirm</button>
+                  <button onClick={this.handleDeleteBox} className="delete-cancel-button">Cancel</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }

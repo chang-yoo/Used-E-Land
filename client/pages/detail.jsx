@@ -22,6 +22,7 @@ export default class Detail extends React.Component {
 
   render() {
     const { post } = this.state;
+
     return (
       <div className="detail-container">
         <div className="row detail-background">
@@ -31,9 +32,13 @@ export default class Detail extends React.Component {
               <img src={post.imageURL}></img>
             </div>
             <div className="detail-text">
-              <div className="row space-even">
-                <a href={`#history?userId=${post.userId}`}><h4>username: {post.username} </h4></a>
-                <h4>rating</h4>
+              <div className="row space-between">
+                <div>
+                  <a href={`#history?userId=${post.userId}`}><h4>Seller: {post.username} </h4></a>
+                </div>
+                <div>
+                  <a href={`#review?userId=${post.userId}`}><h5 className="font-color">How am I?</h5></a>
+                </div>
               </div>
               <h4>condition: {post.condition}</h4>
               <p className="font-size-20">{post.location}</p>

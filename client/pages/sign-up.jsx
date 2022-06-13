@@ -45,7 +45,9 @@ export default class SignUp extends React.Component {
   reset() {
     this.setState({
       username: '',
-      password: ''
+      password: '',
+      phone: null,
+      email: ''
     });
   }
 
