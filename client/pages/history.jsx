@@ -20,11 +20,14 @@ export default class History extends React.Component {
     const { completed } = this.state;
     if (completed.length === 0) {
       return <div className="list-background">
-        <div>
-          <h1 className="margin-padding-bottom-0">Currently Empty!</h1>
-        </div>
-              <a className="return-home" href="#">Return Home</a>
-            </div>;
+               <div>
+                 <h1 className="margin-padding-bottom-0">Currently Empty!</h1>
+               </div>
+               <div className="text-align-center">
+                 <h1 className="margin-top-min-6rem">No favorite post added to your page!</h1>
+                 <a className="font-color" href="#">Return Home</a>
+               </div>;
+             </div>;
     }
     return (
       <div className="list-background top-6-rem">

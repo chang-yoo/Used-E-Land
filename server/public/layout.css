@@ -48,8 +48,8 @@ body {
   align-items: center;
 }
 
-.top-6-rem {
-  margin-top: 6rem;
+.top-3-rem {
+  margin-top: 3rem;
 }
 
 .space-around {
@@ -108,4 +108,16 @@ body {
 
 .top-padding-1rem {
   padding-top: 1rem;
+}
+
+.padding-top-0-5rem {
+  padding-top: 0.3rem;
+}
+
+.vertical-margin {
+  margin: -1.5rem auto;
+}
+
+.margin-top-min-6rem {
+  margin-top: 6rem;
 }

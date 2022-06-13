@@ -35,7 +35,7 @@ app.get('/api/main', (req, res, next) => {
   db
     .query(sql)
     .then(result => {
-      res.status(201).json(result.rows);
+      return res.status(201).json(result.rows);
     })
     .catch(err => next(err));
 });
@@ -68,7 +68,7 @@ app.get('/api/post/:postId', (req, res, next) => {
     .query(sql, params)
     .then(result => {
       const data = result.rows;
-      res.status(201).json(data);
+      return res.status(201).json(data);
     })
     .catch(err => next(err));
 });
@@ -88,8 +88,9 @@ app.get('/api/complete/:userId', (req, res, next) => {
   const params = [userId];
   db
     .query(sql, params)
-    .then(result =>
-      res.json(result.rows))
+    .then(result => {
+      return res.json(result.rows);
+    })
     .catch(err => next(err));
 });
 
@@ -111,8 +112,9 @@ app.get('/api/review/:userId', (req, res, next) => {
   const params = [targetUserId];
   db
     .query(sql, params)
-    .then(result =>
-      res.json(result.rows))
+    .then(result => {
+      return res.json(result.rows);
+    })
     .catch(err => next(err));
 });
 

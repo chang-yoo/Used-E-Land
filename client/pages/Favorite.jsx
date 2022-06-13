@@ -50,19 +50,20 @@ export default class Favorite extends React.Component {
     const { post, created } = this.state;
     if (created === 'no' || post.length === 0) {
       return (
-        <div className="list-background top-6-rem">
+        <div className="list-background top-3-rem">
           <div className="row space-between">
             <h1 className="welcome-profile">Your Favorite Page!</h1>
           </div>
-          <div className="row center">
-            <h1>No favorite post added to your page!</h1>
+          <div className="text-align-center">
+            <h1 className="margin-top-min-3rem">No favorite post added to your page!</h1>
+            <a href="#" className="font-color">Return Home</a>
           </div>
         </div>
       );
     }
     if (created === '') {
       return (
-        <div className="list-background top-6-rem">
+        <div className="list-background top-3-rem">
           <div className="row space-between">
               <h1 className="welcome-profile">Your Favorite Page!</h1>
           </div>

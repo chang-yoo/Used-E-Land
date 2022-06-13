@@ -32,8 +32,10 @@ export default class SearchResult extends React.Component {
     if (match.length === 0) {
       return <div className="list-background">
         <h1 className="margin-padding-bottom-0">Based on your search: {this.props.keyword}</h1>
-        <h2 className="padding-left-1rem">Sorry! Nothing matches to your search keyword</h2>
-        <a className="return-home" href="#">Return Home</a>
+        <div className="text-align-center margin-top-min-6rem">
+          <h2 className="padding-left-1rem">Sorry! Nothing matches to your search keyword</h2>
+          <a className="font-color" href="#">Return Home</a>
+        </div>
       </div>;
     }
     return <div className="search-background">

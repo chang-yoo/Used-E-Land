@@ -136,7 +136,7 @@ export default class Edit extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="column-half">
-                <div className="image-container">
+                <div className="image-container auto">
                   <img src={imageURL}></img>
                 </div>
                 <div className="test">

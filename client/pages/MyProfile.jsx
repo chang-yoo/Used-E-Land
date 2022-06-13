@@ -41,7 +41,7 @@ export default class MyProfile extends React.Component {
     const { post, created, username } = this.state;
     if (created === '') {
       return (
-      <div className="list-background top-6-rem">
+      <div className="list-background top-3-rem">
         <div className="row space-between">
           <div className="column-half">
             <h1 className="welcome-profile">Welcome {username}!</h1>
@@ -78,7 +78,7 @@ export default class MyProfile extends React.Component {
       );
     } else if (created === 'no') {
       return (
-      <div className="list-background top-6-rem">
+      <div className="list-background top-3-rem">
         <div className="row space-between">
           <div className="column-half">
             <h1 className="welcome-profile">Welcome {username}!</h1>
