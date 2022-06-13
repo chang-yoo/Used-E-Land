@@ -32,7 +32,7 @@ export default class Detail extends React.Component {
               <img src={post.imageURL}></img>
             </div>
             <div className="detail-text">
-              <div className="row space-between">
+              <div className="row space-between vertical-margin">
                 <div>
                   <a href={`#history?userId=${post.userId}`}><h4>Seller: {post.username} </h4></a>
                 </div>
@@ -48,7 +48,7 @@ export default class Detail extends React.Component {
           <div className="detail-description column-half">
             <h2>{post.title}</h2>
             <hr></hr>
-            <h2>Description:<br /><br />{post.description}</h2>
+            <h2 className="break">Description:<br /><br />{post.description}</h2>
           </div>
         </div>
       </div>

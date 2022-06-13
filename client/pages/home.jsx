@@ -55,7 +55,7 @@ export default class Home extends React.Component {
           })
         }
         </div>
-        <div className="dot-container">
+        <div className="dot-container vertical-margin">
           {images.map(dot => {
             if (this.state.current === dot.id) {
               return <i key={dot.id} id={dot.id} onClick={this.imageSwap} className='fas fa-circle horz-margin'></i>;

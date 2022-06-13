@@ -92,7 +92,7 @@ export default class Header extends React.Component {
               </div>
               <div className="menu-bar slide-right">
                 <div>
-                  <i onClick={this.menubar} className="fa-solid fa-arrow-right-long fa-2x"></i>
+                  <i onClick={this.menubar} className="fa-solid fa-arrow-right-long fa-2x margin-bottom-1rem"></i>
                 </div>
                 <div className="menubar-container col-row space-around">
                   <div className="margin-left-3rem menu-myaccount-container">

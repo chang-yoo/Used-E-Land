@@ -67,7 +67,7 @@ h3 {
 }
 
 h1 {
-  margin-top: 6rem;
+  margin-top: 3rem;
   padding: 1rem;
   padding-left: 1rem;
   color: #ad7d35;
@@ -75,6 +75,9 @@ h1 {
 
 .postlist-title {
   color: black;
+  line-height: 18px;
+  margin-top: -11px;
+  margin-bottom: -0.2rem;
 }
 
 .price {
@@ -148,7 +151,7 @@ textarea {
 
 .fa-delete-left {
   position: absolute;
-  right: -15%;
+  right: -10%;
   top: 10%;
 }
 
@@ -257,7 +260,7 @@ h4 {
 
 .main-image {
   width: 70%;
-  height: 650px;
+  height: 530px;
   position: absolute;
   margin: 0;
   animation-duration: 2s;
@@ -278,12 +281,11 @@ h4 {
 .horz-margin {
   position: relative;
   left: 44%;
-  margin: 1rem;
-  margin-top: 0.4rem;
+  margin: 0 1rem;
 }
 
 .dot-container {
-  margin-top: 0.1rem;
+  margin-top: -6rem;
 }
 
 li,
@@ -296,17 +298,6 @@ button,
 a,
 i:hover {
   cursor: pointer;
-}
-
-.return-home {
-  display: flex;
-  justify-content: center;
-  margin-top: 10rem;
-  color: #ad7d35;
-}
-
-.search-background {
-  margin-top: 6rem;
 }
 
 .hidden {
@@ -396,10 +387,8 @@ ul {
 
 .image-container {
   width: 400px;
-  height: 350px;
-  margin: auto;
-  margin-top: 1rem;
-  margin-right: 3.8rem;
+  height: 300px;
+  margin: 1rem 0 auto 4.5rem;
 }
 
 .upload-container {
@@ -418,7 +407,7 @@ ul {
 
 #location,
 #price {
-  width: 400px;
+  width: 360px;
   height: 50px;
   border-radius: 10px;
   border: 1px solid #9f9999;
@@ -431,7 +420,7 @@ ul {
 }
 
 .test {
-  margin: 6.5rem;
+  margin: 5rem;
 }
 
 #font-color,
@@ -493,11 +482,12 @@ ul {
 
 .description {
   width: 400px;
-  height: 490px;
+  height: 420px;
 }
 
 .image-upload,
 #uploading {
+  font-size: 15px;
   width: 100px;
   background-color: #fbd3a4;
   color: #ad7d35;
@@ -506,9 +496,8 @@ ul {
   border-radius: 0.3rem;
   cursor: pointer;
   position: relative;
-  bottom: -1rem;
+  bottom: -2rem;
   border: 1px solid #fbd3a4;
-  margin-right: 3.1rem;
 }
 
 .image-upload {
@@ -577,6 +566,7 @@ ul {
   margin-top: -1rem;
 }
 
+.complete-confirm-button,
 .delete,
 .delete-confirm-button {
   color: red;
@@ -642,6 +632,11 @@ input::-webkit-inner-spin-button {
   word-wrap: break-word;
 }
 
+.break {
+  width: 350px;
+  word-wrap: break-word;
+}
+
 .font-color-orange {
   color: orange;
 }
@@ -678,4 +673,14 @@ input::-webkit-inner-spin-button {
 .delete-top-margin {
   margin-top: 4rem;
   margin-bottom: 1rem;
+}
+
+.complete-confirm-button,
+.complete-cancel-button {
+  background-color: #fbd3a4;
+  border: 1px solid #fbd3a4;
+  border-radius: 10px;
+  width: 100px;
+  margin-top: -2rem;
+  vertical-align: baseline;
 }

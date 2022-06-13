@@ -61,8 +61,8 @@ export default class Complete extends React.Component {
               <p className="move-parap">Are you sure want to move this item?</p>
             </div>
             <div className="row space-around margin-top-5rem">
-              <a href={`#history?userId=${this.props.postData.userId}`} className="delete-confirm-button text-align-center" onClick={this.handleMoving}>Confirm</a>
-              <button onClick={this.handleClick} className="delete-cancel-button">Cancel</button>
+              <a href={`#history?userId=${this.props.postData.userId}`} className="complete-confirm-button text-align-center padding-top-0-5rem" onClick={this.handleMoving}>Confirm</a>
+              <button onClick={this.handleClick} className="complete-cancel-button font-color">Cancel</button>
             </div>
           </div>
         </div>
