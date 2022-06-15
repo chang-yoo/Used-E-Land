@@ -44,30 +44,32 @@ export default class Home extends React.Component {
   render() {
     const { current } = this.state;
     return (
-      <div>
+      <div className="column-full">
         <div className="home-image-container">
           {images.map(image => {
             if (current === image.id) {
-              return <img className="main-image" key={image.id} src={image.image}></img>;
+              return <div className="main-image">
+                       <img key={image.id} src={image.image}></img>
+                     </div>;
             } else {
               return null;
             }
           })
         }
         </div>
-        <div className="dot-container vertical-margin">
-          {images.map(dot => {
-            if (this.state.current === dot.id) {
-              return <i key={dot.id} id={dot.id} onClick={this.imageSwap} className='fas fa-circle horz-margin'></i>;
-            } else {
-              return <i key={dot.id} id={dot.id} onClick={this.imageSwap} className='far fa-circle horz-margin'></i>;
-            }
-          })}
-        </div>
-        <div className="list-background">
+          <div className="dot-container vertical-margin">
+            {images.map(dot => {
+              if (this.state.current === dot.id) {
+                return <i key={dot.id} id={dot.id} onClick={this.imageSwap} className='fas fa-circle horz-margin'></i>;
+              } else {
+                return <i key={dot.id} id={dot.id} onClick={this.imageSwap} className='far fa-circle horz-margin'></i>;
+              }
+            })}
+          </div>
+        <div className="list-background column-full">
           <h1>Most Recent</h1>
-          <div className="row">
-            <List />
+          <div className="row wrap">
+            <List key={this.props.postId}/>
           </div>
         </div>
       </div>

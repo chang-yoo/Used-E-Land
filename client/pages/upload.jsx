@@ -79,31 +79,31 @@ export default class Upload extends React.Component {
     const { imageURL } = this.state;
     return <div className="column-full">
       <div className="upload-container">
-        <div className="image-submit">
-          <form onSubmit={this.handleImageSubmit}>
-              <div className="row space-between">
-            <label id="uploading" htmlFor="upload">Choose File</label>
-            <input
-              required
-              id="upload"
-              type="file"
-              name="imageURL"
-              ref={this.fileInputRef}
-              accept=".png, .jpg, .jpeg, .gif"
-              className="search-button margin-top-1rem"
-              hidden
-            />
-              <button type="submit" className="image-upload">Upload</button>
-              </div>
-          </form>
-        </div>
-      <form onSubmit={this.handleSubmit}>
-        <div className="row">
-          <div className="column-half">
-            <div className="image-container">
-              <img src={imageURL}></img>
-            </div>
-            <div className="test">
+        <form onSubmit={this.handleSubmit}>
+          <div className="rows">
+            <div className="edit-column-half">
+              <div className="column-80 margin-top-1rem">
+                <div className="image-container">
+                  <img src={imageURL}></img>
+                </div>
+                <div className="row space-between">
+                  <div className="margin-top-1rem">
+                    <label id="uploading" htmlFor="upload">Choose File</label>
+                    <input
+                      id="upload"
+                      type="file"
+                      name="imageURL"
+                      ref={this.fileInputRef}
+                      accept=".png, .jpg, .jpeg, .gif"
+                      className="search-button"
+                      hidden
+                    />
+                  </div>
+                  <div className="margin-top-half-rem">
+                    <button onClick={this.handleImageSubmit} className="image-load">Upload</button>
+                  </div>
+                </div>
+                <div className="margin-top-1rem column-full edit-text-align">
               <div className="condition-container">
                 <label id="font-color" htmlFor="condition">Condition: </label>
                 <select className="condition" onChange={this.handleChange} name="condition" required>
@@ -122,6 +122,7 @@ export default class Upload extends React.Component {
                 name="location"
                 onChange={this.handleChange}
                 placeholder='location'
+                      className="edit-text-width-first-half"
                 />
               </div>
               <div className="price-container">
@@ -132,42 +133,44 @@ export default class Upload extends React.Component {
                 name="price"
                 onChange={this.handleChange}
                 placeholder="$price"
+                className="edit-text-width-first-half"
                 />
               </div>
             </div>
           </div>
-          <div className="column-half">
-            <div className="row center margin-top-1rem">
-              <div>
-                <div className="title-container">
-                  <input
-                  required
-                  id="title"
-                  type="text"
-                  name="title"
-                  onChange={this.handleChange}
-                  className="title"
-                  placeholder='Name your item!'
-                  />
-                </div>
-                <hr></hr>
-                <div className="description-container">
+          </div>
+            <div className="edit-column-half">
+              <div className="column-80 edit-text-align">
+                <div className="margin-top-1rem">
+                  <hr></hr>
+                  <div className="title-container">
+                    <input
+                      id="title"
+                      type="text"
+                      name="title"
+                      onChange={this.handleChange}
+                      className="title edit-text-width-second-half"
+                      placeholder="Name your item!"
+                    />
+                  </div>
+                  <hr></hr>
+                  <div className="description-container">
                   <textarea
                   required
                   autoFocus
-                  id="description"
+                      id="description"
                   type="text"
                   name="description"
                   onChange={this.handleChange}
-                  className="description"
+                  className="description edit-text-width-second-half"
                   wrap="hard"
                   placeholder="Tell us about your item!"
                   />
                 </div>
-                <div className="row space-between margin-top-1rem">
-                    <button type="submit" className="upload-button">Upload</button>
+                  <div className="row space-between margin-top-1rem">
+                    <button type="submit" className="upload-button">Update</button>
                     <a href="#myprofile" className="cancel-button"><p className="cancel-button-text">Cancel</p></a>
-                </div>
+                  </div>
               </div>
             </div>
           </div>

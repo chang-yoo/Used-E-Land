@@ -105,16 +105,16 @@ export default class SignIn extends React.Component {
       </div>
       <div className={classvalue}>
         <div className="column-full">
-          <div className="row signup-box-container">
-              <i onClick={this.hideBox} className="fa-regular fa-circle-xmark log-in-x"></i>
-            <div className="sign-up-confirmbox">
-              <h2>You have entered incorret username/password</h2>
-              <p className="font-size-20">No account? Click <a href="#sign-up"><span>HERE</span></a> to sign up!</p>
+          <div className="row sign-box-container center">
+              <i onClick={this.hideBox} className="fa-regular fa-circle-xmark fa-2x log-in-x"></i>
+              <div className="sign-up-confirmbox sign-box-height sign-in-box-vertical">
+                <h2>You have entered incorret username/password</h2>
+                <p className="font-size-20">No account? Click <a href="#sign-up"><span>HERE</span></a> to sign up!</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     );
   }
 }

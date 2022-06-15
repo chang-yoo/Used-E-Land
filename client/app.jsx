@@ -87,7 +87,7 @@ export default class App extends React.Component {
     const { isAuthorize } = this.state;
     if (isAuthorize === 'yes') {
       return (
-      <div>
+      <div className="column-full">
         <HeaderAfterSiginIn />
         <PageContainer>
           {this.renderPage()}
@@ -96,7 +96,7 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <div>
+        <div className="column-full">
           <Header />
           <PageContainer>
             {this.renderPage()}

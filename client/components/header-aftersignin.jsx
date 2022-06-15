@@ -66,7 +66,7 @@ export default class Header extends React.Component {
     }
     if (menu === 'on') {
       return (
-        <div className="header">
+        <div className="header row column-full">
           <div>
             <a onClick={this.turnoffMenubar} href="#">
               <img className="logo" src="/images/logo.png"></img>
@@ -82,15 +82,15 @@ export default class Header extends React.Component {
                     type="text"
                     onChange={this.handleChange}
                     value={this.state.userInput}
-                    className="search-bar"
+                    className="search-bar search-width"
                   />
                 </label>
               </form>
               <div className="searching-icons">
                 <a className={classvalue}><i onClick={this.reset} className="fa-solid fa-xmark searching-x"></i></a>
-                <i onClick={this.handleSubmit} className="fa-solid fa-magnifying-glass search-glass"></i>
+                <i onClick={this.handleSubmit} className="fa-solid fa-magnifying-glass search-glass position"></i>
               </div>
-              <div className="menu-bar slide-right">
+              <div className="menu-bar transition">
                 <div>
                   <i onClick={this.menubar} className="fa-solid fa-arrow-right-long fa-2x margin-bottom-1rem"></i>
                 </div>

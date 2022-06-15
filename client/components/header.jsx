@@ -75,7 +75,7 @@ export default class Header extends React.Component {
             <a className={classvalue}><i onClick={this.reset} className="fa-solid fa-xmark searching-x"></i></a>
             <i onClick={this.handleSubmit} className="fa-solid fa-magnifying-glass search-glass"></i>
           </div>
-          <div className="menu-bar slide-right">
+          <div className="menu-bar transition">
             <div>
                 <i onClick={this.menubar}className="fa-solid fa-arrow-right-long fa-2x"></i>
             </div>

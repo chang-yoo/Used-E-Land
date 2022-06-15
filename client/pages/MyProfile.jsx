@@ -47,7 +47,7 @@ export default class MyProfile extends React.Component {
             <h1 className="welcome-profile">Welcome {username}!</h1>
           </div>
           <div className="column-half">
-              <a href="#upload"><h2 className="margin-2rem">Upload your item today</h2></a>
+              <a href="#upload"><h2 className="margin-2rem">Let&apos;s upload today</h2></a>
           </div>
         </div>
         <div className="row wrap">
@@ -84,10 +84,10 @@ export default class MyProfile extends React.Component {
             <h1 className="welcome-profile">Welcome {username}!</h1>
           </div>
           <div className="column-half row">
-            <a href="#upload"><h2 className="margin-2rem">Upload your item today</h2></a>
+              <a href="#upload"><h2 className="margin-2rem">Let&apos;s upload today</h2></a>
           </div>
         </div>
-        <div className="row center">
+        <div className="row center text-align-center">
           <h1>You currently don&apos;t have any post uploaded!</h1>
         </div>
       </div>
