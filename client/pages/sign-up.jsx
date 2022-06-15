@@ -73,7 +73,7 @@ export default class SignUp extends React.Component {
           <div className="width-60 auto">
             <div className="row center">
               <form onSubmit={this.handleSubmit}>
-                <div className="row space-between margin-vert-2rem">
+                <div className="rows space-between margin-vert-2rem">
                   <div className="margin-vert-2rem">
                     <label>
                       <h2>
@@ -160,8 +160,8 @@ export default class SignUp extends React.Component {
         </div>
         <div className={err}>
           <div className="column-full">
-            <div className="row signup-box-container">
-              <div className="sign-up-confirmbox">
+            <div className="row signup-box-container sign-box-vertical">
+              <div className="sign-up-confirmbox sign-box-height">
                 <h2>Sorry! The username already exists.</h2>
                 <h2>Please try different username!</h2>
                 <p>Click <a href="#sign-up"><span onClick={this.closeBox}>HERE</span></a> to try again</p>
