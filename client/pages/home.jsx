@@ -1,5 +1,7 @@
 import React from 'react';
 import List from '../components/list';
+import { Loading } from '../components/spinner';
+import { Off } from '../components/offline';
 
 const images = [
   { id: 0, image: 'images/carousel-1.png' },
@@ -12,7 +14,9 @@ export default class Home extends React.Component {
     super(props);
     this.state = {
       current: 0,
-      imageSrc: images[0]
+      imageSrc: images[0],
+      loading: 'processing',
+      offline: false
     };
     this.nextImage = this.nextImage.bind(this);
     this.imageSwap = this.imageSwap.bind(this);
@@ -31,7 +35,9 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
+    window.addEventListener('offline', event => this.setState({ offline: true }));
     this.timerId = setInterval(() => this.nextImage(), 5000);
+    this.setState({ loading: 'complete' });
   }
 
   imageSwap(event) {
@@ -42,13 +48,19 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const { current } = this.state;
+    const { current, loading, offline } = this.state;
+    if (loading === 'processing') {
+      return <Loading />;
+    }
+    if (offline === true) {
+      return <Off />;
+    }
     return (
       <div className="column-full">
         <div className="home-image-container">
           {images.map(image => {
             if (current === image.id) {
-              return <div className="main-image">
+              return <div key={image.id}className="main-image">
                        <img key={image.id} src={image.image}></img>
                      </div>;
             } else {

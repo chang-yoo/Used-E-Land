@@ -16,18 +16,22 @@ import Favorite from './pages/Favorite';
 import History from './pages/history';
 import Review from './pages/review';
 import NotFound from './components/not-found';
+import { Off } from './components/offline';
+import { Loading } from './components/spinner';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       route: parseRoute(window.location.hash),
-      isAuthorize: 'no'
+      isAuthorize: 'no',
+      offline: false
     };
     this.renderPage = this.renderPage.bind(this);
   }
 
   componentDidMount() {
+    window.addEventListener('offline', event => this.setState({ offline: true }));
     window.addEventListener('hashchange', () => {
       this.setState({
         route: parseRoute(window.location.hash)
@@ -84,7 +88,13 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { isAuthorize } = this.state;
+    const { isAuthorize, offline, loading } = this.state;
+    if (offline === true) {
+      return <Off/>;
+    }
+    if (loading === 'processing') {
+      return <Loading />;
+    }
     if (isAuthorize === 'yes') {
       return (
       <div className="column-full">

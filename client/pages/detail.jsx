@@ -1,28 +1,39 @@
 import React from 'react';
 import Contact from '../components/contact';
+import { Loading } from '../components/spinner';
+import { Off } from '../components/offline';
 
 export default class Detail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      post: ''
+      post: '',
+      loading: 'processing',
+      offline: false
     };
   }
 
   componentDidMount() {
+    window.addEventListener('offline', event => this.setState({ offline: true }));
     fetch(`/api/post/${this.props.postId}`)
       .then(res => res.json())
       .then(result => {
         const [data] = result;
         this.setState({
-          post: data
+          post: data,
+          loading: 'complete'
         });
       });
   }
 
   render() {
-    const { post } = this.state;
-
+    const { post, loading, offline } = this.state;
+    if (offline === true) {
+      return <Off />;
+    }
+    if (loading === 'processing') {
+      return <Loading />;
+    }
     return (
       <div className="detail-container">
         <div className="rows detail-background">

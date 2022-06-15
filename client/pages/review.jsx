@@ -1,4 +1,6 @@
 import React from 'react';
+import { Loading } from '../components/spinner';
+import { Off } from '../components/offline';
 
 export default class Review extends React.Component {
   constructor(props) {
@@ -6,7 +8,9 @@ export default class Review extends React.Component {
     this.state = {
       text: '',
       reviews: [],
-      check: []
+      check: [],
+      loading: 'processing',
+      offline: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,10 +21,14 @@ export default class Review extends React.Component {
   }
 
   componentDidMount() {
+    window.addEventListener('offline', event => this.setState({ offline: true }));
     fetch(`/api/review/${this.props.userId}`)
       .then(res => res.json())
       .then(result => {
-        this.setState({ reviews: result });
+        this.setState({
+          reviews: result,
+          loading: 'complete'
+        });
       });
   }
 
@@ -56,7 +64,13 @@ export default class Review extends React.Component {
   }
 
   render() {
-    const { reviews } = this.state;
+    const { reviews, offline, loading } = this.state;
+    if (offline === true) {
+      return <Off />;
+    }
+    if (loading === 'processing') {
+      return <Loading />;
+    }
     if (reviews.length === 0) {
       return (
       <div className="detail-background">

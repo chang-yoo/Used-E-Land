@@ -1,4 +1,6 @@
 import React from 'react';
+import { Loading } from '../components/spinner';
+import { Off } from '../components/offline';
 
 export default class Edit extends React.Component {
   constructor(props) {
@@ -10,7 +12,9 @@ export default class Edit extends React.Component {
       price: '',
       title: '',
       description: '',
-      classvalue: 'hidden'
+      classvalue: 'hidden',
+      loading: 'processing',
+      offline: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -21,6 +25,7 @@ export default class Edit extends React.Component {
   }
 
   componentDidMount() {
+    window.addEventListener('offline', event => this.setState({ offline: true }));
     const token = window.localStorage.getItem('lfz-final');
     fetch(`/api/post/${this.props.postId}`, {
       headers: {
@@ -32,7 +37,7 @@ export default class Edit extends React.Component {
       .then(result => {
         const [data] = result;
         const { imageURL, condition, location, price, title, description } = data;
-        this.setState({ imageURL, condition, location, price, title, description });
+        this.setState({ imageURL, condition, location, price, title, description, loading: 'complete' });
       });
   }
 
@@ -112,7 +117,13 @@ export default class Edit extends React.Component {
   }
 
   render() {
-    const { imageURL, condition, location, price, title, description } = this.state;
+    const { imageURL, condition, location, price, title, description, loading, offline } = this.state;
+    if (offline === true) {
+      return <Off />;
+    }
+    if (loading === 'processing') {
+      return <Loading />;
+    }
     return (
       <div className="column-full">
         <div className="upload-container">
