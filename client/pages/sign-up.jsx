@@ -150,8 +150,8 @@ export default class SignUp extends React.Component {
         </div>
         <div className={confirm}>
           <div className="column-full">
-            <div className="row signup-box-container">
-              <div className="sign-up-confirmbox">
+            <div className="row signup-box-container  sign-box-vertical">
+              <div className="sign-up-confirmbox  sign-box-height">
                 <h2>Thank you for being a valuable UsedElander!</h2>
                 <p className="font-size-20">Click <a href="#sign-in"><span>HERE</span></a> to sign in</p>
               </div>
