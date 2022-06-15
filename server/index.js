@@ -153,11 +153,10 @@ app.post('/api/sign-up', (req, res, next) => {
         returning "userId", "username", "phone", "email"
       `;
       const params = [username, hashedPassword, phone, email];
-      return db
-        .query(sql, params);
+      return db.query(sql, params);
     })
     .then(result => {
-      const newUser = result.rows;
+      const [newUser] = result.rows;
       res.status(201).json(newUser);
     })
     .catch(err => next(err));

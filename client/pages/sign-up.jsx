@@ -1,4 +1,6 @@
 import React from 'react';
+import { Loading } from '../components/spinner';
+import { Off } from '../components/offline';
 
 export default class SignUp extends React.Component {
   constructor(props) {
@@ -9,12 +11,17 @@ export default class SignUp extends React.Component {
       phone: null,
       email: '',
       box: 'off',
-      error: 'off'
+      error: 'off',
+      loading: 'processing'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.reset = this.reset.bind(this);
     this.closeBox = this.closeBox.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('offline', event => this.setState({ offline: true }));
+    this.setState({ loading: 'complete' });
   }
 
   handleChange(event) {
@@ -42,15 +49,6 @@ export default class SignUp extends React.Component {
       });
   }
 
-  reset() {
-    this.setState({
-      username: '',
-      password: '',
-      phone: null,
-      email: ''
-    });
-  }
-
   closeBox() {
     this.setState({ error: 'off' });
   }
@@ -63,6 +61,12 @@ export default class SignUp extends React.Component {
     }
     if (this.state.error === 'on') {
       err = '';
+    }
+    if (this.state.loading === 'processing') {
+      return <Loading />;
+    }
+    if (this.state.offline === true) {
+      return <Off />;
     }
     return (
       <div className="list-background">
@@ -139,7 +143,7 @@ export default class SignUp extends React.Component {
                     </div>
                     <div className="margin-top-1rem text-align-right">
                       <button type="submit" className="sign-in-button">
-                        <p onClick={this.reset} className="create-account-text">Create!</p>
+                        <p className="create-account-text">Create!</p>
                       </button>
                     </div>
                   </div>

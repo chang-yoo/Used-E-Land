@@ -1,16 +1,21 @@
 import React from 'react';
+import { Loading } from '../components/spinner';
+import { Off } from '../components/offline';
 
 export default class Favorite extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       post: [],
-      created: ''
+      created: '',
+      loading: 'processing',
+      offline: false
     };
     this.handleFavorite = this.handleFavorite.bind(this);
   }
 
   componentDidMount() {
+    window.addEventListener('offline', event => this.setState({ offline: true }));
     const token = window.localStorage.getItem('lfz-final');
     fetch('/api/favorite', {
       headers: {
@@ -24,7 +29,10 @@ export default class Favorite extends React.Component {
           post: result
         });
         if (result.length === 0) {
-          this.setState({ created: 'no' });
+          this.setState({
+            created: 'no',
+            loading: 'complete'
+          });
         }
       });
   }
@@ -47,7 +55,13 @@ export default class Favorite extends React.Component {
   }
 
   render() {
-    const { post, created } = this.state;
+    const { post, created, loading, offline } = this.state;
+    if (loading === 'processing') {
+      return <Loading />;
+    }
+    if (offline === true) {
+      return <Off />;
+    }
     if (created === 'no' || post.length === 0) {
       return (
         <div className="list-background top-3-rem">

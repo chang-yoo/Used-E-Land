@@ -1,4 +1,6 @@
 import React from 'react';
+import { Loading } from '../components/spinner';
+import { Off } from '../components/offline';
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -6,11 +8,18 @@ export default class SignIn extends React.Component {
     this.state = {
       username: '',
       password: '',
-      classvalue: 'hide'
+      classvalue: 'hide',
+      loading: 'processing',
+      offline: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.hideBox = this.hideBox.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('offline', event => this.setState({ offline: true }));
+    this.setState({ loading: 'complete' });
   }
 
   handleSubmit(event) {
@@ -46,7 +55,13 @@ export default class SignIn extends React.Component {
   }
 
   render() {
-    const { classvalue } = this.state;
+    const { classvalue, loading, offline } = this.state;
+    if (loading === 'processing') {
+      return <Loading />;
+    }
+    if (offline === true) {
+      return <Off />;
+    }
     return (
     <div className="list-background">
       <div>

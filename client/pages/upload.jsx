@@ -1,4 +1,6 @@
 import React from 'react';
+import { Loading } from '../components/spinner';
+import { Off } from '../components/offline';
 
 export default class Upload extends React.Component {
   constructor(props) {
@@ -10,12 +12,19 @@ export default class Upload extends React.Component {
       price: '',
       title: '',
       description: '',
-      image: ''
+      image: '',
+      loading: 'processing',
+      offline: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.fileInputRef = React.createRef();
     this.handleImageSubmit = this.handleImageSubmit.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('offline', event => this.setState({ offline: true }));
+    this.setState({ loading: 'complete' });
   }
 
   handleChange(event) {
@@ -76,7 +85,13 @@ export default class Upload extends React.Component {
   }
 
   render() {
-    const { imageURL } = this.state;
+    const { imageURL, loading, offline } = this.state;
+    if (loading === 'processing') {
+      return <Loading />;
+    }
+    if (offline === true) {
+      return <Off />;
+    }
     return <div className="column-full">
       <div className="upload-container">
         <form onSubmit={this.handleSubmit}>

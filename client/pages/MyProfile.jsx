@@ -1,6 +1,8 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
 import Complete from '../components/complete';
+import { Loading } from '../components/spinner';
+import { Off } from '../components/offline';
 
 export default class MyProfile extends React.Component {
   constructor(props) {
@@ -8,11 +10,14 @@ export default class MyProfile extends React.Component {
     this.state = {
       post: [],
       created: '',
-      username: ''
+      username: '',
+      loading: 'processing',
+      offline: false
     };
   }
 
   componentDidMount() {
+    window.addEventListener('offline', event => this.setState({ offline: true }));
     const token = window.localStorage.getItem('lfz-final');
     const decode = jwtDecode(token);
     const getUsername = decode.username;
@@ -28,7 +33,8 @@ export default class MyProfile extends React.Component {
         if (!error) {
           this.setState({
             post: result,
-            username: getUsername
+            username: getUsername,
+            loading: 'complete'
           });
         }
         if (!error && result.length === 0) {
@@ -38,7 +44,13 @@ export default class MyProfile extends React.Component {
   }
 
   render() {
-    const { post, created, username } = this.state;
+    const { post, created, username, loading, offline } = this.state;
+    if (loading === 'processing') {
+      return <Loading />;
+    }
+    if (offline === true) {
+      return <Off />;
+    }
     if (created === '') {
       return (
       <div className="list-background top-3-rem">

@@ -1,23 +1,37 @@
 import React from 'react';
+import { Loading } from '../components/spinner';
+import { Off } from '../components/offline';
 
 export default class History extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      completed: []
+      completed: [],
+      loading: 'processing',
+      offline: false
     };
   }
 
   componentDidMount() {
+    window.addEventListener('offline', event => this.setState({ offline: true }));
     fetch(`/api/complete/${this.props.userId}`)
       .then(res => res.json())
       .then(result => {
-        this.setState({ completed: result });
+        this.setState({
+          completed: result,
+          loading: 'complete'
+        });
       });
   }
 
   render() {
-    const { completed } = this.state;
+    const { completed, loading, offline } = this.state;
+    if (loading === 'processing') {
+      return <Loading />;
+    }
+    if (offline === true) {
+      return <Off />;
+    }
     if (completed.length === 0) {
       return <div className="list-background">
                <div>
