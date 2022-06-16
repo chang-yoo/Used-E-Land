@@ -52,7 +52,7 @@ export default class History extends React.Component {
                <div>
                  <h1 className="margin-padding-bottom-0">Currently Empty!</h1>
                </div>
-              <div className="text-align-center in-center">
+                <div className="text-align-center in-center">
                  <h1>You didn&apos;t make any history yet</h1>
                  <a className="font-color" href="#">Return Home</a>
                </div>;
