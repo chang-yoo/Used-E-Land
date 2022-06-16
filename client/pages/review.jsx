@@ -1,6 +1,7 @@
 import React from 'react';
 import { Loading } from '../components/spinner';
 import { Off } from '../components/offline';
+import { TryAgain } from '../components/try-again';
 
 export default class Review extends React.Component {
   constructor(props) {
@@ -10,7 +11,8 @@ export default class Review extends React.Component {
       reviews: [],
       check: [],
       loading: 'processing',
-      offline: false
+      offline: false,
+      noId: 'no'
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,6 +23,12 @@ export default class Review extends React.Component {
   }
 
   componentDidMount() {
+    if (!`${this.props.userId}`) {
+      this.setState({
+        loading: 'complete',
+        noId: 'yes'
+      });
+    }
     window.addEventListener('offline', event => this.setState({ offline: true }));
     fetch(`/api/review/${this.props.userId}`)
       .then(res => res.json())
@@ -29,6 +37,13 @@ export default class Review extends React.Component {
           reviews: result,
           loading: 'complete'
         });
+        const { error } = result;
+        if (error) {
+          this.setState({
+            loading: 'complete',
+            noId: 'yes'
+          });
+        }
       });
   }
 
@@ -60,16 +75,27 @@ export default class Review extends React.Component {
       .then(res => res.json())
       .then(result => {
         this.setState({ check: result });
+        const { error } = result;
+        if (error) {
+
+          this.setState({
+            loading: 'complete',
+            noId: 'yes'
+          });
+        }
       });
   }
 
   render() {
-    const { reviews, offline, loading } = this.state;
+    const { reviews, offline, loading, noId } = this.state;
     if (offline === true) {
       return <Off />;
     }
     if (loading === 'processing') {
       return <Loading />;
+    }
+    if (noId === 'yes') {
+      return <TryAgain/>;
     }
     if (reviews.length === 0) {
       return (

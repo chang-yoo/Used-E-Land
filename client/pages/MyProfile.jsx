@@ -99,7 +99,7 @@ export default class MyProfile extends React.Component {
               <a href="#upload"><h2 className="margin-2rem">Let&apos;s upload today</h2></a>
           </div>
         </div>
-        <div className="row center text-align-center">
+          <div className="in-center text-align-center">
           <h1>You currently don&apos;t have any post uploaded!</h1>
         </div>
       </div>

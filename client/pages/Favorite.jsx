@@ -68,8 +68,8 @@ export default class Favorite extends React.Component {
           <div className="row space-between">
             <h1 className="welcome-profile">Your Favorite Page!</h1>
           </div>
-          <div className="text-align-center">
-            <h1 className="margin-top-min-3rem">No favorite post added to your page!</h1>
+          <div className="text-align-center in-center">
+            <h1>No favorite post added to your page!</h1>
             <a href="#" className="font-color">Return Home</a>
           </div>
         </div>

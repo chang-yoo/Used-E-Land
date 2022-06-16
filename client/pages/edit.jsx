@@ -1,6 +1,7 @@
 import React from 'react';
 import { Loading } from '../components/spinner';
 import { Off } from '../components/offline';
+import { TryAgain } from '../components/try-again';
 
 export default class Edit extends React.Component {
   constructor(props) {
@@ -14,7 +15,8 @@ export default class Edit extends React.Component {
       description: '',
       classvalue: 'hidden',
       loading: 'processing',
-      offline: false
+      offline: false,
+      noId: 'no'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -27,6 +29,12 @@ export default class Edit extends React.Component {
   componentDidMount() {
     window.addEventListener('offline', event => this.setState({ offline: true }));
     const token = window.localStorage.getItem('lfz-final');
+    if (!`${this.props.postId}`) {
+      this.setState({
+        loading: 'complete',
+        noId: 'yes'
+      });
+    }
     fetch(`/api/post/${this.props.postId}`, {
       headers: {
         'Content-Type': 'application/json',
@@ -35,9 +43,17 @@ export default class Edit extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        const [data] = result;
-        const { imageURL, condition, location, price, title, description } = data;
-        this.setState({ imageURL, condition, location, price, title, description, loading: 'complete' });
+        if (result.length > 0) {
+          const [data] = result;
+          const { imageURL, condition, location, price, title, description } = data;
+          this.setState({ imageURL, condition, location, price, title, description, loading: 'complete' });
+        }
+        if (result.length === 0) {
+          this.setState({
+            loading: 'complete',
+            noId: 'yes'
+          });
+        }
       });
   }
 
@@ -117,12 +133,15 @@ export default class Edit extends React.Component {
   }
 
   render() {
-    const { imageURL, condition, location, price, title, description, loading, offline } = this.state;
+    const { imageURL, condition, location, price, title, description, loading, offline, noId } = this.state;
     if (offline === true) {
       return <Off />;
     }
     if (loading === 'processing') {
       return <Loading />;
+    }
+    if (noId === 'yes') {
+      return <TryAgain/>;
     }
     return (
       <div className="column-full">
