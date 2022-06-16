@@ -80,7 +80,21 @@ h3 {
   margin-top: 3rem;
 }
 
+.tryagain-background {
+  background-color: #fef5f0;
+  height: 88vh;
+  position: relative;
+}
+
 .loading-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.in-center {
+  width: 100%;
   position: absolute;
   left: 50%;
   top: 50%;

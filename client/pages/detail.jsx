@@ -2,6 +2,7 @@ import React from 'react';
 import Contact from '../components/contact';
 import { Loading } from '../components/spinner';
 import { Off } from '../components/offline';
+import { TryAgain } from '../components/try-again';
 
 export default class Detail extends React.Component {
   constructor(props) {
@@ -9,30 +10,48 @@ export default class Detail extends React.Component {
     this.state = {
       post: '',
       loading: 'processing',
-      offline: false
+      offline: false,
+      noId: 'no'
     };
   }
 
   componentDidMount() {
     window.addEventListener('offline', event => this.setState({ offline: true }));
+    if (!`${this.props.postId}`) {
+      this.setState({
+        loading: 'complete',
+        noId: 'yes'
+      });
+    }
     fetch(`/api/post/${this.props.postId}`)
       .then(res => res.json())
       .then(result => {
-        const [data] = result;
-        this.setState({
-          post: data,
-          loading: 'complete'
-        });
+        if (result.length > 0) {
+          const [data] = result;
+          this.setState({
+            post: data,
+            loading: 'complete'
+          });
+        }
+        if (result.length === 0) {
+          this.setState({
+            loading: 'complete',
+            noId: 'yes'
+          });
+        }
       });
   }
 
   render() {
-    const { post, loading, offline } = this.state;
+    const { post, loading, offline, noId } = this.state;
     if (offline === true) {
       return <Off />;
     }
     if (loading === 'processing') {
       return <Loading />;
+    }
+    if (noId === 'yes') {
+      return <TryAgain/>;
     }
     return (
       <div className="detail-container">

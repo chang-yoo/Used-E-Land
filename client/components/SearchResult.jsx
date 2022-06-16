@@ -1,17 +1,25 @@
 import React from 'react';
-import Post from '../components/post';
-import { Loading } from '../components/spinner';
+import Post from './post';
+import { Loading } from './spinner';
+import { TryAgain } from './try-again';
 
 export default class SearchResult extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       match: [],
-      loading: 'processing'
+      loading: 'processing',
+      noId: 'no'
     };
   }
 
   componentDidMount() {
+    if (!`${this.props.keyword}`) {
+      this.setState({
+        loading: 'complete',
+        noId: 'yes'
+      });
+    }
     fetch(`api/search/${this.props.keyword}`)
       .then(res => res.json())
       .then(data => {
@@ -33,18 +41,21 @@ export default class SearchResult extends React.Component {
   }
 
   render() {
-    const { match, loading } = this.state;
+    const { match, loading, noId } = this.state;
     if (loading === 'processing') {
       return <Loading />;
     }
+    if (noId === 'yes') {
+      return <TryAgain/>;
+    }
     if (match.length === 0 && loading === 'complete') {
       return <div className="list-background">
-            <h1 className="margin-padding-bottom-0">Based on your search: {this.props.keyword}</h1>
-            <div className="text-align-center margin-top-min-6rem">
-              <h2 className="padding-left-1rem">Sorry! Nothing matches to your search keyword</h2>
-              <a className="font-color" href="#">Return Home</a>
-            </div>
-      </div>;
+              <h1 className="margin-padding-bottom-0">Based on your search: {this.props.keyword}</h1>
+              <div className="text-align-center in-center">
+                <h2 className="padding-left-1rem ">Sorry! Nothing matches to your search keyword</h2>
+                <a className="font-color" href="#">Return Home</a>
+              </div>
+            </div>;
     }
     return <div className="search-background">
       <h1 className="margin-padding-bottom-0">Based on your search: {this.props.keyword}</h1>
