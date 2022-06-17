@@ -1,7 +1,7 @@
 # Used-E-Land
 A web applicaton for users who want to sell their used items or buy others.
 
-I thought it would be a good idea to just sell things that were left in the house and not being used at a low price to other people who need them. Buyers can buy what they want at a lower price, and sellers can make some profit from it.
+Would you rather keep stuffs that are just left in the house/not being used forever or sell them at a lower price for profit? I recently realized taht there are a lot of items that I don't use anymore but in very good condition. So, I was thinking if I could create an application where it's very simple to upload and easy for users to interact. Used-Ecommerce-land not only lets users to get their wanted items at a lower price but also helps seller to make profits.
 
 ## Live Demo
 Try the application live at [https://used-e-land.herokuapp.com/](https://used-e-land.herokuapp.com/)
