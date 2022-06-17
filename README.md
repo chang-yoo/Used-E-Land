@@ -4,7 +4,7 @@ A web applicaton for users who want to sell their used items or buy others.
 I thought it would be a good idea to just sell things that were left in the house and not being used at a low price to other people who need them. Buyers can buy what they want at a lower price, and sellers can make some profit from it.
 
 ## Live Demo
-Try the application live at [https://used-e-land.herokuapp.com/](used-e-land.herokuapp.com)
+Try the application live at [https://used-e-land.herokuapp.com/](https://used-e-land.herokuapp.com/)
 
 ## Technologies Used
   - HTML
