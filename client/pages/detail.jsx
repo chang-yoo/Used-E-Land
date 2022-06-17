@@ -11,13 +11,14 @@ export default class Detail extends React.Component {
       post: '',
       loading: 'processing',
       offline: false,
-      noId: 'no'
+      noId: 'no',
+      postId: this.props.postId
     };
   }
 
   componentDidMount() {
     window.addEventListener('offline', event => this.setState({ offline: true }));
-    if (!`${this.props.postId}`) {
+    if (!`${this.props.postId}` || Number(`${this.props.postId}`) === 0) {
       this.setState({
         loading: 'complete',
         noId: 'yes'
@@ -26,6 +27,10 @@ export default class Detail extends React.Component {
     fetch(`/api/post/${this.props.postId}`)
       .then(res => res.json())
       .then(result => {
+        const { error } = result;
+        if (error) {
+          this.setState({ noId: 'yes' });
+        }
         if (result.length > 0) {
           const [data] = result;
           this.setState({
@@ -35,11 +40,35 @@ export default class Detail extends React.Component {
         }
         if (result.length === 0) {
           this.setState({
-            loading: 'complete',
             noId: 'yes'
           });
         }
       });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.post === this.state.post) {
+      fetch(`/api/post/${this.props.postId}`)
+        .then(res => res.json())
+        .then(result => {
+          const { error } = result;
+          if (error) {
+            this.setState({ post: '' });
+          }
+          if (result.length > 0) {
+            const [data] = result;
+            this.setState({
+              post: data,
+              loading: 'complete'
+            });
+          }
+          if (result.length === 0) {
+            this.setState({
+              noId: 'yes'
+            });
+          }
+        });
+    }
   }
 
   render() {
@@ -47,13 +76,11 @@ export default class Detail extends React.Component {
     if (offline === true) {
       return <Off />;
     }
-    if (loading === 'processing') {
+    if (loading === 'processing' && noId === 'no') {
       return <Loading />;
     }
-    if (noId === 'yes') {
-      return <TryAgain/>;
-    }
-    return (
+    if (post && loading === 'complete' && noId === 'no') {
+      return (
       <div className="detail-container">
         <div className="rows detail-background">
           <Contact key={post.postId} postData={post} />
@@ -87,6 +114,8 @@ export default class Detail extends React.Component {
           </div>
         </div>
       </div>
-    );
+      );
+    }
+    return <TryAgain />;
   }
 }

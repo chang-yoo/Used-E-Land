@@ -8,16 +8,14 @@ export default class SearchResult extends React.Component {
     super(props);
     this.state = {
       match: [],
-      loading: 'processing',
-      noId: 'no'
+      loading: 'processing'
     };
   }
 
   componentDidMount() {
     if (!`${this.props.keyword}`) {
       this.setState({
-        loading: 'complete',
-        noId: 'yes'
+        loading: 'complete'
       });
     }
     fetch(`api/search/${this.props.keyword}`)
@@ -41,12 +39,9 @@ export default class SearchResult extends React.Component {
   }
 
   render() {
-    const { match, loading, noId } = this.state;
+    const { match, loading } = this.state;
     if (loading === 'processing') {
       return <Loading />;
-    }
-    if (noId === 'yes') {
-      return <TryAgain/>;
     }
     if (match.length === 0 && loading === 'complete') {
       return <div className="list-background">
@@ -57,7 +52,8 @@ export default class SearchResult extends React.Component {
               </div>
             </div>;
     }
-    return <div className="search-background">
+    if (match.length > 0 && loading === 'complete') {
+      return <div className="search-background">
       <h1 className="margin-padding-bottom-0">Based on your search: {this.props.keyword}</h1>
       <h2 className="padding-left-1rem">Look at what we have found!</h2>
         <div className="row wrap">
@@ -83,5 +79,7 @@ export default class SearchResult extends React.Component {
         })}
       </div>
       </div>;
+    }
+    return <TryAgain />;
   }
 }

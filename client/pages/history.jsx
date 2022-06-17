@@ -15,7 +15,7 @@ export default class History extends React.Component {
   }
 
   componentDidMount() {
-    if (!`${this.props.userId}`) {
+    if (!`${this.props.userId}` || (`${this.props.userId}`) === 0) {
       this.setState({
         loading: 'complete',
         noId: 'yes'
@@ -29,18 +29,21 @@ export default class History extends React.Component {
           completed: result,
           loading: 'complete'
         });
-        const { error } = result;
-        if (error) {
-          this.setState({
-            loading: 'complete',
-            noId: 'yes'
-          });
-        }
       });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.completed === this.state.completed) {
+      fetch(`api/search/${this.props.userId}`)
+        .then(res => res.json())
+        .then(result => {
+          this.setState({ completed: result });
+        });
+    }
+  }
+
   render() {
-    const { completed, loading, offline, noId } = this.state;
+    const { completed, loading, offline } = this.state;
     if (loading === 'processing') {
       return <Loading />;
     }
@@ -58,10 +61,8 @@ export default class History extends React.Component {
                </div>;
              </div>;
     }
-    if (noId === 'yes') {
-      return <TryAgain/>;
-    }
-    return (
+    if (completed.length > 0 && loading === 'complete') {
+      return (
       <div className="list-background top-6-rem">
         <h1>{completed[0].username}&apos;s History</h1>
         <div className="row wrap">
@@ -87,6 +88,8 @@ export default class History extends React.Component {
           )}
         </div>
       </div>
-    );
+      );
+    }
+    return <TryAgain/>;
   }
 }
