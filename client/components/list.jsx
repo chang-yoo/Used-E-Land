@@ -19,7 +19,7 @@ export default class List extends React.Component {
 
   render() {
     const { post } = this.state;
-    if (post) {
+    if (post.length > 0) {
       return post.map(eachpost => {
         return (
         <div key={eachpost.postId} className="one-fourth-container post">
