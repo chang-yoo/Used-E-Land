@@ -6,7 +6,7 @@ export default class Upload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageURL: '../../server/public/images/image-placeholder.png',
+      imageURL: '/images/image-placeholder.png',
       condition: '',
       location: '',
       price: '',
