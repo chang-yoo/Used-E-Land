@@ -4,9 +4,9 @@ import { Loading } from '../components/spinner';
 import { Off } from '../components/offline';
 
 const images = [
-  { id: 0, image: 'images/carousel-1.png' },
-  { id: 1, image: 'images/carousel-2.png' },
-  { id: 2, image: 'images/carousel-3.png' }
+  { id: 0, image: '../../server/public/images/carousel-1.png' },
+  { id: 1, image: '../../server/public/images/carousel-2.png' },
+  { id: 2, image: '../../server/public/images/carousel-3.png' }
 ];
 
 export default class Home extends React.Component {
