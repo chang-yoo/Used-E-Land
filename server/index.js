@@ -200,7 +200,7 @@ app.post('/api/sign-in', (req, res, next) => {
 });
 
 app.post('/api/images', uploadsMiddleware, (req, res, next) => {
-  const url = `/images/${req.file.filename}`;
+  const url = req.file.location;
 
   const sql = `
   insert into "images" ("url")
