@@ -15,7 +15,7 @@ export default class Complete extends React.Component {
     const token = window.localStorage.getItem('lfz-final');
     const { status } = this.state;
     if (status === 'open') {
-      fetch(`api/complete/${this.props.postData.postId}`, {
+      fetch(`/api/complete/${this.props.postData.postId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

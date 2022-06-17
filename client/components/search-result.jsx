@@ -18,7 +18,7 @@ export default class SearchResult extends React.Component {
         loading: 'complete'
       });
     }
-    fetch(`api/search/${this.props.keyword}`)
+    fetch(`/api/search/${this.props.keyword}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
