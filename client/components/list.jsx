@@ -19,8 +19,9 @@ export default class List extends React.Component {
 
   render() {
     const { post } = this.state;
-    return post.map(eachpost => {
-      return (
+    if (post) {
+      return post.map(eachpost => {
+        return (
         <div key={eachpost.postId} className="one-fourth-container post">
           <Post key={eachpost.postId} postData={eachpost}/ >
           <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId} >
@@ -39,8 +40,9 @@ export default class List extends React.Component {
             </div>
           </a>
         </div>
+        );
+      }
       );
     }
-    );
   }
 }
