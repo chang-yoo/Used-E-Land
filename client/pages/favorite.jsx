@@ -26,7 +26,8 @@ export default class Favorite extends React.Component {
       .then(res => res.json())
       .then(result => {
         this.setState({
-          post: result
+          post: result,
+          loading: 'complete'
         });
         if (result.length === 0) {
           this.setState({
