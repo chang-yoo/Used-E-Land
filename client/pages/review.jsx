@@ -23,7 +23,7 @@ export default class Review extends React.Component {
   }
 
   componentDidMount() {
-    if (!`${this.props.userId}`) {
+    if (!`${this.props.userId}` || Number(`${this.props.userId}`) === 0) {
       this.setState({
         loading: 'complete',
         noId: 'yes'
@@ -48,7 +48,7 @@ export default class Review extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.check !== this.state.check) {
+    if (prevState.noId === this.state.noId || prevState.check !== this.state.check) {
       fetch(`/api/review/${this.props.userId}`)
         .then(res => res.json())
         .then(result => {
@@ -87,15 +87,12 @@ export default class Review extends React.Component {
   }
 
   render() {
-    const { reviews, offline, loading, noId } = this.state;
+    const { reviews, offline, loading } = this.state;
     if (offline === true) {
       return <Off />;
     }
     if (loading === 'processing') {
       return <Loading />;
-    }
-    if (noId === 'yes') {
-      return <TryAgain/>;
     }
     if (reviews.length === 0) {
       return (
@@ -117,7 +114,8 @@ export default class Review extends React.Component {
       </div>
       );
     }
-    return (
+    if (reviews.length > 0 && loading === 'complete') {
+      return (
       <div className="detail-background">
         <form onSubmit={this.handleSubmit}>
           <div className="row center top-padding-1rem">
@@ -150,6 +148,8 @@ export default class Review extends React.Component {
           })}
         </div>
       </div>
-    );
+      );
+    }
+    return <TryAgain />;
   }
 }

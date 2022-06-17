@@ -29,15 +29,12 @@ export default class MyProfile extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        const { error } = result;
-        if (!error) {
-          this.setState({
-            post: result,
-            username: getUsername,
-            loading: 'complete'
-          });
-        }
-        if (!error && result.length === 0) {
+        this.setState({
+          post: result,
+          username: getUsername,
+          loading: 'complete'
+        });
+        if (result.length === 0) {
           this.setState({ created: 'no' });
         }
       });
