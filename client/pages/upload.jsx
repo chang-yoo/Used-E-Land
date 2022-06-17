@@ -38,7 +38,7 @@ export default class Upload extends React.Component {
 
     const formData = new FormData();
     const image = this.fileInputRef.current.files[0];
-    this.setState({ imageURL: image.name });
+    this.setState({ imageURL: image });
     formData.append('image', image);
 
     fetch('/api/images', {
