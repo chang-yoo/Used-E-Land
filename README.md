@@ -39,8 +39,8 @@ Try the application live at [https://used-e-land.herokuapp.com/](https://used-e-
   - user can sign out
 
 ## Preview
-https://user-images.githubusercontent.com/99840727/174251343-84fe2ad6-2fee-427f-a531-e12c60c1f89d.mov
-https://user-images.githubusercontent.com/99840727/174251372-9e79c666-2078-4e16-be9f-155af38cf82b.mov
+[https://user-images.githubusercontent.com/99840727/174251343-84fe2ad6-2fee-427f-a531-e12c60c1f89d.mov]
+(https://user-images.githubusercontent.com/99840727/174251372-9e79c666-2078-4e16-be9f-155af38cf82b.mov)
 
 ## Development
   - user can chat in real-time between seller and buyer
