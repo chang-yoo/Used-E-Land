@@ -14,7 +14,8 @@ export default class Upload extends React.Component {
       description: '',
       image: '',
       loading: 'processing',
-      offline: false
+      offline: false,
+      uploading: 'no'
     };
     this.handleChange = this.handleChange.bind(this);
     this.fileInputRef = React.createRef();
@@ -33,6 +34,7 @@ export default class Upload extends React.Component {
   }
 
   handleImageSubmit(event) {
+    this.setState({ uploading: 'yes' });
     const token = window.localStorage.getItem('lfz-final');
     event.preventDefault();
 
@@ -53,7 +55,8 @@ export default class Upload extends React.Component {
         const { url } = data;
         this.setState({
           imageURL: url,
-          image: url
+          image: url,
+          uploading: 'no'
         });
         this.fileInputRef.current.value = null;
       })
@@ -85,12 +88,18 @@ export default class Upload extends React.Component {
   }
 
   render() {
-    const { imageURL, loading, offline } = this.state;
+    const { imageURL, loading, offline, uploading } = this.state;
+    let classvalue = 'hidden';
     if (loading === 'processing') {
       return <Loading />;
     }
     if (offline === true) {
       return <Off />;
+    }
+    if (uploading === 'no') {
+      classvalue = 'hidden';
+    } else {
+      classvalue = '';
     }
     return <div className="column-full">
       <div className="upload-container">
@@ -100,6 +109,7 @@ export default class Upload extends React.Component {
               <div className="column-80 margin-top-1rem">
                 <div className="image-container">
                   <img src={imageURL}></img>
+                  <h3 id="uploading-image" className={classvalue}>Uploading</h3>
                 </div>
                 <div className="row space-between">
                   <div className="margin-top-1rem">
@@ -147,7 +157,7 @@ export default class Upload extends React.Component {
                 type="text"
                 name="price"
                 onChange={this.handleChange}
-                placeholder="$price"
+                placeholder="$price (Number Only)"
                 className="edit-text-width-first-half"
                 />
               </div>

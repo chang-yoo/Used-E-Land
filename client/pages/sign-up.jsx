@@ -126,6 +126,7 @@ export default class SignUp extends React.Component {
                         name="phone"
                         onChange={this.handleChange}
                         className="phone"
+                        placeholder="no space or dash between numbers!"
                       />
                       <label>
                         <h2>
