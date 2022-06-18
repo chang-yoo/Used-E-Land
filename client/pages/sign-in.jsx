@@ -15,11 +15,36 @@ export default class SignIn extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.hideBox = this.hideBox.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener('offline', event => this.setState({ offline: true }));
-    this.setState({ loading: 'complete' });
+    this.setState({ username: 'test', password: 'test', loading: 'complete' });
+  }
+
+  handleDemo(event) {
+    this.setState({ username: 'test', password: 'test' });
+    event.preventDefault();
+    fetch('/api/sign-in', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(res => res.json())
+      .then(result => {
+        const { error } = result;
+        if (!error) {
+          const { token, user } = result;
+          window.localStorage.setItem('lfz-final', token);
+          const { userId } = user;
+          window.location.hash = 'myprofile?userId=' + userId;
+        } else {
+          this.setState({ classvalue: '' });
+        }
+      });
   }
 
   handleSubmit(event) {
@@ -128,6 +153,9 @@ export default class SignIn extends React.Component {
               </div>
             </div>
           </div>
+        </div>
+        <div className="text-align-center half-column">
+          <button onClick={this.handleDemo} className="demo-button">Let&apos;s try a demo account</button>
         </div>
       </div>
     );
