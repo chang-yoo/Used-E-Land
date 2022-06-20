@@ -163,6 +163,10 @@ body {
     width: 130px;
   }
 
+  .searching-position {
+    top: 55%;
+  }
+
   .edit-text-width-first-half {
     width: 250px;
   }
@@ -230,10 +234,6 @@ body {
     width: 400px;
   }
 
-  .position {
-    margin-left: 1rem;
-  }
-
   .edit-text-width-first-half {
     width: 400px;
   }
@@ -278,11 +278,21 @@ body {
   .transition {
     transform: translateX(-250%);
   }
+
+  .searching-position {
+    top: 55%;
+    left: 5%;
+  }
 }
 
 @media only screen and (min-width: 900px) {
   .transition {
     transform: translateX(-230%);
+  }
+
+  .searching-position {
+    top: 55%;
+    left: 5%;
   }
 }
 

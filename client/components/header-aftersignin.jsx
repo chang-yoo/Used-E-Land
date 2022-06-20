@@ -75,21 +75,25 @@ export default class Header extends React.Component {
           <div className="column-full margin-0">
             <div className="row">
               <form onSubmit={this.handleSubmit}>
-                <label>
+                <div className="searching-container" id="keyword">
                   <input
                     id="keyword"
                     name="keyword"
                     type="text"
                     onChange={this.handleChange}
                     value={this.state.userInput}
-                    className="search-bar search-width"
+                    className="search-bar"
                   />
-                </label>
+                  <div className="searching-icons searching-position">
+                    <div className={classvalue}>
+                      <a><i onClick={this.reset} className="fa-solid fa-xmark searching-x"></i></a>
+                    </div>
+                    <div>
+                      <i onClick={this.handleSubmit} className="fa-solid fa-magnifying-glass search-glass"></i>
+                    </div>
+                  </div>
+                </div>
               </form>
-              <div className="searching-icons">
-                <a className={classvalue}><i onClick={this.reset} className="fa-solid fa-xmark searching-x"></i></a>
-                <i onClick={this.handleSubmit} className="fa-solid fa-magnifying-glass search-glass position"></i>
-              </div>
               <div className="menu-bar transition">
                 <div>
                   <i onClick={this.menubar} className="fa-solid fa-arrow-right-long fa-2x margin-bottom-1rem"></i>
@@ -123,7 +127,7 @@ export default class Header extends React.Component {
         <div className="column-full margin-0">
           <div className="row">
             <form onSubmit={this.handleSubmit}>
-              <label>
+              <div className="searching-container" id="keyword">
                 <input
                   id="keyword"
                   name="keyword"
@@ -132,12 +136,16 @@ export default class Header extends React.Component {
                   value={this.state.userInput}
                   className="search-bar"
                 />
-              </label>
+                <div className="searching-icons searching-position">
+                  <div className={classvalue}>
+                    <a><i onClick={this.reset} className="fa-solid fa-xmark searching-x"></i></a>
+                  </div>
+                  <div>
+                  <i onClick={this.handleSubmit} className="fa-solid fa-magnifying-glass search-glass"></i>
+                  </div>
+                </div>
+              </div>
             </form>
-            <div className="searching-icons">
-              <a className={classvalue}><i onClick={this.reset} className="fa-solid fa-xmark searching-x"></i></a>
-              <i onClick={this.handleSubmit} className="fa-solid fa-magnifying-glass search-glass"></i>
-            </div>
             <div className="menu-container">
               <i onClick={this.menubar} className="fa-solid fa-bars fa-2x menu-icon"></i>
             </div>
