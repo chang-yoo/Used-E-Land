@@ -102,7 +102,7 @@ export default class Upload extends React.Component {
       classvalue = '';
     }
     return <div className="column-full">
-      <div className="upload-container">
+      <div className="upload-container edit-width">
         <form onSubmit={this.handleSubmit}>
           <div className="rows">
             <div className="edit-column-half">

@@ -10,18 +10,20 @@ export default class History extends React.Component {
       completed: [],
       loading: 'processing',
       offline: false,
-      noId: 'no'
+      noId: 'no',
+      userId: this.props.userId
     };
   }
 
   componentDidMount() {
-    if (!`${this.props.userId}` || (`${this.props.userId}`) === 0) {
+    const { userId } = this.state;
+    window.addEventListener('offline', event => this.setState({ offline: true }));
+    if (!userId || userId === 0) {
       this.setState({
         loading: 'complete',
         noId: 'yes'
       });
     }
-    window.addEventListener('offline', event => this.setState({ offline: true }));
     fetch(`/api/complete/${this.props.userId}`)
       .then(res => res.json())
       .then(result => {
@@ -30,16 +32,6 @@ export default class History extends React.Component {
           loading: 'complete'
         });
       });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.completed === this.state.completed) {
-      fetch(`api/search/${this.props.userId}`)
-        .then(res => res.json())
-        .then(result => {
-          this.setState({ completed: result });
-        });
-    }
   }
 
   render() {
@@ -58,7 +50,7 @@ export default class History extends React.Component {
               <div className="text-align-center in-center">
                  <h1>You didn&apos;t make any history yet</h1>
                  <a className="font-color" href="#">Return Home</a>
-               </div>;
+               </div>
              </div>;
     }
     if (completed.length > 0 && loading === 'complete') {
@@ -74,7 +66,7 @@ export default class History extends React.Component {
                     <div className="postlistimage-container">
                       <img className='postlist-image' src={eachpost.imageURL}></img>
                     </div>
-                    <div className="postlist-text">
+                    <div className="postlist-text text-align-center">
                       <h3 className="postlist-title">{eachpost.title}</h3>
                       <p>{eachpost.condition}</p>
                       <p>{eachpost.location}</p>

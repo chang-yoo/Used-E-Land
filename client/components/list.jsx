@@ -30,7 +30,7 @@ export default class List extends React.Component {
                 <img className='postlist-image' src = {eachpost.imageURL}></img>
               </div>
               <div>
-                <div className="postlist-text">
+                <div className="postlist-text  text-align-center">
                   <h3 className="postlist-title">{eachpost.title}</h3>
                   <p>{eachpost.condition}</p>
                   <p>{eachpost.location}</p>

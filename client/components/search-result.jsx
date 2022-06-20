@@ -62,11 +62,11 @@ export default class SearchResult extends React.Component {
         <div key={eachpost.postId} className="one-fourth-container post">
           <Post key={eachpost.postId} postData={eachpost} />
           <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId} >
-            <div className="each-post">
+            <div className="each-post ">
               <div className="postlistimage-container">
                 <img className='postlist-image' src={eachpost.imageURL}></img>
               </div>
-              <div className="postlist-text">
+              <div className="postlist-text text-align-center">
                 <h3 className="postlist-title">{eachpost.title}</h3>
                 <p>{eachpost.condition}</p>
                 <p>{eachpost.location}</p>

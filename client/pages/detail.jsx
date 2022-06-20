@@ -87,7 +87,7 @@ export default class Detail extends React.Component {
           <div className="detail-description detail-column-half">
             <div className="column-80">
               <div className="detail-image-container">
-                <img className="margin-top-1rem" src={post.imageURL}></img>
+                <img className="detail-image-height margin-top-1rem" src={post.imageURL}></img>
               </div>
               <div className="detail-text">
                 <div className="row space-between vertical-margin">

@@ -18,6 +18,7 @@ import Review from './pages/review';
 import NotFound from './components/not-found';
 import { Off } from './components/offline';
 import { Loading } from './components/spinner';
+import ViewAll from './pages/all';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -82,6 +83,8 @@ export default class App extends React.Component {
       return <History userId={this.state.route.params.get('userId')}/>;
     } else if (path === 'review') {
       return <Review userId={this.state.route.params.get('userId')} />;
+    } else if (path === 'all') {
+      return <ViewAll />;
     } else {
       return <NotFound />;
     }
