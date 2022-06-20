@@ -51,7 +51,7 @@ export default class Header extends React.Component {
     }
     if (menu === 'on') {
       return (
-    <div className="header">
+        <div className="header">
       <div>
         <a onClick={this.turnoffMenubar} href="#">
           <img className="logo" src="/images/logo.png"></img>

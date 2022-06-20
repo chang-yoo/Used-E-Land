@@ -114,7 +114,7 @@ export default class Header extends React.Component {
       );
     }
     return (
-      <div className="header">
+      <div className="header header-height">
         <div>
           <a href="#">
             <img className="logo" src="/images/logo.png"></img>

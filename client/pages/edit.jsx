@@ -145,13 +145,13 @@ export default class Edit extends React.Component {
     }
     return (
       <div className="column-full">
-        <div className="upload-container">
+        <div className="upload-container edit-width">
           <form onSubmit={this.handleSubmit}>
             <div className="rows">
               <div className="edit-column-half">
                 <div className="column-80 margin-top-1rem">
                   <div className="image-container">
-                    <img src={imageURL}></img>
+                    <img className="detail-image-height" src={imageURL}></img>
                   </div>
                   <div className="row space-between">
                     <div className="margin-top-1rem">

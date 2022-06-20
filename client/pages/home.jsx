@@ -78,9 +78,9 @@ export default class Home extends React.Component {
               }
             })}
           </div>
-        <div className="list-background column-full">
-          <h1>Most Recent</h1>
-          <div className="row wrap">
+        <div className="main-list-background column-full">
+          <h1>Most Recent <a href="#all" className="view-all-link">View All</a></h1>
+          <div className="row wrap justify-center">
             <List key={this.props.postId}/>
           </div>
         </div>

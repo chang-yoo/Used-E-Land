@@ -40,6 +40,21 @@ app.get('/api/main', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/all', (req, res, next) => {
+  const sql = `
+  select *
+  from "post"
+  where "status" = 'open'
+  order by "postId" desc
+  `;
+  db
+    .query(sql)
+    .then(result => {
+      return res.status(201).json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/post/:postId', (req, res, next) => {
   const targetId = Number(req.params.postId);
   if (!Number.isInteger(targetId) || targetId <= 0) {
