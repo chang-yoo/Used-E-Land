@@ -130,10 +130,6 @@ body {
   padding-top: 0.3rem;
 }
 
-.vertical-margin {
-  margin: -1.5rem auto;
-}
-
 .margin-top-half-rem {
   margin-top: 0.5rem;
 }
@@ -211,6 +207,12 @@ body {
   .transition {
     transform: translateX(-200%);
   }
+
+  .dot-container {
+    margin: auto;
+    margin-top: -7rem;
+    padding-right: 5rem;
+  }
 }
 
 @media only screen and (min-width: 620px) {
@@ -282,6 +284,12 @@ body {
   .searching-position {
     top: 55%;
     left: 5%;
+  }
+
+  .dot-container {
+    margin: auto;
+    margin-top: -10rem;
+    padding-right: 5rem;
   }
 }
 
@@ -366,6 +374,11 @@ body {
 
   .detail-image-height {
     max-height: 300px;
+  }
+
+  .dot-container {
+    margin: auto;
+    margin-top: -7rem;
   }
 }
 

@@ -69,15 +69,15 @@ export default class Home extends React.Component {
           })
         }
         </div>
-          <div className="dot-container vertical-margin">
-            {images.map(dot => {
-              if (this.state.current === dot.id) {
-                return <i key={dot.id} id={dot.id} onClick={this.imageSwap} className='fas fa-circle horz-margin'></i>;
-              } else {
-                return <i key={dot.id} id={dot.id} onClick={this.imageSwap} className='far fa-circle horz-margin'></i>;
-              }
-            })}
-          </div>
+        <div className="dot-container">
+          {images.map(dot => {
+            if (this.state.current === dot.id) {
+              return <i key={dot.id} id={dot.id} onClick={this.imageSwap} className='fas fa-circle horz-margin'></i>;
+            } else {
+              return <i key={dot.id} id={dot.id} onClick={this.imageSwap} className='far fa-circle horz-margin'></i>;
+            }
+          })}
+        </div>
         <div className="main-list-background column-full">
           <h1>Most Recent <a href="#all" className="view-all-link">View All</a></h1>
           <div className="row wrap justify-center">
