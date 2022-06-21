@@ -136,15 +136,6 @@ h1 {
   margin: auto;
 }
 
-.logo {
-  width: 130px;
-  height: 40px;
-  margin: auto 1rem;
-  border-radius: 10px;
-  margin-top: 1.25rem;
-  object-fit: cover;
-}
-
 .black {
   background-color: black;
   z-index: 100;
@@ -249,6 +240,11 @@ textarea {
   margin-top: 1.5rem;
   right: 5%;
   z-index: 3;
+}
+
+.favorite-page {
+  padding-right: 4rem;
+  margin-top: 1.5rem;
 }
 
 .post:hover {

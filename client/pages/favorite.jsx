@@ -17,6 +17,9 @@ export default class Favorite extends React.Component {
   componentDidMount() {
     window.addEventListener('offline', event => this.setState({ offline: true }));
     const token = window.localStorage.getItem('lfz-final');
+    if (!token) {
+      window.location.hash = '#sign-in';
+    }
     fetch('/api/favorite', {
       headers: {
         'Content-Type': 'application/json',

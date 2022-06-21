@@ -61,15 +61,21 @@ export default class Header extends React.Component {
   render() {
     const { menu, userId } = this.state;
     let classvalue = 'hidden';
+    let logoImage = 'favicon.ico';
     if (this.state.userInput.length > 0) {
       classvalue = '';
+    }
+    if (screen.width < 620) {
+      logoImage = '/favicon.ico';
+    } else {
+      logoImage = '/images/logo.png';
     }
     if (menu === 'on') {
       return (
         <div className="header row column-full">
           <div>
             <a onClick={this.turnoffMenubar} href="#">
-              <img className="logo" src="/images/logo.png"></img>
+              <img className="logo" src={logoImage}></img>
             </a>
           </div>
           <div className="column-full margin-0">
@@ -104,8 +110,8 @@ export default class Header extends React.Component {
                       <a href="#myprofile" onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">My Profile</li></a>
                       <a href="#favorite" onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">My Favorite</li></a>
                       <a href={`#history?userId=${userId}`} onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">My History</li></a>
+                      <a href={`#review?userId=${userId}`} onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">How Am I Doing?</li></a>
                       <a href="#upload" onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">Sell Now</li></a>
-                    <a href={`#review?userId=${userId}`} onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">How Am I Doing?</li></a>
                   </div>
                   <div className="margin-left-3rem sign-out">
                     <a href="#sign-in" className="font-color" onClick={this.handleSignOut}>Sign Out</a>
@@ -121,7 +127,7 @@ export default class Header extends React.Component {
       <div className="header header-height">
         <div>
           <a href="#">
-            <img className="logo" src="/images/logo.png"></img>
+            <img className="logo" src={logoImage}></img>
           </a>
         </div>
         <div className="column-full margin-0">
@@ -146,9 +152,10 @@ export default class Header extends React.Component {
                 </div>
               </div>
             </form>
-            <div className="menu-container">
-              <i onClick={this.menubar} className="fa-solid fa-bars fa-2x menu-icon"></i>
-            </div>
+              <a href="#favorite"><i className="fa-solid fa-heart fa-2x favorite-page"></i></a>
+              <div className="menu-container">
+                <i onClick={this.menubar} className="fa-solid fa-bars fa-2x menu-icon"></i>
+              </div>
           </div>
         </div>
       </div>
