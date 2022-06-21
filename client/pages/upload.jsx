@@ -6,7 +6,7 @@ export default class Upload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageURL: '/images/image-placeholder.png',
+      imageURL: '',
       condition: '',
       location: '',
       price: '',
@@ -118,7 +118,7 @@ export default class Upload extends React.Component {
     if (uploading === 'no') {
       classvalue = 'hidden';
     } else {
-      classvalue = '';
+      classvalue = 'text-align-center';
     }
     if (tryAgain === 'yes') {
       showAgain = '';
@@ -145,8 +145,13 @@ export default class Upload extends React.Component {
               <div className="column-80 margin-top-1rem">
                 <div className="image-container">
                   <img src={imageURL}></img>
-                  <h3 id="uploading-image" className={classvalue}>Please Wait</h3>
-                </div>
+                    <div id={classvalue} className='lds-ellipsis'>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                  </div>
                 <div className="row space-between">
                   <div className="margin-top-1rem">
                     <label id="uploading" htmlFor="upload">Choose File</label>
@@ -158,10 +163,8 @@ export default class Upload extends React.Component {
                       accept=".png, .jpg, .jpeg, .gif"
                       className="search-button"
                       hidden
+                      onChange={this.handleImageSubmit}
                     />
-                  </div>
-                  <div className="margin-top-half-rem">
-                    <button onClick={this.handleImageSubmit} className="image-load">Upload</button>
                   </div>
                 </div>
                 <div className="margin-top-1rem column-full edit-text-align">

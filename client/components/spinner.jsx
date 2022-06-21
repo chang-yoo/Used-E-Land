@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Loading = event => (
   <div className="loading-background">
-    <div className="loading-center">
+    <div>
       <div className="text-align-center">
        <h1>loading</h1>
       </div>
