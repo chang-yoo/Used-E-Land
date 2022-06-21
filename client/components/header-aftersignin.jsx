@@ -7,7 +7,8 @@ export default class Header extends React.Component {
     this.state = {
       userInput: '',
       menu: 'off',
-      userId: null
+      userId: null,
+      screen: screen.width
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -59,14 +60,14 @@ export default class Header extends React.Component {
   }
 
   render() {
-    const { menu, userId } = this.state;
+    const { menu, userId, screen } = this.state;
     let classvalue = 'hidden';
     let logoImage = 'favicon.ico';
     if (this.state.userInput.length > 0) {
       classvalue = '';
     }
-    if (screen.width < 620) {
-      logoImage = '/favicon.ico';
+    if (screen < 620) {
+      logoImage = 'favicon.ico';
     } else {
       logoImage = '/images/logo.png';
     }
