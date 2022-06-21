@@ -12,10 +12,10 @@ export default class Category extends React.Component {
     return (
       <div className="column-full">
             <ul>
-          <div className="row">
+          <div className="row space-around">
             <div className="category-list">
             <li>
-              <a href="">Menswear &#9662;</a>
+              <a href="">Mens &#9662;</a>
               <ul className="dropdown">
                 <li className="select" value="Menswear-all"><a href="">Show All</a></li>
                 <li className="select" value="Menswear-Tops"><a href="">Tops</a></li>
@@ -34,7 +34,7 @@ export default class Category extends React.Component {
             </div>
             <div className="category-list">
             <li>
-              <a href="">Womenswear &#9662;</a>
+              <a href="">Women &#9662;</a>
               <ul className="dropdown">
                 <li className="select" value="Womenswear-all"><a href="">Show All</a></li>
                 <li className="select" value="Womenswear-Tops"><a href="">Tops</a></li>

@@ -769,11 +769,6 @@ input::-webkit-inner-spin-button {
   margin-top: 3rem;
 }
 
-.category-list {
-  margin: 0 1rem;
-  padding-left: 1rem;
-}
-
 ul li ul.dropdown {
   /* Set width of the dropdown */
   background: #f2f2f2;
