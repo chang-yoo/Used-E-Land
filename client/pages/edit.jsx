@@ -11,12 +11,17 @@ export default class Edit extends React.Component {
       condition: '',
       location: '',
       price: '',
+      size: '',
+      brand: '',
+      style: '',
+      color: '',
       title: '',
       description: '',
       classvalue: 'hidden',
       loading: 'processing',
       offline: false,
-      noId: 'no'
+      noId: 'no',
+      tryAgain: 'no'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -24,6 +29,7 @@ export default class Edit extends React.Component {
     this.handleImageSubmit = this.handleImageSubmit.bind(this);
     this.handleDeleteBox = this.handleDeleteBox.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleConfirmDelete = this.handleConfirmDelete.bind(this);
   }
 
   componentDidMount() {
@@ -90,6 +96,13 @@ export default class Edit extends React.Component {
       .catch(err => console.error(err));
   }
 
+  handleConfirmDelete(event) {
+    event.preventDefault();
+    this.setState({
+      tryAgain: 'no'
+    });
+  }
+
   handleDelete() {
     const token = window.localStorage.getItem('lfz-final');
     fetch(`/api/edit/${this.props.postId}`, {
@@ -116,35 +129,56 @@ export default class Edit extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const token = window.localStorage.getItem('lfz-final');
-    fetch(`/api/edit/${this.props.postId}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-access-token': token
-      },
-      body: JSON.stringify(this.state)
-    })
-      .then(res => res.json())
-      .then(result => {
-        this.setState(result);
-        window.location.hash = '#myprofile';
-      });
+    const { price } = this.state;
+    if (isNaN(price)) {
+      return this.setState({ tryAgain: 'yes' });
+    } else {
+      const token = window.localStorage.getItem('lfz-final');
+      fetch(`/api/edit/${this.props.postId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': token
+        },
+        body: JSON.stringify(this.state)
+      })
+        .then(res => res.json())
+        .then(result => {
+          this.setState(result);
+          window.location.hash = '#myprofile';
+        });
+    }
   }
 
   render() {
-    const { imageURL, condition, location, price, title, description, loading, offline, noId } = this.state;
+    const { imageURL, condition, location, price, title, size, brand, color, style, description, loading, offline, noId, tryAgain } = this.state;
+    let showAgain = 'hidden';
     if (offline === true) {
       return <Off />;
     }
     if (loading === 'processing') {
       return <Loading />;
     }
+    if (tryAgain === 'yes') {
+      showAgain = '';
+    }
     if (noId === 'yes') {
       return <TryAgain/>;
     }
     return (
       <div className="column-full">
+        <div className={showAgain}>
+          <div className="confirm-delete-box delete-box-height">
+            <div className="margin-top-3rem">
+              <div className="text-center">
+                <h3 className="delete-top-margin">Price must be numbers only</h3>
+              </div>
+              <div className="row space-around margin-top-5rem">
+                <button onClick={this.handleConfirmDelete} className="delete-confirm-button">Okay</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="upload-container edit-width">
           <form onSubmit={this.handleSubmit}>
             <div className="rows">
@@ -171,65 +205,126 @@ export default class Edit extends React.Component {
                     </div>
                   </div>
                   <div className="margin-top-1rem column-full edit-text-align">
+                    <hr></hr>
+                    <div className="title-container">
+                      <label>Title</label>
+                      <input
+                        id="title"
+                        type="text"
+                        name="title"
+                        onChange={this.handleChange}
+                        className="title edit-text-width-second-half"
+                        placeholder={title}
+                      />
+                    </div>
+                    <hr></hr>
+                    <div className="row">
+                      <div className="price-container">
+                        <label>Price</label>
+                        <input
+                          required
+                          id="price"
+                          type="text"
+                          name="price"
+                          onChange={this.handleChange}
+                          placeholder={price}
+                          className="edit-text-width-first-half"
+                        />
+                      </div>
+                      <div>
+                        <label>Size</label>
+                        <input
+                          required
+                          id="size"
+                          type="text"
+                          name="size"
+                          onChange={this.handleChange}
+                          placeholder={size}
+                        />
+                      </div>
+                    </div>
+                    <hr></hr>
                     <div className="condition-container">
                       <label id="font-color" htmlFor="condition">Condition: </label>
-                      <select className="condition edit-text-width-first-half" onChange={this.handleChange} name="condition">
-                        <option className="select">{condition}</option>
-                        <option className="select" value="very used">very used</option>
-                        <option className="select" value="used">used</option>
-                        <option className="select" value="like new">like new</option>
-                        <option className="select" value="brand new">brand new</option>
+                      <select className="condition" onChange={this.handleChange} name="condition" placeholder={condition}required>
+                        <option className="select" value="">Please select</option>
+                        <option className="select" value="Used - Fair">Used - Fair</option>
+                        <option className="select" value="Used - Good">Used - Good</option>
+                        <option className="select" value="Used - Very Good">Used - Very Good</option>
+                        <option className="select" value="Used - Excellent">Used - Excellent</option>
+                        <option className="select" value="Pristine">Pristine</option>
                       </select>
-                    </div>
-                    <div className="location-container">
-                      <input
-                        id="location"
-                        type="text"
-                        name="location"
-                        onChange={this.handleChange}
-                        placeholder={location}
-                        className="edit-text-width-first-half"
-                      />
-                    </div>
-                    <div className="price-container">
-                      <input
-                        id="price"
-                        type="text"
-                        name="price"
-                        onChange={this.handleChange}
-                        placeholder={price}
-                        className="edit-text-width-first-half"
-                      />
                     </div>
                   </div>
                 </div>
               </div>
               <div className="edit-column-half">
                 <div className="column-80 edit-text-align">
-                    <div className="margin-top-1rem">
-                      <hr></hr>
-                      <div className="title-container">
+                  <div className="margin-top-1rem">
+                    <hr></hr>
+                    <div className="row">
+                      <div>
+                        <label>Brand</label>
                         <input
-                          id="title"
+                          id="brand"
                           type="text"
-                          name="title"
+                          name="brand"
                           onChange={this.handleChange}
-                          className="title edit-text-width-second-half"
-                          placeholder={title}
+                          placeholder={brand}
                         />
-                        <i onClick={this.handleDeleteBox} className="fa-solid fa-delete-left fa-2x"></i>
                       </div>
-                      <hr></hr>
-                      <div className="description-container">
-                        <textarea
-                          autoFocus
-                          id="description"
+                      <div>
+                        <label>Style</label>
+                        <input
+                          required
+                          id="style"
                           type="text"
-                          name="description"
+                          name="brand"
                           onChange={this.handleChange}
-                          className="description edit-text-width-second-half"
-                          placeholder={description}
+                          placeholder={style}
                         />
+                      </div>
+                    </div>
+                    <hr></hr>
+                    <div className="row">
+                      <div>
+                        <label>Color</label>
+                        <input
+                          required
+                          id="color"
+                          type="text"
+                          name="color"
+                          onChange={this.handleChange}
+                          placeholder={color}
+                        />
+                      </div>
+
+                      <div className="location-container">
+                        <label>Location</label>
+                        <input
+                          required
+                          id="location"
+                          type="text"
+                          name="location"
+                          onChange={this.handleChange}
+                          className="edit-text-width-first-half"
+                          placeholder={location}
+                        />
+                      </div>
+                    </div>
+                    <hr></hr>
+                    <div className="description-container">
+                      <textarea
+                        required
+                        autoFocus
+                        id="description"
+                        type="text"
+                        name="description"
+                        onChange={this.handleChange}
+                        className="description edit-text-width-second-half"
+                        wrap="hard"
+                        placeholder={description}
+                      />
                       </div>
                       <div className="row space-between margin-top-1rem">
                         <button type="submit" className="upload-button">Update</button>

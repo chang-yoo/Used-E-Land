@@ -10,6 +10,10 @@ export default class Upload extends React.Component {
       condition: '',
       location: '',
       price: '',
+      size: '',
+      brand: '',
+      style: '',
+      color: '',
       title: '',
       description: '',
       image: '',
@@ -73,8 +77,7 @@ export default class Upload extends React.Component {
 
   handleDelete(event) {
     this.setState({
-      tryAgain: 'no',
-      price: ''
+      tryAgain: 'no'
     });
   }
 
@@ -162,39 +165,55 @@ export default class Upload extends React.Component {
                   </div>
                 </div>
                 <div className="margin-top-1rem column-full edit-text-align">
-              <div className="condition-container">
-                <label id="font-color" htmlFor="condition">Condition: </label>
-                <select className="condition" onChange={this.handleChange} name="condition" required>
-                  <option className="select" value="">Please select</option>
-                  <option className="select" value="Fair">Fair</option>
-                  <option className="select" value="Good">Good</option>
-                  <option className="select" value="Very Good">Very Good</option>
-                  <option className="select" value="Excellent">Excellent</option>
-                  <option className="select" value="Pristine">Pristine</option>
-                </select>
-              </div>
-              <div className="location-container">
+              <hr></hr>
+              <div className="title-container">
+                <label>Title</label>
                 <input
-                required
-                id="location"
-                type="text"
-                name="location"
-                onChange={this.handleChange}
-                placeholder='location'
-                      className="edit-text-width-first-half"
+                  id="title"
+                  type="text"
+                  name="title"
+                  onChange={this.handleChange}
+                  className="title edit-text-width-second-half"
+                  placeholder="Name your item!"
                 />
               </div>
-              <div className="price-container">
-                <input
-                required
-                id="price"
-                type="text"
-                name="price"
-                onChange={this.handleChange}
-                placeholder="$price (Number Only)"
-                className="edit-text-width-first-half"
-                />
+                  <hr></hr>
+              <div className="row">
+                <div className="price-container">
+                  <label>Price</label>
+                  <input
+                  required
+                  id="price"
+                  type="text"
+                  name="price"
+                  onChange={this.handleChange}
+                  placeholder="Number Only"
+                  className="edit-text-width-first-half"
+                  />
+                </div>
+                <div>
+                  <label>Size</label>
+                  <input
+                    required
+                    id="size"
+                    type="text"
+                    name="size"
+                    onChange={this.handleChange}
+                  />
+                </div>
               </div>
+                  <hr></hr>
+                  <div className="condition-container">
+                    <label id="font-color" htmlFor="condition">Condition: </label>
+                    <select className="condition" onChange={this.handleChange} name="condition" required>
+                      <option className="select" value="">Please select</option>
+                      <option className="select" value="Used - Fair">Used - Fair</option>
+                      <option className="select" value="Used - Good">Used - Good</option>
+                      <option className="select" value="Used - Very Good">Used - Very Good</option>
+                      <option className="select" value="Used - Excellent">Used - Excellent</option>
+                      <option className="select" value="Pristine">Pristine</option>
+                    </select>
+                  </div>
             </div>
           </div>
           </div>
@@ -202,15 +221,51 @@ export default class Upload extends React.Component {
               <div className="column-80 edit-text-align">
                 <div className="margin-top-1rem">
                   <hr></hr>
-                  <div className="title-container">
+                  <div className="row">
+                    <div>
+                    <label>Brand</label>
                     <input
-                      id="title"
+                      id="brand"
                       type="text"
-                      name="title"
+                      name="brand"
                       onChange={this.handleChange}
-                      className="title edit-text-width-second-half"
-                      placeholder="Name your item!"
                     />
+                    </div>
+                  <div>
+                    <label>Style</label>
+                    <input
+                      required
+                      id="style"
+                      type="text"
+                      name="brand"
+                      onChange={this.handleChange}
+                    />
+                    </div>
+                  </div>
+                  <hr></hr>
+                  <div className="row">
+                  <div>
+                    <label>Color</label>
+                    <input
+                      required
+                      id="color"
+                      type="text"
+                      name="color"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+
+                  <div className="location-container">
+                    <label>Location</label>
+                    <input
+                      required
+                      id="location"
+                      type="text"
+                      name="location"
+                      onChange={this.handleChange}
+                      className="edit-text-width-first-half"
+                    />
+                  </div>
                   </div>
                   <hr></hr>
                   <div className="description-container">

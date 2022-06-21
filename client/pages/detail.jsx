@@ -92,7 +92,7 @@ export default class Detail extends React.Component {
               <div className="detail-text">
                 <div className="row space-between vertical-margin">
                   <div>
-                    <a href={`#history?userId=${post.userId}`}><h4>Seller: {post.username} </h4></a>
+                      <a href={`#history?userId=${post.userId}`}><h4>Seller: <span>{post.username}</span> </h4></a>
                   </div>
                   <div>
                     <a href={`#review?userId=${post.userId}`}><h5 className="font-color">How am I?</h5></a>
@@ -109,7 +109,7 @@ export default class Detail extends React.Component {
               <hr></hr>
               <h2>{post.title}</h2>
               <hr></hr>
-              <h2>Description:<br /><br />{post.description}</h2>
+              <h2>{post.description}</h2>
             </div>
           </div>
         </div>
