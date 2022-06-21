@@ -20,6 +20,8 @@ import { Off } from './components/offline';
 import { Loading } from './components/spinner';
 import ViewAll from './pages/all';
 import Category from './components/category';
+import CategorySearch from './pages/category-search';
+import ShowAll from './pages/show-all';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -86,6 +88,10 @@ export default class App extends React.Component {
       return <Review userId={this.state.route.params.get('userId')} />;
     } else if (path === 'all') {
       return <ViewAll />;
+    } else if (path === 'category') {
+      return <CategorySearch keyword={this.state.route.params.get('keyword')} />;
+    } else if (path === 'categories') {
+      return <ShowAll keyword ={this.state.route.params.get('keyword')}/>;
     } else {
       return <NotFound />;
     }

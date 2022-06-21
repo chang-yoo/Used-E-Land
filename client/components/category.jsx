@@ -4,7 +4,7 @@ export default class Category extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      link: this.props.keyword
     };
   }
 
@@ -17,18 +17,18 @@ export default class Category extends React.Component {
             <li>
               <a href="">Mens &#9662;</a>
               <ul className="dropdown">
-                <li className="select" value="Menswear-all"><a href="">Show All</a></li>
-                <li className="select" value="Menswear-Tops"><a href="">Tops</a></li>
-                <li className="select" value="Menswear-Bottoms"><a href="">Bottoms</a></li>
-                <li className="select" value="Menswear-Coats and Jackets"><a href="">Coats and Jackets</a></li>
-                <li className="select" value="Menswear-Jumpsuits and Rompers"><a href="">Jumpsuits and Rompers</a></li>
-                <li className="select" value="Menswear-Suits"><a href="">Suits</a></li>
-                <li className="select" value="Menswear-Footwear"><a href="">Footwear</a></li>
-                <li className="select" value="Menswear-Accessories"><a href="">Accessories</a></li>
-                <li className="select" value="Menswear-Sleepwear"><a href="">Sleepwear</a></li>
-                <li className="select" value="Menswear-Underwear"><a href="">Underwear</a></li>
-                <li className="select" value="Menswear-Swimwear"><a href="">Swimwear</a></li>
-                <li className="select" value="Menswear-Costume"><a href="">Costume</a></li>
+                <li className="select"><a href="#categories?keyword=Mens">Show All</a></li>
+                <li className="select"><a href="#category?keyword=Menswear-Tops">Tops</a></li>
+                <li className="select"><a href="#category?keyword=Menswear-Bottoms">Bottoms</a></li>
+                <li className="select"><a href="#category?keyword=Menswear-Coats">Coats and Jackets</a></li>
+                <li className="select"><a href="#category?keyword=Menswear-Jumpsuits">Jumpsuits and Rompers</a></li>
+                <li className="select"><a href="#category?keyword=Menswear-Suits">Suits</a></li>
+                <li className="select"><a href="#category?keyword=Menswear-Footwear">Footwear</a></li>
+                <li className="select"><a href="#category?keyword=Menswear-Accessories">Accessories</a></li>
+                <li className="select"><a href="#category?keyword=Menswear-Sleepwear">Sleepwear</a></li>
+                <li className="select"><a href="#category?keyword=Menswear-Underwear">Underwear</a></li>
+                <li className="select"><a href="#category?keyword=Menswear-Swimwear">Swimwear</a></li>
+                <li className="select"><a href="#category?keyword=Menswear-Costume">Costume</a></li>
               </ul>
             </li>
             </div>
@@ -36,18 +36,18 @@ export default class Category extends React.Component {
             <li>
               <a href="">Women &#9662;</a>
               <ul className="dropdown">
-                <li className="select" value="Womenswear-all"><a href="">Show All</a></li>
-                <li className="select" value="Womenswear-Tops"><a href="">Tops</a></li>
-                <li className="select" value="Womenswear-Bottoms"><a href="">Bottoms</a></li>
-                <li className="select" value="Womenswear-Coats and Jackets"><a href="">Coats and Jackets</a></li>
-                <li className="select" value="Womenswear-Jumpsuits and Rompers"><a href="">Jumpsuits and Rompers</a></li>
-                <li className="select" value="Womenswear-Suits"><a href="">Suits</a></li>
-                <li className="select" value="Womenswear-Footwear"><a href="">Footwear</a></li>
-                <li className="select" value="Womenswear-Accessories"><a href="">Accessories</a></li>
-                <li className="select" value="Womenswear-Sleepwear"><a href="">Sleepwear</a></li>
-                <li className="select" value="Womenswear-Underwear"><a href="">Underwear</a></li>
-                <li className="select" value="Womenswear-Swimwear"><a href="">Swimwear</a></li>
-                <li className="select" value="Womenswear-Costume"><a href="">Costume</a></li>
+                  <li className="select"><a href="#categories?keyword=Womens">Show All</a></li>
+                <li className="select"><a href="#category?keyword=Womenswear-Tops">Tops</a></li>
+                <li className="select"><a href="#category?keyword=Womenswear-Bottoms">Bottoms</a></li>
+                <li className="select"><a href="#category?keyword=Womenswear-Coats">Coats and Jackets</a></li>
+                <li className="select"><a href="#category?keyword=Womenswear-Jumpsuits">Jumpsuits and Rompers</a></li>
+                <li className="select"><a href="#category?keyword=Womenswear-Suits">Suits</a></li>
+                <li className="select"><a href="#category?keyword=Womenswear-Footwear">Footwear</a></li>
+                <li className="select"><a href="#category?keyword=Womenswear-Accessories">Accessories</a></li>
+                <li className="select"><a href="#category?keyword=Womenswear-Sleepwear">Sleepwear</a></li>
+                <li className="select"><a href="#category?keyword=Womenswear-Underwear">Underwear</a></li>
+                <li className="select"><a href="#category?keyword=Womenswear-Swimwear">Swimwear</a></li>
+                <li className="select"><a href="#category?keyword=Womenswear-Costume">Costume</a></li>
               </ul>
             </li>
             </div>
