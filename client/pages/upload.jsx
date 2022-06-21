@@ -15,12 +15,14 @@ export default class Upload extends React.Component {
       image: '',
       loading: 'processing',
       offline: false,
-      uploading: 'no'
+      uploading: 'no',
+      tryAgain: 'no'
     };
     this.handleChange = this.handleChange.bind(this);
     this.fileInputRef = React.createRef();
     this.handleImageSubmit = this.handleImageSubmit.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -69,27 +71,41 @@ export default class Upload extends React.Component {
     }
   }
 
+  handleDelete(event) {
+    this.setState({
+      tryAgain: 'no',
+      price: ''
+    });
+  }
+
   handleSubmit(event) {
-    const token = window.localStorage.getItem('lfz-final');
     event.preventDefault();
-    fetch('/api/upload', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-access-token': token
-      },
-      body: JSON.stringify(this.state)
-    })
-      .then(res => res.json())
-      .then(data => {
-        window.location.hash = '#myprofile';
+    const { price } = this.state;
+    if (isNaN(price)) {
+      return this.setState({ tryAgain: 'yes' });
+    } else {
+      const token = window.localStorage.getItem('lfz-final');
+      event.preventDefault();
+      fetch('/api/upload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': token
+        },
+        body: JSON.stringify(this.state)
       })
-      .catch(err => console.error(err));
+        .then(res => res.json())
+        .then(data => {
+          window.location.hash = '#myprofile';
+        })
+        .catch(err => console.error(err));
+    }
   }
 
   render() {
-    const { imageURL, loading, offline, uploading } = this.state;
+    const { imageURL, loading, offline, uploading, tryAgain } = this.state;
     let classvalue = 'hidden';
+    let showAgain = 'hidden';
     if (loading === 'processing') {
       return <Loading />;
     }
@@ -101,15 +117,32 @@ export default class Upload extends React.Component {
     } else {
       classvalue = '';
     }
+    if (tryAgain === 'yes') {
+      showAgain = '';
+    } else {
+      showAgain = 'hidden';
+    }
     return <div className="column-full">
       <div className="upload-container edit-width">
+        <div className={showAgain}>
+          <div className="confirm-delete-box delete-box-height">
+            <div className="margin-top-3rem">
+              <div className="text-center">
+                <h3 className="delete-top-margin">Price must be numbers only</h3>
+              </div>
+              <div className="row space-around margin-top-5rem">
+                <button onClick={this.handleDelete} className="delete-confirm-button">Okay</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <form onSubmit={this.handleSubmit}>
           <div className="rows">
             <div className="edit-column-half">
               <div className="column-80 margin-top-1rem">
                 <div className="image-container">
                   <img src={imageURL}></img>
-                  <h3 id="uploading-image" className={classvalue}>Uploading</h3>
+                  <h3 id="uploading-image" className={classvalue}>Please Wait</h3>
                 </div>
                 <div className="row space-between">
                   <div className="margin-top-1rem">
@@ -132,11 +165,12 @@ export default class Upload extends React.Component {
               <div className="condition-container">
                 <label id="font-color" htmlFor="condition">Condition: </label>
                 <select className="condition" onChange={this.handleChange} name="condition" required>
-                  <option className="select">Please select</option>
-                  <option className="select" value="very used">very used</option>
-                  <option className="select" value="used">used</option>
-                  <option className="select" value="like new">like new</option>
-                  <option className="select" value="brand new">brand new</option>
+                  <option className="select" value="">Please select</option>
+                  <option className="select" value="Fair">Fair</option>
+                  <option className="select" value="Good">Good</option>
+                  <option className="select" value="Very Good">Very Good</option>
+                  <option className="select" value="Excellent">Excellent</option>
+                  <option className="select" value="Pristine">Pristine</option>
                 </select>
               </div>
               <div className="location-container">

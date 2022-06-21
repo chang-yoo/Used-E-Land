@@ -101,11 +101,11 @@ export default class Header extends React.Component {
                 <div className="menubar-container col-row space-around">
                   <div className="margin-left-3rem menu-myaccount-container">
                     <ul><h3>My Account</h3></ul>
-                      <a href="#myprofile" onClick={this.turnoffMenubar}><li className="font-color">My Profile</li></a>
-                      <a href="#favorite" onClick={this.turnoffMenubar}><li className="font-color">My Favorite</li></a>
-                      <a href={`#history?userId=${userId}`} onClick={this.turnoffMenubar}><li className="font-color">My History</li></a>
-                      <a href="#upload" onClick={this.turnoffMenubar}><li className="font-color">Sell Now</li></a>
-                    <a href={`#review?userId=${userId}`} onClick={this.turnoffMenubar}><li className="font-color">How Am I Doing?</li></a>
+                      <a href="#myprofile" onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">My Profile</li></a>
+                      <a href="#favorite" onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">My Favorite</li></a>
+                      <a href={`#history?userId=${userId}`} onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">My History</li></a>
+                      <a href="#upload" onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">Sell Now</li></a>
+                    <a href={`#review?userId=${userId}`} onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">How Am I Doing?</li></a>
                   </div>
                   <div className="margin-left-3rem sign-out">
                     <a href="#sign-in" className="font-color" onClick={this.handleSignOut}>Sign Out</a>
