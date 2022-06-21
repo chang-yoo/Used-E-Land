@@ -7,6 +7,7 @@ export default class Upload extends React.Component {
     super(props);
     this.state = {
       imageURL: '',
+      category: '',
       condition: '',
       location: '',
       price: '',
@@ -170,52 +171,122 @@ export default class Upload extends React.Component {
                 <div className="margin-top-1rem column-full edit-text-align">
               <hr></hr>
               <div className="title-container">
-                <label>Title</label>
                 <input
+                  required
                   id="title"
                   type="text"
                   name="title"
                   onChange={this.handleChange}
                   className="title edit-text-width-second-half"
-                  placeholder="Name your item!"
+                  placeholder="Title"
                 />
               </div>
                   <hr></hr>
               <div className="row">
                 <div className="price-container">
-                  <label>Price</label>
                   <input
                   required
                   id="price"
                   type="text"
                   name="price"
                   onChange={this.handleChange}
-                  placeholder="Number Only"
+                  placeholder="Price - Number Only"
                   className="edit-text-width-first-half"
                   />
                 </div>
                 <div>
-                  <label>Size</label>
                   <input
                     required
                     id="size"
                     type="text"
                     name="size"
                     onChange={this.handleChange}
+                    placeholder="size"
                   />
                 </div>
               </div>
                   <hr></hr>
-                  <div className="condition-container">
-                    <label id="font-color" htmlFor="condition">Condition: </label>
-                    <select className="condition" onChange={this.handleChange} name="condition" required>
-                      <option className="select" value="">Please select</option>
-                      <option className="select" value="Used - Fair">Used - Fair</option>
-                      <option className="select" value="Used - Good">Used - Good</option>
-                      <option className="select" value="Used - Very Good">Used - Very Good</option>
-                      <option className="select" value="Used - Excellent">Used - Excellent</option>
-                      <option className="select" value="Pristine">Pristine</option>
-                    </select>
+                  <div className="row">
+                    <div className="category-container">
+                      <select className="category" value="" onChange={this.handleChange} name="category" required>
+                        <option className="select" value="">Category</option>
+                        <optgroup label="Menswear">
+                          <option className="select" value="Tops">Tops</option>
+                          <option className="select" value="Bottoms">Bottoms</option>
+                          <option className="select" value="Coats and Jackets">Coats and Jackets</option>
+                          <option className="select" value="Jumpsuits and Rompers">Jumpsuits and Rompers</option>
+                          <option className="select" value="Suits">Suits</option>
+                          <option className="select" value="Footwear">Footwear</option>
+                          <option className="select" value="Accessories">Accessories</option>
+                          <option className="select" value="Sleepwear">Sleepwear</option>
+                          <option className="select" value="Underwear">Underwear</option>
+                          <option className="select" value="Swimwear">Swimwear</option>
+                          <option className="select" value="Costume">Costume</option>
+                        </optgroup>
+                        <optgroup label="Womenswear">
+                          <option className="select" value="Tops">Tops</option>
+                          <option className="select" value="Bottoms">Bottoms</option>
+                          <option className="select" value="Coats and Jackets">Coats and Jackets</option>
+                          <option className="select" value="Jumpsuits and Rompers">Jumpsuits and Rompers</option>
+                          <option className="select" value="Suits">Suits</option>
+                          <option className="select" value="Footwear">Footwear</option>
+                          <option className="select" value="Accessories">Accessories</option>
+                          <option className="select" value="Sleepwear">Sleepwear</option>
+                          <option className="select" value="Underwear">Underwear</option>
+                          <option className="select" value="Swimwear">Swimwear</option>
+                          <option className="select" value="Costume">Costume</option>
+                        </optgroup>
+                        <optgroup label="Jewellery">
+                          <option className="select" value="Tops">Tops</option>
+                          <option className="select" value="Bottoms">Bottoms</option>
+                          <option className="select" value="Coats and Jackets">Coats and Jackets</option>
+                          <option className="select" value="Jumpsuits and Rompers">Jumpsuits and Rompers</option>
+                          <option className="select" value="Suits">Suits</option>
+                          <option className="select" value="Footwear">Footwear</option>
+                          <option className="select" value="Accessories">Accessories</option>
+                          <option className="select" value="Sleepwear">Sleepwear</option>
+                          <option className="select" value="Underwear">Underwear</option>
+                          <option className="select" value="Swimwear">Swimwear</option>
+                          <option className="select" value="Costume">Costume</option>
+                        </optgroup>
+                        <optgroup label="Beauty">
+                          <option className="select" value="Face">Face</option>
+                          <option className="select" value="Eyes">Eyes</option>
+                          <option className="select" value="Lips">Lips</option>
+                          <option className="select" value="Perfume">Perfume</option>
+                          <option className="select" value="Bath & Body">Bath & Body</option>
+                          <option className="select" value="Hair Care">Hair Care</option>
+                        </optgroup>
+                        <optgroup label="Home">
+                          <option className="select" value="Bath">Bath</option>
+                          <option className="select" value="Bedding">Bedding</option>
+                          <option className="select" value="Dining & Entertaining">Dining & Entertaining</option>
+                          <option className="select" value="Kitchen">Kitchen</option>
+                          <option className="select" value="Home Decor">Home Decor</option>
+                          <option className="select" value="Luggage & Travel">Luggage & Travel</option>
+                          <option className="select" value="Furniture & Mattresses">Furniture & Mattresses</option>
+                        </optgroup>
+                        <optgroup label="More">
+                          <option className="select" value="Tech Accessories">Tech Accessories</option>
+                          <option className="select" value="Art">Art</option>
+                          <option className="select" value="Books and Magazines">Books and Magazines</option>
+                          <option className="select" value="Music">Music</option>
+                          <option className="select" value="Party Supplies">Party Supplies</option>
+                          <option className="select" value="Sports Equipment">Sports Equipment</option>
+                          <option className="select" value="Others">Others</option>
+                        </optgroup>
+                      </select>
+                    </div>
+                    <div className="condition-container">
+                      <select className="condition" onChange={this.handleChange} name="condition" required>
+                        <option className="select" value="">Condition</option>
+                          <option className="select" value="Used - Fair">Used - Fair</option>
+                          <option className="select" value="Used - Good">Used - Good</option>
+                          <option className="select" value="Used - Very Good">Used - Very Good</option>
+                          <option className="select" value="Used - Excellent">Used - Excellent</option>
+                          <option className="select" value="Pristine">Pristine</option>
+                      </select>
+                    </div>
                   </div>
             </div>
           </div>
@@ -226,40 +297,39 @@ export default class Upload extends React.Component {
                   <hr></hr>
                   <div className="row">
                     <div>
-                    <label>Brand</label>
                     <input
                       id="brand"
                       type="text"
                       name="brand"
                       onChange={this.handleChange}
+                      placeholder="Brand"
                     />
                     </div>
                   <div>
-                    <label>Style</label>
                     <input
                       required
                       id="style"
                       type="text"
                       name="brand"
                       onChange={this.handleChange}
+                      placeholder="Style"
                     />
                     </div>
                   </div>
                   <hr></hr>
                   <div className="row">
                   <div>
-                    <label>Color</label>
                     <input
                       required
                       id="color"
                       type="text"
                       name="color"
                       onChange={this.handleChange}
+                      placeholder="Color"
                     />
                   </div>
 
                   <div className="location-container">
-                    <label>Location</label>
                     <input
                       required
                       id="location"
@@ -267,6 +337,7 @@ export default class Upload extends React.Component {
                       name="location"
                       onChange={this.handleChange}
                       className="edit-text-width-first-half"
+                      placeholder="Location"
                     />
                   </div>
                   </div>
@@ -281,7 +352,7 @@ export default class Upload extends React.Component {
                   onChange={this.handleChange}
                   className="description edit-text-width-second-half"
                   wrap="hard"
-                  placeholder="Tell us about your item!"
+                  placeholder="Tell us about your item. &#10;Keep it accurate - Dont&apos;t use irrelevant keywords"
                   />
                 </div>
                   <div className="row space-between margin-top-1rem">
