@@ -102,18 +102,14 @@ export default class Detail extends React.Component {
                 <h2>{post.title}</h2>
                 <hr></hr>
                 <div className="row">
-                  <div>
-                    <h3 className="price font-size">${post.price}</h3>
-                  </div>
-                  <div>
-                    <h3 className="price font-size">Size</h3>
-                  </div>
+                  <h3 className="price font-size">${post.price}</h3>
+                  <h3 className="price font-size">{post.size}</h3>
                 </div>
                 <hr></hr>
-                <div>
-                  <h4>Condition: {post.condition}</h4>
+                <div className="row">
+                  <h3 className="price font-size">{post.category}</h3>
+                  <h3>{post.condition}</h3>
                 </div>
-                <hr></hr>
               </div>
             </div>
           </div>
@@ -121,8 +117,9 @@ export default class Detail extends React.Component {
             <div className="column-80">
               <hr></hr>
               <div className="row">
-                <div>
+                <div className="row">
                   <p>{post.brand}</p>
+                  <p>{post.style}</p>
                 </div>
                 <div>
                   <p>{post.style}</p>

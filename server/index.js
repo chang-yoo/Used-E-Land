@@ -24,6 +24,27 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.static(publicPath));
 
+app.get('/api/category/:keyword', (req, res, next) => {
+  const keyword = req.params.keyword;
+  if (!keyword) {
+    throw new ClientError(400, 'searching keyword is required');
+  }
+  const sql = `
+    select*
+    from "post"
+    where "category" = $1
+    and "status" = 'open'
+  `;
+  const params = [keyword];
+  db
+    .query(sql, params)
+    .then(result => {
+      const data = result.rows;
+      return res.status(201).json(data);
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/main', (req, res, next) => {
   const sql = `
   select *
