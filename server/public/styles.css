@@ -226,13 +226,8 @@ textarea {
   z-index: 3;
   padding-top: 1rem;
   padding-left: 1rem;
-  transition: transform 0.2s ease-out;
   right: -100%;
   overflow-x: hidden;
-}
-
-.menu-bar.is-open {
-  transform: translateX(0);
 }
 
 .menu-container {
