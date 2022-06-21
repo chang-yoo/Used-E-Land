@@ -98,7 +98,7 @@ export default class Detail extends React.Component {
                     <a href={`#review?userId=${post.userId}`}><h5 className="font-color">How am I?</h5></a>
                   </div>
                 </div>
-                <h4>condition: {post.condition}</h4>
+                <h4>Condition: {post.condition}</h4>
                 <p className="font-size-20">{post.location}</p>
                 <h3 className="price font-size">${post.price}</h3>
               </div>
