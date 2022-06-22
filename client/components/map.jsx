@@ -7,7 +7,7 @@ const center = { lat: 48.8584, lng: 2.2945 };
 
 function App() {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyC4_g24UEAWJDOn0Xe__xbbtahmp7NPGKQ',
+    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
     libraries
   });
   if (!isLoaded) {
