@@ -54,17 +54,17 @@ h3 {
 .header {
   width: 100%;
   display: flex;
-  background-color: #eec6b0;
+  align-items: center;
+  text-align: baseline;
   top: 0;
-  height: 80px;
-  margin: 0;
+  height: 60px;
+  border-bottom: 1px solid black;
 }
 
 .search-background,
 .list-background {
   min-height: 70vh;
   height: 100%;
-  background-color: #fef5f0;
   position: relative;
 }
 
@@ -72,7 +72,6 @@ h3 {
   width: 100%;
   min-height: 50vh;
   height: 100%;
-  background-color: #fef5f0;
   position: relative;
 }
 
@@ -109,10 +108,9 @@ h3 {
 }
 
 h1 {
-  margin-top: 3rem;
   padding: 1rem;
   padding-left: 1rem;
-  color: #ad7d35;
+  color: black;
 }
 
 .view-all-link {
@@ -136,11 +134,32 @@ h1 {
 
 .search-bar {
   height: 30px;
-  margin-top: 1.6rem;
   margin-left: 10%;
-  border: 1px solid #9f9999;
-  border-radius: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
   position: relative;
+}
+
+.header-buttons {
+  margin: auto;
+  justify-content: end;
+  width: 300px;
+}
+
+.header-icons {
+  width: 100%;
+  margin-right: 2rem;
+  justify-content: end;
+}
+
+.header-sign-up,
+.header-sign-in {
+  background-color: black;
+  color: #fdec00;
+  border: 1px solid black;
+  border-radius: 3px;
+  width: 100px;
+  height: 35px;
 }
 
 .edit-text-align {
@@ -175,13 +194,15 @@ h1 {
 
 textarea,
 input:focus {
-  outline-color: orange;
+  outline-color: black;
 }
 
 textarea {
   resize: none;
 }
 
+.fa-heart,
+.fa-heart-circle-plus,
 .fa-user,
 .fa-mobile-screen,
 .fa-envelope,
@@ -191,7 +212,11 @@ textarea {
 .menu-icon,
 .fa-xmark,
 .search-glass {
-  color: orange;
+  color: black;
+}
+
+.menu-icon {
+  right: 0%;
 }
 
 .fa-address-book {
@@ -225,14 +250,8 @@ textarea {
 
 .menu-container {
   position: absolute;
-  margin-top: 1.5rem;
   right: 5%;
   z-index: 3;
-}
-
-.favorite-page {
-  padding-right: 4rem;
-  margin-top: 1.5rem;
 }
 
 .post:hover {
@@ -339,7 +358,7 @@ i:hover {
 .username,
 .password {
   border: 1px solid #9f9999;
-  border-radius: 10px;
+  border-radius: 5px;
   height: 2.5rem;
   width: 20rem;
 }
@@ -442,7 +461,8 @@ ul {
 #font-color,
 ::placeholder,
 .condition {
-  color: #ad7d35;
+  color: #9f9999;
+  size: 10px;
 }
 
 ::placeholder {
@@ -588,9 +608,12 @@ ul {
   text-align: center;
 }
 
-.fa-heart,
+.favorite-page {
+  margin-right: 2rem;
+}
+
+.add-to-favorite,
 .fa-heart-circle-plus {
-  color: orange;
   position: absolute;
   right: 5%;
 }

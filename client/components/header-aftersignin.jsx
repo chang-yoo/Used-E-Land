@@ -92,6 +92,7 @@ export default class Header extends React.Component {
                     onChange={this.handleChange}
                     value={this.state.userInput}
                     className="search-bar"
+                    placeholder="Search for anything"
                   />
                   <div className="searching-icons searching-position">
                     <div className={classvalue}>
@@ -143,6 +144,7 @@ export default class Header extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.userInput}
                   className="search-bar"
+                  placeholder="Search for anything"
                 />
                 <div className="searching-icons searching-position">
                   <div className={classvalue}>
@@ -154,10 +156,14 @@ export default class Header extends React.Component {
                 </div>
               </div>
             </form>
-              <a href="#favorite"><i className="fa-solid fa-heart fa-2x favorite-page"></i></a>
-              <div className="menu-container">
+            <div className="row header-icons">
+              <div>
+                <a href="#favorite"><i className="fa-solid fa-heart fa-2x favorite-page"></i></a>
+              </div>
+              <div>
                 <i onClick={this.menubar} className="fa-solid fa-bars fa-2x menu-icon"></i>
               </div>
+            </div>
           </div>
         </div>
       </div>

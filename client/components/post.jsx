@@ -70,7 +70,7 @@ export default class Post extends React.Component {
     const { isFavorite } = this.state;
     let classvalue = 'fa-solid fa-heart-circle-plus fa-2x';
     if (isFavorite === true) {
-      classvalue = 'fa-solid fa-heart fa-2x';
+      classvalue = 'fa-solid fa-heart fa-2x add-to-favorite';
     } else {
       classvalue = 'fa-solid fa-heart-circle-plus fa-2x';
     }
