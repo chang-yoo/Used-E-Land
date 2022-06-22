@@ -27,8 +27,13 @@ CREATE TABLE "public"."post" (
   "imageURL" TEXT NOT NULL,
   "location" TEXT,
   "createdAt" timestamptz(6) not null default now(),
+  "category"  TEXT NOT NULL,
   "condition" TEXT NOT NULL,
-  "price" int NOT NULL,
+  "price" TEXT NOT NULL,
+  "size" TEXT NOT NULL,
+  "brand" TEXT NOT NULL default 'N/A',
+  "style" TEXT NOT NULL,
+  "color" TEXT NOT NULL,
   "description" TEXT NOT NULL,
   "title" TEXT NOT NULL,
   "updatedAt" timestamptz(6) not null default now(),
@@ -85,8 +90,6 @@ ALTER TABLE "post" ADD CONSTRAINT "post_fk0" FOREIGN KEY ("userId") REFERENCES "
 
 ALTER TABLE "review" ADD CONSTRAINT "review_fk1" FOREIGN KEY ("userId") REFERENCES "users"("userId");
 
-ALTER TABLE "messenger" ADD CONSTRAINT "messenger_fk0" FOREIGN KEY ("userId") REFERENCES "users"("userId");
-ALTER TABLE "messenger" ADD CONSTRAINT "messenger_fk1" FOREIGN KEY ("postId") REFERENCES "post"("postId");
 
 ALTER TABLE "favorite" ADD CONSTRAINT "favorite_fk0" FOREIGN KEY ("postId") REFERENCES "post"("postId");
 ALTER TABLE "favorite" ADD CONSTRAINT "favorite_fk1" FOREIGN KEY ("userId") REFERENCES "users"("userId");

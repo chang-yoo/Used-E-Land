@@ -2,6 +2,7 @@ import React from 'react';
 import Post from '../components/post';
 import { Loading } from '../components/spinner';
 import { Off } from '../components/offline';
+import { TryAgain } from '../components/try-again';
 
 export default class ViewAll extends React.Component {
   constructor(props) {
@@ -33,7 +34,8 @@ export default class ViewAll extends React.Component {
     if (offline === true) {
       return <Off />;
     }
-    return (
+    if (loading === ' complete' && post.length >= 0) {
+      return (
       <div className="list-background column-full top-padding-1rem">
         <div className="row wrap">
           {post.map(eachpost => {
@@ -60,6 +62,8 @@ export default class ViewAll extends React.Component {
           })}
         </div>
       </div>
-    );
+      );
+    }
+    return <TryAgain/>;
   }
 }

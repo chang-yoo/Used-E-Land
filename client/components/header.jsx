@@ -5,7 +5,8 @@ export default class Header extends React.Component {
     super(props);
     this.state = {
       userInput: '',
-      menu: 'off'
+      menu: 'off',
+      screen: screen.width
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -44,17 +45,23 @@ export default class Header extends React.Component {
   }
 
   render() {
-    const { menu } = this.state;
+    const { menu, screen } = this.state;
     let classvalue = 'hidden';
+    let logoImage = 'favicon.ico';
     if (this.state.userInput.length > 0) {
       classvalue = '';
+    }
+    if (screen < 620) {
+      logoImage = 'favicon.ico';
+    } else {
+      logoImage = '/images/logo.png';
     }
     if (menu === 'on') {
       return (
         <div className="header">
       <div>
         <a onClick={this.turnoffMenubar} href="#">
-          <img className="logo" src="/images/logo.png"></img>
+              <img className="logo" src={logoImage}></img>
         </a>
       </div>
       <div className="column-full margin-0">
@@ -96,7 +103,7 @@ export default class Header extends React.Component {
       <div className="header">
         <div>
           <a href="#">
-            <img className="logo" src="/images/logo.png"></img>
+            <img className="logo" src={logoImage}></img>
           </a>
         </div>
         <div className="column-full margin-0">
@@ -121,6 +128,7 @@ export default class Header extends React.Component {
                 </div>
               </div>
             </form>
+            <a href="#favorite"><i className="fa-solid fa-heart fa-2x favorite-page"></i></a>
             <div className="menu-container">
                 <i onClick={this.menubar} className="fa-solid fa-bars fa-2x menu-icon"></i>
             </div>

@@ -7,7 +7,8 @@ export default class Header extends React.Component {
     this.state = {
       userInput: '',
       menu: 'off',
-      userId: null
+      userId: null,
+      screen: screen.width
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -27,8 +28,10 @@ export default class Header extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     window.location.hash = 'search?keyword=' + this.state.userInput;
-    this.setState({ userInput: '' });
-    this.setState({ menu: 'off' });
+    this.setState({
+      userInput: '',
+      menu: 'off'
+    });
   }
 
   handleChange(event) {
@@ -59,17 +62,23 @@ export default class Header extends React.Component {
   }
 
   render() {
-    const { menu, userId } = this.state;
+    const { menu, userId, screen } = this.state;
     let classvalue = 'hidden';
+    let logoImage = 'favicon.ico';
     if (this.state.userInput.length > 0) {
       classvalue = '';
+    }
+    if (screen < 620) {
+      logoImage = 'favicon.ico';
+    } else {
+      logoImage = '/images/logo.png';
     }
     if (menu === 'on') {
       return (
         <div className="header row column-full">
           <div>
             <a onClick={this.turnoffMenubar} href="#">
-              <img className="logo" src="/images/logo.png"></img>
+              <img className="logo" src={logoImage}></img>
             </a>
           </div>
           <div className="column-full margin-0">
@@ -101,11 +110,10 @@ export default class Header extends React.Component {
                 <div className="menubar-container col-row space-around">
                   <div className="margin-left-3rem menu-myaccount-container">
                     <ul><h3>My Account</h3></ul>
-                      <a href="#myprofile" onClick={this.turnoffMenubar}><li className="font-color">My Profile</li></a>
-                      <a href="#favorite" onClick={this.turnoffMenubar}><li className="font-color">My Favorite</li></a>
-                      <a href={`#history?userId=${userId}`} onClick={this.turnoffMenubar}><li className="font-color">My History</li></a>
-                      <a href="#upload" onClick={this.turnoffMenubar}><li className="font-color">Upload Today</li></a>
-                    <a href={`#review?userId=${userId}`} onClick={this.turnoffMenubar}><li className="font-color">How am I doing?</li></a>
+                      <a href="#myprofile" onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">My Page</li></a>
+                      <a href={`#history?userId=${userId}`} onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">Sold</li></a>
+                      <a href={`#review?userId=${userId}`} onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">Feedback</li></a>
+                      <a href="#upload" onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">Sell Now</li></a>
                   </div>
                   <div className="margin-left-3rem sign-out">
                     <a href="#sign-in" className="font-color" onClick={this.handleSignOut}>Sign Out</a>
@@ -121,7 +129,7 @@ export default class Header extends React.Component {
       <div className="header header-height">
         <div>
           <a href="#">
-            <img className="logo" src="/images/logo.png"></img>
+            <img className="logo" src={logoImage}></img>
           </a>
         </div>
         <div className="column-full margin-0">
@@ -146,9 +154,10 @@ export default class Header extends React.Component {
                 </div>
               </div>
             </form>
-            <div className="menu-container">
-              <i onClick={this.menubar} className="fa-solid fa-bars fa-2x menu-icon"></i>
-            </div>
+              <a href="#favorite"><i className="fa-solid fa-heart fa-2x favorite-page"></i></a>
+              <div className="menu-container">
+                <i onClick={this.menubar} className="fa-solid fa-bars fa-2x menu-icon"></i>
+              </div>
           </div>
         </div>
       </div>

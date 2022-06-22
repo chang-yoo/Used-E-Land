@@ -42,8 +42,8 @@ export default class Contact extends React.Component {
               <i className="fa-solid fa-user"></i>{this.props.postData.username}
             </div>
             <div className="contact-info margin-bottom-1rem">
-              <i className="fa-solid fa-mobile-screen"></i>: {this.props.postData.phone} <br />
-              <i className="fa-solid fa-envelope"></i>: {this.props.postData.email}
+              <a href="tel:{this.props.postData.phone}"><i className="fa-solid fa-mobile-screen"></i>: {this.props.postData.phone}</a> <br />
+              <a href="mailto:{this.props.postData.email}"><i className="fa-solid fa-envelope"></i>: {this.props.postData.email}</a>
             </div>
             <button className="contact-button" onClick={this.handleClick}>Close</button>
           </div>

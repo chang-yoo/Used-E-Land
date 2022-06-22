@@ -3,6 +3,7 @@ import Contact from '../components/contact';
 import { Loading } from '../components/spinner';
 import { Off } from '../components/offline';
 import { TryAgain } from '../components/try-again';
+import Distance from '../components/distance';
 
 export default class Detail extends React.Component {
   constructor(props) {
@@ -92,27 +93,54 @@ export default class Detail extends React.Component {
               <div className="detail-text">
                 <div className="row space-between vertical-margin">
                   <div>
-                    <a href={`#history?userId=${post.userId}`}><h4>Seller: {post.username} </h4></a>
+                      <a href={`#history?userId=${post.userId}`}><h4>Seller: <span>{post.username}</span> </h4></a>
                   </div>
                   <div>
                     <a href={`#review?userId=${post.userId}`}><h5 className="font-color">How am I?</h5></a>
                   </div>
                 </div>
-                <h4>condition: {post.condition}</h4>
-                <p className="font-size-20">{post.location}</p>
-                <h3 className="price font-size">${post.price}</h3>
+                <hr></hr>
+                <h2>{post.title}</h2>
+                <hr></hr>
+                <div className="row">
+                  <h3 className="price font-size">${post.price}</h3>
+                  <h3 className="price font-size">{post.size}</h3>
+                </div>
+                <hr></hr>
+                <div className="row">
+                  <h3 className="price font-size">{post.category}</h3>
+                  <h3>{post.condition}</h3>
+                </div>
               </div>
             </div>
           </div>
           <div className="detail-description detail-column-half">
             <div className="column-80">
               <hr></hr>
-              <h2>{post.title}</h2>
+              <div className="row">
+                <div className="row">
+                  <p>{post.brand}</p>
+                  <p>{post.style}</p>
+                </div>
+                <div>
+                  <p>{post.style}</p>
+                </div>
+              </div>
               <hr></hr>
-              <h2>Description:<br /><br />{post.description}</h2>
+              <div className="row">
+                <div>
+                  <p>{post.color}</p>
+                </div>
+                <div>
+                    <p className="font-size-20">{post.location}</p>
+                </div>
+              </div>
+              <hr></hr>
+              <h2>{post.description}</h2>
             </div>
           </div>
         </div>
+        <Distance coordinate={post.location}/>
       </div>
       );
     }

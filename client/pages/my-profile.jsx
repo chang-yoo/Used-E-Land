@@ -56,7 +56,7 @@ export default class MyProfile extends React.Component {
             <h1 className="welcome-profile">Welcome {username}!</h1>
           </div>
           <div className="column-half">
-              <a href="#upload"><h2 className="margin-2rem">Let&apos;s upload today</h2></a>
+              <a href="#upload"><h2 className="margin-2rem">Sell Now</h2></a>
           </div>
         </div>
         <div className="row wrap">

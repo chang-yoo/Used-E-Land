@@ -12,11 +12,13 @@ export default class SignUp extends React.Component {
       email: '',
       box: 'off',
       error: 'off',
-      loading: 'processing'
+      loading: 'processing',
+      phoneWrong: 'no'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.closeBox = this.closeBox.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +33,10 @@ export default class SignUp extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const { phone } = this.state;
+    if (isNaN(phone)) {
+      return this.setState({ phoneWrong: 'yes' });
+    }
     fetch('/api/sign-up', {
       method: 'POST',
       headers: {
@@ -53,11 +59,20 @@ export default class SignUp extends React.Component {
     this.setState({ error: 'off' });
   }
 
+  handleDelete() {
+    this.setState({ phoneWrong: 'no' });
+  }
+
   render() {
+    const { phoneWrong } = this.state;
     let confirm = 'hidden';
     let err = 'hidden';
+    let wrong = 'hidden';
     if (this.state.box === 'on') {
       confirm = '';
+    }
+    if (phoneWrong === 'yes') {
+      wrong = '';
     }
     if (this.state.error === 'on') {
       err = '';
@@ -72,6 +87,18 @@ export default class SignUp extends React.Component {
       <div className="list-background">
         <div>
           <h1>Sign Up</h1>
+        </div>
+        <div className={wrong}>
+          <div className="confirm-delete-box delete-box-height">
+            <div className="margin-top-3rem">
+              <div className="text-center">
+                <h3 className="delete-top-margin">Phone inputs must be numbers only</h3>
+              </div>
+              <div className="row space-around margin-top-5rem">
+                <button onClick={this.handleDelete} className="delete-confirm-button">Okay</button>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="full-column">
           <div className="width-60 auto">

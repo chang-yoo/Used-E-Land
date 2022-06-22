@@ -226,6 +226,15 @@ body {
     height: 50%;
     object-fit: fill;
   }
+
+  .logo {
+    width: 50px;
+    height: 40px;
+    margin: auto 1rem;
+    border-radius: 10px;
+    margin-top: 1.25rem;
+    object-fit: cover;
+  }
 }
 
 @media only screen and (min-width: 620px) {
@@ -250,7 +259,7 @@ body {
   }
 
   .edit-text-width-first-half {
-    width: 400px;
+    width: 200px;
   }
 
   .edit-text-align {
@@ -315,6 +324,15 @@ body {
     height: 98vh;
     margin: auto;
   }
+
+  .logo {
+    width: 130px;
+    height: 40px;
+    margin: auto 1rem;
+    border-radius: 10px;
+    margin-top: 1.25rem;
+    object-fit: cover;
+  }
 }
 
 @media only screen and (min-width: 900px) {
@@ -355,7 +373,7 @@ body {
   }
 
   .edit-text-width-first-half {
-    width: 360px;
+    width: 150px;
   }
 
   .edit-text-width-second-half {

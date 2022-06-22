@@ -96,13 +96,6 @@ h3 {
   position: relative;
 }
 
-.loading-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .in-center {
   width: 100%;
   position: absolute;
@@ -134,15 +127,6 @@ h1 {
   color: #ffa903;
   font-size: 0.94rem;
   margin: auto;
-}
-
-.logo {
-  width: 130px;
-  height: 40px;
-  margin: auto 1rem;
-  border-radius: 10px;
-  margin-top: 1.25rem;
-  object-fit: cover;
 }
 
 .black {
@@ -235,13 +219,8 @@ textarea {
   z-index: 3;
   padding-top: 1rem;
   padding-left: 1rem;
-  transition: transform 0.2s ease-out;
   right: -100%;
   overflow-x: hidden;
-}
-
-.menu-bar.is-open {
-  transform: translateX(0);
 }
 
 .menu-container {
@@ -249,6 +228,11 @@ textarea {
   margin-top: 1.5rem;
   right: 5%;
   z-index: 3;
+}
+
+.favorite-page {
+  padding-right: 4rem;
+  margin-top: 1.5rem;
 }
 
 .post:hover {
@@ -326,20 +310,13 @@ h4 {
   position: relative;
 }
 
-#uploading-image {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-}
-
 .horz-margin {
   position: relative;
   left: 44%;
   margin: 0 1rem;
 }
 
+ul,
 li,
 a {
   text-decoration: none;
@@ -352,6 +329,7 @@ i:hover {
   cursor: pointer;
 }
 
+#hidden,
 .hidden {
   display: none;
 }
@@ -513,7 +491,7 @@ ul {
 }
 
 .description {
-  height: 420px;
+  height: 200px;
 }
 
 #uploading,
@@ -548,6 +526,10 @@ ul {
   left: 10%;
   top: 20%;
   color: orange;
+}
+
+.dot-container {
+  width: 100%;
 }
 
 .confirm-delete-box {
@@ -707,7 +689,6 @@ input::-webkit-inner-spin-button {
 
 .lds-ellipsis {
   display: inline-block;
-  position: relative;
   width: 80px;
   height: 80px;
   margin-left: 2rem;
@@ -715,7 +696,6 @@ input::-webkit-inner-spin-button {
 
 .lds-ellipsis div {
   position: absolute;
-  top: 33px;
   width: 13px;
   height: 13px;
   border-radius: 50%;
@@ -724,22 +704,30 @@ input::-webkit-inner-spin-button {
 }
 
 .lds-ellipsis div:nth-child(1) {
-  left: 8px;
+  left: 46%;
+  top: 50%;
+  transform: translate(-46%, -50%);
   animation: lds-ellipsis1 0.6s infinite;
 }
 
 .lds-ellipsis div:nth-child(2) {
-  left: 8px;
+  left: 46%;
+  top: 50%;
+  transform: translate(-46%, -50%);
   animation: lds-ellipsis2 0.6s infinite;
 }
 
 .lds-ellipsis div:nth-child(3) {
-  left: 32px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   animation: lds-ellipsis2 0.6s infinite;
 }
 
 .lds-ellipsis div:nth-child(4) {
-  left: 56px;
+  left: 54%;
+  top: 50%;
+  transform: translate(-54%, -50%);
   animation: lds-ellipsis3 0.6s infinite;
 }
 
@@ -779,4 +767,29 @@ input::-webkit-inner-spin-button {
   border: 1px solid #ad7d35;
   color: #fbd3a4;
   margin-top: 3rem;
+}
+
+ul li ul.dropdown {
+  /* Set width of the dropdown */
+  background: #f2f2f2;
+  padding-left: 0;
+  display: none;
+  position: absolute;
+  z-index: 999;
+}
+
+ul li:hover ul.dropdown {
+  display: inline-block;
+
+  /* Display the dropdown */
+}
+
+ul li ul.dropdown li {
+  display: block;
+}
+
+.google-map-container {
+  width: 50%;
+  height: 50%;
+  position: absolute;
 }
