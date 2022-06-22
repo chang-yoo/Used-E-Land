@@ -29,7 +29,7 @@ CREATE TABLE "public"."post" (
   "createdAt" timestamptz(6) not null default now(),
   "category"  TEXT NOT NULL,
   "condition" TEXT NOT NULL,
-  "price" int NOT NULL,
+  "price" TEXT NOT NULL,
   "size" TEXT NOT NULL,
   "brand" TEXT NOT NULL default 'N/A',
   "style" TEXT NOT NULL,

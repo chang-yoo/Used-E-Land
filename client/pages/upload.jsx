@@ -341,7 +341,6 @@ export default class Upload extends React.Component {
                       placeholder="Color"
                     />
                   </div>
-
                   <div className="location-container">
                     <input
                       required
@@ -350,7 +349,7 @@ export default class Upload extends React.Component {
                       name="location"
                       onChange={this.handleChange}
                       className="edit-text-width-first-half"
-                      placeholder="Location"
+                      placeholder="City, State"
                     />
                   </div>
                   </div>

@@ -28,8 +28,10 @@ export default class Header extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     window.location.hash = 'search?keyword=' + this.state.userInput;
-    this.setState({ userInput: '' });
-    this.setState({ menu: 'off' });
+    this.setState({
+      userInput: '',
+      menu: 'off'
+    });
   }
 
   handleChange(event) {

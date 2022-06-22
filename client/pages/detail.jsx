@@ -3,6 +3,7 @@ import Contact from '../components/contact';
 import { Loading } from '../components/spinner';
 import { Off } from '../components/offline';
 import { TryAgain } from '../components/try-again';
+import Distance from '../components/distance';
 
 export default class Detail extends React.Component {
   constructor(props) {
@@ -139,6 +140,7 @@ export default class Detail extends React.Component {
             </div>
           </div>
         </div>
+        <Distance coordinate={post.location}/>
       </div>
       );
     }

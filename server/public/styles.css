@@ -787,3 +787,9 @@ ul li:hover ul.dropdown {
 ul li ul.dropdown li {
   display: block;
 }
+
+.google-map-container {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+}
