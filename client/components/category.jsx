@@ -15,13 +15,13 @@ export default class Category extends React.Component {
           <div className="row space-around">
             <div className="category-list">
             <li>
-              <a href="">Mens &#9662;</a>
+              <a href="">Mens</a>
               <ul className="dropdown">
                 <li className="select"><a href="#categories?keyword=Mens">Show All</a></li>
                 <li className="select"><a href="#category?keyword=Menswear-Tops">Tops</a></li>
                 <li className="select"><a href="#category?keyword=Menswear-Bottoms">Bottoms</a></li>
-                <li className="select"><a href="#category?keyword=Menswear-Coats">Coats and Jackets</a></li>
-                <li className="select"><a href="#category?keyword=Menswear-Jumpsuits">Jumpsuits and Rompers</a></li>
+                <li className="select"><a href="#category?keyword=Menswear-Coats-and-Jackets">Coats and Jackets</a></li>
+                <li className="select"><a href="#category?keyword=Menswear-Jumpsuits-and-Rompers">Jumpsuits and Rompers</a></li>
                 <li className="select"><a href="#category?keyword=Menswear-Suits">Suits</a></li>
                 <li className="select"><a href="#category?keyword=Menswear-Footwear">Footwear</a></li>
                 <li className="select"><a href="#category?keyword=Menswear-Accessories">Accessories</a></li>
@@ -34,13 +34,13 @@ export default class Category extends React.Component {
             </div>
             <div className="category-list">
             <li>
-              <a href="">Women &#9662;</a>
+              <a href="">Women</a>
               <ul className="dropdown">
                   <li className="select"><a href="#categories?keyword=Womens">Show All</a></li>
                 <li className="select"><a href="#category?keyword=Womenswear-Tops">Tops</a></li>
                 <li className="select"><a href="#category?keyword=Womenswear-Bottoms">Bottoms</a></li>
-                <li className="select"><a href="#category?keyword=Womenswear-Coats">Coats and Jackets</a></li>
-                <li className="select"><a href="#category?keyword=Womenswear-Jumpsuits">Jumpsuits and Rompers</a></li>
+                <li className="select"><a href="#category?keyword=Womenswear-Coats-and-Jackets">Coats and Jackets</a></li>
+                <li className="select"><a href="#category?keyword=Womenswear-Jumpsuits-and-Rompers">Jumpsuits and Rompers</a></li>
                 <li className="select"><a href="#category?keyword=Womenswear-Suits">Suits</a></li>
                 <li className="select"><a href="#category?keyword=Womenswear-Footwear">Footwear</a></li>
                 <li className="select"><a href="#category?keyword=Womenswear-Accessories">Accessories</a></li>
@@ -53,61 +53,78 @@ export default class Category extends React.Component {
             </div>
             <div className="category-list">
               <li>
-                <a href="">Kids &#9662;</a>
+                <a href="">Kids</a>
                 <ul className="dropdown">
-                  <li className="select" value="Kids-all"><a href="">Show All</a></li>
-                  <li className="select" value="Kids-Tops"><a href="">Tops</a></li>
-                  <li className="select" value="Kids-Bottoms"><a href="">Bottoms</a></li>
-                  <li className="select" value="Kids-Coats and Jackets"><a href="">Coats and Jackets</a></li>
-                  <li className="select" value="Kids-Jumpsuits and Rompers"><a href="">Jumpsuits and Rompers</a></li>
-                  <li className="select" value="Kids-Suits"><a href="">Suits</a></li>
-                  <li className="select" value="Kids-Footwear"><a href="">Footwear</a></li>
-                  <li className="select" value="Kids-Accessories"><a href="">Accessories</a></li>
-                  <li className="select" value="Kids-Sleepwear"><a href="">Sleepwear</a></li>
-                  <li className="select" value="Kids-Underwear"><a href="">Underwear</a></li>
-                  <li className="select" value="Kids-Swimwear"><a href="">Swimwear</a></li>
-                  <li className="select" value="Kids-Costume"><a href="">Costume</a></li>
+                  <li className="select"><a href="#categories?keyword=Kids">Show All</a></li>
+                  <li className="select"><a href="#category?keyword=Kids-Tops">Tops</a></li>
+                  <li className="select"><a href="#category?keyword=Kids-Bottoms">Bottoms</a></li>
+                  <li className="select"><a href="#category?keyword=Kids-Coats-and-Jackets">Coats and Jackets</a></li>
+                  <li className="select"><a href="#category?keyword=Kids-Jumpsuits-and-Rompers">Jumpsuits and Rompers</a></li>
+                  <li className="select"><a href="#category?keyword=Kids-Suits">Suits</a></li>
+                  <li className="select"><a href="#category?keyword=Kids-Footwear">Footwear</a></li>
+                  <li className="select"><a href="#category?keyword=Kids-Accessories">Accessories</a></li>
+                  <li className="select"><a href="#category?keyword=Kids-Sleepwear">Sleepwear</a></li>
+                  <li className="select"><a href="#category?keyword=Kids-Underwear">Underwear</a></li>
+                  <li className="select"><a href="#category?keyword=Kids-Swimwear">Swimwear</a></li>
+                  <li className="select"><a href="#category?keyword=Kids-Costume">Costume</a></li>
                 </ul>
               </li>
             </div>
             <div className="category-list">
               <li>
-                <a href="">Jewelery &#9662;</a>
+                <a href="">Jewelery</a>
                 <ul className="dropdown">
-                  <li className="select" value="Jewelery-Necklaces"><a href="">Necklaces</a></li>
-                  <li className="select" value="Jewelery-Pins"><a href="">Pins</a></li>
-                  <li className="select" value="Jewelery-Body Jewelry"><a href="">Body Jewelry</a></li>
-                  <li className="select" value="Jewelery-Perfume"><a href="">Perfume</a></li>
-                  <li className="select" value="Jewelery-Bath & Body"><a href="">Bath & Body</a></li>
-                  <li className="select" value="Jewelery-Hair Care"><a href="">Hair Care</a></li>
+                  <li className="select"><a href="#categories?keyword=Jewelery">Show All</a></li>
+                  <li className="select"><a href="#category?keyword=Jewelery-Necklace">Necklace</a></li>
+                  <li className="select"><a href="#category?keyword=Jewelery-Pins">Pins</a></li>
+                  <li className="select"><a href="#category?keyword=Jewelery-Body">Body Jewelry</a></li>
+                  <li className="select"><a href="#category?keyword=Jewelery-Bracelets">Bracelets</a></li>
+                  <li className="select"><a href="#category?keyword=Jewelery-Earings">Earings</a></li>
+                  <li className="select"><a href="#category?keyword=Jewelery-Rings">Rings</a></li>
+                  <li className="select"><a href="#category?keyword=Jewelery-Watches">Watches</a></li>
                 </ul>
               </li>
             </div>
             <div className="category-list">
               <li>
-                <a href="">Home &#9662;</a>
+                <a href="">Beauty</a>
                 <ul className="dropdown">
-                  <li className="select" value="Home-Bath"><a href="">Bath</a></li>
-                  <li className="select" value="Home-Bedding"><a href="">Bedding</a></li>
-                  <li className="select" value="Home-Dining & Entertaining"><a href="">Dining & Entertaining</a></li>
-                  <li className="select" value="Home-Kitchen"><a href="">Kitchen</a></li>
-                  <li className="select" value="Home-Home Decor"><a href="">Home Decor</a></li>
-                  <li className="select" value="Home-Luggage & Travel"><a href="">Luggage & Travel</a></li>
-                  <li className="select" value="Home-Furniture & Mattresses"><a href="">Furniture & Mattresses</a></li>
+                  <li className="select"><a href="#categories?keyword=Beauty">Show All</a></li>
+                  <li className="select"><a href="#category?keyword=Beauty-Face">Face</a></li>
+                  <li className="select"><a href="#category?keyword=Beauty-Eyes">Eyes</a></li>
+                  <li className="select"><a href="#category?keyword=Beauty-Lips">Lips</a></li>
+                  <li className="select"><a href="#category?keyword=Beauty-Perfume">Perfume</a></li>
+                  <li className="select"><a href="#category?keyword=Beauty-Bath-Body">Bath & Body</a></li>
+                  <li className="select"><a href="#category?keyword=Beauty-Hair-Care">Hair Care</a></li>
                 </ul>
               </li>
             </div>
             <div className="category-list">
               <li>
-                <a href="">More &#9662;</a>
+                <a href="">Home</a>
                 <ul className="dropdown">
-                  <li className="select" value="More-Tech Accessories"><a href="">Tech Accessories</a></li>
-                  <li className="select" value="More-Art"><a href="">Art</a></li>
-                  <li className="select" value="More-Books and Magazines"><a href="">Books and Magazines</a></li>
-                  <li className="select" value="More-Music"><a href="">Music</a></li>
-                  <li className="select" value="More-Party Supplies"><a href="">Party Supplies</a></li>
-                  <li className="select" value="More-Sports Equipment"><a href="">Sports Equipment</a></li>
-                  <li className="select" value="More-Others"><a href="">Others</a></li>
+                  <li className="select"><a href="#categories?keyword=Home">Show All</a></li>
+                  <li className="select"><a href="#category?keyword=Home-Bath">Bath</a></li>
+                  <li className="select"><a href="#category?keyword=Home-Bedding">Bedding</a></li>
+                  <li className="select"><a href="#category?keyword=Home-Dining">Dining</a></li>
+                  <li className="select"><a href="#category?keyword=Home-Kitchen">Kitchen</a></li>
+                  <li className="select"><a href="#category?keyword=Home-Home-Decor">Bath & Body</a></li>
+                  <li className="select"><a href="#category?keyword=Home-Luggage-travel">Home-Luggage & Travel</a></li>
+                  <li className="select"><a href="#category?keyword=Home-Furniture">Furniture</a></li>
+                </ul>
+              </li>
+            </div>
+            <div className="category-list">
+              <li>
+                <a href="">More</a>
+                <ul className="dropdown">
+                  <li className="select"><a href="#categories?keyword=More">Tech Accessories</a></li>
+                  <li className="select"><a href="#category?keyword=More-">Art</a></li>
+                  <li className="select"><a href="#category?keyword=More-Books-and-Magazines">Books and Magazines</a></li>
+                  <li className="select"><a href="#category?keyword=More-Music">Music</a></li>
+                  <li className="select"><a href="#category?keyword=More-Party-Supplies">Party Supplies</a></li>
+                  <li className="select"><a href="#category?keyword=More-Sports-Equipment">Sports Equipment</a></li>
+                  <li className="select"><a href="#category?keyword=More-Others">Others</a></li>
                 </ul>
               </li>
             </div>

@@ -297,16 +297,16 @@ app.get('/api/myprofile', (req, res, next) => {
 
 app.post('/api/upload', (req, res, next) => {
   const { userId } = req.user;
-  const { imageURL, location, condition, price, description, title } = req.body;
-  if (!imageURL || !location || !condition || !price || !description || !title) {
-    throw new ClientError(400, 'imageURL, location, condition, price, description, and title are required fields');
+  const { imageURL, location, condition, price, description, title, category, size, brand, style, color } = req.body;
+  if (!imageURL || !location || !condition || !price || !description || !title || !category || !size || !brand || !style || !color) {
+    throw new ClientError(400, 'imageURL, location, condition, price, description, category, size, brand, style, color and title are required fields');
   }
   const sql = `
-  insert into "post" ("userId", "imageURL", "location", "condition", "price", "description", "title")
-  values ($1, $2, $3, $4, $5, $6, $7)
+  insert into "post" ("userId", "imageURL", "location", "condition", "price", "description", "title", "category", "size", "brand", "style", "color")
+  values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
   returning*
   `;
-  const params = [userId, imageURL, location, condition, price, description, title];
+  const params = [userId, imageURL, location, condition, price, description, title, category, size, brand, style, color];
   db
     .query(sql, params)
     .then(result => {
@@ -317,12 +317,12 @@ app.post('/api/upload', (req, res, next) => {
 
 app.patch('/api/edit/:postId', (req, res, next) => {
   const postId = Number(req.params.postId);
-  const { imageURL, location, condition, price, description, title } = req.body;
+  const { imageURL, location, condition, price, description, title, category, size, brand, style, color } = req.body;
   if (!Number.isInteger(postId) || postId < 1) {
     throw new ClientError(400, 'postId must be a positive integer');
   }
-  if (!imageURL || !location || !condition || !price || !description || !title) {
-    throw new ClientError(400, 'imageURL, location, condition, price, description, title are required field');
+  if (!imageURL || !location || !condition || !price || !description || !title || !category || !size || !brand || !style || !color) {
+    throw new ClientError(400, 'imageURL, location, condition, price, description, category, size, brand, style, color and title are required fields');
   }
   const sql = `
   update "post"
@@ -332,11 +332,16 @@ app.patch('/api/edit/:postId', (req, res, next) => {
         "price" = $4,
         "description" = $5,
         "title" = $6,
-        "updatedAt" = now()
-    where "postId" = $7
+        "updatedAt" = now(),
+        "category" = $7,
+        "size" = $8,
+        "brand" = $9,
+        "style" = $10,
+        "color" = $11
+    where "postId" = $12
     returning*
   `;
-  const params = [imageURL, location, condition, price, description, title, postId];
+  const params = [imageURL, location, condition, price, description, title, category, size, brand, style, color, postId];
   db
     .query(sql, params)
     .then(result => {

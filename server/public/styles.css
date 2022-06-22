@@ -779,7 +779,7 @@ ul li ul.dropdown {
 }
 
 ul li:hover ul.dropdown {
-  display: block;
+  display: inline-block;
 
   /* Display the dropdown */
 }

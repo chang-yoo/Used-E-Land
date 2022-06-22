@@ -27,7 +27,7 @@ CREATE TABLE "public"."post" (
   "imageURL" TEXT NOT NULL,
   "location" TEXT,
   "createdAt" timestamptz(6) not null default now(),
-  "category" TEXT NOT NULL,
+  "category"  TEXT NOT NULL,
   "condition" TEXT NOT NULL,
   "price" int NOT NULL,
   "size" TEXT NOT NULL,

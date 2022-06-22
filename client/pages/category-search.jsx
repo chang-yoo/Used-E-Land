@@ -2,6 +2,7 @@ import React from 'react';
 import Post from '../components/post';
 import { Loading } from '../components/spinner';
 import { Off } from '../components/offline';
+import { TryAgain } from '../components/try-again';
 
 export default class CategoryPage extends React.Component {
   constructor(props) {
@@ -91,5 +92,6 @@ export default class CategoryPage extends React.Component {
     </div>
       );
     }
+    return <TryAgain/>;
   }
 }

@@ -52,8 +52,8 @@ export default class Edit extends React.Component {
       .then(result => {
         if (result.length > 0) {
           const [data] = result;
-          const { imageURL, condition, location, price, title, description } = data;
-          this.setState({ imageURL, condition, location, price, title, description, loading: 'complete' });
+          const { imageURL, condition, location, price, title, description, size, brand, category, style, color } = data;
+          this.setState({ imageURL, condition, location, price, title, description, size, brand, category, style, color, loading: 'complete' });
         }
         if (result.length === 0) {
           this.setState({
@@ -209,7 +209,6 @@ export default class Edit extends React.Component {
                     <hr></hr>
                     <div className="title-container">
                       <input
-                        required
                         id="title"
                         type="text"
                         name="title"
@@ -222,7 +221,6 @@ export default class Edit extends React.Component {
                     <div className="row">
                       <div className="price-container">
                         <input
-                          required
                           id="price"
                           type="text"
                           name="price"
@@ -233,7 +231,6 @@ export default class Edit extends React.Component {
                       </div>
                       <div>
                         <input
-                          required
                           id="size"
                           type="text"
                           name="size"
@@ -245,13 +242,13 @@ export default class Edit extends React.Component {
                     <hr></hr>
                     <div className="row">
                       <div className="category-container">
-                        <select className="category" value="" onChange={this.handleChange} name="category" required>
+                        <select className="category" value="" onChange={this.handleChange} name="category">
                           <option className="select" value="">{category}</option>
                           <optgroup label="Menswear">
                             <option className="select" value="Menswear-Tops">Tops</option>
                             <option className="select" value="Menswear-Bottoms">Bottoms</option>
-                            <option className="select" value="Menswear-Coats and Jackets">Coats and Jackets</option>
-                            <option className="select" value="Menswear-Jumpsuits and Rompers">Jumpsuits and Rompers</option>
+                            <option className="select" value="Menswear-Coats-and-Jackets">Coats and Jackets</option>
+                            <option className="select" value="Menswear-Jumpsuits-and-Rompers">Jumpsuits and Rompers</option>
                             <option className="select" value="Menswear-Suits">Suits</option>
                             <option className="select" value="Menswear-Footwear">Footwear</option>
                             <option className="select" value="Menswear-Accessories">Accessories</option>
@@ -263,8 +260,8 @@ export default class Edit extends React.Component {
                           <optgroup label="Womenswear">
                             <option className="select" value="Womenswear-Tops">Tops</option>
                             <option className="select" value="Womenswear-Bottoms">Bottoms</option>
-                            <option className="select" value="Womenswear-Coats and Jackets">Coats and Jackets</option>
-                            <option className="select" value="Womenswear-Jumpsuits and Rompers">Jumpsuits and Rompers</option>
+                            <option className="select" value="Womenswear-Coats-and-Jackets">Coats and Jackets</option>
+                            <option className="select" value="Womenswear-Jumpsuits-and-Rompers">Jumpsuits and Rompers</option>
                             <option className="select" value="Womenswear-Suits">Suits</option>
                             <option className="select" value="Womenswear-Footwear">Footwear</option>
                             <option className="select" value="Womenswear-Accessories">Accessories</option>
@@ -276,8 +273,8 @@ export default class Edit extends React.Component {
                           <optgroup label="Kids">
                             <option className="select" value="Kids-Tops">Tops</option>
                             <option className="select" value="Kids-Bottoms">Bottoms</option>
-                            <option className="select" value="Kids-Coats and Jackets">Coats and Jackets</option>
-                            <option className="select" value="Kids-Jumpsuits and Rompers">Jumpsuits and Rompers</option>
+                            <option className="select" value="Kids-Coats-and-Jackets">Coats and Jackets</option>
+                            <option className="select" value="Kids-Jumpsuits-and-Rompers">Jumpsuits and Rompers</option>
                             <option className="select" value="Kids-Suits">Suits</option>
                             <option className="select" value="Kids-Footwear">Footwear</option>
                             <option className="select" value="Kids-Accessories">Accessories</option>
@@ -289,46 +286,47 @@ export default class Edit extends React.Component {
                           <optgroup label="Jewelery">
                             <option className="select" value="Jewelery-Necklaces">Necklaces</option>
                             <option className="select" value="Jewelery-Pins">Pins</option>
-                            <option className="select" value="Jewelery-Body Jewelry">Body Jewelry</option>
-                            <option className="select" value="Jewelery-Perfume">Perfume</option>
-                            <option className="select" value="Jewelery-Bath & Body">Bath & Body</option>
-                            <option className="select" value="Jewelery-Hair Care">Hair Care</option>
+                            <option className="select" value="Jewelery-Body-Jewelry">Body Jewelry</option>
+                            <option className="select" value="Jewelery-Bracelets">Bracelets</option>
+                            <option className="select" value="Jewelery-Earings">Earings</option>
+                            <option className="select" value="Jewelery-Rings">Rings</option>
+                            <option className="select" value="Jewelery-Watches">Watches</option>
                           </optgroup>
                           <optgroup label="Beauty">
                             <option className="select" value="Beauty-Face">Face</option>
                             <option className="select" value="Beauty-Eyes">Eyes</option>
                             <option className="select" value="Beauty-Lips">Lips</option>
                             <option className="select" value="Beauty-Perfume">Perfume</option>
-                            <option className="select" value="Beauty-Bath & Body">Bath & Body</option>
-                            <option className="select" value="Beauty-Hair Care">Hair Care</option>
+                            <option className="select" value="Beauty-Bath-Body">Bath & Body</option>
+                            <option className="select" value="Beauty-Hair-Care">Hair Care</option>
                           </optgroup>
                           <optgroup label="Home">
                             <option className="select" value="Home-Bath">Bath</option>
                             <option className="select" value="Home-Bedding">Bedding</option>
-                            <option className="select" value="Home-Dining & Entertaining">Dining & Entertaining</option>
+                            <option className="select" value="Home-Dining-Entertaining">Dining & Entertaining</option>
                             <option className="select" value="Home-Kitchen">Kitchen</option>
-                            <option className="select" value="Home-Home Decor">Home Decor</option>
-                            <option className="select" value="Home-Luggage & Travel">Luggage & Travel</option>
-                            <option className="select" value="Home-Furniture & Mattresses">Furniture & Mattresses</option>
+                            <option className="select" value="Home-Home-Decor">Home Decor</option>
+                            <option className="select" value="Home-Luggage-Travel">Luggage & Travel</option>
+                            <option className="select" value="Home-Furniture-Mattresses">Furniture & Mattresses</option>
                           </optgroup>
                           <optgroup label="More">
-                            <option className="select" value="More-Tech Accessories">Tech Accessories</option>
+                            <option className="select" value="More-Tech-Accessories">Tech Accessories</option>
                             <option className="select" value="More-Art">Art</option>
-                            <option className="select" value="More-Books and Magazines">Books and Magazines</option>
+                            <option className="select" value="More-Books-and-Magazines">Books and Magazines</option>
                             <option className="select" value="More-Music">Music</option>
-                            <option className="select" value="More-Party Supplies">Party Supplies</option>
-                            <option className="select" value="More-Sports Equipment">Sports Equipment</option>
+                            <option className="select" value="More-Party-Supplies">Party Supplies</option>
+                            <option className="select" value="More-Sports-Equipment">Sports Equipment</option>
                             <option className="select" value="More-Others">Others</option>
                           </optgroup>
                         </select>
                       </div>
                     <div className="condition-container">
-                      <select className="condition" onChange={this.handleChange} name="condition" placeholder={condition} required>
+                      <select className="condition" onChange={this.handleChange} name="condition" placeholder={condition}>
                         <option className="select" value="">{condition}</option>
-                        <option className="select" value="Used - Fair">Used - Fair</option>
-                        <option className="select" value="Used - Good">Used - Good</option>
-                        <option className="select" value="Used - Very Good">Used - Very Good</option>
-                        <option className="select" value="Used - Excellent">Used - Excellent</option>
+                        <option className="select" value="Used-Fair">Used - Fair</option>
+                        <option className="select" value="Used-Good">Used - Good</option>
+                        <option className="select" value="Used-Very Good">Used - Very Good</option>
+                        <option className="select" value="Used-Excellent">Used - Excellent</option>
                         <option className="select" value="Pristine">Pristine</option>
                       </select>
                     </div>
@@ -352,20 +350,19 @@ export default class Edit extends React.Component {
                       </div>
                       <div>
                         <input
-                          required
                           id="style"
                           type="text"
                           name="brand"
                           onChange={this.handleChange}
                           placeholder={style}
                         />
+                        <i onClick={this.handleDeleteBox} className="fa-solid fa-delete-left fa-2x"></i>
                       </div>
                     </div>
                     <hr></hr>
                     <div className="row">
                       <div>
                         <input
-                          required
                           id="color"
                           type="text"
                           name="color"
@@ -373,10 +370,8 @@ export default class Edit extends React.Component {
                           placeholder={color}
                         />
                       </div>
-
                       <div className="location-container">
                         <input
-                          required
                           id="location"
                           type="text"
                           name="location"
@@ -389,7 +384,6 @@ export default class Edit extends React.Component {
                     <hr></hr>
                     <div className="description-container">
                       <textarea
-                        required
                         autoFocus
                         id="description"
                         type="text"
