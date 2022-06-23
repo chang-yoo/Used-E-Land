@@ -34,7 +34,7 @@ export default class CategoryIcon extends React.Component {
                 </div>
                 <div className="category-list">
                   <li>
-                    <a className="category-title">Mens</a>
+                    <a className="category-title">Men</a>
                     <ul className="dropdown column-half">
                       <li className="select"><a className="category-link-text" href="#categories?keyword=Mens">Show All</a></li>
                       <li className="select"><a className="category-link-text" href="#category?keyword=Menswear-Tops">Tops</a></li>
