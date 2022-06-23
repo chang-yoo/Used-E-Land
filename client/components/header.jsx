@@ -82,7 +82,7 @@ export default class Header extends React.Component {
       <div className="header row">
         <div>
           <a href="#">
-            <img className="logo" src="/images/logo.png"></img>
+            <img className="logo" src="/images/logo.jpeg"></img>
           </a>
         </div>
         <div className="column-full margin-0">

@@ -162,7 +162,7 @@ export default class Header extends React.Component {
       return (
         <div className="header row column-full">
           <a href="#">
-            <img className="logo" src='/images/logo.png'></img>
+            <img className="logo" src='/images/logo.jpeg'></img>
           </a>
           <div className="column-full margin-0">
             <div className="row">
@@ -212,7 +212,7 @@ export default class Header extends React.Component {
       <div className="header header-height">
         <div>
           <a href="#">
-            <img className="logo" src='/images/logo.png'></img>
+            <img className="logo" src='/images/logo.jpeg'></img>
           </a>
         </div>
         <div className="column-full margin-0">
