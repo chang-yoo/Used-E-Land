@@ -57,9 +57,11 @@ Try the application live at [https://usey.herokuapp.com/](https://usey.herokuapp
  1. Clone the repository. [git@github.com:chang-yoo/final-project.git]
  2. Instal all dependencies with NPM.
     - npm install
- 3. Create a database
+ 3. Turn on the PostgreSql
+    - sudo service postgresql start
+ 4. Create a database
     - createdb name-of-database
- 4. Update .env.example file
+ 5. Update .env.example file
     - DataBase_URL=postgres://dev:dev@postgres/your-database-name?sslmode=disable
- 5. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
+ 6. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
     - npm run dev
