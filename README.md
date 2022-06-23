@@ -1,5 +1,6 @@
-# Used-E-Land
-A web applicaton for users who want to sell their used items or buy others.
+# Usey
+A full-stack E-commerce application, using HTML, CSS, JavaScript, PostgreSql, Node.js, WebPack, and React.js for new or secondhand
+items for purchasing and selling.
 
 Would you rather keep stuffs that are just left in the house/not being used forever or sell them at a lower price for profit? I recently realized taht there are a lot of items that I don't use anymore but in very good condition. So, I was thinking if I could create an application where it's very simple to upload and easy for users to interact. Used-Ecommerce-land not only lets users to get their wanted items at a lower price but also helps seller to make profits.
 
