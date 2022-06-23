@@ -104,20 +104,19 @@ export default class Header extends React.Component {
                   </div>
                 </div>
               </form>
-              <div className="menu-bar transition">
-                <div>
-                  <i onClick={this.menubar} className="fa-solid fa-arrow-right-long fa-2x margin-bottom-1rem"></i>
-                </div>
-                <div className="menubar-container col-row space-around">
-                  <div className="margin-left-3rem menu-myaccount-container">
-                    <ul><h3>My Account</h3></ul>
-                      <a href="#myprofile" onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">My Page</li></a>
-                      <a href={`#history?userId=${userId}`} onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">Sold</li></a>
-                      <a href={`#review?userId=${userId}`} onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">Feedback</li></a>
-                      <a href="#upload" onClick={this.turnoffMenubar}><li className="font-color margin-top-1rem">Sell Now</li></a>
-                  </div>
-                  <div className="margin-left-3rem sign-out">
-                    <a href="#sign-in" className="font-color" onClick={this.handleSignOut}>Sign Out</a>
+              <div className="menu-bar">
+                <div className="row center">
+                  <div className="menubar-container">
+                      <ul className="menu-text"><h3>My Account</h3>
+                        <a href="#myprofile" onClick={this.turnoffMenubar}><li className="menu-text">My Page</li></a>
+                        <a href={`#history?userId=${userId}`} onClick={this.turnoffMenubar}><li className="menu-text">Sold</li></a>
+                        <a href={`#review?userId=${userId}`} onClick={this.turnoffMenubar}><li className="menu-text">Feedback</li></a>
+                        <a href="#upload" onClick={this.turnoffMenubar}><li className="menu-text">Sell Now</li></a>
+                    <div className="sign-out">
+                      <a href="#sign-in" className="menu-text" onClick={this.handleSignOut}>Sign Out</a>
+                    </div>
+                      <i onClick={this.menubar} className="fa-solid fa-xmark menu-text fa-2x margin-top-1rem"></i>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -136,7 +135,7 @@ export default class Header extends React.Component {
         <div className="column-full margin-0">
           <div className="row">
             <form onSubmit={this.handleSubmit}>
-              <div className="searching-container" id="keyword">
+              <div className="searching-container">
                 <input
                   id="keyword"
                   name="keyword"

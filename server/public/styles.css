@@ -47,10 +47,6 @@ p {
   font-size: 0.75rem;
 }
 
-h3 {
-  margin-top: 0;
-}
-
 .header {
   width: 100%;
   display: flex;
@@ -143,23 +139,12 @@ h1 {
 .header-buttons {
   margin: auto;
   justify-content: end;
-  width: 300px;
 }
 
 .header-icons {
   width: 100%;
   margin-right: 2rem;
   justify-content: end;
-}
-
-.header-sign-up,
-.header-sign-in {
-  background-color: black;
-  color: #fdec00;
-  border: 1px solid black;
-  border-radius: 3px;
-  width: 100px;
-  height: 35px;
 }
 
 .edit-text-align {
@@ -208,7 +193,6 @@ textarea {
 .fa-envelope,
 .fa-address-book,
 .fa-delete-left,
-.fa-arrow-right-long,
 .menu-icon,
 .fa-xmark,
 .search-glass {
@@ -217,6 +201,12 @@ textarea {
 
 .menu-icon {
   right: 0%;
+}
+
+.menu-text {
+  color: #fdec00;
+  text-align: center;
+  line-height: 2.5rem;
 }
 
 .fa-address-book {
@@ -237,21 +227,21 @@ textarea {
 }
 
 .menu-bar {
-  width: 300px;
-  position: relative;
-  background-color: #fee5d7;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100vw;
+  width: 100%;
   min-height: 100vh;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.85);
   z-index: 3;
-  padding-top: 1rem;
-  padding-left: 1rem;
-  right: -100%;
-  overflow-x: hidden;
 }
 
 .menu-container {
-  position: absolute;
-  right: 5%;
   z-index: 3;
+  text-align: center;
 }
 
 .post:hover {
@@ -423,22 +413,12 @@ span {
   position: relative;
 }
 
-.menubar-container {
-  line-height: 2rem;
-  margin-left: -1rem;
-  color: #ad7d35;
-}
-
 .font-color {
   color: #ad7d35;
 }
 
 .welcome-profile {
   margin-top: 0.5rem;
-}
-
-.menu-myaccount-container {
-  margin-top: -10rem;
 }
 
 ul {
@@ -815,4 +795,5 @@ ul li ul.dropdown li {
   width: 50%;
   height: 50%;
   position: absolute;
+}
 }

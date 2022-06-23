@@ -58,9 +58,13 @@ body {
   justify-content: center;
 }
 
+.margin-right-1rem {
+  margin-right: 1rem;
+}
+
 .center {
   justify-content: center;
-  align-content: center;
+  align-items: center;
   height: 100%;
 }
 
@@ -159,10 +163,6 @@ body {
     width: 100%;
   }
 
-  #keyword {
-    width: 130px;
-  }
-
   .searching-position {
     top: 20%;
   }
@@ -209,12 +209,12 @@ body {
     margin-top: -20rem;
   }
 
-  .delete-box-height {
-    height: 30%;
+  #keyword {
+    width: 120px;
   }
 
-  .transition {
-    transform: translateX(-200%);
+  .delete-box-height {
+    height: 30%;
   }
 
   .dot-container {
@@ -238,14 +238,26 @@ body {
 
   .logo {
     width: 50px;
-    height: 40px;
+    height: 30px;
     margin-left: 1rem;
     border-radius: 10px;
     object-fit: cover;
   }
+
+  .header-sign-up,
+  .header-sign-in {
+    background-color: black;
+    color: #fdec00;
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 65px;
+    height: 30px;
+    size: 5px;
+    padding: 0;
+  }
 }
 
-@media only screen and (min-width: 620px) {
+@media only screen and (min-width: 600px) {
   .rows {
     display: block;
   }
@@ -263,7 +275,7 @@ body {
   }
 
   #keyword {
-    width: 400px;
+    width: 200px;
   }
 
   .edit-text-width-first-half {
@@ -307,10 +319,6 @@ body {
     height: 35%;
   }
 
-  .transition {
-    transform: translateX(-250%);
-  }
-
   .searching-position {
     top: 20%;
   }
@@ -339,13 +347,20 @@ body {
     border-radius: 10px;
     object-fit: cover;
   }
+
+  .header-sign-up,
+  .header-sign-in {
+    background-color: black;
+    color: #fdec00;
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 80px;
+    height: 30px;
+    size: 12px;
+  }
 }
 
 @media only screen and (min-width: 900px) {
-  .transition {
-    transform: translateX(-230%);
-  }
-
   .searching-position {
     top: 20%;
   }
@@ -353,96 +368,92 @@ body {
   #keyword {
     width: 500px;
   }
-}
 
-@media only screen and (min-width: 1080px) {
-  .rows {
-    display: flex;
+  @media only screen and (min-width: 1080px) {
+    .rows {
+      display: flex;
+    }
+
+    .column-half {
+      width: 50%;
+    }
+
+    .edit-text-align {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .edit-column-half {
+      width: 50%;
+    }
+
+    .one-fourth-container {
+      width: 25%;
+    }
+
+    #keyword {
+      width: 700px;
+    }
+
+    .edit-text-width-first-half {
+      width: 150px;
+    }
+
+    .edit-text-width-second-half {
+      width: 400px;
+    }
+
+    .fa-delete-left {
+      position: absolute;
+      top: 10%;
+      left: 103%;
+    }
+
+    .detail-column-half {
+      width: 50%;
+    }
+
+    .sign-box-height {
+      height: 200px;
+    }
+
+    .sign-box-vertical {
+      margin-top: -15rem;
+    }
+
+    .sign-in-box-vertical {
+      margin-top: -13rem;
+    }
+
+    .delete-box-height {
+      height: 40%;
+    }
+
+    .edit-width {
+      width: 80%;
+    }
+
+    .detail-image-height {
+      max-height: 300px;
+    }
+
+    .dot-container {
+      margin: auto;
+      margin-top: -6rem;
+    }
   }
 
-  .column-half {
-    width: 50%;
-  }
+  @media only screen and (min-width: 1900px) {
+    .one-fourth-container {
+      width: 15%;
+    }
 
-  .edit-text-align {
-    display: flex;
-    flex-direction: column;
-  }
+    .edit-width {
+      width: 50%;
+    }
 
-  .edit-column-half {
-    width: 50%;
-  }
-
-  .one-fourth-container {
-    width: 25%;
-  }
-
-  #keyword {
-    width: 700px;
-  }
-
-  .edit-text-width-first-half {
-    width: 150px;
-  }
-
-  .edit-text-width-second-half {
-    width: 400px;
-  }
-
-  .fa-delete-left {
-    position: absolute;
-    top: 10%;
-    left: 103%;
-  }
-
-  .detail-column-half {
-    width: 50%;
-  }
-
-  .sign-box-height {
-    height: 200px;
-  }
-
-  .sign-box-vertical {
-    margin-top: -15rem;
-  }
-
-  .sign-in-box-vertical {
-    margin-top: -13rem;
-  }
-
-  .delete-box-height {
-    height: 40%;
-  }
-
-  .transition {
-    transform: translateX(-250%);
-  }
-
-  .edit-width {
-    width: 80%;
-  }
-
-  .detail-image-height {
-    max-height: 300px;
-  }
-
-  .dot-container {
-    margin: auto;
-    margin-top: -6rem;
-  }
-}
-
-@media only screen and (min-width: 1900px) {
-  .one-fourth-container {
-    width: 15%;
-  }
-
-  .edit-width {
-    width: 50%;
-  }
-
-  .detail-image-height {
-    max-height: 500px;
+    .detail-image-height {
+      max-height: 500px;
+    }
   }
 }

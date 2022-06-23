@@ -69,13 +69,15 @@ export default class Header extends React.Component {
                 </div>
               </div>
             </form>
+            <div className="header-column">
             <div className='row text-align-right header-buttons'>
-              <div className="column-half">
+              <div className="column-half margin-right-1rem">
                 <a href="#sign-in"><button className="header-sign-up">Sign In</button></a>
               </div>
               <div className="column-half">
                 <a href="#sign-up"><button className="header-sign-in">Register</button></a>
               </div>
+            </div>
             </div>
           </div>
         </div>
