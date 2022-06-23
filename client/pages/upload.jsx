@@ -151,7 +151,7 @@ export default class Upload extends React.Component {
         <div className="row justify-center">
           <div className="upload-container column-full text-align-center auto">
             <div className={showAgain}>
-              <div className="menu-bar">
+            <div className="menu-bar">
                 <div className="z-index-5 text-align-center in-center">
                   <h2 className="font-color-yellow">Check your inputs again.</h2>
                   <h4 onClick={this.handleDelete} className="font-color-yellow hover margin-top-1rem">Try Again</h4>
