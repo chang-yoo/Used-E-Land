@@ -98,17 +98,20 @@ export default class Review extends React.Component {
       return (
       <div className="detail-background">
         <form onSubmit={this.handleSubmit}>
-          <div className="row center top-padding-1rem">
-            <label>Write a review!</label>
-            <input
-              required
-              id="text"
-              type="text"
-              name="text"
-              onChange={this.handleChange}
-              className="text"
-            />
-            <button className="review-button" type="submit">Enter</button>
+          <div className="auto text-align-center column-40-for-upload">
+            <h3>Write a Review</h3>
+            <div className="row justify-center">
+              <input
+                required
+                id="text"
+                type="text"
+                name="text"
+                onChange={this.handleChange}
+                className="text"
+              />
+              <button className="review-submit-button" type="submit">Enter</button>
+            </div>
+            <h3>0 review</h3>
           </div>
         </form>
       </div>
@@ -118,29 +121,33 @@ export default class Review extends React.Component {
       return (
       <div className="detail-background">
         <form onSubmit={this.handleSubmit}>
-          <div className="row center top-padding-1rem">
-            <label>Write a review!</label>
-            <input
-              required
-              id="text"
-              type="text"
-              name="text"
-              onChange={this.handleChange}
-              className="text"
-            />
-            <button className="review-button" type="submit">Enter</button>
+            <div className="auto text-align-center column-40-for-upload">
+              <h3>Write a Review</h3>
+              <div className="row justify-center">
+                <input
+                  required
+                  id="text"
+                  type="text"
+                  name="text"
+                  onChange={this.handleChange}
+                  className="text"
+                />
+                <button className="review-submit-button" type="submit">Enter</button>
+              </div>
           </div>
         </form>
         <div>
           {reviews.map(eachReview => {
             return (
               <div key={eachReview.reviewId} className="review-background">
-                <div className="review-container">
-                  <div className="row review-user-container">
-                    <i className="fa-solid fa-user review-user"></i><p>{eachReview.username}</p>
-                  </div>
-                  <div className="review-text-container">
-                    <p>{eachReview.text}</p>
+                <div className="auto text-align-center column-40-for-upload">
+                  <div className="review-container">
+                    <div className="row review-user-container">
+                      <i className="fa-solid fa-user review-user"></i><p>{eachReview.username}</p>
+                    </div>
+                    <div className="review-text-container text-align-left">
+                      <p>{eachReview.text}</p>
+                    </div>
                   </div>
                 </div>
               </div>

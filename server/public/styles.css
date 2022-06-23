@@ -378,6 +378,18 @@ i:hover {
   width: 20rem;
 }
 
+.review-submit-button {
+  border: 1px solid black;
+  background-color: black;
+  border-radius: 0 3px 3px 0;
+  width: 80px;
+  color: #f1f18f;
+  height: 40px;
+  margin-left: 0;
+  left: 0;
+  padding-left: 0;
+}
+
 .link-to-upload-button,
 .upload-button,
 .cancel-button {
@@ -433,16 +445,6 @@ span {
 
 ::placeholder {
   font-size: 0.94rem;
-}
-
-.review-button,
-.delete-cancel-button {
-  border: 1px solid #fbd3a4;
-  background-color: #fbd3a4;
-  border-radius: 30px;
-  height: 40px;
-  width: 90px;
-  color: #ad7d35;
 }
 
 .title,
@@ -610,17 +612,13 @@ span {
 }
 
 .review-container {
-  width: 50%;
+  width: 100%;
   background-color: white;
-  border: 1px solid orange;
-  border-radius: 10px;
+  border: 1px solid #9f9999;
+  border-radius: 3px;
   margin: 1rem auto;
   height: auto;
   word-wrap: break-word;
-}
-
-.font-color-orange {
-  color: orange;
 }
 
 .review-user {
@@ -632,14 +630,14 @@ span {
 }
 
 .review-user-container {
-  border-bottom: 1px solid orange;
+  border-bottom: 1px solid #9f9999;
 }
 
 .text {
-  border-radius: 10px;
+  border-radius: 3px 0 0 3px;
   border: 1px solid #9f9999;
-  margin: 0 1rem;
-  width: 320px;
+  margin: 0;
+  width: 100%;
   height: 40px;
 }
 
