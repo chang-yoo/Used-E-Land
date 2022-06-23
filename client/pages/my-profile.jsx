@@ -50,7 +50,7 @@ export default class MyProfile extends React.Component {
     }
     if (created === '') {
       return (
-      <div className="list-background top-3-rem">
+      <div className="list-background">
         <div className="row space-between">
           <div className="column-half">
             <h1 className="welcome-profile">Welcome {username}!</h1>

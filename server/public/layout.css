@@ -80,10 +80,6 @@ body {
   height: 100%;
 }
 
-.top-3-rem {
-  margin-top: 3rem;
-}
-
 .space-around {
   justify-content: space-around;
 }
@@ -112,10 +108,6 @@ body {
 
 .margin-top-2rem {
   margin-top: 2rem;
-}
-
-.width-60 {
-  width: 60%;
 }
 
 .text-align-right {
@@ -378,22 +370,6 @@ body {
 
     .detail-column-half {
       width: 50%;
-    }
-
-    .sign-box-height {
-      height: 200px;
-    }
-
-    .sign-box-vertical {
-      margin-top: -15rem;
-    }
-
-    .sign-in-box-vertical {
-      margin-top: -13rem;
-    }
-
-    .delete-box-height {
-      height: 40%;
     }
 
     .edit-width {

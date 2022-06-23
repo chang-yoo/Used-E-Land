@@ -99,75 +99,71 @@ export default class SignUp extends React.Component {
         </div>
           </div>
           <div className="row center">
-            <div className="width-60 auto">
-              <div className="row center">
-                <form onSubmit={this.handleSubmit}>
-                  <div>
-                    <div>
-                      <h3 className="text-align-left margin-top-3rem">Create Your Account</h3>
-                    </div>
-                    <div>
-                      <input
-                        required
-                        id="username"
-                        type="text"
-                        name="username"
-                        onChange={this.handleChange}
-                        className="username"
-                        placeholder="Username"
-                      />
-                    </div>
-                    <div className="margin-top-1rem">
-                      <input
-                        required
-                        id="password"
-                        type="password"
-                        name="password"
-                        onChange={this.handleChange}
-                        className="password"
-                        placeholder="Password"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="text-align-left margin-top-3rem">Your Detail</h3>
-                    </div>
-                    <div className="margin-top-1rem">
-                      <input
-                        required
-                        id="phone"
-                        type="tel"
-                        name="phone"
-                        onChange={this.handleChange}
-                        className="phone"
-                        placeholder="Phone - Numbers Only (No Dash, No Space)"
-                      />
-                    </div>
-                    <div className="margin-top-1rem">
-                      <input
-                        required
-                        id="email"
-                        type="text"
-                        name="email"
-                        onChange={this.handleChange}
-                        className="email"
-                        placeholder="E-mail"
-                      />
-                    </div>
-                    <div className="margin-top-1rem text-align-right margin-bottom-1rem">
-                      <button type="submit" className="sign-in-button">
-                        Create
-                      </button>
-                    </div>
-                    <hr />
-                    <div className="margin-top-1rem">
-                      <button onClick={e => { window.location.hash = '#sign-in'; }} className="sign-in-button">
-                        Go back to Sign In
-                      </button>
-                    </div>
-                  </div>
-                </form>
+            <form onSubmit={this.handleSubmit}>
+              <div>
+                <div>
+                  <h3 className="text-align-left margin-top-3rem">Create Your Account</h3>
+                </div>
+                <div>
+                  <input
+                    required
+                    id="username"
+                    type="text"
+                    name="username"
+                    onChange={this.handleChange}
+                    className="username"
+                    placeholder="Username"
+                  />
+                </div>
+                <div className="margin-top-1rem">
+                  <input
+                    required
+                    id="password"
+                    type="password"
+                    name="password"
+                    onChange={this.handleChange}
+                    className="password"
+                    placeholder="Password"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-align-left margin-top-3rem">Your Detail</h3>
+                </div>
+                <div className="margin-top-1rem">
+                  <input
+                    required
+                    id="phone"
+                    type="tel"
+                    name="phone"
+                    onChange={this.handleChange}
+                    className="phone"
+                    placeholder="Phone - Numbers Only (No Dash, No Space)"
+                  />
+                </div>
+                <div className="margin-top-1rem">
+                  <input
+                    required
+                    id="email"
+                    type="text"
+                    name="email"
+                    onChange={this.handleChange}
+                    className="email"
+                    placeholder="E-mail"
+                  />
+                </div>
+                <div className="margin-top-1rem text-align-right margin-bottom-1rem">
+                  <button type="submit" className="sign-in-button">
+                    Create
+                  </button>
+                </div>
+                <hr />
+                <div className="margin-top-1rem">
+                  <button onClick={e => { window.location.hash = '#sign-in'; }} className="sign-in-button">
+                    Go back to Sign In
+                  </button>
+                </div>
               </div>
-            </div>
+            </form>
           </div>
           <div className={confirm}>
             <div className="column-full">

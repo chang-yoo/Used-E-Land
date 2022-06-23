@@ -40,7 +40,7 @@ export default class Home extends React.Component {
               </div>
             </div>
           </div>
-          <h1>WHAT&apos;S NEW TODAY</h1>
+          <h1 className="margin-0">WHAT&apos;S NEW TODAY</h1>
           <div className="row wrap justify-center">
             <List key={this.props.postId}/>
           </div>
