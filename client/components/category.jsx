@@ -4,19 +4,21 @@ export default class Category extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      link: this.props.keyword
+      screen: screen.width
     };
   }
 
   render() {
-    return (
+    const { screen } = this.state;
+    if (screen > 600) {
+      return (
       <div className="column-full category-container">
         <ul className="auto padding-0">
           <div className="row">
             <div className="category-list">
               <li>
-                <a href="" className="category-title">Mens</a>
-                <ul className="dropdown">
+                <a className="category-title">Mens</a>
+                <ul className="dropdown drop-down-width">
                   <li className="select"><a className="category-link-text"href="#categories?keyword=Mens">Show All</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Menswear-Tops">Tops</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Menswear-Bottoms">Bottoms</a></li>
@@ -34,8 +36,8 @@ export default class Category extends React.Component {
             </div>
             <div className="category-list">
               <li>
-                <a href="" className="category-title">Women</a>
-                <ul className="dropdown">
+                <a className="category-title">Women</a>
+                <ul className="dropdown drop-down-width">
                     <li className="select"><a className="category-link-text"href="#categories?keyword=Womens">Show All</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Womenswear-Tops">Tops</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Womenswear-Bottoms">Bottoms</a></li>
@@ -53,8 +55,8 @@ export default class Category extends React.Component {
             </div>
             <div className="category-list">
               <li>
-                <a href="" className="category-title">Kids</a>
-                <ul className="dropdown">
+                <a className="category-title">Kids</a>
+                <ul className="dropdown drop-down-width">
                   <li className="select"><a className="category-link-text"href="#categories?keyword=Kids">Show All</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Kids-Tops">Tops</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Kids-Bottoms">Bottoms</a></li>
@@ -72,8 +74,8 @@ export default class Category extends React.Component {
             </div>
             <div className="category-list">
               <li>
-                <a href="" className="category-title">Jewelery</a>
-                <ul className="dropdown">
+                <a className="category-title">Jewelery</a>
+                <ul className="dropdown drop-down-width">
                   <li className="select"><a className="category-link-text"href="#categories?keyword=Jewelery">Show All</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Jewelery-Necklace">Necklace</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Jewelery-Pins">Pins</a></li>
@@ -87,8 +89,8 @@ export default class Category extends React.Component {
             </div>
             <div className="category-list">
               <li>
-                <a href="" className="category-title">Beauty</a>
-                <ul className="dropdown">
+                <a className="category-title">Beauty</a>
+                <ul className="dropdown drop-down-width">
                   <li className="select"><a className="category-link-text"href="#categories?keyword=Beauty">Show All</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Beauty-Face">Face</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Beauty-Eyes">Eyes</a></li>
@@ -101,8 +103,8 @@ export default class Category extends React.Component {
             </div>
             <div className="category-list">
               <li>
-                <a href="" className="category-title">Home</a>
-                <ul className="dropdown">
+                <a className="category-title">Home</a>
+                <ul className="dropdown drop-down-width">
                   <li className="select"><a className="category-link-text"href="#categories?keyword=Home">Show All</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Home-Bath">Bath</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Home-Bedding">Bedding</a></li>
@@ -116,8 +118,8 @@ export default class Category extends React.Component {
             </div>
             <div className="category-list">
               <li>
-                <a href="" className="category-title">More</a>
-                <ul className="dropdown">
+                <a className="category-title">More</a>
+                <ul className="dropdown drop-down-width">
                   <li className="select"><a className="category-link-text"href="#categories?keyword=More">Tech Accessories</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=More-">Art</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=More-Books-and-Magazines">Books and Magazines</a></li>
@@ -131,6 +133,7 @@ export default class Category extends React.Component {
             </div>
           </ul>
       </div>
-    );
+      );
+    }
   }
 }
