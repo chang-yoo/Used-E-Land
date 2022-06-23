@@ -45,18 +45,18 @@ export default class History extends React.Component {
     if (completed.length === 0) {
       return <div className="list-background">
                <div>
-                 <h1 className="margin-padding-bottom-0">Currently Empty!</h1>
+                 <h3 className="margin-left-1rem">You have no sold items yet</h3>
                </div>
               <div className="text-align-center in-center">
-                 <h1>You didn&apos;t make any history yet</h1>
+                 <h4>Once you&apos;ve sold an item, you&apos;ll find it here</h4>
                  <a className="font-color" href="#">Return Home</a>
                </div>
              </div>;
     }
     if (completed.length > 0 && loading === 'complete') {
       return (
-      <div className="list-background top-6-rem">
-        <h1>{completed[0].username}&apos;s History</h1>
+      <div className="list-background">
+        <h3 className='margin-left-1rem'>{completed[0].username}&apos;s sold items</h3>
         <div className="row wrap">
           {completed.map(eachpost => {
             return (

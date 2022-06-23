@@ -51,10 +51,10 @@ export default class MyProfile extends React.Component {
     if (created === '') {
       return (
       <div className="list-background">
-        <div className="text-align-left margin-1rem">
-          <div className="rows space-between">
-            <h3 className="welcome-profile">{username}&apos;s Items</h3>
-            <button className="link-to-upload-button"onClick={e => { window.location.hash = '#upload'; }}>List an item</button>
+        <div className="text-align-left">
+          <div className="rows space-between margin-left-1rem">
+            <h3>{username}&apos;s Items</h3>
+            <button className="link-to-upload-button margin-right-1rem margin-top-1rem margin-bottom-1rem" onClick={e => { window.location.hash = '#upload'; }}>List an item</button>
           </div>
         </div>
         <div className="row wrap">
@@ -85,14 +85,13 @@ export default class MyProfile extends React.Component {
       );
     } else if (created === 'no') {
       return (
-      <div className="list-background top-3-rem">
+      <div className="list-background">
         <div className="row space-between">
           <div className="column-half row">
-              <a href="#upload"><h2 className="margin-2rem">Sell Now</h2></a>
+              <a href="#upload"><h3 className="margin-left-1rem">{username} Have No Listings Yet</h3></a>
           </div>
         </div>
           <div className="in-center text-align-center">
-            <h3>{username} isn&apos;t selling anything yet. <br/> Check back later.</h3>
             <button className="link-to-upload-button" onClick={e => { window.location.hash = '#upload'; }}>List an item</button>
         </div>
       </div>
