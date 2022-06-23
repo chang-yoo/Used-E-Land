@@ -40,7 +40,7 @@ img {
 
 .main-show-more-button {
   background-color: black;
-  color: #fdec00;
+  color: #f1f18f;
   border: 1px solid black;
   width: 50%;
 }
@@ -171,12 +171,6 @@ h1 {
   cursor: pointer;
 }
 
-.price {
-  color: #ffa903;
-  font-size: 0.94rem;
-  margin: auto;
-}
-
 .black {
   background-color: black;
   z-index: 100;
@@ -231,6 +225,7 @@ h1 {
   font-size: 1.875rem;
 }
 
+select,
 textarea,
 input:focus {
   outline-color: black;
@@ -240,6 +235,7 @@ textarea {
   resize: none;
 }
 
+.fa-camera,
 .fa-heart,
 .fa-heart-circle-plus,
 .fa-user,
@@ -258,7 +254,7 @@ textarea {
 }
 
 .menu-text {
-  color: #fdec00;
+  color: #f1f18f;
   text-align: center;
   line-height: 2.5rem;
 }
@@ -318,8 +314,6 @@ textarea {
 
 .upload-container,
 .detail-background {
-  background-color: #fef5f0;
-  min-height: 92vh;
   margin: auto;
   position: relative;
 }
@@ -339,13 +333,8 @@ textarea {
 hr {
   width: 100%;
   border: none;
-  background-color: #fdec00;
+  background-color: #f1f18f;
   height: 5px;
-}
-
-h2,
-h4 {
-  color: #ad7d35;
 }
 
 .space-even {
@@ -355,8 +344,9 @@ h4 {
 .image-container {
   width: 100%;
   height: 300px;
-  background-color: black;
+  border-style: dashed;
   position: relative;
+  border-color: #9f9999;
 }
 
 ul,
@@ -388,6 +378,16 @@ i:hover {
   width: 20rem;
 }
 
+.upload-button,
+.cancel-button {
+  border: 1px solid black;
+  background-color: black;
+  border-radius: 3px;
+  width: 35%;
+  color: #f1f18f;
+  height: 40px;
+}
+
 .demo-button,
 .sign-in-no-account,
 .sign-in-button {
@@ -395,7 +395,7 @@ i:hover {
   background-color: black;
   border-radius: 3px;
   width: 100%;
-  color: #fdec00;
+  color: #f1f18f;
   height: 40px;
 }
 
@@ -423,22 +423,8 @@ span {
   color: #9f9999;
 }
 
-#location,
-#price {
-  height: 50px;
-  border-radius: 10px;
-  border: 1px solid #9f9999;
-}
-
-.condition-container,
-.location-container,
-.price-container {
-  padding: 0.5rem;
-}
-
 #font-color,
-::placeholder,
-.condition {
+::placeholder {
   color: #9f9999;
   size: 10px;
 }
@@ -448,10 +434,7 @@ span {
 }
 
 .review-button,
-.delete-confirm-button,
-.delete-cancel-button,
-.upload-button,
-.cancel-button {
+.delete-cancel-button {
   border: 1px solid #fbd3a4;
   background-color: #fbd3a4;
   border-radius: 30px;
@@ -460,36 +443,41 @@ span {
   color: #ad7d35;
 }
 
-.cancel-button-text {
-  color: #ad7d35;
-  margin-left: 1.3rem;
-  font-size: 0.94rem;
-  margin-top: 0.7rem;
-}
-
-.condition {
-  border-radius: 5px;
-  width: 120px;
-  border: 1px solid #9f9999;
-}
-
 .title,
 .description {
-  border-radius: 10px;
+  border-radius: 3px;
   border: 1px solid #9f9999;
 }
 
-.title-container {
-  position: relative;
+.description {
+  width: 100%;
+  height: 100px;
+  font-size: 1rem;
 }
 
+.price,
+.location,
+.style,
+.color,
+.size,
+.condition,
+.brand,
+.category,
 .title {
+  width: 100%;
   height: 50px;
   font-size: 1rem;
 }
 
-.description {
-  height: 200px;
+.category {
+  border-top: white;
+  border-right: white;
+  border-left: white;
+}
+
+.condition {
+  border-color: white;
+  border-bottom: 1.5px solid #9f9999;
 }
 
 .z-index-5 {
@@ -497,21 +485,22 @@ span {
 }
 
 .font-color-yellow {
-  color: #fdec00;
+  color: #f1f18f;
 }
 
-#uploading,
+.uploading,
 .image-load {
-  font-size: 0.94rem;
-  width: 100px;
-  background-color: #fbd3a4;
-  color: #ad7d35;
-  padding: 0.4rem;
-  font-family: sans-serif;
-  border-radius: 0.3rem;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   cursor: pointer;
-  position: relative;
-  border: 1px solid #fbd3a4;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .image-upload {
@@ -523,7 +512,7 @@ span {
   position: absolute;
   left: 10%;
   top: 3%;
-  color: orange;
+  color: black;
 }
 
 .fa-sack-dollar {
@@ -531,7 +520,7 @@ span {
   position: absolute;
   left: 10%;
   top: 20%;
-  color: orange;
+  color: black;
 }
 
 .dot-container {
@@ -563,12 +552,6 @@ span {
   border: 2px solid red;
   margin: 1rem;
   padding-left: 0.5rem;
-}
-
-.delete-confirm-button,
-.delete-cancel-button {
-  background-color: white;
-  margin-top: -1rem;
 }
 
 .complete-confirm-button,
@@ -675,7 +658,7 @@ span {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: #fff;
+  background: #f1f18f;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 
@@ -754,6 +737,12 @@ ul li ul.dropdown {
   box-shadow: 0 3px 3px 3px rgb(0, 0, 0, 0.2);
 }
 
+.handle-image {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+}
+
 .select {
   border-bottom: 1px solid #d7d7d7;
   height: 2rem;
@@ -767,7 +756,7 @@ ul li ul.dropdown {
 }
 
 .select:hover {
-  background-color: #fdec00;
+  background-color: #f1f18f;
 }
 
 ul li:hover ul.dropdown {
@@ -787,6 +776,7 @@ ul li ul.dropdown li {
 .category-container {
   border-bottom: 1px solid #d7d7d7;
   position: relative;
+  width: 100%;
 }
 
 .category-title {
@@ -820,7 +810,7 @@ ul li ul.dropdown li {
 }
 
 .category-list:hover {
-  background-color: #fdec00;
+  background-color: #f1f18f;
 }
 
 .fa-list-ul {
