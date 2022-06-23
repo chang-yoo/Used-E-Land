@@ -61,7 +61,8 @@ Try the application live at [https://usey.herokuapp.com/](https://usey.herokuapp
     - sudo service postgresql start
  4. Create a database
     - createdb name-of-database
- 5. Update .env.example file
+ 5. Create a copy of .env.example file and fill those in
+  ex.
     - DataBase_URL=postgres://dev:dev@postgres/your-database-name?sslmode=disable
  6. Import datas from database
     - npm run db:import
