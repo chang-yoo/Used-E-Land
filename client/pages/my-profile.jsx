@@ -51,12 +51,10 @@ export default class MyProfile extends React.Component {
     if (created === '') {
       return (
       <div className="list-background">
-        <div className="row space-between">
-          <div className="column-half">
-            <h1 className="welcome-profile">Welcome {username}!</h1>
-          </div>
-          <div className="column-half">
-              <a href="#upload"><h2 className="margin-2rem">Sell Now</h2></a>
+        <div className="text-align-left margin-1rem">
+          <div className="rows space-between">
+            <h3 className="welcome-profile">{username}&apos;s Items</h3>
+            <button className="link-to-upload-button"onClick={e => { window.location.hash = '#upload'; }}>List an item</button>
           </div>
         </div>
         <div className="row wrap">
@@ -95,6 +93,7 @@ export default class MyProfile extends React.Component {
         </div>
           <div className="in-center text-align-center">
             <h3>{username} isn&apos;t selling anything yet. <br/> Check back later.</h3>
+            <button className="link-to-upload-button" onClick={e => { window.location.hash = '#upload'; }}>List an item</button>
         </div>
       </div>
       );

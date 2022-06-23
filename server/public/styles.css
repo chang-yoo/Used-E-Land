@@ -378,6 +378,7 @@ i:hover {
   width: 20rem;
 }
 
+.link-to-upload-button,
 .upload-button,
 .cancel-button {
   border: 1px solid black;
