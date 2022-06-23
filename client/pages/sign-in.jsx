@@ -127,12 +127,11 @@ export default class SignIn extends React.Component {
               </div>
               <hr/>
               <div className="margin-top-3rem">
-
-                  <button type="none"className="sign-up-button">
-                  <a href="#sign-up" className="sign-in-no-account">
+                <button onClick={e => { window.location.hash = '#sign-up'; }} className="sign-in-no-account">
+                  <a href="#sign-up" className="font-color-yellow">
                     Sign Up
-                </a>
-                  </button>
+                  </a>
+                </button>
               </div>
             <div className="margin-top-1rem">
               <button onClick={this.handleDemo} className="demo-button">Continue as Test Account</button>
