@@ -3,52 +3,22 @@ import List from '../components/list';
 import { Loading } from '../components/spinner';
 import { Off } from '../components/offline';
 
-const images = [
-  { id: 0, image: 'images/carousel-1.png' },
-  { id: 1, image: 'images/carousel-2.png' },
-  { id: 2, image: 'images/carousel-3.png' }
-];
-
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 0,
-      imageSrc: images[0],
       loading: 'processing',
       offline: false
     };
-    this.nextImage = this.nextImage.bind(this);
-    this.imageSwap = this.imageSwap.bind(this);
-  }
-
-  nextImage() {
-    clearInterval(this.timerId);
-    const { current } = this.state;
-    if (current >= 0) {
-      this.setState({ current: current + 1 });
-    }
-    if (current === images.length - 1) {
-      this.setState({ current: 0 });
-    }
-    this.timerId = setInterval(() => this.nextImage(), 5000);
   }
 
   componentDidMount() {
     window.addEventListener('offline', event => this.setState({ offline: true }));
-    this.timerId = setInterval(() => this.nextImage(), 5000);
     this.setState({ loading: 'complete' });
   }
 
-  imageSwap(event) {
-    clearInterval(this.timerId);
-    const dotId = Number(event.target.id);
-    this.setState({ current: dotId });
-    this.timerId = setInterval(() => this.nextImage(), 5000);
-  }
-
   render() {
-    const { current, loading, offline } = this.state;
+    const { loading, offline } = this.state;
     if (loading === 'processing') {
       return <Loading />;
     }
@@ -57,31 +27,29 @@ export default class Home extends React.Component {
     }
     return (
       <div className="column-full">
-        <div className="home-image-container">
-          {images.map(image => {
-            if (current === image.id) {
-              return <div key={image.id}className="main-image">
-                       <img key={image.id} src={image.image}></img>
-                     </div>;
-            } else {
-              return null;
-            }
-          })
-        }
-        </div>
-        <div className="dot-container">
-          {images.map(dot => {
-            if (this.state.current === dot.id) {
-              return <i key={dot.id} id={dot.id} onClick={this.imageSwap} className='fas fa-circle horz-margin'></i>;
-            } else {
-              return <i key={dot.id} id={dot.id} onClick={this.imageSwap} className='far fa-circle horz-margin'></i>;
-            }
-          })}
-        </div>
         <div className="main-list-background column-full">
-          <h1>What&apos;s Up Today <a href="#all" className="view-all-link">View All</a></h1>
+          <div className="rows">
+            <div className="column-half main-image-furniture">
+              <img src="images/furniture.jpeg"/>
+            </div>
+            <div className="column-half main-image-furniture-text-container">
+              <img src="images/main-image-furniture-text-background.png"/>
+              <div className="main-image-furniture-text text-align-center">
+                <h1>FILL UP YOUR <br/> DREAM WITH <br/> PRELOVED ITEMS</h1>
+                <a href="#all"><button className="main-show-now-button">Shop Now</button></a>
+              </div>
+            </div>
+          </div>
+          <h1 className="margin-0">WHAT&apos;S NEW TODAY</h1>
           <div className="row wrap justify-center">
             <List key={this.props.postId}/>
+          </div>
+          <div className="column-full closet-image-container">
+            <img src="images/closet.jpeg"/>
+            <div className="closet-image-text text-align-center">
+              <p className="closet-image-h1">DISCOVER YOUR STYLE AND <br/> SELL YOUR OWN</p>
+              <a href="#all"><button className="main-show-more-button shop-more">SHOP MORE</button></a>
+            </div>
           </div>
         </div>
       </div>

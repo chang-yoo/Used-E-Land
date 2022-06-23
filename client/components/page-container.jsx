@@ -1,7 +1,7 @@
 import React from 'react';
 
 const page = {
-  minHeight: 'calc(100vh - 10rem)'
+  minHeight: 'calc(100vh - 20vh)'
 };
 
 export default function PageContainer({ children }) {

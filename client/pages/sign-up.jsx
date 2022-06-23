@@ -85,118 +85,103 @@ export default class SignUp extends React.Component {
     }
     return (
       <div className="list-background">
-        <div>
-          <h1>Sign Up</h1>
-        </div>
-        <div className={wrong}>
-          <div className="confirm-delete-box delete-box-height">
-            <div className="margin-top-3rem">
-              <div className="text-center">
-                <h3 className="delete-top-margin">Phone inputs must be numbers only</h3>
-              </div>
-              <div className="row space-around margin-top-5rem">
-                <button onClick={this.handleDelete} className="delete-confirm-button">Okay</button>
-              </div>
-            </div>
+        <div className="full-column text-align-center">
+          <div>
+            <h1 className="margin-bottom-0">Become a Usey</h1>
+            <h5 className="none font-color-grey">Enter few details to join the community</h5>
+          </div>
+          <div className={wrong}>
+           <div className="menu-bar">
+          <div className="z-index-5 text-align-center in-center">
+            <h2 className="font-color-yellow">Check your inputs again. <br/>Phone field should only contain NUMBERS</h2>
+            <h4 onClick={this.handleDelete} className="font-color-yellow hover margin-top-1rem">Try Again</h4>
           </div>
         </div>
-        <div className="full-column">
-          <div className="width-60 auto">
-            <div className="row center">
-              <form onSubmit={this.handleSubmit}>
-                <div className="rows space-between margin-vert-2rem">
-                  <div className="margin-vert-2rem">
-                    <label>
-                      <h2>
-                        Username
-                      </h2>
-                    </label>
-                    <input
-                      required
-                      id="username"
-                      type="text"
-                      name="username"
-                      onChange={this.handleChange}
-                      className="username"
-                    />
-                    <label>
-                      <h2>
-                        Password
-                      </h2>
-                    </label>
-                    <input
-                      required
-                      id="password"
-                      type="password"
-                      name="password"
-                      onChange={this.handleChange}
-                      className="password"
-                    />
-                    <p className="sign-in-no-account">
-                      Already have an account?
-                    </p>
-                    <a href="#sign-in" className="sign-in-no-account">
-                      Sign In
-                    </a>
-                  </div>
-                  <div className="margin-vert-2rem">
-                    <div>
-                      <label>
-                        <h2>
-                          Phone
-                        </h2>
-                      </label>
-                      <input
-                        required
-                        id="phone"
-                        type="tel"
-                        name="phone"
-                        onChange={this.handleChange}
-                        className="phone"
-                        placeholder="no space or dash between numbers!"
-                      />
-                      <label>
-                        <h2>
-                          E-mail
-                        </h2>
-                      </label>
-                      <input
-                        required
-                        id="email"
-                        type="text"
-                        name="email"
-                        onChange={this.handleChange}
-                        className="email"
-                      />
-                    </div>
-                    <div className="margin-top-1rem text-align-right">
-                      <button type="submit" className="sign-in-button">
-                        <p className="create-account-text">Create!</p>
-                      </button>
-                    </div>
-                  </div>
+          </div>
+          <div className="row center">
+            <form onSubmit={this.handleSubmit}>
+              <div>
+                <div>
+                  <h3 className="text-align-left margin-top-3rem">Create Your Account</h3>
                 </div>
-              </form>
-            </div>
+                <div>
+                  <input
+                    required
+                    id="username"
+                    type="text"
+                    name="username"
+                    onChange={this.handleChange}
+                    className="username"
+                    placeholder="Username"
+                  />
+                </div>
+                <div className="margin-top-1rem">
+                  <input
+                    required
+                    id="password"
+                    type="password"
+                    name="password"
+                    onChange={this.handleChange}
+                    className="password"
+                    placeholder="Password"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-align-left margin-top-3rem">Your Detail</h3>
+                </div>
+                <div className="margin-top-1rem">
+                  <input
+                    required
+                    id="phone"
+                    type="tel"
+                    name="phone"
+                    onChange={this.handleChange}
+                    className="phone"
+                    placeholder="Phone - Numbers Only (No Dash, No Space)"
+                  />
+                </div>
+                <div className="margin-top-1rem">
+                  <input
+                    required
+                    id="email"
+                    type="text"
+                    name="email"
+                    onChange={this.handleChange}
+                    className="email"
+                    placeholder="E-mail"
+                  />
+                </div>
+                <div className="margin-top-1rem text-align-right margin-bottom-1rem">
+                  <button type="submit" className="sign-in-button">
+                    Create
+                  </button>
+                </div>
+                <hr />
+                <div className="margin-top-1rem">
+                  <button onClick={e => { window.location.hash = '#sign-in'; }} className="sign-in-button">
+                    Go back to Sign In
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
-        </div>
-        <div className={confirm}>
-          <div className="column-full">
-            <div className="row signup-box-container  sign-box-vertical">
-              <div className="sign-up-confirmbox  sign-box-height">
-                <h2>Thank you for being a valuable UsedElander!</h2>
-                <p className="font-size-20">Click <a href="#sign-in"><span>HERE</span></a> to sign in</p>
+          <div className={confirm}>
+            <div className="column-full">
+              <div className="menu-bar">
+                <div className="z-index-5 text-align-center in-center">
+                  <h2 className="font-color-yellow">Thank you for being a valuable Usey</h2>
+                  <h4 onClick={this.handleDelete} className="font-color-yellow hover">Click <a href="#sign-in"><span>HERE</span></a> to Sign In</h4>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className={err}>
-          <div className="column-full">
-            <div className="row signup-box-container sign-box-vertical">
-              <div className="sign-up-confirmbox sign-box-height">
-                <h2>Sorry! The username already exists.</h2>
-                <h2>Please try different username!</h2>
-                <p>Click <a href="#sign-up"><span onClick={this.closeBox}>HERE</span></a> to try again</p>
+          <div className={err}>
+            <div className="column-full">
+              <div className="menu-bar">
+                <div className="z-index-5 text-align-center in-center">
+                  <h2 className="font-color-yellow">Username already exists. <br/> Please try different one</h2>
+                  <h4 onClick={this.closeBox} className="font-color-yellow hover">Try Again</h4>
+                </div>
               </div>
             </div>
           </div>

@@ -18,11 +18,12 @@ export default class ViewAll extends React.Component {
     window.addEventListener('offline', event => this.setState({ offline: true }));
     fetch('/api/all')
       .then(res => res.json())
-      .then(data =>
+      .then(data => {
         this.setState({
           post: data,
           loading: 'complete'
-        })
+        });
+      }
       );
   }
 
@@ -34,7 +35,7 @@ export default class ViewAll extends React.Component {
     if (offline === true) {
       return <Off />;
     }
-    if (loading === ' complete' && post.length >= 0) {
+    if (loading === 'complete' && post.length > 0) {
       return (
       <div className="list-background column-full top-padding-1rem">
         <div className="row wrap">
