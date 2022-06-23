@@ -63,5 +63,7 @@ Try the application live at [https://usey.herokuapp.com/](https://usey.herokuapp
     - createdb name-of-database
  5. Update .env.example file
     - DataBase_URL=postgres://dev:dev@postgres/your-database-name?sslmode=disable
- 6. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
+ 6. Import datas from database
+    - npm run db:import
+ 7. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
     - npm run dev
