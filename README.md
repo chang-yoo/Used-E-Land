@@ -5,7 +5,7 @@ items for purchasing and selling.
 Would you rather keep stuffs that are just left in the house/not being used forever or sell them at a lower price for profit? I recently realized taht there are a lot of items that I don't use anymore but in very good condition. So, I was thinking if I could create an application where it's very simple to upload and easy for users to interact. Used-Ecommerce-land not only lets users to get their wanted items at a lower price but also helps seller to make profits.
 
 ## Live Demo
-Try the application live at [https://used-e-land.herokuapp.com/](https://used-e-land.herokuapp.com/)
+Try the application live at [https://usey.herokuapp.com/](https://usey.herokuapp.com)
 
 ## Technologies Used
   - HTML
