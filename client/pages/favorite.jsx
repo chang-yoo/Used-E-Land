@@ -69,11 +69,11 @@ export default class Favorite extends React.Component {
     if (created === 'no' || post.length === 0) {
       return (
         <div className="list-background top-3-rem">
-          <div className="row space-between">
-            <h1 className="welcome-profile">Your Favorite Page!</h1>
+          <div className="row space-between margin-left-1rem">
+            <h3 className="welcome-profile">Items you like will appear here</h3>
           </div>
           <div className="text-align-center in-center">
-            <h1>No favorite post added to your page!</h1>
+            <h3>Search to find something you like</h3>
             <a href="#" className="font-color">Return Home</a>
           </div>
         </div>
@@ -81,9 +81,9 @@ export default class Favorite extends React.Component {
     }
     if (created === '') {
       return (
-        <div className="list-background top-3-rem">
+        <div className="list-background margin-left-1rem">
           <div className="row space-between">
-              <h1 className="welcome-profile">Your Favorite Page!</h1>
+              <h3 className="welcome-profile">Items you have saved</h3>
           </div>
           <div className="row wrap">
             {post.map(eachpost => {
