@@ -4,7 +4,54 @@
 
 body {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.main-image-furniture {
+  padding: 1rem;
+  height: 70vh;
+}
+
+.main-image-furniture-text-container {
+  margin: auto;
+  margin-left: -1rem;
+  height: 50vh;
+  position: relative;
+}
+
+.closet-image-container {
+  position: relative;
+}
+
+.closet-image-text,
+.main-image-furniture-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.main-show-more-button {
+  background-color: black;
+  color: #fdec00;
+  border: 1px solid black;
+  width: 50%;
+}
+
+.main-show-now-button {
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  width: 80px;
+  height: 30px;
+  size: 12px;
 }
 
 .postlist-image {
@@ -298,31 +345,11 @@ h4 {
   justify-content: space-between;
 }
 
-.main-image {
-  width: 70%;
-  height: 80%;
-  position: absolute;
-  margin: 0;
-  animation-duration: 2s;
-  animation-name: slideright;
-}
-
-@keyframes slideright {
-  from { left: -150%; }
-  to { left: 15%; }
-}
-
 .image-container {
   width: 100%;
   height: 300px;
   background-color: black;
   position: relative;
-}
-
-.horz-margin {
-  position: relative;
-  left: 44%;
-  margin: 0 1rem;
 }
 
 ul,
@@ -795,8 +822,7 @@ ul li ul.dropdown {
   margin-left: 1rem;
 }
 
-.select:hover,
-.select:active {
+.select:hover {
   background-color: #fdec00;
 }
 
@@ -814,6 +840,10 @@ ul li ul.dropdown li {
   position: absolute;
 }
 
+.category-container {
+  border-bottom: 1px solid #d7d7d7;
+}
+
 .category-title {
   color: black;
   font-weight: bold;
@@ -827,7 +857,6 @@ ul li ul.dropdown li {
   justify-content: center;
 }
 
-.category-list:hover,
-.category-list:active {
+.category-list:hover {
   background-color: #fdec00;
 }
