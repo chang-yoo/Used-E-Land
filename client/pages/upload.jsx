@@ -163,7 +163,7 @@ export default class Upload extends React.Component {
                   <h1 className="margin-top-1rem margin-bottom-0 padding-0 text-align-left">List an item</h1>
                   <hr/>
                   <h2 className="text-align-left margin-top-2rem margin-bottom-0">Photo</h2>
-                <div className="image-container">
+                  <div className="image-container">
                     <div className={handleImage}>
                       <i onClick={this.handleUploadImage} className="fa-solid fa-xmark fa-2x font-color-yellow"></i>
                     </div>
@@ -371,17 +371,17 @@ export default class Upload extends React.Component {
                     </div>
                     <div className="row space-between margin-top-1rem ">
                       <button type="submit" className="upload-button margin-bottom-1rem">Post</button>
-                      <button onClick={e => { window.hash.location = '#mypofile'; }} className="cancel-button margin-bottom-1rem">Cancel</button>
+                      <button onClick={e => { window.location.hash = '#myprofile'; }} className="cancel-button margin-bottom-1rem">Cancel</button>
                     </div>
                   </div>
                 <div>
               </div>
             </div>
           </div>
-        </form>
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
     );
   }
 }

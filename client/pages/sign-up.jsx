@@ -92,11 +92,11 @@ export default class SignUp extends React.Component {
           </div>
           <div className={wrong}>
            <div className="menu-bar">
-          <div className="z-index-5 text-align-center in-center">
-            <h2 className="font-color-yellow">Check your inputs again. <br/>Phone field should only contain NUMBERS</h2>
-            <h4 onClick={this.handleDelete} className="font-color-yellow hover margin-top-1rem">Try Again</h4>
-          </div>
-        </div>
+              <div className="z-index-5 text-align-center in-center">
+                <h2 className="font-color-yellow">Check your inputs again. <br/>Phone field should only contain NUMBERS</h2>
+                <h4 onClick={this.handleDelete} className="font-color-yellow hover margin-top-1rem">Try Again</h4>
+              </div>
+            </div>
           </div>
           <div className="row center">
             <form onSubmit={this.handleSubmit}>

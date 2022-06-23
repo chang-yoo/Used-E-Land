@@ -247,12 +247,6 @@ body {
     width: 200px;
   }
 
-  .edit-text-align {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
   .fa-delete-left {
     position: absolute;
     top: -1070%;

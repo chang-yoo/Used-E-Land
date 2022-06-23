@@ -22,15 +22,20 @@ export default class Edit extends React.Component {
       loading: 'processing',
       offline: false,
       noId: 'no',
-      tryAgain: 'no'
+      uploading: 'no',
+      tryAgain: 'no',
+      currentImageStatus: 'yes',
+      valueStatus: 'off'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.fileInputRef = React.createRef();
     this.handleImageSubmit = this.handleImageSubmit.bind(this);
-    this.handleDeleteBox = this.handleDeleteBox.bind(this);
+    this.handleSpinner = this.handleSpinner.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleConfirmDelete = this.handleConfirmDelete.bind(this);
+    this.handleTryAgain = this.handleTryAgain.bind(this);
+    this.handleUploadImage = this.handleUploadImage.bind(this);
+    this.handleValueStatus = this.handleValueStatus.bind(this);
   }
 
   componentDidMount() {
@@ -64,12 +69,17 @@ export default class Edit extends React.Component {
       });
   }
 
+  handleUploadImage() {
+    this.setState({ currentImageStatus: '' });
+  }
+
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
 
   handleImageSubmit(event) {
+    this.setState({ uploading: 'yes' });
     const { token } = this.state;
     event.preventDefault();
 
@@ -90,21 +100,22 @@ export default class Edit extends React.Component {
         const { url } = data;
         this.setState({
           imageURL: url,
-          image: url
+          image: url,
+          uploading: 'no',
+          currentImageStatus: 'yes'
         });
         this.fileInputRef.current.value = null;
       })
       .catch(err => console.error(err));
   }
 
-  handleConfirmDelete(event) {
-    event.preventDefault();
+  handleTryAgain(event) {
     this.setState({
       tryAgain: 'no'
     });
   }
 
-  handleDelete() {
+  handleDelete(event) {
     const token = window.localStorage.getItem('lfz-final');
     fetch(`/api/edit/${this.props.postId}`, {
       method: 'DELETE',
@@ -115,17 +126,25 @@ export default class Edit extends React.Component {
     })
       .then(res => res.json())
       .then(result => {
-        this.handleDeleteBox();
+        this.handleSpinner();
         window.location.hash = '#myprofile';
       });
   }
 
-  handleDeleteBox() {
+  handleSpinner(event) {
     const { classvalue } = this.state;
     if (classvalue === 'hidden') {
       return this.setState({ classvalue: '' });
     }
     return this.setState({ classvalue: 'hidden' });
+  }
+
+  handleValueStatus(event) {
+    event.preventDefault();
+    if (this.state.valueStatus === 'off') {
+      return this.setState({ valueStatus: 'on' });
+    }
+    return this.setState({ valueStatus: 'off' });
   }
 
   handleSubmit(event) {
@@ -145,6 +164,10 @@ export default class Edit extends React.Component {
       })
         .then(res => res.json())
         .then(result => {
+          const { error } = result;
+          if (error) {
+            return this.setState({ tryAgain: 'yes' });
+          }
           this.setState(result);
           window.location.hash = '#myprofile';
         });
@@ -152,8 +175,12 @@ export default class Edit extends React.Component {
   }
 
   render() {
-    const { imageURL, category, condition, location, price, title, size, brand, color, style, description, loading, offline, noId, tryAgain } = this.state;
-    let showAgain = 'hidden';
+    const { imageURL, category, uploading, condition, location, price, title, size, brand, color, style, description, loading, offline, noId, tryAgain, currentImageStatus, valueStatus } = this.state;
+    let classvalue = 'hidden';
+    let inputCheck = 'hidden';
+    let imageStatus = 'uploading';
+    let handleImage = 'hidden';
+    let handleValue = 'hidden';
     if (offline === true) {
       return <Off />;
     }
@@ -161,88 +188,97 @@ export default class Edit extends React.Component {
       return <Loading />;
     }
     if (tryAgain === 'yes') {
-      showAgain = '';
+      inputCheck = '';
     }
     if (noId === 'yes') {
       return <TryAgain/>;
     }
+    if (uploading === 'no') {
+      classvalue = 'hidden';
+    } else {
+      classvalue = 'text-align-center';
+    }
+    if (currentImageStatus === 'yes') {
+      imageStatus = 'hidden';
+      handleImage = 'handle-image';
+    } else {
+      imageStatus = 'uploading';
+      handleImage = 'hidden';
+    }
+    if (valueStatus === 'on') {
+      handleValue = 'text-align-center';
+    } else {
+      handleValue = 'hidden';
+    }
     return (
-      <div className="column-full">
-        <div className={showAgain}>
-          <div className="confirm-delete-box delete-box-height">
-            <div className="margin-top-3rem">
-              <div className="text-center">
-                <h3 className="delete-top-margin">Price must be numbers only</h3>
-              </div>
-              <div className="row space-around margin-top-5rem">
-                <button onClick={this.handleConfirmDelete} className="delete-confirm-button">Okay</button>
+      <div className="column-40-for-upload auto">
+        <div className="row justify-center">
+          <div className="upload-container column-full text-align-center auto">
+            <div className={inputCheck}>
+              <div className="menu-bar">
+                <div className="z-index-5 text-align-center in-center">
+                  <h2 className="font-color-yellow">Check your inputs again.</h2>
+                  <h4 onClick={this.handleTryAgain} className="font-color-yellow hover margin-top-1rem">Try Again</h4>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="upload-container edit-width">
           <form onSubmit={this.handleSubmit}>
-            <div className="rows">
-              <div className="edit-column-half">
-                <div className="column-80 margin-top-1rem">
-                  <div className="image-container">
-                    <img className="detail-image-height" src={imageURL}></img>
+            <div>
+              <h1 className="margin-top-1rem margin-bottom-0 padding-0 text-align-left">Edit an item</h1>
+              <hr />
+              <div>
+                <button className="delete-post-button" onClick={this.handleValueStatus}>Delete</button>
+                <h2 className="text-align-left margin-top-2rem margin-bottom-0">Photo</h2>
+              </div>
+              <div className="image-container">
+                <div className={handleImage}>
+                  <i onClick={this.handleUploadImage} className="fa-solid fa-xmark fa-2x font-color-yellow"></i>
+                </div>
+                  <label className={imageStatus} htmlFor="upload"><i className="fa-solid fa-camera fa-2x"></i><h4>Add a photo</h4></label>
+                  <input
+                    id="upload"
+                    type="file"
+                    name="imageURL"
+                    ref={this.fileInputRef}
+                    accept=".png, .jpg, .jpeg, .gif"
+                    className="search-button margin-bottom-1rem"
+                    hidden
+                  />
+                  <img className="upload-image" src={imageURL} />
+                  <div id={classvalue} className='lds-ellipsis'>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                   </div>
-                  <div className="row space-between">
-                    <div className="margin-top-1rem">
-                      <label id="uploading" htmlFor="upload">Choose File</label>
-                      <input
-                        id="upload"
-                        type="file"
-                        name="imageURL"
-                        ref={this.fileInputRef}
-                        accept=".png, .jpg, .jpeg, .gif"
-                        className="search-button"
-                        hidden
-                      />
-                    </div>
-                    <div className="margin-top-half-rem">
-                      <button onClick={this.handleImageSubmit} className="image-load">Upload</button>
-                    </div>
+
+                  <div className="margin-top-2rem">
+                    <h2 className="text-align-left margin-bottom-half">Description</h2>
+                    <input
+                      id="title"
+                      type="text"
+                      name="title"
+                      onChange={this.handleChange}
+                      className="title edit-text-width-second-half"
+                      placeholder={title}
+                    />
                   </div>
-                  <div className="margin-top-1rem column-full edit-text-align">
-                    <hr></hr>
-                    <div className="title-container">
-                      <input
-                        id="title"
-                        type="text"
-                        name="title"
-                        onChange={this.handleChange}
-                        className="title edit-text-width-second-half"
-                        placeholder={title}
-                      />
-                    </div>
-                    <hr></hr>
-                    <div className="row">
-                      <div className="price-container">
-                        <input
-                          id="price"
-                          type="text"
-                          name="price"
-                          onChange={this.handleChange}
-                          placeholder={price}
-                          className="edit-text-width-first-half"
-                        />
-                      </div>
-                      <div>
-                        <input
-                          id="size"
-                          type="text"
-                          name="size"
-                          onChange={this.handleChange}
-                          placeholder={size}
-                        />
-                      </div>
-                    </div>
-                    <hr></hr>
-                    <div className="row">
-                      <div className="category-container">
-                        <select className="category" value="" onChange={this.handleChange} name="category">
+                  <div className="margin-top-1rem">
+                    <textarea
+                      autoFocus
+                      id="description"
+                      type="text"
+                      name="description"
+                      onChange={this.handleChange}
+                      className="description "
+                      wrap="hard"
+                      placeholder={description}
+                    />
+                  </div>
+                  <div className="margin-top-2rem">
+                    <h2 className="text-align-left margin-bottom-half">Info</h2>
+                    <div className="category-container">
+                      <select className="category" value="" onChange={this.handleChange} name="category">
                           <option className="select" value="">{category}</option>
                           <optgroup label="Menswear">
                             <option className="select" value="Menswear-Tops">Tops</option>
@@ -318,8 +354,9 @@ export default class Edit extends React.Component {
                             <option className="select" value="More-Sports-Equipment">Sports Equipment</option>
                             <option className="select" value="More-Others">Others</option>
                           </optgroup>
-                        </select>
-                      </div>
+                      </select>
+
+                  </div>
                     <div className="condition-container">
                       <select className="condition" onChange={this.handleChange} name="condition" placeholder={condition}>
                         <option className="select" value="">{condition}</option>
@@ -330,95 +367,97 @@ export default class Edit extends React.Component {
                         <option className="select" value="Pristine">Pristine</option>
                       </select>
                     </div>
+                    <div className="margin-top-1rem">
+                      <input
+                        id="brand"
+                        type="text"
+                        name="brand"
+                        className="brand"
+                        onChange={this.handleChange}
+                        placeholder={brand}
+                      />
                     </div>
-                  </div>
+                    <div className="size-container">
+                      <h2 className="text-align-left margin-top-2rem margin-bottom-half">Enhance Your Description</h2>
+                      <input
+                        id="size"
+                        type="text"
+                        name="size"
+                        onChange={this.handleChange}
+                        className="size"
+                        placeholder={size}
+                      />
+                    </div>
+                    <div className="margin-top-1rem">
+                      <input
+                        id="color"
+                        type="text"
+                        name="color"
+                        onChange={this.handleChange}
+                        placeholder={color}
+                        className="color"
+                      />
+                    </div>
+                    <div className="margin-top-1rem">
+                      <input
+                        id="style"
+                        type="text"
+                        name="style"
+                        onChange={this.handleChange}
+                        placeholder={style}
+                        className="style"
+                      />
+                    </div>
+                    <div className="margin-top-1rem">
+                      <h2 className="text-align-left margin-top-2rem margin-bottom-half">Location</h2>
+                      <input
+                        id="location"
+                        type="text"
+                        name="location"
+                        onChange={this.handleChange}
+                        className="location"
+                        placeholder={location}
+                    />
+                    </div>
+                    <div className="margin-top-1rem">
+                      <h2 className="text-align-left margin-top-2rem margin-bottom-half">Price</h2>
+                      <input
+                          id="price"
+                          type="text"
+                          name="price"
+                          onChange={this.handleChange}
+                          placeholder={price}
+                          className="price"
+                        />
+                </div>
+                <div className="row space-between margin-top-1rem ">
+                  <button type="submit" className="upload-button margin-bottom-1rem">Update</button>
+                  <button onClick={e => { window.location.hash = '#myprofile'; }} className="cancel-button margin-bottom-1rem">Cancel</button>
                 </div>
               </div>
-              <div className="edit-column-half">
-                <div className="column-80 edit-text-align">
-                  <div className="margin-top-1rem">
-                    <hr></hr>
-                    <div className="row">
-                      <div>
-                        <input
-                          id="brand"
-                          type="text"
-                          name="brand"
-                          onChange={this.handleChange}
-                          placeholder={brand}
-                        />
-                      </div>
-                      <div>
-                        <input
-                          id="style"
-                          type="text"
-                          name="brand"
-                          onChange={this.handleChange}
-                          placeholder={style}
-                        />
-                        <i onClick={this.handleDeleteBox} className="fa-solid fa-delete-left fa-2x"></i>
-                      </div>
-                    </div>
-                    <hr></hr>
-                    <div className="row">
-                      <div>
-                        <input
-                          id="color"
-                          type="text"
-                          name="color"
-                          onChange={this.handleChange}
-                          placeholder={color}
-                        />
-                      </div>
-                      <div className="location-container">
-                        <input
-                          id="location"
-                          type="text"
-                          name="location"
-                          onChange={this.handleChange}
-                          className="edit-text-width-first-half"
-                          placeholder={location}
-                        />
-                      </div>
-                    </div>
-                    <hr></hr>
-                    <div className="description-container">
-                      <textarea
-                        autoFocus
-                        id="description"
-                        type="text"
-                        name="description"
-                        onChange={this.handleChange}
-                        className="description edit-text-width-second-half"
-                        wrap="hard"
-                        placeholder={description}
-                      />
-                      </div>
-                      <div className="row space-between margin-top-1rem">
-                        <button type="submit" className="upload-button">Update</button>
-                        <a href="#myprofile" className="cancel-button"><p className="cancel-button-text">Cancel</p></a>
-                      </div>
-                    </div>
-                </div>
+              <div>
               </div>
             </div>
-          </form>
         </div>
-        <div className={this.state.classvalue}>
-          <div className="confirm-delete-box delete-box-height">
-            <div className="delete-text"><h2 className="auto delete">Delete</h2></div>
-              <div className="margin-top-3rem">
-                <div className="text-center">
-                  <h3 className="delete-top-margin">Are you sure want to delete this item?</h3>
+      </form>
+          </div >
+        </div >
+        <div className={handleValue}>
+          <div className="menu-bar">
+            <div className="z-index-5 text-align-center in-center">
+              <h2 className="font-color-yellow">Delete this item?</h2>
+              <div className="row justify-center space-between">
+                <div className="margin-right-3rem">
+                  <h4 onClick={this.handleDelete} className="font-color-yellow hover margin-top-1rem">Yes</h4>
                 </div>
-                <div className="row space-around margin-top-5rem">
-                  <button onClick={this.handleDelete}className="delete-confirm-button">Confirm</button>
-                  <button onClick={this.handleDeleteBox} className="delete-cancel-button">Cancel</button>
+                <div className="margin-left-3rem">
+                  <h4 onClick={this.handleValueStatus} className="font-color-yellow hover margin-top-1rem">No</h4>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div >
     );
   }
 }
