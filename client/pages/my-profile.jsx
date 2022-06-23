@@ -89,15 +89,12 @@ export default class MyProfile extends React.Component {
       return (
       <div className="list-background top-3-rem">
         <div className="row space-between">
-          <div className="column-half">
-            <h1 className="welcome-profile">Welcome {username}!</h1>
-          </div>
           <div className="column-half row">
-              <a href="#upload"><h2 className="margin-2rem">Let&apos;s upload today</h2></a>
+              <a href="#upload"><h2 className="margin-2rem">Sell Now</h2></a>
           </div>
         </div>
           <div className="in-center text-align-center">
-          <h1>You currently don&apos;t have any post uploaded!</h1>
+            <h3>{username} isn&apos;t selling anything yet. <br/> Check back later.</h3>
         </div>
       </div>
       );

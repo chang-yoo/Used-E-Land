@@ -167,6 +167,10 @@ h1 {
   color: #ffa903;
 }
 
+.hover:hover {
+  cursor: pointer;
+}
+
 .price {
   color: #ffa903;
   font-size: 0.94rem;
@@ -335,7 +339,7 @@ textarea {
 hr {
   width: 100%;
   border: none;
-  background-color: white;
+  background-color: #fdec00;
   height: 5px;
 }
 
@@ -379,27 +383,28 @@ i:hover {
 .username,
 .password {
   border: 1px solid #9f9999;
-  border-radius: 5px;
+  border-radius: 3px;
   height: 2.5rem;
   width: 20rem;
 }
 
 .sign-in-no-account {
-  font-size: 0.75rem;
-  color: #ad7d35;
+  color: #fdec00;
 }
 
-.sign-in-button {
-  border: 1px solid #fbd3a4;
-  background-color: #fbd3a4;
-  border-radius: 30px;
+.demo-button,
+.sign-in-button,
+.sign-up-button {
+  border: 1px solid black;
+  background-color: black;
+  border-radius: 3px;
+  width: 100%;
+  color: #fdec00;
   height: 40px;
-  width: 90px;
 }
 
 .sign-in-text,
 .create-account-text {
-  color: #ad7d35;
   margin: auto;
 }
 
@@ -412,15 +417,6 @@ i:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.sign-box-container {
-  position: relative;
-}
-
-.log-in-x {
-  position: absolute;
-  color: #9f9999;
 }
 
 .sign-in-confirmbox {
@@ -519,6 +515,14 @@ span {
 
 .description {
   height: 200px;
+}
+
+.z-index-5 {
+  z-index: 5;
+}
+
+.font-color-yellow {
+  color: #fdec00;
 }
 
 #uploading,
@@ -789,14 +793,6 @@ input::-webkit-inner-spin-button {
   100% {
     transform: translate(24px, 0);
   }
-}
-
-.demo-button {
-  word-wrap: break-word;
-  background-color: #ad7d35;
-  border: 1px solid #ad7d35;
-  color: #fbd3a4;
-  margin-top: 3rem;
 }
 
 ul li ul.dropdown {

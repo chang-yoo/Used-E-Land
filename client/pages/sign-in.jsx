@@ -89,18 +89,13 @@ export default class SignIn extends React.Component {
     }
     return (
     <div className="list-background">
-      <div>
-        <h1>Sign In</h1>
-      </div>
-        <div className="full-column">
+        <div className="full-column text-align-center">
+          <div>
+            <h1>Sign In to Continue</h1>
+          </div>
           <div className="row center">
             <form onSubmit={this.handleSubmit}>
               <div>
-                <label>
-                  <h2>
-                    Username
-                  </h2>
-                </label>
                 <input
                 required
                 id="username"
@@ -108,14 +103,10 @@ export default class SignIn extends React.Component {
                 name="username"
                 onChange={this.handleChange}
                 className="username"
+                placeholder="Username*"
                 />
               </div>
-              <div>
-                <label>
-                  <h2>
-                    Password
-                  </h2>
-                </label>
+              <div className="margin-top-1rem">
                 <input
                 required
                 id="password"
@@ -123,41 +114,42 @@ export default class SignIn extends React.Component {
                 name="password"
                 onChange={this.handleChange}
                 className="password"
+                placeholder="Password*"
                 />
               </div>
-              <div className="row space-between">
-                <div>
-                  <p className="sign-in-no-account">
-                    Don&apos;t have account yet? Don&apos;t worry!
-                  </p>
+              <div>
+                <p className="text-align-right">Forgot Password? - Not Available Yet</p>
+              </div>
+              <div className="margin-top-1rem margin-bottom-3rem">
+                <button type="submit" className="sign-in-button create-account-text">
+                  Sign In
+                </button>
+              </div>
+              <hr/>
+              <div className="margin-top-3rem">
+
+                  <button type="none"className="sign-up-button">
                   <a href="#sign-up" className="sign-in-no-account">
                     Sign Up
-                  </a>
-                </div>
-                <div className="margin-top-1rem">
-                  <button type="submit" className="sign-in-button create-account-text">
-                    Sign In!
+                </a>
                   </button>
-                </div>
               </div>
+            <div className="margin-top-1rem">
+              <button onClick={this.handleDemo} className="demo-button">Continue as Test Account</button>
+            </div>
             </form>
         </div>
       </div>
       <div className={classvalue}>
-        <div className="column-full">
-          <div className="row sign-box-container center">
-              <i onClick={this.hideBox} className="fa-regular fa-circle-xmark fa-2x log-in-x"></i>
-              <div className="sign-up-confirmbox sign-box-height sign-in-box-vertical">
-                <h2>You have entered incorret username/password</h2>
-                <p className="font-size-20">No account? Click <a href="#sign-up"><span>HERE</span></a> to sign up!</p>
-              </div>
-            </div>
+        <div className="menu-bar">
+          <div className="z-index-5 text-align-center in-center">
+            <h2 className="font-color-yellow">You have entered incorret username/password</h2>
+            <p className="font-color-yellow margin-top-1rem">No Account? Click <a href="#sign-up"><span>HERE</span></a> to Sign Up</p>
+            <h4 onClick={this.hideBox} className="font-color-yellow hover">Try Again</h4>
           </div>
         </div>
-        <div className="text-align-center half-column">
-          <button onClick={this.handleDemo} className="demo-button">Let&apos;s try a demo account</button>
-        </div>
       </div>
+    </div>
     );
   }
 }
