@@ -83,7 +83,7 @@ export default class Header extends React.Component {
                     onChange={this.handleChange}
                     value={this.state.userInput}
                     className="search-bar"
-                    placeholder="Search for anything"
+                    placeholder="Search"
                   />
                   <div className="searching-icons searching-position">
                     <div className={classvalue}>
@@ -99,7 +99,7 @@ export default class Header extends React.Component {
                 <div className="row center">
                   <div className="menubar-container">
                     <ul className="menu-text"><h3>My Account</h3>
-                      <a href="#myprofile" onClick={this.turnoffMenubar}><li className="menu-text">My Page</li></a>
+                      <a href="#myprofile" onClick={this.turnoffMenubar}><li className="menu-text">Manage</li></a>
                       <a href={`#history?userId=${userId}`} onClick={this.turnoffMenubar}><li className="menu-text">Sold</li></a>
                       <a href={`#review?userId=${userId}`} onClick={this.turnoffMenubar}><li className="menu-text">Feedback</li></a>
                       <a href="#upload" onClick={this.turnoffMenubar}><li className="menu-text">Sell Now</li></a>
@@ -133,7 +133,7 @@ export default class Header extends React.Component {
                     onChange={this.handleChange}
                     value={this.state.userInput}
                     className="search-bar"
-                    placeholder="Search for anything"
+                    placeholder="Search"
                   />
                   <div className="searching-icons searching-position">
                     <div className={classvalue}>
@@ -175,7 +175,7 @@ export default class Header extends React.Component {
                     onChange={this.handleChange}
                     value={this.state.userInput}
                     className="search-bar"
-                    placeholder="Search for anything"
+                    placeholder="Search"
                   />
                   <div className="searching-icons searching-position">
                     <div className={classvalue}>
@@ -190,14 +190,14 @@ export default class Header extends React.Component {
               <div className="menu-bar">
                 <div className="row center">
                   <div className="menubar-container">
-                      <ul className="menu-text"><h3>My Account</h3>
-                        <a href="#myprofile" onClick={this.turnoffMenubar}><li className="menu-text">My Page</li></a>
-                        <a href={`#history?userId=${userId}`} onClick={this.turnoffMenubar}><li className="menu-text">Sold</li></a>
-                        <a href={`#review?userId=${userId}`} onClick={this.turnoffMenubar}><li className="menu-text">Feedback</li></a>
-                        <a href="#upload" onClick={this.turnoffMenubar}><li className="menu-text">Sell Now</li></a>
-                    <div className="sign-out">
-                      <a href="#sign-in" className="menu-text" onClick={this.handleSignOut}>Sign Out</a>
-                    </div>
+                    <ul className="menu-text"><h3>My Account</h3>
+                      <a href="#myprofile" onClick={this.turnoffMenubar}><li className="menu-text">Manage</li></a>
+                      <a href={`#history?userId=${userId}`} onClick={this.turnoffMenubar}><li className="menu-text">Sold</li></a>
+                      <a href={`#review?userId=${userId}`} onClick={this.turnoffMenubar}><li className="menu-text">Feedback</li></a>
+                      <a href="#upload" onClick={this.turnoffMenubar}><li className="menu-text">Sell Now</li></a>
+                      <div className="sign-out">
+                        <a href="#sign-in" className="menu-text" onClick={this.handleSignOut}>Sign Out</a>
+                      </div>
                       <i onClick={this.menubar} className="fa-solid fa-xmark menu-text fa-2x margin-top-1rem"></i>
                     </ul>
                   </div>
@@ -226,7 +226,7 @@ export default class Header extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.userInput}
                   className="search-bar"
-                  placeholder="Search for anything"
+                  placeholder="Search"
                 />
                 <div className="searching-icons searching-position">
                   <div className={classvalue}>

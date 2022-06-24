@@ -1,5 +1,5 @@
 * {
-  font-family: Recursive, sans-serif;
+  font-family: Varela, sans-serif;
 }
 
 body {
@@ -38,6 +38,18 @@ img {
   transform: translate(-50%, -50%);
 }
 
+.main-image-furniture-actual-text {
+  width: 100%;
+  font-size: 32px;
+  color: black;
+}
+
+.main-image-furniture-actual-text,
+.closet-image-h1 {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: bolder;
+}
+
 .main-show-more-button {
   background-color: black;
   color: #f1f18f;
@@ -54,11 +66,19 @@ img {
   size: 12px;
 }
 
-.postlist-image {
-  width: 200px;
+.postlist-image-contaer {
+  width: 180px;
   height: 200px;
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  vertical-align: bottom;
+}
+
+.postlist-image {
+  width: 100%;
+  height: 200px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
   vertical-align: bottom;
 }
 
@@ -69,13 +89,15 @@ img {
 
 .each-post {
   border: 1px solid #fef5f0;
+  height: 300px;
   margin: auto;
-  border-radius: 7px;
-  width: 202px;
+  border-radius: 3px;
+  width: 180px;
+  box-shadow: 0 0 3px 3px rgb(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 .postlist-text {
-  padding-top: 1rem;
   line-height: 0.5rem;
   background-color: white;
   height: 120px;
@@ -84,9 +106,8 @@ img {
 .postlist-title {
   color: black;
   line-height: 18px;
-  margin-top: -0.69rem;
+  word-wrap: break-word;
   margin-bottom: -0.2rem;
-  padding-left: 0;
 }
 
 p {
@@ -109,7 +130,7 @@ p {
 
 .search-background,
 .list-background {
-  min-height: 100vh;
+  min-height: 80vh;
   height: 100%;
   position: relative;
 }
@@ -118,26 +139,6 @@ p {
   width: 100%;
   min-height: 50vh;
   height: 100%;
-  position: relative;
-}
-
-.loading-background {
-  background-color: #fef5f0;
-  height: 88vh;
-  position: relative;
-  margin-top: 1rem;
-}
-
-.offline-background {
-  background-color: #fef5f0;
-  height: 88vh;
-  position: relative;
-  margin-top: 3rem;
-}
-
-.tryagain-background {
-  background-color: #fef5f0;
-  height: 88vh;
   position: relative;
 }
 
@@ -221,10 +222,6 @@ h1 {
   margin-bottom: 2rem;
 }
 
-.font-size {
-  font-size: 1.875rem;
-}
-
 select,
 textarea,
 input:focus {
@@ -261,8 +258,6 @@ textarea {
 
 .fa-address-book {
   position: absolute;
-  left: -5%;
-  top: 5%;
 }
 
 .hide {
@@ -299,9 +294,16 @@ textarea {
   transform: scale(1.1);
 }
 
-.detail-container {
-  width: 77%;
-  margin: auto;
+.detail-image-height {
+  width: 100%;
+  object-fit: cover;
+  height: 50%;
+}
+
+.detail-image-container {
+  position: sticky;
+  top: 5%;
+  z-index: 5;
 }
 
 .not-found-background {
@@ -378,6 +380,19 @@ i:hover {
   width: 20rem;
 }
 
+.review-submit-button {
+  border: 1px solid black;
+  background-color: black;
+  border-radius: 0 3px 3px 0;
+  width: 80px;
+  color: #f1f18f;
+  height: 40px;
+  margin-left: 0;
+  left: 0;
+  padding-left: 0;
+}
+
+.link-to-upload-button,
 .upload-button,
 .cancel-button {
   border: 1px solid black;
@@ -388,6 +403,8 @@ i:hover {
   height: 40px;
 }
 
+.open-contact-button,
+.contact-button,
 .delete-post-button,
 .demo-button,
 .sign-in-no-account,
@@ -400,6 +417,15 @@ i:hover {
   height: 40px;
 }
 
+.contact-position {
+  position: relative;
+  width: 100%;
+}
+
+.contact-button {
+  border-radius: 0 0 3px 3px;
+}
+
 .sign-in-confirmbox {
   width: 50%;
   background-color: #eec6b0;
@@ -408,16 +434,8 @@ i:hover {
   padding-top: 3rem;
 }
 
-span {
-  color: white;
-}
-
 .font-red {
   color: red;
-}
-
-.welcome-profile {
-  margin-top: 0.5rem;
 }
 
 .font-color-grey {
@@ -434,16 +452,6 @@ span {
   font-size: 0.94rem;
 }
 
-.review-button,
-.delete-cancel-button {
-  border: 1px solid #fbd3a4;
-  background-color: #fbd3a4;
-  border-radius: 30px;
-  height: 40px;
-  width: 90px;
-  color: #ad7d35;
-}
-
 .title,
 .description {
   border-radius: 3px;
@@ -454,6 +462,10 @@ span {
   width: 100%;
   height: 100px;
   font-size: 1rem;
+}
+
+.border-bottom-yellow {
+  border-bottom: 3px solid #f1f18f;
 }
 
 .price,
@@ -467,7 +479,6 @@ span {
 .title {
   width: 100%;
   height: 50px;
-  font-size: 1rem;
 }
 
 .category {
@@ -533,9 +544,9 @@ span {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: #eec6b0;
-  width: 300px;
-  height: 200px;
+  background-color: rgb(0, 0, 0, 0.85);
+  width: 100%;
+  height: 100%;
   color: white;
   border-radius: 10px;
   z-index: 5;
@@ -555,9 +566,7 @@ span {
   padding-left: 0.5rem;
 }
 
-.complete-confirm-button,
-.delete,
-.delete-confirm-button {
+.delete {
   color: red;
 }
 
@@ -567,9 +576,10 @@ span {
 }
 
 .favorite-page {
-  margin-right: 2rem;
+  margin-right: 4rem;
 }
 
+.fa-heart,
 .add-to-favorite,
 .fa-heart-circle-plus {
   position: absolute;
@@ -578,24 +588,15 @@ span {
 
 .contact-background {
   position: absolute;
-  width: 300px;
-  background-color: #fee5d7;
-  height: 150px;
-  border-radius: 10px;
-  top: 5%;
+  width: 100%;
+  background-color: #f1f18f;
+  height: 143px;
+  border-radius: 3px;
+  top: 0;
 }
 
 .contact-info {
   line-height: 30px;
-}
-
-.contact-button {
-  border: 1px solid #fbd3a4;
-  background-color: #fbd3a4;
-  border-radius: 30px;
-  height: 20px;
-  width: 50px;
-  color: #ad7d35;
 }
 
 .contact-text {
@@ -603,23 +604,14 @@ span {
   margin-top: 0.5rem;
 }
 
-.move-parap {
-  color: white;
-  font-size: 0.94rem;
-}
-
 .review-container {
-  width: 50%;
+  width: 100%;
   background-color: white;
-  border: 1px solid orange;
-  border-radius: 10px;
+  border: 1px solid #9f9999;
+  border-radius: 3px;
   margin: 1rem auto;
   height: auto;
   word-wrap: break-word;
-}
-
-.font-color-orange {
-  color: orange;
 }
 
 .review-user {
@@ -631,14 +623,14 @@ span {
 }
 
 .review-user-container {
-  border-bottom: 1px solid orange;
+  border-bottom: 1px solid #9f9999;
 }
 
 .text {
-  border-radius: 10px;
+  border-radius: 3px 0 0 3px;
   border: 1px solid #9f9999;
-  margin: 0 1rem;
-  width: 320px;
+  margin: 0;
+  width: 100%;
   height: 40px;
 }
 
@@ -721,11 +713,15 @@ span {
   }
 }
 
+.search-result {
+  font-size: 2rem;
+}
+
 ul li ul.dropdown {
   background: white;
   display: none;
   position: absolute;
-  z-index: 5;
+  z-index: 10;
 }
 
 .drop-down-width {

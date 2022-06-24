@@ -51,12 +51,10 @@ export default class MyProfile extends React.Component {
     if (created === '') {
       return (
       <div className="list-background">
-        <div className="row space-between">
-          <div className="column-half">
-            <h1 className="welcome-profile">Welcome {username}!</h1>
-          </div>
-          <div className="column-half">
-              <a href="#upload"><h2 className="margin-2rem">Sell Now</h2></a>
+        <div className="text-align-left">
+          <div className="rows space-between margin-left-1rem">
+            <h3>{username}&apos;s Items</h3>
+            <button className="link-to-upload-button margin-right-1rem margin-top-1rem margin-bottom-1rem" onClick={e => { window.location.hash = '#upload'; }}>List an item</button>
           </div>
         </div>
         <div className="row wrap">
@@ -71,10 +69,9 @@ export default class MyProfile extends React.Component {
                           <img className='postlist-image' src={eachpost.imageURL}></img>
                         </div>
                         <div className="postlist-text text-align-center">
-                          <h3 className="postlist-title">{eachpost.title}</h3>
-                          <p>{eachpost.condition}</p>
-                          <p>{eachpost.location}</p>
-                          <h5 className="price">${eachpost.price}</h5>
+                          <h3 className="margin-top-half-rem postlist-title">{eachpost.title}</h3>
+                          <p className="margin-bottom-1rem">{eachpost.location}</p>
+                          <h5 className="vert-space-0 price font-size-20">${eachpost.price}</h5>
                         </div>
                       </div>
                     </a>
@@ -87,14 +84,14 @@ export default class MyProfile extends React.Component {
       );
     } else if (created === 'no') {
       return (
-      <div className="list-background top-3-rem">
+      <div className="list-background">
         <div className="row space-between">
           <div className="column-half row">
-              <a href="#upload"><h2 className="margin-2rem">Sell Now</h2></a>
+              <a href="#upload"><h3 className="margin-left-1rem">{username} have no listings yet</h3></a>
           </div>
         </div>
           <div className="in-center text-align-center">
-            <h3>{username} isn&apos;t selling anything yet. <br/> Check back later.</h3>
+            <button className="link-to-upload-button" onClick={e => { window.location.hash = '#upload'; }}>List an item</button>
         </div>
       </div>
       );

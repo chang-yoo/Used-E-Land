@@ -2,13 +2,11 @@ import React from 'react';
 
 export const TryAgain = () => {
   return (
-    <div className="tryagain-background">
-      <div className="loading-center">
-        <div className="text-align-center">
-          <h1>Sorry,<br /> please try it again</h1>
-          <a href='#' className="font-color-orange">Return Home</a>
+        <div className="menu-bar">
+          <div className="z-index-5 text-align-center in-center">
+            <h3 className="font-color-yellow">Sorry, that page doesn&apos;t exist. <br/>Please try it again.</h3>
+            <a href="#" className="font-color-yellow hover margin-top-1rem">Return Home</a>
+          </div>
         </div>
-      </div>
-    </div>
   );
 };

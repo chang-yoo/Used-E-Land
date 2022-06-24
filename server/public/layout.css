@@ -11,6 +11,10 @@ body {
   display: flex;
 }
 
+.baseline {
+  text-align: baseline;
+}
+
 .wrap {
   flex-wrap: wrap;
 }
@@ -27,14 +31,12 @@ body {
   width: 100%;
 }
 
-.column-80 {
-  width: 80%;
-  word-wrap: break-word;
-  margin: auto;
-}
-
 .margin-0 {
   margin: 0;
+}
+
+.margin-1rem {
+  margin: 1rem;
 }
 
 .padding-left-1rem {
@@ -48,6 +50,16 @@ body {
 
 .margin-top-1rem {
   margin-top: 1rem;
+}
+
+.margin-top-0 {
+  margin-top: 0;
+}
+
+.vert-space-0 {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .margin-bottom-0 {
@@ -110,6 +122,10 @@ body {
   margin-top: 2rem;
 }
 
+.margin-bottom-minus-1rem {
+  margin-bottom: -1rem;
+}
+
 .text-align-right {
   text-align: right;
 }
@@ -124,6 +140,12 @@ body {
 
 .text-align-center {
   text-align: center;
+}
+
+.column-80 {
+  width: 80%;
+  word-wrap: break-word;
+  margin: auto;
 }
 
 .none {
@@ -164,12 +186,17 @@ body {
     display: block;
   }
 
+  .detail-container {
+    width: 100%;
+    margin: auto;
+  }
+
   .column-half {
     width: 100%;
   }
 
   .one-fourth-container {
-    width: 100%;
+    width: 50%;
   }
 
   .searching-position {
@@ -187,7 +214,7 @@ body {
     left: 100%;
   }
 
-  .deta #keyword {
+  #keyword {
     width: 120px;
   }
 
@@ -229,6 +256,11 @@ body {
 @media only screen and (min-width: 600px) {
   .rows {
     display: flex;
+  }
+
+  .detail-container {
+    width: 70%;
+    margin: auto;
   }
 
   .column-half {
@@ -319,19 +351,11 @@ body {
       top: 10%;
       left: 103%;
     }
-
-    .deta .detail-image-height {
-      max-height: 300px;
-    }
   }
 
   @media only screen and (min-width: 1900px) {
     .one-fourth-container {
       width: 15%;
-    }
-
-    .detail-image-height {
-      max-height: 500px;
     }
   }
 }

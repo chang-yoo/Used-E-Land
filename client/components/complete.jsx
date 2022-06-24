@@ -53,16 +53,20 @@ export default class Complete extends React.Component {
     if (clicked === 'yes') {
       return (
         <div className={classvalue}>
+          <div className="row justify-center align-center">
+            <div>
           <div className="move-text">
             <h4 className="auto move-warning">Once moved, <span className="font-red">CANNOT</span> undo</h4>
-          </div>
-          <div className="margin-top-2rem">
-            <div className="text-center">
-              <p className="move-parap">Are you sure want to move this item?</p>
             </div>
-            <div className="row space-around margin-top-5rem">
-              <a href={`#history?userId=${this.props.postData.userId}`} className="complete-confirm-button text-align-center padding-top-0-5rem" onClick={this.handleMoving}>Confirm</a>
-              <button onClick={this.handleClick} className="complete-cancel-button font-color">Cancel</button>
+            <div>
+            <div className="text-align-center">
+              <h3 className="font-color-yellow">Did you sell this item?</h3>
+              <div className="row space-around">
+              <a href={`#history?userId=${this.props.postData.userId}`} className="font-color-yellow" onClick={this.handleMoving}>Yes</a>
+              <a onClick={this.handleClick} className="font-color-yellow">No</a>
+              </div>
+            </div>
+          </div>
             </div>
           </div>
         </div>

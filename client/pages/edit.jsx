@@ -70,6 +70,9 @@ export default class Edit extends React.Component {
   }
 
   handleUploadImage() {
+    if (this.state.currentImageStatus === '') {
+      this.setState({ currentImageStatus: 'yes' });
+    }
     this.setState({ currentImageStatus: '' });
   }
 
@@ -79,7 +82,9 @@ export default class Edit extends React.Component {
   }
 
   handleImageSubmit(event) {
-    this.setState({ uploading: 'yes' });
+    this.setState({
+      uploading: 'yes'
+    });
     const { token } = this.state;
     event.preventDefault();
 
@@ -243,6 +248,7 @@ export default class Edit extends React.Component {
                     accept=".png, .jpg, .jpeg, .gif"
                     className="search-button margin-bottom-1rem"
                     hidden
+                    onChange={this.handleImageSubmit}
                   />
                   <img className="upload-image" src={imageURL} />
                   <div id={classvalue} className='lds-ellipsis'>

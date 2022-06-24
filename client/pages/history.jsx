@@ -45,18 +45,18 @@ export default class History extends React.Component {
     if (completed.length === 0) {
       return <div className="list-background">
                <div>
-                 <h1 className="margin-padding-bottom-0">Currently Empty!</h1>
+                <h3 className="margin-left-1rem">No items sold yet</h3>
                </div>
               <div className="text-align-center in-center">
-                 <h1>You didn&apos;t make any history yet</h1>
+                 <h4>Once sold, items will show up here</h4>
                  <a className="font-color" href="#">Return Home</a>
                </div>
              </div>;
     }
     if (completed.length > 0 && loading === 'complete') {
       return (
-      <div className="list-background top-6-rem">
-        <h1>{completed[0].username}&apos;s History</h1>
+      <div className="list-background">
+        <h3 className='margin-left-1rem'>{completed[0].username}&apos;s sold items</h3>
         <div className="row wrap">
           {completed.map(eachpost => {
             return (
@@ -67,10 +67,9 @@ export default class History extends React.Component {
                       <img className='postlist-image' src={eachpost.imageURL}></img>
                     </div>
                     <div className="postlist-text text-align-center">
-                      <h3 className="postlist-title">{eachpost.title}</h3>
-                      <p>{eachpost.condition}</p>
-                      <p>{eachpost.location}</p>
-                      <h5 className="price">${eachpost.price}</h5>
+                      <h3 className="margin-top-half-rem postlist-title">{eachpost.title}</h3>
+                      <p className="margin-bottom-1rem">{eachpost.location}</p>
+                      <h5 className="vert-space-0 price font-size-20">${eachpost.price}</h5>
                     </div>
                   </div>
                 </a>

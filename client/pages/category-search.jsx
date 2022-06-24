@@ -55,9 +55,9 @@ export default class CategoryPage extends React.Component {
     }
     if (post.length === 0 && loading === 'complete') {
       return <div className="list-background">
-        <h1 className="margin-padding-bottom-0">Based on your search: {this.props.keyword}</h1>
+        <h3 className="margin-padding-bottom-0 text-align-center">Search results for <br /> <span className="search-result">&quot;{this.props.keyword}&quot;</span></h3>
         <div className="text-align-center in-center">
-          <h2 className="padding-left-1rem ">Sorry! Nothing matches to your search keyword</h2>
+          <h4 className="padding-left-1rem ">Sorry, we couldn&apos;t find anything</h4>
           <a className="font-color" href="#">Return Home</a>
         </div>
       </div>;
@@ -65,6 +65,7 @@ export default class CategoryPage extends React.Component {
     if (post.length > 0 && loading === 'complete') {
       return (
     <div className="list-background column-full top-padding-1rem">
+          <h3 className="margin-padding-bottom-0 text-align-center">Search results for <br /> <span className="search-result">&quot;{this.props.keyword}&quot;</span></h3>
       <div className="row wrap">
         {post.map(eachpost => {
           return (
@@ -76,11 +77,10 @@ export default class CategoryPage extends React.Component {
                     <img className='postlist-image' src={eachpost.imageURL}></img>
                   </div>
                   <div>
-                    <div className="postlist-text  text-align-center">
-                      <h3 className="postlist-title">{eachpost.title}</h3>
-                      <p>{eachpost.condition}</p>
-                      <p>{eachpost.location}</p>
-                      <h5 className="price">${eachpost.price}</h5>
+                    <div className="postlist-text text-align-center">
+                      <h3 className="margin-top-half-rem postlist-title">{eachpost.title}</h3>
+                      <p className="margin-bottom-1rem">{eachpost.location}</p>
+                      <h5 className="vert-space-0 price font-size-20">${eachpost.price}</h5>
                     </div>
                   </div>
                 </div>

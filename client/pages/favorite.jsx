@@ -69,11 +69,11 @@ export default class Favorite extends React.Component {
     if (created === 'no' || post.length === 0) {
       return (
         <div className="list-background top-3-rem">
-          <div className="row space-between">
-            <h1 className="welcome-profile">Your Favorite Page!</h1>
+          <div className="row space-between margin-left-1rem">
+            <h3 className="welcome-profile">Items you like will appear here</h3>
           </div>
           <div className="text-align-center in-center">
-            <h1>No favorite post added to your page!</h1>
+            <h3>Search to find something you like</h3>
             <a href="#" className="font-color">Return Home</a>
           </div>
         </div>
@@ -81,25 +81,24 @@ export default class Favorite extends React.Component {
     }
     if (created === '') {
       return (
-        <div className="list-background top-3-rem">
+        <div className="list-background margin-left-1rem">
           <div className="row space-between">
-              <h1 className="welcome-profile">Your Favorite Page!</h1>
+              <h3 className="welcome-profile">Items you have saved</h3>
           </div>
           <div className="row wrap">
             {post.map(eachpost => {
               return (
                 <div key={eachpost.postId} className="one-fourth-container post">
-                  <i onClick={this.handleFavorite} id={eachpost.postId} className='fa-solid fa-heart fa-2x'></i>
+                  <i onClick={this.handleFavorite} id={eachpost.postId} className='fa-solid fa-heart favorite-heart fa-2x'></i>
                   <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId}>
                     <div className="each-post">
                       <div className="postlistimage-container">
                         <img className='postlist-image' src={eachpost.imageURL}></img>
                       </div>
-                      <div className="postlist-text">
-                        <h3 className="postlist-title">{eachpost.title}</h3>
-                        <p>{eachpost.condition}</p>
-                        <p>{eachpost.location}</p>
-                        <h5 className="price">${eachpost.price}</h5>
+                      <div className="postlist-text text-align-center">
+                        <h3 className="margin-top-half-rem postlist-title">{eachpost.title}</h3>
+                        <p className="margin-bottom-1rem">{eachpost.location}</p>
+                        <h5 className="vert-space-0 price font-size-20">${eachpost.price}</h5>
                       </div>
                     </div>
                   </a>

@@ -35,7 +35,7 @@ export default class Home extends React.Component {
             <div className="column-half main-image-furniture-text-container">
               <img src="images/main-image-furniture-text-background.png"/>
               <div className="main-image-furniture-text text-align-center">
-                <h1>FILL UP YOUR <br/> DREAM WITH <br/> PRELOVED ITEMS</h1>
+                <p className="main-image-furniture-actual-text">FILL UP YOUR <br/> DREAM WITH <br/> PRELOVED ITEMS</p>
                 <a href="#all"><button className="main-show-now-button">Shop Now</button></a>
               </div>
             </div>

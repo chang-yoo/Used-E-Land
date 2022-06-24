@@ -72,7 +72,7 @@ app.get('/api/main', (req, res, next) => {
   from "post"
   where "status" = 'open'
   order by "postId" desc
-  limit 4
+  limit 8
   `;
   db
     .query(sql)
@@ -184,6 +184,8 @@ app.get('/api/search/:keyword', (req, res, next) => {
     select*
     from "post"
     where "title" ilike '%' || $1 || '%'
+    or "location" ilike '%' || $1 || '%'
+    or "brand" ilike '%' || $1 || '%'
     and "status" = 'open'
   `;
   const params = [keyword];

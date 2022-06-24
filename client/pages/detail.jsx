@@ -3,6 +3,7 @@ import Contact from '../components/contact';
 import { Loading } from '../components/spinner';
 import { Off } from '../components/offline';
 import { TryAgain } from '../components/try-again';
+import Post from '../components/post';
 
 export default class Detail extends React.Component {
   constructor(props) {
@@ -83,59 +84,59 @@ export default class Detail extends React.Component {
       return (
       <div className="detail-container">
         <div className="rows detail-background">
-          <Contact key={post.postId} postData={post} />
-          <div className="detail-description detail-column-half">
+          <div className="detail-description column-half">
             <div className="column-80">
-              <div className="detail-image-container">
-                <img className="detail-image-height margin-top-1rem" src={post.imageURL}></img>
-              </div>
-              <div className="detail-text">
-                <div className="row space-between vertical-margin">
-                  <div>
-                      <a href={`#history?userId=${post.userId}`}><h4>Seller: <span>{post.username}</span> </h4></a>
-                  </div>
-                  <div>
-                    <a href={`#review?userId=${post.userId}`}><h5 className="font-color">How am I?</h5></a>
-                  </div>
-                </div>
-                <hr></hr>
-                <h2>{post.title}</h2>
-                <hr></hr>
-                <div className="row">
-                  <h3 className="price font-size">${post.price}</h3>
-                  <h3 className="price font-size">{post.size}</h3>
-                </div>
-                <hr></hr>
-                <div className="row">
-                  <h3 className="price font-size">{post.category}</h3>
-                  <h3>{post.condition}</h3>
-                </div>
+              <div className=" detail-image-height">
+                  <img className="detail-image-container  margin-top-1rem" src={post.imageURL}></img>
               </div>
             </div>
           </div>
-          <div className="detail-description detail-column-half">
+          <div className="detail-description column-half">
             <div className="column-80">
-              <hr></hr>
-              <div className="row">
-                <div className="row">
-                  <p>{post.brand}</p>
-                  <p>{post.style}</p>
+                <div className="detail-text">
+                  <div className="margin-top-1rem">
+                    <Contact key={post.postId} postData={post} />
+                  </div>
+                  <div className="vertical-margin border-bottom-yellow">
+                    <Post key={post.postId} postData={post} />
+                    <a href={`#history?userId=${post.userId}`}><p className="bottom-0">Seller:</p></a>
+                    <h3 className="vert-space-0">{post.username}</h3>
+                    <p className="vert-space-0">{post.location}</p>
+                    <a href={`#review?userId=${post.userId}`}><p className="vert-space-0 font-color">How am I?</p></a>
+                  </div>
+                  <div className="border-bottom-yellow">
+                    <p className="vert-space-0">Price</p>
+                    <h3 className="vert-space-0">${post.price}</h3>
+                  </div>
+                  <div className="border-bottom-yellow">
+                    <p className="vert-space-0">Name:</p>
+                    <h3 className="vert-space-0">{post.title}</h3>
+                  </div>
+                  <div className="border-bottom-yellow">
+                    <p className="vert-space-0">Description:</p>
+                    <h3 className="vert-space-0">{post.description}</h3>
+                  </div>
+                  <div className="border-bottom-yellow">
+                    <p className="vert-space-0">Brand:</p>
+                    <h3 className="vert-space-0">{post.brand}</h3>
+                  </div>
+                  <div className="border-bottom-yellow">
+                    <p className="vert-space-0">Size:</p>
+                    <h4 className="vert-space-0">{post.size}</h4>
+                  </div>
+                  <div className="border-bottom-yellow">
+                    <p className="vert-space-0"> Condition:</p>
+                    <h4 className="vert-space-0">{post.condition}</h4>
+                  </div>
                 </div>
-                <div>
-                  <p>{post.style}</p>
-                </div>
+              <div className="border-bottom-yellow">
+                <p className="vert-space-0">Style:</p>
+                <h4 className="vert-space-0">{post.style}</h4>
               </div>
-              <hr></hr>
-              <div className="row">
-                <div>
-                  <p>{post.color}</p>
-                </div>
-                <div>
-                    <p className="font-size-20">{post.location}</p>
-                </div>
+              <div className="border-bottom-yellow margin-bottom-1rem">
+                <p className="vert-space-0">Color:</p>
+                <h4 className="vert-space-0">{post.color}</h4>
               </div>
-              <hr></hr>
-              <h2>{post.description}</h2>
             </div>
           </div>
         </div>
