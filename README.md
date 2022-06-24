@@ -59,7 +59,7 @@ Try the application live at [https://usey.herokuapp.com/](https://usey.herokuapp
   - postgreSql
 
 ## Getting Started
- 1. Clone the repository. [git@github.com:chang-yoo/final-project.git]
+ 1. Clone the repository. [git@github.com:chang-yoo/Usey.git]
  2. Instal all dependencies with NPM.
     - npm install
  3. Turn on the PostgreSql
