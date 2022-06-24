@@ -1,10 +1,10 @@
 import React from 'react';
 
 export const Loading = event => (
-  <div className="loading-background">
-    <div>
+  <div className="menu-bar">
+    <div className="z-index-5 text-align-center in-center">
       <div className="text-align-center">
-       <h1>loading</h1>
+       <h3>Loading</h3>
       </div>
       <div className="lds-ellipsis text-align-center">
         <div></div>

@@ -45,10 +45,10 @@ export default class History extends React.Component {
     if (completed.length === 0) {
       return <div className="list-background">
                <div>
-                 <h3 className="margin-left-1rem">You have no sold items yet</h3>
+                <h3 className="margin-left-1rem">No items sold yet</h3>
                </div>
               <div className="text-align-center in-center">
-                 <h4>Once you&apos;ve sold an item, you&apos;ll find it here</h4>
+                 <h4>Once sold, items will show up here</h4>
                  <a className="font-color" href="#">Return Home</a>
                </div>
              </div>;

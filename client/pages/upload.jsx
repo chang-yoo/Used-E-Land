@@ -179,11 +179,8 @@ export default class Upload extends React.Component {
                     onChange={this.handleImageSubmit}
                   />
                   <img className="upload-image"src={imageURL}/>
-                    <div id={classvalue} className='lds-ellipsis'>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                      <div></div>
+                    <div id={classvalue}>
+                      <Loading/>
                     </div>
                     <div className="margin-top-2rem">
                       <h2 className="text-align-left margin-bottom-half">Description</h2>
