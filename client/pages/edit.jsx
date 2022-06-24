@@ -251,13 +251,9 @@ export default class Edit extends React.Component {
                     onChange={this.handleImageSubmit}
                   />
                   <img className="upload-image" src={imageURL} />
-                  <div id={classvalue} className='lds-ellipsis'>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                  <div id={classvalue}>
+                    <Loading />
                   </div>
-
                   <div className="margin-top-2rem">
                     <h2 className="text-align-left margin-bottom-half">Description</h2>
                     <input
@@ -438,7 +434,7 @@ export default class Edit extends React.Component {
                 </div>
                 <div className="row space-between margin-top-1rem ">
                   <button type="submit" className="upload-button margin-bottom-1rem">Update</button>
-                  <button onClick={e => { window.location.hash = '#myprofile'; }} className="cancel-button margin-bottom-1rem">Cancel</button>
+                  <button type="reset" onClick={e => { window.location.hash = '#myprofile'; }} className="cancel-button margin-bottom-1rem">Cancel</button>
                 </div>
               </div>
               <div>

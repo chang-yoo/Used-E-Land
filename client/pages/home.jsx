@@ -48,7 +48,7 @@ export default class Home extends React.Component {
             <img src="images/closet.jpeg"/>
             <div className="closet-image-text text-align-center">
               <p className="closet-image-h1">DISCOVER YOUR STYLE AND <br/> SELL YOUR OWN</p>
-              <a href="#all"><button className="main-show-more-button shop-more">SHOP MORE</button></a>
+              <a href="#all"><button className="main-show-more-button shop-more">VIEW ALL</button></a>
             </div>
           </div>
         </div>
