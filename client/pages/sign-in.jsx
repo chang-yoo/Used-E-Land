@@ -24,7 +24,7 @@ export default class SignIn extends React.Component {
   }
 
   handleDemo(event) {
-    this.setState({ username: 'test', password: 'test' });
+    this.setState({ username: 'guest', password: 'test' });
     event.preventDefault();
     fetch('/api/sign-in', {
       method: 'POST',

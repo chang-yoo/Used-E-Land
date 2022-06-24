@@ -813,3 +813,8 @@ ul li ul.dropdown li {
 .fa-list-ul {
   padding-left: 1rem;
 }
+
+.font-color-white-inline {
+  color: white;
+  display: inline;
+}

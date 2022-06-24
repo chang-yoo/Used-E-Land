@@ -169,8 +169,8 @@ export default class SignUp extends React.Component {
             <div className="column-full">
               <div className="menu-bar">
                 <div className="z-index-5 text-align-center in-center">
-                  <h2 className="font-color-yellow">Thank you for being a valuable Usey</h2>
-                  <h4 onClick={this.handleDelete} className="font-color-yellow hover">Click <a href="#sign-in"><span>HERE</span></a> to Sign In</h4>
+                  <h2 className="font-color-yellow">Thank you for singing up</h2>
+                  <h4 onClick={this.handleDelete} className="font-color-yellow hover">Click <a href="#sign-in"><h3 className="font-color-white-inline">HERE</h3></a> to Sign In</h4>
                 </div>
               </div>
             </div>

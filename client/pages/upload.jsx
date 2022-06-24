@@ -333,7 +333,6 @@ export default class Upload extends React.Component {
                       </div>
                       <div className="margin-top-1rem">
                         <input
-                          required
                           id="style"
                           type="text"
                           name="style"
