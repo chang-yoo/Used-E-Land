@@ -41,11 +41,13 @@ Try the application live at [https://usey.herokuapp.com/](https://usey.herokuapp
   - user can move a post to history page once an item is sold
   - user can see other user's history page
   - user can write a review for other users
+  - user gets navigated to call or email when clicking information in contact
   - user can see a review
   - user can sign out
 
 ## Preview
-![Kapture 2022-06-17 at 02 43 56 2](https://user-images.githubusercontent.com/99840727/174274274-9f52936a-df5d-4981-92a1-d76aa313ddd9.gif)
+![Kapture 2022-06-24 at 13 53 32](https://user-images.githubusercontent.com/99840727/175666018-2250cb5c-f418-4c87-8fdb-d9fd4b0ed125.gif)
+![Kapture 2022-06-24 at 14 02 44](https://user-images.githubusercontent.com/99840727/175667077-5529f895-f9f1-4476-a23d-1300c81ef81c.gif)
 
 ## Development
   - user can click sort option to list posts by specific way such as price, created, name
