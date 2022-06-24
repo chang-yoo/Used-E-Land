@@ -83,7 +83,7 @@ export default class Header extends React.Component {
                     onChange={this.handleChange}
                     value={this.state.userInput}
                     className="search-bar"
-                    placeholder="Search"
+                    placeholder="Items, Location, Brand"
                   />
                   <div className="searching-icons searching-position">
                     <div className={classvalue}>
@@ -133,7 +133,7 @@ export default class Header extends React.Component {
                     onChange={this.handleChange}
                     value={this.state.userInput}
                     className="search-bar"
-                    placeholder="Search"
+                    placeholder="Items, Location, Brand"
                   />
                   <div className="searching-icons searching-position">
                     <div className={classvalue}>
@@ -175,7 +175,7 @@ export default class Header extends React.Component {
                     onChange={this.handleChange}
                     value={this.state.userInput}
                     className="search-bar"
-                    placeholder="Search"
+                    placeholder="Items, Location, Brand"
                   />
                   <div className="searching-icons searching-position">
                     <div className={classvalue}>
@@ -226,7 +226,7 @@ export default class Header extends React.Component {
                   onChange={this.handleChange}
                   value={this.state.userInput}
                   className="search-bar"
-                  placeholder="Search"
+                  placeholder="Items, Location, Brand"
                 />
                 <div className="searching-icons searching-position">
                   <div className={classvalue}>

@@ -103,7 +103,7 @@ export default class Category extends React.Component {
             </div>
             <div className="category-list">
               <li>
-                <a className="category-title">Home</a>
+                <a className="category-title">Home Goods</a>
                 <ul className="dropdown drop-down-width">
                   <li className="select"><a className="category-link-text"href="#categories?keyword=Home">Show All</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Home-Bath">Bath</a></li>
