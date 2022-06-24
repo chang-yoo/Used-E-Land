@@ -72,7 +72,7 @@ app.get('/api/main', (req, res, next) => {
   from "post"
   where "status" = 'open'
   order by "postId" desc
-  limit 4
+  limit 8
   `;
   db
     .query(sql)

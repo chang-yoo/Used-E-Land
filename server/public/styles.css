@@ -1,5 +1,5 @@
 * {
-  font-family: Recursive, sans-serif;
+  font-family: Varela, sans-serif;
 }
 
 body {
@@ -36,6 +36,18 @@ img {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+.main-image-furniture-actual-text {
+  width: 100%;
+  font-size: 32px;
+  color: black;
+}
+
+.main-image-furniture-actual-text,
+.closet-image-h1 {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: bolder;
 }
 
 .main-show-more-button {
@@ -77,11 +89,11 @@ img {
 
 .each-post {
   border: 1px solid #fef5f0;
-  height: auto;
+  height: 300px;
   margin: auto;
   border-radius: 3px;
   width: 180px;
-  box-shadow: 0 3px 3px 3px rgb(0, 0, 0, 0.1);
+  box-shadow: 0 0 3px 3px rgb(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -95,6 +107,7 @@ img {
   color: black;
   line-height: 18px;
   word-wrap: break-word;
+  margin-bottom: -0.2rem;
 }
 
 p {
@@ -563,9 +576,10 @@ i:hover {
 }
 
 .favorite-page {
-  margin-right: 2rem;
+  margin-right: 4rem;
 }
 
+.fa-heart,
 .add-to-favorite,
 .fa-heart-circle-plus {
   position: absolute;
@@ -697,6 +711,10 @@ i:hover {
   100% {
     transform: translate(24px, 0);
   }
+}
+
+.search-result {
+  font-size: 2rem;
 }
 
 ul li ul.dropdown {

@@ -69,10 +69,9 @@ export default class MyProfile extends React.Component {
                           <img className='postlist-image' src={eachpost.imageURL}></img>
                         </div>
                         <div className="postlist-text text-align-center">
-                          <h3 className="postlist-title">{eachpost.title}</h3>
-                          <p>{eachpost.condition}</p>
-                          <p>{eachpost.location}</p>
-                          <h5 className="price">${eachpost.price}</h5>
+                          <h3 className="margin-top-half-rem postlist-title">{eachpost.title}</h3>
+                          <p className="margin-bottom-1rem">{eachpost.location}</p>
+                          <h5 className="vert-space-0 price font-size-20">${eachpost.price}</h5>
                         </div>
                       </div>
                     </a>
@@ -88,7 +87,7 @@ export default class MyProfile extends React.Component {
       <div className="list-background">
         <div className="row space-between">
           <div className="column-half row">
-              <a href="#upload"><h3 className="margin-left-1rem">{username} Have No Listings Yet</h3></a>
+              <a href="#upload"><h3 className="margin-left-1rem">{username} have no listings yet</h3></a>
           </div>
         </div>
           <div className="in-center text-align-center">

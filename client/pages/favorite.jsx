@@ -89,17 +89,16 @@ export default class Favorite extends React.Component {
             {post.map(eachpost => {
               return (
                 <div key={eachpost.postId} className="one-fourth-container post">
-                  <i onClick={this.handleFavorite} id={eachpost.postId} className='fa-solid fa-heart fa-2x'></i>
+                  <i onClick={this.handleFavorite} id={eachpost.postId} className='fa-solid fa-heart favorite-heart fa-2x'></i>
                   <a href={`#post?postId=${eachpost.postId}`} id={eachpost.postId}>
                     <div className="each-post">
                       <div className="postlistimage-container">
                         <img className='postlist-image' src={eachpost.imageURL}></img>
                       </div>
-                      <div className="postlist-text">
-                        <h3 className="postlist-title">{eachpost.title}</h3>
-                        <p>{eachpost.condition}</p>
-                        <p>{eachpost.location}</p>
-                        <h5 className="price">${eachpost.price}</h5>
+                      <div className="postlist-text text-align-center">
+                        <h3 className="margin-top-half-rem postlist-title">{eachpost.title}</h3>
+                        <p className="margin-bottom-1rem">{eachpost.location}</p>
+                        <h5 className="vert-space-0 price font-size-20">${eachpost.price}</h5>
                       </div>
                     </div>
                   </a>
