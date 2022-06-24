@@ -57,13 +57,25 @@ img {
   width: 50%;
 }
 
+.opacity-dark {
+  filter: brightness(50%);
+}
+
 .main-show-now-button {
   background-color: black;
   color: white;
   border: 1px solid black;
-  width: 80px;
-  height: 30px;
+  width: 100%;
+  height: 50px;
   size: 12px;
+}
+
+.main-show-more-button:active,
+.main-show-now-button:active,
+.main-show-more-button:hover,
+.main-show-now-button:hover {
+  background-color: white;
+  color: black;
 }
 
 .postlist-image-contaer {

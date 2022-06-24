@@ -251,6 +251,10 @@ body {
   .column-40-for-upload {
     width: 90%;
   }
+
+  .search-font-small::placeholder {
+    font-size: 8px;
+  }
 }
 
 @media only screen and (min-width: 600px) {
@@ -320,6 +324,10 @@ body {
   .closet-image-h1 {
     color: white;
     font-size: 40px;
+  }
+
+  .search-font-small::placeholder {
+    font-size: 12px;
   }
 }
 

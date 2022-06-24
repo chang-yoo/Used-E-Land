@@ -45,7 +45,7 @@ export default class Home extends React.Component {
             <List key={this.props.postId}/>
           </div>
           <div className="column-full closet-image-container">
-            <img src="images/closet.jpeg"/>
+            <img className="opacity-dark"src="images/closet.jpeg"/>
             <div className="closet-image-text text-align-center">
               <p className="closet-image-h1">DISCOVER YOUR STYLE AND <br/> SELL YOUR OWN</p>
               <a href="#all"><button className="main-show-more-button shop-more">VIEW ALL</button></a>

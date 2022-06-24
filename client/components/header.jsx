@@ -50,8 +50,8 @@ export default class Header extends React.Component {
                     type="text"
                     onChange={this.handleChange}
                     value={this.state.userInput}
-                    className="search-bar"
-                    placeholder="Search"
+                    className="search-bar search-font-small"
+                    placeholder="Items, Location, Brand"
                   />
                   <div className="searching-icons searching-position">
                     <div className={classvalue}>
@@ -95,8 +95,8 @@ export default class Header extends React.Component {
                   type="text"
                   onChange={this.handleChange}
                   value={this.state.userInput}
-                  className="search-bar"
-                  placeholder="Search"
+                  className="search-bar search-font-small"
+                  placeholder="Items, Location, Brand"
                 />
                 <div className="searching-icons searching-position">
                   <div className={classvalue}>
