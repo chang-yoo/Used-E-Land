@@ -17,13 +17,18 @@ Try the application live at [https://usey.herokuapp.com/](https://usey.herokuapp
   - Webpack
 
 ## Features
-  - user can see an image carousel 
-  - user can see most recent post
+  - user can filter searching by using category
+  - user can search title, location, or brand of an item
+  - user can see all posts
+  - user can see list icon replaced with a logo on mobile size for category
+  - user can see most recent posts
   - user can see details of each post
   - user can see a contact of seller
   - user can search posts by using keyword
   - user can navigate to different pages
-  - user can see a menu bar sliding from right
+  - user can see not found page when the page doesn't exist
+  - user can see loading page until data loads
+  - user can see a menu bar
   - user can create an account
   - user can sign in
   - user can see myprofile
