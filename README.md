@@ -48,7 +48,7 @@ Try the application live at [https://usey.herokuapp.com/](https://usey.herokuapp
 ![Kapture 2022-06-17 at 02 43 56 2](https://user-images.githubusercontent.com/99840727/174274274-9f52936a-df5d-4981-92a1-d76aa313ddd9.gif)
 
 ## Development
-  - user can chat in real-time between seller and buyer
+  - user can click sort option to list posts by specific way such as price, created, name
 
 ## System Requirements
   - Node.js 10 or higher
