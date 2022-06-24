@@ -20,11 +20,10 @@ export default class SignIn extends React.Component {
 
   componentDidMount() {
     window.addEventListener('offline', event => this.setState({ offline: true }));
-    this.setState({ username: 'test', password: 'test', loading: 'complete' });
+    this.setState({ username: 'guest', password: 'test', loading: 'complete' });
   }
 
   handleDemo(event) {
-    this.setState({ username: 'test', password: 'test' });
     event.preventDefault();
     fetch('/api/sign-in', {
       method: 'POST',
@@ -143,7 +142,7 @@ export default class SignIn extends React.Component {
         <div className="menu-bar">
           <div className="z-index-5 text-align-center in-center">
             <h2 className="font-color-yellow">You have entered incorret username/password</h2>
-            <p className="font-color-yellow margin-top-1rem">No Account? Click <a href="#sign-up"><span>HERE</span></a> to Sign Up</p>
+            <p className="font-color-yellow margin-top-1rem">No Account? Click <a href="#sign-up"><h3 className="font-color-white-inline">HERE</h3></a> to Sign Up</p>
             <h4 onClick={this.hideBox} className="font-color-yellow hover">Try Again</h4>
           </div>
         </div>

@@ -392,6 +392,10 @@ i:hover {
   padding-left: 0;
 }
 
+.upload-image {
+  object-fit: contain;
+}
+
 .link-to-upload-button,
 .upload-button,
 .cancel-button {
@@ -593,6 +597,7 @@ i:hover {
   height: 143px;
   border-radius: 3px;
   top: 0;
+  z-index: 3;
 }
 
 .contact-info {
@@ -812,4 +817,9 @@ ul li ul.dropdown li {
 
 .fa-list-ul {
   padding-left: 1rem;
+}
+
+.font-color-white-inline {
+  color: white;
+  display: inline;
 }

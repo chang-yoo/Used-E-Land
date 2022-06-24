@@ -32,7 +32,7 @@ CREATE TABLE "public"."post" (
   "price" TEXT NOT NULL,
   "size" TEXT NOT NULL,
   "brand" TEXT NOT NULL default 'N/A',
-  "style" TEXT NOT NULL,
+  "style" TEXT NOT NULL default 'N/A',
   "color" TEXT NOT NULL,
   "description" TEXT NOT NULL,
   "title" TEXT NOT NULL,

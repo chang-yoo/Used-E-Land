@@ -81,7 +81,7 @@ export default class Category extends React.Component {
                   <li className="select"><a className="category-link-text"href="#category?keyword=Jewelery-Pins">Pins</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Jewelery-Body">Body Jewelry</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Jewelery-Bracelets">Bracelets</a></li>
-                  <li className="select"><a className="category-link-text"href="#category?keyword=Jewelery-Earings">Earings</a></li>
+                  <li className="select"><a className="category-link-text"href="#category?keyword=Jewelery-Earrings">Earrings</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Jewelery-Rings">Rings</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=Jewelery-Watches">Watches</a></li>
                 </ul>
@@ -120,8 +120,9 @@ export default class Category extends React.Component {
               <li>
                 <a className="category-title">More</a>
                 <ul className="dropdown drop-down-width">
-                  <li className="select"><a className="category-link-text"href="#categories?keyword=More">Tech Accessories</a></li>
-                  <li className="select"><a className="category-link-text"href="#category?keyword=More-">Art</a></li>
+                  <li className="select"><a className="category-link-text"href="#categories?keyword=More">Show All</a></li>
+                  <li className="select"><a className="category-link-text"href="#category?keyword=More-Tech-Accessories">Tech Accessories</a></li>
+                  <li className="select"><a className="category-link-text"href="#category?keyword=More-Art">Art</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=More-Books-and-Magazines">Books and Magazines</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=More-Music">Music</a></li>
                   <li className="select"><a className="category-link-text"href="#category?keyword=More-Party-Supplies">Party Supplies</a></li>
