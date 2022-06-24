@@ -184,6 +184,8 @@ app.get('/api/search/:keyword', (req, res, next) => {
     select*
     from "post"
     where "title" ilike '%' || $1 || '%'
+    or "location" ilike '%' || $1 || '%'
+    or "brand" ilike '%' || $1 || '%'
     and "status" = 'open'
   `;
   const params = [keyword];

@@ -3,6 +3,7 @@ import Contact from '../components/contact';
 import { Loading } from '../components/spinner';
 import { Off } from '../components/offline';
 import { TryAgain } from '../components/try-again';
+import Post from '../components/post';
 
 export default class Detail extends React.Component {
   constructor(props) {
@@ -97,7 +98,9 @@ export default class Detail extends React.Component {
                     <Contact key={post.postId} postData={post} />
                   </div>
                   <div className="vertical-margin border-bottom-yellow">
-                    <a href={`#history?userId=${post.userId}`}><h4 className="bottom-0">Seller: <span>{post.username}</span> </h4></a>
+                    <Post key={post.postId} postData={post} />
+                    <a href={`#history?userId=${post.userId}`}><p className="bottom-0">Seller:</p></a>
+                    <h3 className="vert-space-0">{post.username}</h3>
                     <p className="vert-space-0">{post.location}</p>
                     <a href={`#review?userId=${post.userId}`}><p className="vert-space-0 font-color">How am I?</p></a>
                   </div>

@@ -149,7 +149,7 @@ export default class CategoryIcon extends React.Component {
                 </div>
                 <div className="category-list">
                   <li>
-                    <a onClick={this.handleCategory}className="category-title">Close</a>
+                    <i onClick={this.handleCategory} className="fa-solid fa-xmark fa-2x"></i>
                   </li>
                 </div>
               </div>
