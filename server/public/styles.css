@@ -744,7 +744,7 @@ ul li ul.dropdown {
   z-index: 10;
 }
 
-.drop-down-width {
+#drop-down-width {
   width: 18%;
 }
 
