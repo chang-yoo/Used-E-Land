@@ -744,7 +744,7 @@ ul li ul.dropdown {
   z-index: 10;
 }
 
-.drop-down-width {
+#drop-down-width {
   width: 18%;
 }
 
@@ -778,16 +778,6 @@ ul li ul.dropdown {
 
 ul li:hover ul.dropdown {
   display: block;
-}
-
-ul li ul.dropdown li {
-  display: block;
-}
-
-.google-map-container {
-  width: 50%;
-  height: 50%;
-  position: absolute;
 }
 
 .category-container {
